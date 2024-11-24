@@ -1,0 +1,45 @@
+local mod = RegisterMod("Repentance+ Korean", 1)
+print("리펜턴스+ 한글패치는 안정적인 작동을 보장하지 않습니다!")
+
+-- 왜인진 모르겠는데 작동 안 함
+-- 니칼리스 짜증나요
+-- 이건 왜 읽고 계세요
+--
+--local game = Game()
+--local SubSprite = Sprite()
+--local VoiceSFX = SFXManager()
+--SubSprite:Load("gfx/cutscenes/backwards.anm2", true)
+--
+--local function GetScreenSize()
+--    local pos = Game():GetRoom():WorldToScreenPosition(Vector(0,0)) - Game():GetRoom():GetRenderScrollOffset() - Game().ScreenShakeOffset
+--  
+--    local rx = pos.X + 60 * 26 / 40
+--    local ry = pos.Y + 162.5 * (26 / 40)
+--  
+--    return Vector(rx*2 + 13*26, ry*2 + 7*26)
+--end
+--
+--function RenderSub(Anm2)
+--    SubSprite:Play(Anm2)
+--    SubSprite:Update()
+--    SubSprite.Scale = Vector(1, 1)
+--    SubSprite.Color = Color(1, 1, 1, 0.6, 0, 0, 0)
+--    SubSprite:Render(Vector(GetScreenSize().X/2, GetScreenSize().Y*0.85), Vector(0,0), Vector(0,0))
+--end
+--
+--mod.isVisible = true
+--mod.IsHidden = false
+--local function onRender()
+--    if Input.IsButtonTriggered(39, 0) then
+--        mod.IsHidden = not mod.IsHidden
+--    end
+--    if mod.IsHidden then return end
+--  
+--    for i = 598, 601 do
+--        if VoiceSFX:IsPlaying(i) then
+--            RenderSub("backwards" .. (i - 597))
+--        end
+--    end
+--end
+--
+--mod:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
