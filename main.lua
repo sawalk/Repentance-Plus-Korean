@@ -1,4 +1,4 @@
-local mod = RegisterMod("Repentance+ Korean", 1)
+REPKOR = RegisterMod("Repentance+ Korean", 1)
 print("\n리펜턴스+ 한글패치는 안정적인 작동을 보장하지 않습니다!\ngiveitem 명령어에서 아이템을 이름으로 검색하실 수 없습니다. (해결 중)\n")
 
 -- 왜인진 모르겠는데 작동 안 함
