@@ -340,7 +340,7 @@
 	<passive achievement="132" cache="" description="모두가 되다" gfx="collectibles_335_soul.png" id="335" name="영혼" soulhearts="4" devilprice="2" />
 	<passive cache="tearcolor tearflag range shotspeed" description="독성 공격" gfx="collectibles_336_deadonion.png" id="336" name="죽은 양파" />
 	<passive cache="" description="망가진 것 같다" gfx="collectibles_337_brokenwatch.png" id="337" name="부서진 시계" />
-	<active description="돌아오는거야!" gfx="collectibles_338_boomerang.png" id="338" maxcharges="70" name="부메랑" shopprice="10" chargetype="timed" />
+	<active description="돌아오는 거야!" gfx="collectibles_338_boomerang.png" id="338" maxcharges="70" name="부메랑" shopprice="10" chargetype="timed" />
 	<passive blackhearts="2" cache="range shotspeed damage" description="악함 + 사거리, 투사체 속도 증가" gfx="collectibles_339_SafetyPin.png" id="339" name="안전핀" />
 	<passive cache="speed size" description="이동 속도 증가 + 크기 작게" gfx="collectibles_340_CaffeinePill.png" id="340" name="카페인 정" />
 	<passive cache="shotspeed firedelay" description="공격 속도, 투사체 속도 증가" gfx="collectibles_341_TornPhoto.png" id="341" name="찢어진 사진" />
@@ -400,7 +400,7 @@
 	<passive achievement="220" description="죽음의 키스" gfx="Collectibles_393_SerpentsKiss.png" id="393" name="악마의 키스" />
 	<passive description="조준 발사" gfx="Collectibles_394_Marked.png" id="394" name="조준" cache="firedelay range" />
 	<passive description="레이저 고리 눈물" gfx="Collectibles_395_TechX.png" id="395" name="기계 X" cache="all" />
-	<active description="숏컷 생성기" gfx="Collectibles_396_VentricleRazor.png" id="396" name="심실 절단기" shopprice="10" />
+	<active description="지름길 생성기" gfx="Collectibles_396_VentricleRazor.png" id="396" name="심실 절단기" shopprice="10" />
 	<passive description="조종된 눈물" gfx="Collectibles_397_TractorBeam.png" id="397" name="조종빔" cache="firedelay tearflag range shotspeed" />
 	<passive description="줄어드는 공격!" gfx="Collectibles_398_GodsFlesh.png" id="398" name="신의 살점" cache="tearcolor" />
 	<passive achievement="186" description="적을 흡수해버리세요!" gfx="Collectibles_399_MawOfTheVoid.png" id="399" name="공허의 구렁텅이" cache="tearcolor" devilprice="2" />
@@ -474,7 +474,7 @@
 	<passive achievement="297" description="위에서 온 선물" gfx="Collectibles_464_GlyphOfBalance.png" id="464" name="균형의 문장" soulhearts="4" />
 	<passive description="360 눈물!" gfx="Collectibles_465_AnalogStick.png" id="465" name="아날로그 스틱" cache="firedelay" />
 	<passive description="발생!" gfx="Collectibles_466_Contagion.png" id="466" name="전염" />
-	<familiar description="어딜 가리켜! 어딜 가리키냐고!!" gfx="Collectibles_467_Finger.png" id="467" name="핑거!" />
+	<familiar description="어딜 가리켜! 어딜 가리키냐고!" gfx="Collectibles_467_Finger.png" id="467" name="핑거!" />
 	<familiar achievement="285" description="따라옵니다" gfx="Collectibles_468_Shade.png" id="468" name="셰이드" />
 	<familiar description=":(" gfx="Collectibles_469_Depression.png" id="469" name="우울증" />
 	<familiar achievement="315" description="리틀 허쉬!" gfx="Collectibles_470_Hushy.png" id="470" name="허쉬" />

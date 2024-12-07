@@ -1,5 +1,5 @@
 REPKOR = RegisterMod("Repentance+ Korean", 1)
-print("\n리펜턴스+ 한글패치 사용 시 giveitem 명령어에서 아이템을 이름으로 검색하실 수 없습니다.\n명령어를 입력할 때 c1과 같은 아이템 코드로 입력하십시오.")
+print("\n[리펜턴스+ 한글패치]\ngiveitem 명령어 사용 시 아이템을 이름으로 검색하실 수 없습니다.\n명령어를 입력할 때 c1과 같은 아이템 코드로 입력하십시오.\n")
 
 local game = Game()
 local SubSprite = Sprite()
