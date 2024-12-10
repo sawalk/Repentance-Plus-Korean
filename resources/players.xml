@@ -207,10 +207,10 @@
           nameimage="PlayerName_01x_Bethany.png" 
           portrait="PlayerPortrait_Bethany_b.png" skinColor="-1" pocketActive="712"
 		  birthright="아티팩트" />
-	<player id="37" name="#야곱" skin="Character_019b_Jacob.png" costume="95" hp="6" achievement="490"
+	<player id="37" name="야곱" skin="Character_019b_Jacob.png" costume="95" hp="6" achievement="490"
           nameimage="PlayerName_02x_Jacob.png" 
           portrait="PlayerPortrait_Jacob_b.png" skinColor="-1" pocketActive="722"
-		  birthright="#탈출 불가능" />
+		  birthright="탈출 불가능" />
 	<player id="38" name="나사로" skin="Character_009b_Lazarus2.png" armor="4" achievement="-2"
           nameimage="PlayerName_10_Lazarus.png" 
           portrait="PlayerPortrait_Lazarus_b_dead.png" costume="104" skinColor="0" pocketActive="711"
@@ -218,7 +218,7 @@
 	<player id="39" name="야곱" skin="Character_019b_Jacob2.png" costume="108" hp="0" armor="1" achievement="-2"
           nameimage="PlayerName_02x_Jacob.png" 
           portrait="PlayerPortrait_Jacob_b.png" skinColor="0" pocketActive="722"
-		  birthright="#탈출 불가능" />
+		  birthright="탈출 불가능" />
 	<player id="40" name="더 소울" skin="Character_017b_TheSoul.png" armor="1" achievement="-2" costume="105"
           nameimage="PlayerName_16_TheForgotten.png" 
           portrait="PlayerPortrait_TheForgotten_b.png" skinColor="2" costumeSuffix="forgottensoul"
