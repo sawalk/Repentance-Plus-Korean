@@ -1,10 +1,41 @@
 REPKOR = RegisterMod("Repentance+ Korean", 1)
+local mod = REPKOR
 
-if REPENTANCE and not REPENTANCE_PLUS then
-    local alreadyShow = false
-    print("\n[Repentance+ Korean]\nz_REPENTANCE+ KOREAN mod is only available with the Repentance+ DLC. PLEASE DISABLE THE MOD NOW.\n")
-    alreadyShow = true
+-- 리펜턴스 경고
+local showMessage = false
+
+local function checkRepentance()
+    if REPENTANCE and not REPENTANCE_PLUS then
+     -- local alreadyShow = false
+        print("\n[Repentance+ Korean]\nz_REPENTANCE+ KOREAN mod is only available with the Repentance+ DLC.\nPLEASE DISABLE THE MOD NOW.\n")
+     -- alreadyShow = true
+        showMessage = true
+    end
 end
+
+local font = Font()
+font:Load("font/cjk/lanapixel.fnt")
+
+local function NonRepentancePlus()
+    local renderMessageWidth = 1
+    local renderMessageY = 240
+    local renderMessageY2 = 250
+
+    if Options.MaxScale == 3 and Options.Fullscreen == true then
+        renderMessageWidth = 0.66666 * 2
+        renderMessageY = 242
+        renderMessageY2 = 254
+    end
+
+    if showMessage then
+        font:DrawStringScaledUTF8("리펜턴스+ 한글패치가 리펜턴스에서 실행되었습니다.",10,230,renderMessageWidth,renderMessageWidth,KColor(1,0,0,1),0,true)
+        font:DrawStringScaledUTF8("z_REPENTANCE+ KOREAN를 적용 해제 후 게임을 재시작하거나",10,renderMessageY,renderMessageWidth,renderMessageWidth,KColor(1,0,0,1),0,true)
+        font:DrawStringScaledUTF8("리펜턴스+ DLC로 실행하십시오.",10,renderMessageY2,renderMessageWidth,renderMessageWidth,KColor(1,0,0,1),0,true)
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, checkRepentance)
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, NonRepentancePlus)
 
 -- if EID then
 --     if EID:getLanguage() ~= "ko_kr" then
@@ -13,17 +44,18 @@ end
 --         else
 --            print("아이템 설명모드의 언어가 한국어가 아닙니다!\nF10이나 L키로 Mod Config Menu를 열고\nEID-General-Language를 Korean으로 설정하세요.")
 --         end
---     end  --- EID의 언어가 한국어가 아닐 경우 콘솔 메시지로 안내합니다.
--- end      --- 근데 en_us인데 한국어 뜨는 경우가 있어서 보류 중
+--     end                                                  --- EID의 언어가 한국어가 아닐 경우 콘솔 메시지로 안내합니다.
+-- end                                                      --- 근데 en_us인데 한국어 뜨는 경우가 있어서 보류 중
 --
 -- local function SetEIDLanguageToKorean()
 --     if EID then
 --         if EID:getLanguage() ~= "ko_kr" then
---             EID.Config["Language"] = "ko_kr" --- 설치 시 EID의 언어를 자동으로 한국어로 설정합니다.
---             EID:fixDefinedFont()             --- 근데 뭐 때문인지 처음 켜면 폰트가 깨져서 보류 중
+--             EID.Config["Language"] = "ko_kr"             --- 설치 시 EID의 언어를 자동으로 한국어로 설정합니다.
+--             EID:fixDefinedFont()                         --- 근데 처음 켜면 폰트가 깨지는 버그를 못 고치겠어서 보류 중
 --         end
 --     end
 -- end
+
 
 -- 아빠의 쪽지 자막
 local game = Game()
@@ -48,13 +80,13 @@ function RenderSub(Anm2)
     SubSprite:Render(Vector(GetScreenSize().X/2, GetScreenSize().Y*0.85), Vector(0,0), Vector(0,0))
 end
 
-REPKOR.isVisible = true
-REPKOR.IsHidden = false
+mod.isVisible = true
+mod.IsHidden = false
 local function onRender()
     if Input.IsButtonTriggered(39, 0) then
-        REPKOR.IsHidden = not REPKOR.IsHidden -- '키로 자막 토글
+        mod.IsHidden = not mod.IsHidden -- '키로 자막 토글
     end
-    if REPKOR.IsHidden then return end
+    if mod.IsHidden then return end
 
     for i = 598, 601 do
         if KoreanVoiceDubbing then
@@ -69,11 +101,11 @@ local function onRender()
     end
 end
 
--- REPKOR:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, SetEIDLanguageToKorean)
-REPKOR:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
+-- mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, SetEIDLanguageToKorean)
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
+
 
 -- EzItems
-local mod = REPKOR
 local data = include('data')
 local json = require('json')
 local jsonData = json.decode(data)
