@@ -37,24 +37,24 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, checkRepentance)
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, NonRepentancePlus)
 
--- if EID then
---     if EID:getLanguage() ~= "ko_kr" then
---         if alreadyShow then
---             print("The language setting for EID is not Korean!\n")
---         else
---            print("아이템 설명모드의 언어가 한국어가 아닙니다!\nF10이나 L키로 Mod Config Menu를 열고\nEID-General-Language를 Korean으로 설정하세요.")
---         end
---     end                                                  --- EID의 언어가 한국어가 아닐 경우 콘솔 메시지로 안내합니다.
--- end                                                      --- 근데 en_us인데 한국어 뜨는 경우가 있어서 보류 중
---
--- local function SetEIDLanguageToKorean()
---     if EID then
---         if EID:getLanguage() ~= "ko_kr" then
---             EID.Config["Language"] = "ko_kr"             --- 설치 시 EID의 언어를 자동으로 한국어로 설정합니다.
---             EID:fixDefinedFont()                         --- 근데 처음 켜면 폰트가 깨지는 버그를 못 고치겠어서 보류 중
---         end
---     end
--- end
+--[[ if EID then
+    if EID:getLanguage() ~= "ko_kr" then
+        if alreadyShow then
+            print("The language setting for EID is not Korean!\n")
+        else
+           print("아이템 설명모드의 언어가 한국어가 아닙니다!\nF10이나 L키로 Mod Config Menu를 열고\nEID-General-Language를 Korean으로 설정하세요.")
+        end
+    end                                                  --- EID의 언어가 한국어가 아닐 경우 콘솔 메시지로 안내합니다.
+end                                                      --- 근데 en_us인데 한국어 뜨는 경우가 있어서 보류 중
+
+local function SetEIDLanguageToKorean()
+    if EID then
+        if EID:getLanguage() ~= "ko_kr" then
+            EID.Config["Language"] = "ko_kr"             --- 설치 시 EID의 언어를 자동으로 한국어로 설정합니다.
+            EID:fixDefinedFont()                         --- 근데 처음 켜면 폰트가 깨지는 버그를 못 고치겠어서 보류 중
+        end
+    end
+end --]]
 
 
 -- 아빠의 쪽지 자막
@@ -105,8 +105,8 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 
 
--- EzItems
-local data = include('data')
+-- EzItems by ddeeddii
+local data = include('data') -- support by raiiiny
 local json = require('json')
 local jsonData = json.decode(data)
 
@@ -226,7 +226,7 @@ if next(changes.trinkets) ~= nil then
             if (t_queueNow ~= nil) then
             local trinket = changes.trinkets[tostring(t_queueNow.ID)]
                 if trinket and t_queueNow:IsTrinket() and t_queueLastFrame == nil then
-                    game:GetHUD():ShowItemText(trinket.name, trinket.description, false, true)
+                    game:GetHUD():ShowItemText(trinket.name, trinket.description)
                 end
             end
             t_queueLastFrame = t_queueNow
@@ -246,10 +246,59 @@ if next(changes.items) ~= nil then
             if (i_queueNow ~= nil) then
                 local item = changes.items[tostring(i_queueNow.ID)]
                 if item and i_queueNow:IsCollectible() and i_queueLastFrame == nil then
-                    game:GetHUD():ShowItemText(item.name, item.description, false, true)
+                    game:GetHUD():ShowItemText(item.name, item.description)
                 end
             end
             i_queueLastFrame = i_queueNow
         end
     )
 end
+
+
+-- 알약/카드
+local pillNames = include("data_pillNames")
+local pillDescriptions = {
+    [PillEffect.PILLEFFECT_I_FOUND_PILLS] = "...먹어 버렸어"
+}
+
+function mod:FakePillText(pillEffect)
+    if pillNames[pillEffect] then
+        game:GetHUD():ShowItemText(pillNames[pillEffect], pillDescriptions[pillEffect])
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_USE_PILL, mod.FakePillText)
+
+--[[
+local cardNames = include("data_cardNames")
+local cardDescriptions = include("data_cardDescriptions")
+local delayedCardID = nil
+
+function mod:ChangeCardText(pickup)
+    if pickup.Variant == PickupVariant.PICKUP_TAROTCARD and pickup.SubType > 0 then
+        local cardID = pickup.SubType
+        if cardNames[cardID] then
+            delayedCardID = cardID
+        end
+    end
+end
+
+function mod:ShowFakeCardText()
+    if delayedCardID then
+        game:GetHUD():ShowItemText(cardNames[delayedCardID], cardDescriptions[delayedCardID])
+        delayedCardID = nil
+    end
+end
+
+function mod:DroppedCard(pickup)
+    if pickup.Variant == PickupVariant.PICKUP_TAROTCARD then
+        local heldcard = game:GetPlayer(0):GetCard(0)
+        if delayedCardID and delayedCardID ~= heldcard then
+            delayedCardID = nil
+        end
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.ChangeCardText, PickupVariant.PICKUP_TAROTCARD)
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.ShowFakeCardText)
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.DroppedCard) --]]
