@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stringtable>
+    <info version="1.0" modified="Wed Dec 4 23:15:54 2024" modifiedby="Jerm"/>
+    <languages>
+        <language id="21" index="0" name="Key"/>
+        <language id="0" index="1" name="English"/>
+        <language id="2" index="2" name="Japanese"/>
+        <language id="11" index="3" name="Korean"/>
+        <language id="13" index="4" name="Chinese (Simple)"/>
+        <language id="10" index="5" name="Russian"/>
+        <language id="5" index="6" name="German"/>
+        <language id="4" index="7" name="Spanish"/>
+        <language id="3" index="8" name="French"/>
+    </languages>
+    <category name="Default">
+        <key name="MOD_INSTALLING">
+            <string>Installing %s</string>
+            <string>%sをインストール中</string>
+            <string>%s 설치 중</string>
+            <string>正在安装%s</string>
+            <string>Установка %s</string>
+            <string>%s installieren</string>
+            <string>Instalando %s</string>
+            <string>Installation de %s</string>
+        </key>
+        <key name="MOD_UPDATING">
+            <string>Updating %s</string>
+            <string>%sをアップデート中</string>
+            <string>%s 업데이트 중</string>
+            <string>正在更新%s</string>
+            <string>Обновление %s</string>
+            <string>%s updaten</string>
+            <string>Actualizando %s</string>
+            <string>Mise à jour de %s</string>
+        </key>
+        <key name="MOD_UNINSTALLING">
+            <string>Uninstalling %s</string>
+            <string>%sをアンインストール中</string>
+            <string>%s 삭제 중</string>
+            <string>正在卸载%s</string>
+            <string>Удаление %s</string>
+            <string>%s deinstallieren</string>
+            <string>Desinstalando %s</string>
+            <string>Désinstallation de %s</string>
+        </key>
+        <key name="ONLINE_MODS_NEEDS_RESTART">
+            <string>Mods are not allowed in online play, mods are currently disabled but the game needs to be restarted in order to continue</string>
+            <string></string>
+            <string>온라인 플레이에선 모드를 허용하지 않습니다. 현재 모드가 비활성화되어 있지만 계속하려면 게임을 다시 시작해야 합니다.</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+        </key>
+        <key name="ONLINE_MODS_BANNED">
+            <string>Mods are not allowed in online play, please disable all mods and then restart the game</string>
+            <string></string>
+            <string>온라인 플레이에선 모드가 허용되지 않습니다. 모드를 비활성화하고 게임을 다시 시작해주세요.</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+        </key>
+        <key name="ONLINE_MODS_PERMABANNED">
+            <string>Mods are not allowed in online play, please disable all mods and then restart the game.</string>
+            <string> </string>
+            <string>온라인 플레이에선 모드가 허용되지 않습니다. 모드를 비활성화하고 게임을 다시 시작해주세요.</string>
+            <string> </string>
+            <string> </string>
+            <string> </string>
+            <string> </string>
+            <string> </string>
+        </key>
+        <key name="UNRECOGNIZED_CONTROLLER_HEADER">
+            <string>Unrecognized Gamepad!</string>
+            <string></string>
+            <string>미설정 게임패드 발견!</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+        </key>
+        <key name="UNRECOGNIZED_CONTROLLER_MESSAGE">
+            <string>Please setup a key config for the connected controller</string>
+            <string></string>
+            <string>연결된 컨트롤러의 조작 설정을 해주세요.</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+        </key>
+        <key name="CONFIRM_EXIT_GAME">
+            <string>Are you sure you want to exit?</string>
+            <string></string>
+            <string>게임을 종료하시겠습니까?</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+        </key>
+        <key name="NOT_CONNECTED_TO_SERVER">
+            <string>Connection Failure!\n\nMake sure you are connected to the internet and Steam is running</string>
+            <string></string>
+            <string>연결 실패!\n\n인터넷의 연결 상태와 Steam이 실행 중인지 확인해주세요.</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+        </key>
+        <key name="LOST_CONNECTION_TO_SERVER">
+            <string>Lost connection to Steam</string>
+            <string></string>
+            <string>Steam 연결 끊김</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+        </key>
+        <key name="AFTERBIRTH_DLC_NOT_INSTALLED">
+            <string>You must own The Binding of Isaac: Afterbirth and it must be installed in order to play The Binding of Isaac: Repentance+</string>
+            <string></string>
+            <string>아이작의 번제: 리펜턴스+를 플레이하려면 아이작의 번제: 애프터버스를 소유하고 설치해야 합니다.</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+        </key>
+        <key name="AFTERBIRTH_PLUS_DLC_NOT_INSTALLED">
+            <string>You must own The Binding of Isaac: Afterbirth+ and it must be installed in order to play The Binding of Isaac: Repentance+</string>
+            <string></string>
+            <string>아이작의 번제: 리펜턴스+를 플레이하려면 아이작의 번제: 애프터버스+를 소유하고 설치해야 합니다.</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+        </key>
+        <key name="REPENTANCE_DLC_NOT_INSTALLED">
+            <string>You must own The Binding of Isaac: Repentance and it must be installed in order to play The Binding of Isaac: Repentance+</string>
+            <string></string>
+            <string>아이작의 번제: 리펜턴스+를 플레이하려면 아이작의 번제: 리펜턴스를 소유하고 설치해야 합니다.</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+        </key>
+    </category>
+</stringtable>

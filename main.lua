@@ -34,7 +34,7 @@ local function NonRepentancePlus()
     end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, checkRepentance)
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, checkRepentance)
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, NonRepentancePlus)
 
 --[[ if EID then
@@ -255,6 +255,27 @@ if next(changes.items) ~= nil then
 end
 
 
+-- 행운의 동전
+local delayLuckyPenny = nil
+
+function mod:LuckyPennyPickup(pickup, collider)
+    if pickup.Variant == PickupVariant.PICKUP_COIN and pickup.SubType == CoinSubType.COIN_LUCKYPENNY then
+        if collider.Type == EntityType.ENTITY_PLAYER then
+            delayLuckyPenny = true
+        end
+    end
+end
+
+function mod:DelayedLuckyPennyText()
+    if delayLuckyPenny then
+        game:GetHUD():ShowItemText("행운의 동전", "행운 증가")
+        delayLuckyPenny = nil   -- 초기화
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.LuckyPennyPickup, PickupVariant.PICKUP_COIN)
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.DelayedLuckyPennyText)
+
 -- 알약/카드
 local pillNames = include("data_pillNames")
 local pillDescriptions = {
@@ -269,36 +290,31 @@ end
 
 mod:AddCallback(ModCallbacks.MC_USE_PILL, mod.FakePillText)
 
---[[
 local cardNames = include("data_cardNames")
 local cardDescriptions = include("data_cardDescriptions")
-local delayedCardID = nil
 
-function mod:ChangeCardText(pickup)
-    if pickup.Variant == PickupVariant.PICKUP_TAROTCARD and pickup.SubType > 0 then
+local textDisplayed = false
+local resetTimer = 0
+
+function mod:FakeCardText(pickup)
+    if pickup.Variant == PickupVariant.PICKUP_TAROTCARD and pickup:IsDead() then
         local cardID = pickup.SubType
-        if cardNames[cardID] then
-            delayedCardID = cardID
+        if cardNames[cardID] and not textDisplayed then
+            game:GetHUD():ShowItemText(cardNames[cardID], cardDescriptions[cardID])
+            textDisplayed = true
+            resetTimer = 18 -- 변경 금지
         end
     end
 end
 
-function mod:ShowFakeCardText()
-    if delayedCardID then
-        game:GetHUD():ShowItemText(cardNames[delayedCardID], cardDescriptions[delayedCardID])
-        delayedCardID = nil
-    end
-end
-
-function mod:DroppedCard(pickup)
-    if pickup.Variant == PickupVariant.PICKUP_TAROTCARD then
-        local heldcard = game:GetPlayer(0):GetCard(0)
-        if delayedCardID and delayedCardID ~= heldcard then
-            delayedCardID = nil
+function mod:ResetTextFlag()
+    if resetTimer > 0 then
+        resetTimer = resetTimer - 1
+        if resetTimer == 0 then
+            textDisplayed = false
         end
     end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.ChangeCardText, PickupVariant.PICKUP_TAROTCARD)
-mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.ShowFakeCardText)
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.DroppedCard) --]]
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.FakeCardText, PickupVariant.PICKUP_TAROTCARD)
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.ResetTextFlag)

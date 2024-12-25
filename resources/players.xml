@@ -112,7 +112,7 @@
 	<player id="13" name="릴리트" skin="Character_014_Lilith.png" hp="2" black="4" canShoot="false" items="357,412" achievement="199"
           nameimage="PlayerName_13_Lilith.png" 
           portrait="PlayerPortrait_Lilith.png" costume="34" skinColor="1" costumeSuffix="lilith"
-		  birthright="공격 대형" />
+		  birthright="공격형 대형" />
 	<player id="14" name="키퍼" skin="Character_015_Keeper.png" hp="4" bombs="1" achievement="251"
           nameimage="PlayerName_14_TheKeeper.png" 
           portrait="PlayerPortrait_Keeper.png" skinColor="5" costume="47" costumeSuffix="keeper"
