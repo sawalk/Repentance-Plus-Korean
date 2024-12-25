@@ -5288,7 +5288,7 @@
         <key name="SHARP_PLUG_NAME">
             <string>Sharp Plug</string>
             <string>シャーププラグ</string>
-            <string>플러그</string>
+            <string>날카로운 플러그</string>
             <string>锋利插头</string>
             <string>Острый штепсель</string>
             <string>Scharfkantiger Stecker</string>
@@ -10518,7 +10518,7 @@
         <key name="FINGER_DESCRIPTION">
             <string>Watch where you point that!</string>
             <string>どこ突きつけてるんだよ！</string>
-            <string>어딜 가리켜! 어딜 가리키냐고!</string>
+            <string>저 놈을 주목해!</string>
             <string>小心你指的地方！</string>
             <string>Смотри куда тычешь!</string>
             <string>Pass auf, wohin du damit zeigst!</string>
