@@ -105,7 +105,7 @@
           nameimage="PlayerName_10_Lazarus.png" 
           portrait="PlayerPortrait_Lazarus2.png" costume="33" skinColor="-1"
 		  birthright="일시적 공격력 증가" />
-	<player id="12" name="검은 유다" skin="Character_013_BlackJudas.png" black="4" achievement="108"
+	<player id="12" name="블랙 유다" skin="Character_013_BlackJudas.png" black="4" achievement="108"
           nameimage="PlayerName_04_Judas.png" 
           portrait="PlayerPortrait_DarkJudas.png" skinColor="1" costumeSuffix="shadow"
 		  birthright="벨리알의 화신" />

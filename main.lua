@@ -169,8 +169,8 @@ end
 }
 
 --[[ local function updateEid ()
-    for type, itemTypeData in pairs(changes) do
-        for id, itemData in pairs(itemTypeData) do
+    for type, itemTypeData in pairs(changes) do                                   -- EID에서 이름을 data.lua에서의 이름으로 덮어씌우게 변경합니다.
+        for id, itemData in pairs(itemTypeData) do                                -- 굳이?여서 주석 처리함
             EID:addDescriptionModifier(
             'EZITEMS | ' .. tostring(mod.Name) .. ' | ' .. itemData.name,
             function (descObj) return descObj.ObjType == 5 and descObj.ObjVariant == itemVariants[type] and descObj.ObjSubType == tonumber(id) end,
@@ -215,41 +215,59 @@ checkConflicts()
 end --]]
   
 if next(changes.trinkets) ~= nil then
-    local t_queueLastFrame
-    local t_queueNow
+    local t_queueLastFrame = {}
+    local t_queueNow = {}
+    
     mod:AddCallback(
         ModCallbacks.MC_POST_PLAYER_UPDATE,
   
         ---@param player EntityPlayer
         function(_, player)
-            t_queueNow = player.QueuedItem.Item
-            if (t_queueNow ~= nil) then
-            local trinket = changes.trinkets[tostring(t_queueNow.ID)]
-                if trinket and t_queueNow:IsTrinket() and t_queueLastFrame == nil then
+            local playerKey = tostring(player.InitSeed)   -- 플레이어 구분
+            
+            t_queueNow[playerKey] = player.QueuedItem.Item
+            if (t_queueNow[playerKey] ~= nil) then
+                local trinket = changes.trinkets[tostring(t_queueNow[playerKey].ID)]
+                if trinket and t_queueNow[playerKey]:IsTrinket() and t_queueLastFrame[playerKey] == nil then
                     game:GetHUD():ShowItemText(trinket.name, trinket.description)
                 end
             end
-            t_queueLastFrame = t_queueNow
+            t_queueLastFrame[playerKey] = t_queueNow[playerKey]
         end
     )
 end
   
 if next(changes.items) ~= nil then
-    local i_queueLastFrame
-    local i_queueNow
+    local i_queueLastFrame = {}
+    local i_queueNow = {}
+    local birthrightDesc = include("data_birthrightDesc")
+    
     mod:AddCallback(
         ModCallbacks.MC_POST_PLAYER_UPDATE,
-  
+
         ---@param player EntityPlayer
         function(_, player)
-            i_queueNow = player.QueuedItem.Item
-            if (i_queueNow ~= nil) then
-                local item = changes.items[tostring(i_queueNow.ID)]
-                if item and i_queueNow:IsCollectible() and i_queueLastFrame == nil then
-                    game:GetHUD():ShowItemText(item.name, item.description)
+            local playerKey = tostring(player.InitSeed)   -- 플레이어 구분
+            
+            i_queueNow[playerKey] = player.QueuedItem.Item
+            if i_queueNow[playerKey] and i_queueNow[playerKey]:IsCollectible() and i_queueLastFrame[playerKey] == nil then
+                local itemID = i_queueNow[playerKey].ID
+                if itemID == CollectibleType.COLLECTIBLE_BIRTHRIGHT then   -- 생득권
+                    local i_playerType = player:GetPlayerType()
+                    local i_description = birthrightDesc[i_playerType]
+                    if i_description then
+                        game:GetHUD():ShowItemText("생득권", i_description)
+                    else
+                        game:GetHUD():ShowItemText("생득권", "???")
+                    end
+                else
+                    local item = changes.items[tostring(itemID)]
+                    if item then
+                        game:GetHUD():ShowItemText(item.name, item.description)
+                    end
                 end
             end
-            i_queueLastFrame = i_queueNow
+            i_queueLastFrame[playerKey] = i_queueNow[playerKey]
         end
     )
 end
