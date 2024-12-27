@@ -45,13 +45,13 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, NonRepentancePlus)
            print("아이템 설명모드의 언어가 한국어가 아닙니다!\nF10이나 L키로 Mod Config Menu를 열고\nEID-General-Language를 Korean으로 설정하세요.")
         end
     end                                                  --- EID의 언어가 한국어가 아닐 경우 콘솔 메시지로 안내합니다.
-end                                                      --- 근데 en_us인데 한국어 뜨는 경우가 있어서 보류 중
+end                                                      --- EID는 en_us라고 출력하는데 실제론 한국어 설명 뜨는 경우 있음
 
 local function SetEIDLanguageToKorean()
     if EID then
         if EID:getLanguage() ~= "ko_kr" then
             EID.Config["Language"] = "ko_kr"             --- 설치 시 EID의 언어를 자동으로 한국어로 설정합니다.
-            EID:fixDefinedFont()                         --- 근데 처음 켜면 폰트가 깨지는 버그를 못 고치겠어서 보류 중
+            EID:fixDefinedFont()                         --- 처음 켜면 폰트가 깨지는 버그 있음
         end
     end
 end --]]
@@ -84,7 +84,7 @@ mod.isVisible = true
 mod.IsHidden = false
 local function onRender()
     if Input.IsButtonTriggered(39, 0) then
-        mod.IsHidden = not mod.IsHidden -- '키로 자막 토글
+        mod.IsHidden = not mod.IsHidden   -- '키로 자막 토글
     end
     if mod.IsHidden then return end
 
@@ -170,7 +170,7 @@ end
 
 --[[ local function updateEid ()
     for type, itemTypeData in pairs(changes) do                                   -- EID에서 이름을 data.lua에서의 이름으로 덮어씌우게 변경합니다.
-        for id, itemData in pairs(itemTypeData) do                                -- 굳이?여서 주석 처리함
+        for id, itemData in pairs(itemTypeData) do                                -- 굳이?여서 주석 처리
             EID:addDescriptionModifier(
             'EZITEMS | ' .. tostring(mod.Name) .. ' | ' .. itemData.name,
             function (descObj) return descObj.ObjType == 5 and descObj.ObjVariant == itemVariants[type] and descObj.ObjSubType == tonumber(id) end,
@@ -213,7 +213,7 @@ checkConflicts()
 --[[ if EID then
     updateEid()
 end --]]
-  
+
 if next(changes.trinkets) ~= nil then
     local t_queueLastFrame = {}
     local t_queueNow = {}
@@ -223,7 +223,7 @@ if next(changes.trinkets) ~= nil then
   
         ---@param player EntityPlayer
         function(_, player)
-            local playerKey = tostring(player.InitSeed)   -- 플레이어 구분
+            local playerKey = tostring(player.InitSeed)
             
             t_queueNow[playerKey] = player.QueuedItem.Item
             if (t_queueNow[playerKey] ~= nil) then
@@ -236,7 +236,7 @@ if next(changes.trinkets) ~= nil then
         end
     )
 end
-  
+
 if next(changes.items) ~= nil then
     local i_queueLastFrame = {}
     local i_queueNow = {}
@@ -247,21 +247,19 @@ if next(changes.items) ~= nil then
 
         ---@param player EntityPlayer
         function(_, player)
-            local playerKey = tostring(player.InitSeed)   -- 플레이어 구분
+            local playerKey = tostring(player.InitSeed)
             
             i_queueNow[playerKey] = player.QueuedItem.Item
             if i_queueNow[playerKey] and i_queueNow[playerKey]:IsCollectible() and i_queueLastFrame[playerKey] == nil then
                 local itemID = i_queueNow[playerKey].ID
-                if itemID == CollectibleType.COLLECTIBLE_BIRTHRIGHT then   -- 생득권
+                if itemID == CollectibleType.COLLECTIBLE_BIRTHRIGHT then   -- 생득권이라면
                     local i_playerType = player:GetPlayerType()
                     local i_description = birthrightDesc[i_playerType]
                     if i_description then
-                        game:GetHUD():ShowItemText("생득권", i_description)
-                    else
-                        game:GetHUD():ShowItemText("생득권", "???")
+                        game:GetHUD():ShowItemText("생득권", i_description or "???")
                     end
                 else
-                    local item = changes.items[tostring(itemID)]
+                    local item = changes.items[tostring(itemID)]   -- 일반 아이템이라면
                     if item then
                         game:GetHUD():ShowItemText(item.name, item.description)
                     end
@@ -272,27 +270,6 @@ if next(changes.items) ~= nil then
     )
 end
 
-
--- 행운의 동전
-local delayLuckyPenny = nil
-
-function mod:LuckyPennyPickup(pickup, collider)
-    if pickup.Variant == PickupVariant.PICKUP_COIN and pickup.SubType == CoinSubType.COIN_LUCKYPENNY then
-        if collider.Type == EntityType.ENTITY_PLAYER then
-            delayLuckyPenny = true
-        end
-    end
-end
-
-function mod:DelayedLuckyPennyText() --1프레임 뒤에 실행
-    if delayLuckyPenny then
-        game:GetHUD():ShowItemText("행운의 동전", "행운 증가")
-        delayLuckyPenny = nil   -- 초기화
-    end
-end
-
-mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.LuckyPennyPickup, PickupVariant.PICKUP_COIN)
-mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.DelayedLuckyPennyText)
 
 -- 알약/카드
 local pillNames = include("data_pillNames")
@@ -320,7 +297,7 @@ function mod:FakeCardText(pickup)
         if cardNames[cardID] and not textDisplayed then
             game:GetHUD():ShowItemText(cardNames[cardID], cardDescriptions[cardID])
             textDisplayed = true
-            resetTimer = 18 -- 변경 금지
+            resetTimer = 18    -- 변경 금지
         end
     end
 end
@@ -336,3 +313,25 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.FakeCardText, PickupVariant.PICKUP_TAROTCARD)
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.ResetTextFlag)
+
+
+-- 행운의 동전
+local delayLuckyPenny = nil
+
+function mod:LuckyPennyPickup(pickup, collider)
+    if pickup.Variant == PickupVariant.PICKUP_COIN and pickup.SubType == CoinSubType.COIN_LUCKYPENNY then
+        if collider.Type == EntityType.ENTITY_PLAYER then
+            delayLuckyPenny = true
+        end
+    end
+end
+
+function mod:DelayedLuckyPennyText()   -- 1프레임 뒤에 실행
+    if delayLuckyPenny then
+        game:GetHUD():ShowItemText("행운의 동전", "행운 증가")
+        delayLuckyPenny = nil   -- 초기화
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.LuckyPennyPickup, PickupVariant.PICKUP_COIN)
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.DelayedLuckyPennyText)
