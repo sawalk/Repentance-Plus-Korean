@@ -2,66 +2,16 @@ REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
 -- 리펜턴스 경고
-local showMessage = false
-
+local runningRep = REPENTANCE and not REPENTANCE_PLUS
+local conflictKLP = false
+if KoreanLocalizingPlus then
+    conflictKLP = true
+end
 local function checkRepentance()
-    if REPENTANCE and not REPENTANCE_PLUS then
-     -- local alreadyShow = false
+    if runningRep then
         print("\n[Repentance+ Korean]\nz_REPENTANCE+ KOREAN mod is only available with the Repentance+ DLC.\nPLEASE DISABLE THE MOD NOW.\n")
-     -- alreadyShow = true
-        showMessage = true
     end
 end
-
-local font = Font()
-font:Load("font/cjk/lanapixel.fnt")
-
-local function NonRepentancePlus()
-    local renderMessageWidth = 1
-    local renderMessageY = 240
-    local renderMessageY2 = 250
-
-    if Options.MaxScale == 3 and Options.Fullscreen == true then
-        renderMessageWidth = 0.66666 * 2
-        renderMessageY = 242
-        renderMessageY2 = 254
-    end
-
-    if showMessage then
-        font:DrawStringScaledUTF8("리펜턴스+ 한글패치가 리펜턴스에서 실행되었습니다.",10,230,renderMessageWidth,renderMessageWidth,KColor(1,0,0,1),0,true)
-        font:DrawStringScaledUTF8("z_REPENTANCE+ KOREAN를 적용 해제 후 게임을 재시작하거나",10,renderMessageY,renderMessageWidth,renderMessageWidth,KColor(1,0,0,1),0,true)
-        font:DrawStringScaledUTF8("리펜턴스+ DLC로 실행하십시오.",10,renderMessageY2,renderMessageWidth,renderMessageWidth,KColor(1,0,0,1),0,true)
-    end
-end
-
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, checkRepentance)
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, NonRepentancePlus)
-
---[[ if EID then
-    if EID:getLanguage() ~= "ko_kr" then
-        if alreadyShow then
-            print("The language setting for EID is not Korean!\n")
-        else
-           print("아이템 설명모드의 언어가 한국어가 아닙니다!\nF10이나 L키로 Mod Config Menu를 열고\nEID-General-Language를 Korean으로 설정하세요.")
-        end
-    end                                                  --- EID의 언어가 한국어가 아닐 경우 콘솔 메시지로 안내합니다.
-end                                                      --- EID는 en_us라고 출력하는데 실제론 한국어 설명 뜨는 경우 있음
-
-local function SetEIDLanguageToKorean()
-    if EID then
-        if EID:getLanguage() ~= "ko_kr" then
-            EID.Config["Language"] = "ko_kr"             --- 설치 시 EID의 언어를 자동으로 한국어로 설정합니다.
-            EID:fixDefinedFont()                         --- 처음 켜면 폰트가 깨지는 버그 있음
-        end
-    end
-end --]]
-
-
--- 아빠의 쪽지 자막
-local game = Game()
-local SubSprite = Sprite()
-local VoiceSFX = SFXManager()
-SubSprite:Load("gfx/cutscenes/backwards.anm2", true)
 
 local function GetScreenSize()
     local pos = Game():GetRoom():WorldToScreenPosition(Vector(0,0)) - Game():GetRoom():GetRenderScrollOffset() - Game().ScreenShakeOffset
@@ -72,16 +22,58 @@ local function GetScreenSize()
     return Vector(rx*2 + 13*26, ry*2 + 7*26)
 end
 
-function RenderSub(Anm2)
-    SubSprite:Play(Anm2)
-    SubSprite:Update()
-    SubSprite.Scale = Vector(1, 1)
-    SubSprite.Color = Color(1, 1, 1, 0.6, 0, 0, 0)
-    SubSprite:Render(Vector(GetScreenSize().X/2, GetScreenSize().Y*0.85), Vector(0,0), Vector(0,0))
+local sprite = Sprite()
+if runningRep or conflictKLP then
+    sprite:Load("gfx/ui/popup_warning2.anm2", true)
+else
+    sprite:Load("gfx/cutscenes/backwards.anm2", true)
 end
 
+function RenderSub(Anm2)
+    sprite:Play(Anm2)
+    sprite:Update()
+    sprite.Scale = Vector(1, 1)
+    if runningRep or conflictKLP then
+        sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
+        sprite:Render(Vector(GetScreenSize().X/1.96, GetScreenSize().Y/2.2), Vector(0,0), Vector(0,0))
+    else
+        sprite.Color = Color(1, 1, 1, 0.6, 0, 0, 0)
+        sprite:Render(Vector(GetScreenSize().X/2, GetScreenSize().Y*0.85), Vector(0,0), Vector(0,0))
+    end
+end
+
+local showAnm2 = false
+local renderingTime = 15
+local DisplayedTime = 0
+local function updateRenderAnm2()
+    if runningRep or conflictKLP then
+        DisplayedTime = DisplayedTime + 1
+        if DisplayedTime >= renderingTime then
+            showAnm2 = true
+        end
+    end
+end
+
+local function NonRepentancePlus()
+    if showAnm2 then
+        if not conflictKLP then
+            RenderSub("runningRep")
+        else
+            RenderSub("conflictWithKLP")
+        end
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, checkRepentance)
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, updateRenderAnm2)
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, NonRepentancePlus)
+
+
+-- 아빠의 쪽지 자막 by blackcreamtea
 mod.isVisible = true
 mod.IsHidden = false
+
+local VoiceSFX = SFXManager()
 local function onRender()
     if Input.IsButtonTriggered(39, 0) then
         mod.IsHidden = not mod.IsHidden   -- '키로 자막 토글
@@ -91,7 +83,7 @@ local function onRender()
     for i = 598, 601 do
         if KoreanVoiceDubbing then
             if VoiceSFX:IsPlaying(Isaac.GetSoundIdByName("DADS_NOTE_KOREAN_" .. (i - 597))) then
-              RenderSub("backwards" .. (i - 597))
+                RenderSub("backwards" .. (i - 597))
             end
         else
             if VoiceSFX:IsPlaying(i) then
@@ -101,7 +93,6 @@ local function onRender()
     end
 end
 
--- mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, SetEIDLanguageToKorean)
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 
 
@@ -229,7 +220,7 @@ if next(changes.trinkets) ~= nil then
             if (t_queueNow[playerKey] ~= nil) then
                 local trinket = changes.trinkets[tostring(t_queueNow[playerKey].ID)]
                 if trinket and t_queueNow[playerKey]:IsTrinket() and t_queueLastFrame[playerKey] == nil then
-                    game:GetHUD():ShowItemText(trinket.name, trinket.description)
+                    Game():GetHUD():ShowItemText(trinket.name, trinket.description)
                 end
             end
             t_queueLastFrame[playerKey] = t_queueNow[playerKey]
@@ -256,12 +247,12 @@ if next(changes.items) ~= nil then
                     local i_playerType = player:GetPlayerType()
                     local i_description = birthrightDesc[i_playerType]
                     if i_description then
-                        game:GetHUD():ShowItemText("생득권", i_description or "???")
+                        Game():GetHUD():ShowItemText("생득권", i_description or "???")
                     end
                 else
                     local item = changes.items[tostring(itemID)]   -- 일반 아이템이라면
                     if item then
-                        game:GetHUD():ShowItemText(item.name, item.description)
+                        Game():GetHUD():ShowItemText(item.name, item.description)
                     end
                 end
             end
@@ -279,7 +270,7 @@ local pillDescriptions = {
 
 function mod:FakePillText(pillEffect)
     if pillNames[pillEffect] then
-        game:GetHUD():ShowItemText(pillNames[pillEffect], pillDescriptions[pillEffect])
+        Game():GetHUD():ShowItemText(pillNames[pillEffect], pillDescriptions[pillEffect])
     end
 end
 
@@ -295,7 +286,7 @@ function mod:FakeCardText(pickup)
     if pickup.Variant == PickupVariant.PICKUP_TAROTCARD and pickup:IsDead() then
         local cardID = pickup.SubType
         if cardNames[cardID] and not textDisplayed then
-            game:GetHUD():ShowItemText(cardNames[cardID], cardDescriptions[cardID])
+            Game():GetHUD():ShowItemText(cardNames[cardID], cardDescriptions[cardID])
             textDisplayed = true
             resetTimer = 18    -- 변경 금지
         end
@@ -328,7 +319,7 @@ end
 
 function mod:DelayedLuckyPennyText()   -- 1프레임 뒤에 실행
     if delayLuckyPenny then
-        game:GetHUD():ShowItemText("행운의 동전", "행운 증가")
+        Game():GetHUD():ShowItemText("행운의 동전", "행운 증가")
         delayLuckyPenny = nil   -- 초기화
     end
 end
