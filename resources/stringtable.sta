@@ -10148,7 +10148,7 @@
         <key name="METAL_PLATE_NAME">
             <string>Metal Plate</string>
             <string>メタルプレート</string>
-            <string>메탈 플레이트</string>
+            <string>강철판</string>
             <string>金属板</string>
             <string>Металлическая пластина</string>
             <string>Metallplatte</string>
@@ -10268,7 +10268,7 @@
         <key name="DADS_LOST_COIN_NAME">
             <string>Dad's Lost Coin</string>
             <string>パパが失くしたコイン</string>
-            <string>아빠의 잃어버린 코인</string>
+            <string>아빠의 잃어버린 동전</string>
             <string>爸爸丢失的硬币</string>
             <string>Папина потерянная монета</string>
             <string>Papas verlorene Münze</string>
@@ -13138,7 +13138,7 @@
         <key name="VOODOO_HEAD_DESCRIPTION">
             <string>Extra curse rooms</string>
             <string>いたるところに呪いの部屋が・・・</string>
-            <string>추가 저주방</string>
+            <string>추가 저주 방</string>
             <string>额外诅咒房</string>
             <string>Дополнительные проклятые комнаты</string>
             <string>Mehr Fluchräume</string>
@@ -27508,7 +27508,7 @@
         <key name="XLAX_NAME">
             <string>X-Lax</string>
             <string>ＫＯらっく</string>
-            <string>X-랙스</string>
+            <string>설사약</string>
             <string>泻药</string>
             <string>Слабительное</string>
             <string>X-Lax</string>
@@ -27558,7 +27558,7 @@
         <key name="HORF_NAME">
             <string>Horf!</string>
             <string>バクバク！</string>
-            <string>홀프!</string>
+            <string>퉤엣!</string>
             <string>呕！</string>
             <string>Хорф!</string>
             <string>Horf!</string>
