@@ -264,6 +264,27 @@ if next(changes.items) ~= nil then
 end
 
 
+------ 사해사본 by siraxtas ------
+function mod:FakeDeadSeaScrolls(item, rng)
+    for _, player in pairs(Isaac.FindByType(EntityType.ENTITY_PLAYER, -1, -1, false, false)) do
+        local pData = player:GetData()
+        player = player:ToPlayer()
+        if player:GetActiveItem() == CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then
+            if item ~= CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then
+                local deadSeaScrollsData = jsonData.items[tostring(item)]
+                if deadSeaScrollsData then
+                    Game():GetHUD():ShowItemText(deadSeaScrollsData.name)
+                    pData.deadSeaScrollsIndicator_time = Game():GetFrameCount()
+                else
+                    print("ㅋ" .. tostring(item))
+                end
+            end
+        end
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.FakeDeadSeaScrolls)
+
 ------ 레메게톤 ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
 local w_queueLastFrame = {}
@@ -310,21 +331,99 @@ mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, mod.DetectWisp)
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.ShowWispText)
 
 
------- 알약/카드 ------
+------ 알약 ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
 local pillNames = include("data_pillNames")
 local pillDescriptions = {
-    [PillEffect.PILLEFFECT_I_FOUND_PILLS] = "...먹어 버렸어"
+    [PillEffect.PILLEFFECT_I_FOUND_PILLS] = "...먹어 버렸어",
+    [PillEffect.PILLEFFECT_EXPERIMENTAL] = ""
 }
 
-function mod:FakePillText(pillEffect)
-    if pillNames[pillEffect] then
+local lastStats = {}
+local pendingStatComparison = false
+
+function mod:SavePlayerStats(player)
+    lastStats = {
+        HP = player:GetMaxHearts(),
+        Speed = player.MoveSpeed,
+        Tears = player.MaxFireDelay,
+        Range = player.TearRange,
+        ShotSpeed = player.ShotSpeed,
+        Luck = player.Luck
+    }
+end
+
+function mod:CompareStats(player)
+    if not pendingStatComparison then return end
+    pendingStatComparison = false
+
+    local ExpillChanges = { increased = {}, decreased = {} }
+    local ExpillCurrentStats = {
+        HP = player:GetMaxHearts(),
+        Speed = player.MoveSpeed,
+        Tears = player.MaxFireDelay,
+        Range = player.TearRange,
+        ShotSpeed = player.ShotSpeed,
+        Luck = player.Luck
+    }
+
+    local statNames = {
+        HP = "체력",
+        Speed = "이동 속도",
+        Tears = "공격 속도",
+        Range = "사거리",
+        ShotSpeed = "투사체 속도",
+        Luck = "행운"
+    }
+
+    for stat, value in pairs(lastStats) do
+        if stat == "Tears" then
+            if ExpillCurrentStats[stat] < value then
+                table.insert(ExpillChanges.increased, statNames[stat] .. " 증가")
+            elseif ExpillCurrentStats[stat] > value then
+                table.insert(ExpillChanges.decreased, statNames[stat] .. " 감소")
+            end
+        else
+            if ExpillCurrentStats[stat] > value then
+                table.insert(ExpillChanges.increased, statNames[stat] .. " 증가")
+            elseif ExpillCurrentStats[stat] < value then
+                table.insert(ExpillChanges.decreased, statNames[stat] .. " 감소")
+            end
+        end
+    end
+
+    local ExpillDescription = ""
+    if #ExpillChanges.increased > 0 then
+        ExpillDescription = table.concat(ExpillChanges.increased, ", ")
+    end
+    if #ExpillChanges.decreased > 0 then
+        if ExpillDescription ~= "" then
+            ExpillDescription = ExpillDescription .. ", "
+        end
+        ExpillDescription = ExpillDescription .. table.concat(ExpillChanges.decreased, ", ")
+    end
+
+    Game():GetHUD():ShowItemText("실험약", ExpillDescription)
+end
+
+function mod:FakePillText(pillEffect, player)
+    if pillEffect == PillEffect.PILLEFFECT_EXPERIMENTAL then
+        pendingStatComparison = true
+    elseif pillNames[pillEffect] then
         Game():GetHUD():ShowItemText(pillNames[pillEffect], pillDescriptions[pillEffect])
     end
 end
 
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
+    mod:CompareStats(player)
+    mod:SavePlayerStats(player)
+end)
+
 mod:AddCallback(ModCallbacks.MC_USE_PILL, mod.FakePillText)
 
+
+------ 카드 ------
+------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
 local cardNames = include("data_cardNames")
 local cardDescriptions = include("data_cardDescriptions")
 
@@ -413,178 +512,26 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.ShowPockGOText) --]]
 
 
------- 운세 쿠키 메시지 by kittenchilly ------
+------ 운세 / 규칙 by kittenchilly ------
 include("fortune_apioverride")
-
-mod.Fortunes =
-[==============================[
-달님을 쳐다보라
-
-오늘은 집을
-떠나지 말라
-
-우리는 모두
-한 날에 죽을 것이다
-
-너는 목숨을
-내다버리고 있다
-
-바깥에 나가!
-
-포기해!
-
-너는 혼자 죽을 것이다
-
-다시 물어보아라
-
-일어나
-
-너는 태양신을
-숭배하고 있다
-
-잠들어 있어라
-
-결혼과 번식
-
-권위에 의문을 품어라
-
-자신 스스로 생각하라
-
-스티븐은 살아 있다
-
-그에게 사진을 가져다주어라
-
-너의 영혼은
-어둠 속에
-숨겨져 있다
-
-너는 잘못 태어났다
-
-네 안은 어둡다
-
-너는 결코
-용서받지 못할 것이다
-
-먹고 살아가는 게
-레몬처럼 시큼할 때는
-뒤짚어 엎어!
-
-홀로 가는 것은
-위험한 행동이다
-
-다음 방으로 가라
-
-죽을 지어다
-
-왜 그렇게 우울해?
-
-공주님은
-다른 성에 있어요
-
-사람이
-실수를 하는 건
-당연한 일이다
-
-매달린 남자가
-오늘 너에게
-불행을
-
-변장한 악마
-
-네가 겪은 일을
-아는 사람은
-없다
-
-상처받지 말라
-다른 이들에게도
-골칫거리는 있다
-
-너는 항상
-망상에 빠져 있다
-
-이성을 잃지 말라
-
-이미 엎질러진
-눈물이다
-
-음 그거
-별로였어
-
-네 작은 얼굴에
-햇빛이
-
-출구를
-본 적 있는가?
-
-항상 긍정적으로
-생각하라
-
-애완동물을 길러라
-힘이 날 것이다
-
-사람을 만날 때
-선입견을 갖지 말라
-
-죄인일 뿐이다
-
-그가 보는 대로
-그가 하는 대로
-
-거짓말들
-
-행운의 숫자
-16 31 64 70 74
-
-감옥으로 가라
-
-리버스 개발은 취소됐어요
-
-고양이 말을 들어
-
-뚱뚱하시네요
-운동을
-하셔야겠어요
-
-약을 복용해라
-
-두 갈래 길
-갈 곳을 고르는 건
-너 자신이다
-
-진정으로 믿어라
-
-아무도 믿지 마라
-
-착한 사람을 믿어라
-
-개 말을 들어
-
-얼룩말 말을 들어
-
-오늘은 무얼
-하고 싶은가
-
-폭탄을 현명하게 쓰라
-
-죽기 위해 살다
-
-참 못한다
-내가 할 테니까
-비켜
-
-자신의 길을 직접 선택하라
-
-예전의 삶은
-이미 사라졌다
-
-피곤해!!!
-
-네 골칫거리는
-한둘이 아닐 것이다
-
-타인을 탓하지 말고
-자신을 탓해라
-]==============================]
+mod.Fortunes = include("fortunes_cookie")
+mod.Rules = include("fortunes_rule")
+mod.SpecialSeeds = {
+    "SL0W 4ME2", "HART BEAT", "CAM0 K1DD", "CAM0 F0ES", "CAM0 DR0P", "FART SNDS", "B00B T00B", "DYSL EX1A",
+    "KEEP TRAK", "KEEP AWAY", "DRAW KCAB", "CHAM P10N", "1MN0 B0DY", "BL1N DEYE", "BASE MENT", "C0CK FGHT",
+    "C0NF ETT1", "FEAR M1NT", "CLST RPH0", "FRA1 DN0T", "BL00 00DY", "BRWN SNKE", "PAC1 F1SM", "D0NT ST0P",
+    "THEG H0ST", "30M1 N1TS", "MED1 C1NE", "FACE D0WN", "C0ME BACK", "FREE 2PAY", "PAY2 PLAY", "T0PH EAVY",
+    "T1NY D0ME", "PTCH BLCK", "TEAR GL0W", "ANDA NTE", "LARG HET0", "ALLE GR0", "PRES T0", "THEB LANK",
+    "HARD HARD", "BRTL B0NS", "KAPP A", "CHRS TMAS", "H0H0 H0H0", "K1DS M0DE", "1CES KATE", "DARK NESS",
+    "LABY RNTH", "L0ST", "VNKN 0WN", "MAZE", "BL1N D", "CVRS ED", "N1TE L1TE", "THRE AD", "F0VN D",
+    "N0W1 KN0W", "BRA1 LLE", "PATH F1ND", "BLCK CNDL", "N0RE TVRN", "G0NE S00N", "ALM1 GHTY", "BRAV ERY",
+    "C0WR D1CE", "AX1S ALGN", "SVPE RH0T", "M0DE SEVN"
+}
+
+local function showSpecialSeed()
+    local seed = mod.SpecialSeeds[math.random(#mod.SpecialSeeds)]
+    Game():GetHUD():ShowFortuneText(seed)
+end
 
 local function split(pString, pPattern)
     local Table = {}  -- NOTE: use {n = 0} in Lua-5.0
@@ -639,6 +586,25 @@ function mod:ShowFortune(forcedtune)
     end
 end
 
+function mod:ShowRule(forcedrule)
+    if forcedrule then
+        local rule = split(forcedrule, "\n")
+        fortuneArray(rule)
+    else
+        mod.RuleTable = mod.RuleTable or {}
+        if #mod.RuleTable <= 1 then
+            local rulelist = mod.Rules
+            local ruletablesetup = split(mod.Rules, "\n\n")
+            for i = 1, #ruletablesetup do
+                table.insert(mod.RuleTable, split(ruletablesetup[i], "\n"))
+            end
+        end
+        local choice = math.random(#mod.RuleTable)
+        local rule = mod.RuleTable[choice]
+        fortuneArray(rule)
+    end
+end
+
 function mod:checkFortuneMachine()
 	local totalFortune = Isaac.FindByType(EntityType.ENTITY_SLOT, 3)
 	if #totalFortune > 0 then
@@ -674,7 +640,26 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, function()
 	end
 end, CollectibleType.COLLECTIBLE_FORTUNE_COOKIE)
 
+mod:AddCallback(ModCallbacks.MC_USE_CARD, function(_, card)
+    if card == Card.CARD_RULES then
+        if math.random() < 0.1 then   -- 10% 확률로 시드
+            showSpecialSeed()
+        else
+            mod:ShowRule()
+        end
+    end
+end)
+
 APIOverride.OverrideClassFunction(Game, "ShowFortune", function()
 	mod:ShowFortune()
 	return
+end)
+
+APIOverride.OverrideClassFunction(Game, "ShowRule", function()
+    if math.random() < 0.1 then   -- 10% 확률로 시드
+        showSpecialSeed()
+    else
+        mod:ShowRule()
+    end
+    return
 end)

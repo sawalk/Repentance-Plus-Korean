@@ -48,4 +48,5 @@ return {
 	[PillEffect.PILLEFFECT_VURP] = "꾸르억!",
 	[PillEffect.PILLEFFECT_SHOT_SPEED_DOWN] = "투사체 속도 감소",
 	[PillEffect.PILLEFFECT_SHOT_SPEED_UP] = "투사체 속도 증가",
+	[PillEffect.PILLEFFECT_EXPERIMENTAL] = "실험약"
 }
