@@ -325,13 +325,13 @@ local pillDescriptions = {
 }
 
 local lastStats = {}
-local pendingStatComparison = false
+local pendingStatComparison = {}
 
 function mod:SavePlayerStats(player)
-    lastStats = {
+    lastStats[player.InitSeed] = {
         HP = player:GetMaxHearts(),
         Speed = player.MoveSpeed,
-        Tears = player.MaxFireDelay,
+        Tears = player.FireDelay,
         Range = player.TearRange,
         ShotSpeed = player.ShotSpeed,
         Luck = player.Luck
@@ -339,14 +339,14 @@ function mod:SavePlayerStats(player)
 end
 
 function mod:CompareStats(player)
-    if not pendingStatComparison then return end
-    pendingStatComparison = false
+    if not pendingStatComparison[player.InitSeed] then return end
+    pendingStatComparison[player.InitSeed] = false
 
     local ExpillChanges = { increased = {}, decreased = {} }
     local ExpillCurrentStats = {
         HP = player:GetMaxHearts(),
         Speed = player.MoveSpeed,
-        Tears = player.MaxFireDelay,
+        Tears = player.FireDelay,
         Range = player.TearRange,
         ShotSpeed = player.ShotSpeed,
         Luck = player.Luck
@@ -361,19 +361,11 @@ function mod:CompareStats(player)
         Luck = "행운"
     }
 
-    for stat, value in pairs(lastStats) do
-        if stat == "Tears" then
-            if ExpillCurrentStats[stat] < value then
-                table.insert(ExpillChanges.increased, statNames[stat] .. " 증가")
-            elseif ExpillCurrentStats[stat] > value then
-                table.insert(ExpillChanges.decreased, statNames[stat] .. " 감소")
-            end
-        else
-            if ExpillCurrentStats[stat] > value then
-                table.insert(ExpillChanges.increased, statNames[stat] .. " 증가")
-            elseif ExpillCurrentStats[stat] < value then
-                table.insert(ExpillChanges.decreased, statNames[stat] .. " 감소")
-            end
+    for stat, value in pairs(lastStats[player.InitSeed]) do
+        if ExpillCurrentStats[stat] > value then
+            table.insert(ExpillChanges.increased, statNames[stat] .. " 증가")
+        elseif ExpillCurrentStats[stat] < value then
+            table.insert(ExpillChanges.decreased, statNames[stat] .. " 감소")
         end
     end
 
@@ -393,7 +385,7 @@ end
 
 function mod:FakePillText(pillEffect, player)
     if pillEffect == PillEffect.PILLEFFECT_EXPERIMENTAL then
-        pendingStatComparison = true
+        pendingStatComparison[player.InitSeed] = true
     elseif pillNames[pillEffect] then
         Game():GetHUD():ShowItemText(pillNames[pillEffect], pillDescriptions[pillEffect])
     end
