@@ -43,7 +43,7 @@ return {
 	[PillEffect.PILLEFFECT_IM_DROWSY] = "나른해...",
 	[PillEffect.PILLEFFECT_IM_EXCITED] = "신나!!!",
 	[PillEffect.PILLEFFECT_GULP] = "꿀꺽!",
-	[PillEffect.PILLEFFECT_HORF] = "홀프!",
+	[PillEffect.PILLEFFECT_HORF] = "퉤엣!",
 	[PillEffect.PILLEFFECT_SUNSHINE] = "햇빛 아래서 걷는 기분이야!",
 	[PillEffect.PILLEFFECT_VURP] = "꾸르억!",
 	[PillEffect.PILLEFFECT_SHOT_SPEED_DOWN] = "투사체 속도 감소",

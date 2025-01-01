@@ -160,18 +160,6 @@ end
     items = 100,
     trinkets = 350
 }
-
---[[ local function updateEid ()
-    for type, itemTypeData in pairs(changes) do                                 -- EID에서 이름을 data.lua에서의 이름으로 덮어씌우게 변경합니다.
-        for id, itemData in pairs(itemTypeData) do                              -- 굳이?여서 주석 처리
-            EID:addDescriptionModifier(
-            'EZITEMS | ' .. tostring(mod.Name) .. ' | ' .. itemData.name,
-            function (descObj) return descObj.ObjType == 5 and descObj.ObjVariant == itemVariants[type] and descObj.ObjSubType == tonumber(id) end,
-            function (descObj) descObj.Name = itemData.name; return descObj end
-            )
-        end
-    end
-end --]]
   
 local function checkConflicts()
     for type, itemTypeData in pairs(changes) do
@@ -202,10 +190,6 @@ end
   
 parseJsonData()
 checkConflicts()
-
---[[ if EID then
-    updateEid()
-end --]]
 
 if next(changes.trinkets) ~= nil then
     local t_queueLastFrame = {}
@@ -276,7 +260,7 @@ function mod:FakeDeadSeaScrolls(item, rng)
                     Game():GetHUD():ShowItemText(deadSeaScrollsData.name)
                     pData.deadSeaScrollsIndicator_time = Game():GetFrameCount()
                 else
-                    print("ㅋ" .. tostring(item))
+                    print("오류:" .. tostring(item))
                 end
             end
         end
@@ -284,6 +268,7 @@ function mod:FakeDeadSeaScrolls(item, rng)
 end
 
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.FakeDeadSeaScrolls)
+
 
 ------ 레메게톤 ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
@@ -430,13 +415,16 @@ local cardDescriptions = include("data_cardDescriptions")
 local textDisplayed = false
 local resetTimer = 0
 
-function mod:FakeCardText(pickup)
-    if pickup.Variant == PickupVariant.PICKUP_TAROTCARD and pickup:IsDead() then    -- 상점에서 카드 살 땐 HUD.ShowItemText 미작동
-        local cardID = pickup.SubType                                               -- 아마 수정이 오래 걸릴 듯
-        if cardNames[cardID] and not textDisplayed then
-            Game():GetHUD():ShowItemText(cardNames[cardID], cardDescriptions[cardID])
-            textDisplayed = true
-            resetTimer = 18   -- 변경 금지
+function mod:FakeCardText()
+    for _, pickup in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, -1, false, false)) do
+        if pickup:IsDead() then
+            local cardID = pickup.SubType
+            if cardNames[cardID] and not textDisplayed then
+                Game():GetHUD():ShowItemText(cardNames[cardID], cardDescriptions[cardID])
+                textDisplayed = true
+                resetTimer = 18      -- 왜인지는 모르는데 꼭 이렇게 코드를 짜야지 카드를 들자마자 텍스트가 뜸
+                break                -- 피격 등의 이유로 18 프레임 내에 카드를 다시 들게 되면 HUD.ShowItemText 미작동
+            end
         end
     end
 end
@@ -450,7 +438,7 @@ function mod:ResetTextFlag()
     end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.FakeCardText, PickupVariant.PICKUP_TAROTCARD)
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.FakeCardText)
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.ResetTextFlag)
 
 
@@ -476,46 +464,49 @@ mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.LuckyPennyPickup, Pick
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.DelayedLuckyPennyText)
 
 
---[[
+
 ------ 포켓 GO ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
-function mod:ShowPockGOText()
+local friendlyNames = {
+    [10] = { [0] = "험상궂은 게이퍼" },
+    [14] = { [0] = "푸터" },
+    [18] = { [0] = "공격 파리" },
+    [39] = { [0] = "비스" },
+    [234] = { [0] = "원 투스" },
+    [258] = { [0] = "뚱뚱한 박쥐" }
+}
+
+local friendlyEntityCounts = {}
+
+function mod:ShowPokeGOText()
     if Game():GetRoom():GetFrameCount() == 0 then
-        for i, entity in ipairs(Isaac.GetRoomEntities()) do
-            if entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
-                if entity:ToNPC() then
-                    local entityName
-                    if entity.Type == 10 and entity.Variant == 0 then
-                        entityName = "험상궂은 게이퍼"
-                    elseif entity.Type == 14 then
-                        entityName = "푸터"
-                    elseif entity.Type == 18 then
-                        entityName = "공격 파리"                  -- 포켓 GO로 생성된 몹이 다른 방을 넘어갔을 때도
-                    elseif entity.Type == 39 then                 -- HUD.ShowFortuneText가 작동되는 문제 때문에 주석 처리
-                        entityName = "비스"                       -- 아마 수정이 오래 걸릴 듯
-                    elseif entity.Type == 234 then
-                        entityName = "원 투스"
-                    elseif entity.Type == 258 then
-                        entityName = "뚱뚱한 박쥐"
-                    end
-                    if entityName ~= nil then
+        local currentCounts = {}
+        for _, entity in ipairs(Isaac.GetRoomEntities()) do
+            if entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) and entity:ToNPC() then
+                local entityType = entity.Type
+                local entityVariant = entity.Variant
+                local entityName = friendlyNames[entityType] and friendlyNames[entityType][entityVariant]
+
+                if entityName then
+                    currentCounts[entityName] = (currentCounts[entityName] or 0) + 1
+
+                    if not friendlyEntityCounts[entityName] or currentCounts[entityName] > friendlyEntityCounts[entityName] then
                         Game():GetHUD():ShowFortuneText(entityName .. "(이)가 튀어나왔다!")
-                    else
-                        Game():GetHUD():ShowFortuneText("entityName 값이 없습니다.","모드 제작자에게 연락바람")
                     end
                 end
             end
         end
+
+        friendlyEntityCounts = currentCounts
     end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.ShowPockGOText) --]]
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.ShowPokeGOText)
 
-
------- 운세 / 규칙 by kittenchilly ------
+------ 운세/규칙 by kittenchilly ------
 include("fortune_apioverride")
-mod.Fortunes = include("fortunes_cookie")
-mod.Rules = include("fortunes_rule")
+mod.Fortunes = include("fortune_cookie")
+mod.Rules = include("fortune_rule")
 mod.SpecialSeeds = {
     "SL0W 4ME2", "HART BEAT", "CAM0 K1DD", "CAM0 F0ES", "CAM0 DR0P", "FART SNDS", "B00B T00B", "DYSL EX1A",
     "KEEP TRAK", "KEEP AWAY", "DRAW KCAB", "CHAM P10N", "1MN0 B0DY", "BL1N DEYE", "BASE MENT", "C0CK FGHT",

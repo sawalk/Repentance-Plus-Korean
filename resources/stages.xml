@@ -11,7 +11,7 @@
 	<stage id="9" name="습한 나락" path="09.Dank Depths.xml" playerspot="playerspot_15_dank_depths.png" bossspot="bossspot_15_dank_depths.png" music="16" backdrop="9" />
     <stage id="10" name="자궁" path="10.Womb.xml" playerspot="playerspot_07_womb.png" bossspot="bossspot_07_womb.png" music="7" backdrop="10" />
     <stage id="11" name="자궁 속" path="11.Utero.xml" playerspot="playerspot_08_utero.png" bossspot="bossspot_08_utero.png" music="19" backdrop="11" />
-	<stage id="12" name="상처난 자국" path="12.Scarred Womb.xml" playerspot="playerspot_16_scarred_womb.png" bossspot="bossspot_16_scarred_womb.png" music="17" backdrop="12" />
+	<stage id="12" name="상처난 자궁" path="12.Scarred Womb.xml" playerspot="playerspot_16_scarred_womb.png" bossspot="bossspot_16_scarred_womb.png" music="17" backdrop="12" />
     <stage id="13" name="???" path="13.Blue Womb.xml" playerspot="playerspot_17_blue_womb.png" bossspot="bossspot_17_blue_womb.png" music="18" backdrop="13" />
     <stage id="14" name="저승" path="14.Sheol.xml" playerspot="playerspot_09_sheol.png" bossspot="bossspot_09_sheol.png" music="11" backdrop="14" />
     <stage id="15" name="대성당" path="15.Cathedral.xml" playerspot="playerspot_10_cathedral.png" bossspot="bossspot_10_cathedral.png" music="10" backdrop="15" />
