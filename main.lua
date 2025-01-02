@@ -218,7 +218,7 @@ if next(changes.items) ~= nil then
     local i_queueLastFrame = {}
     local i_queueNow = {}
     local birthrightDesc = include("data_birthrightDesc")
-    
+
     mod:AddCallback(
         ModCallbacks.MC_POST_PLAYER_UPDATE,
 
@@ -482,17 +482,30 @@ local friendlyEntityCounts = {}
 function mod:ShowPokeGOText()
     if Game():GetRoom():GetFrameCount() == 0 then
         local currentCounts = {}
-        for _, entity in ipairs(Isaac.GetRoomEntities()) do
-            if entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) and entity:ToNPC() then
-                local entityType = entity.Type
-                local entityVariant = entity.Variant
-                local entityName = friendlyNames[entityType] and friendlyNames[entityType][entityVariant]
+        local playerHasPokeGO = false
 
-                if entityName then
-                    currentCounts[entityName] = (currentCounts[entityName] or 0) + 1
+        for i = 0, Game():GetNumPlayers() - 1 do
+            local PokeGoPlayer = Game():GetPlayer(i)
+            if PokeGoPlayer:HasCollectible(CollectibleType.COLLECTIBLE_POKE_GO) then
+                playerHasPokeGO = true
+                break
+            end
+        end
 
-                    if not friendlyEntityCounts[entityName] or currentCounts[entityName] > friendlyEntityCounts[entityName] then
-                        Game():GetHUD():ShowFortuneText(entityName .. "(이)가 튀어나왔다!")
+
+        if playerHasPokeGO then
+            for _, entity in ipairs(Isaac.GetRoomEntities()) do
+                if entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) and entity:ToNPC() then
+                    local entityType = entity.Type
+                    local entityVariant = entity.Variant
+                    local entityName = friendlyNames[entityType] and friendlyNames[entityType][entityVariant]
+
+                    if entityName then
+                        currentCounts[entityName] = (currentCounts[entityName] or 0) + 1
+
+                        if not friendlyEntityCounts[entityName] or currentCounts[entityName] > friendlyEntityCounts[entityName] then
+                            Game():GetHUD():ShowFortuneText(entityName .. "(이)가 튀어나왔다!")
+                        end
                     end
                 end
             end
