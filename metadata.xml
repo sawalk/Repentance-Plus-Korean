@@ -3,8 +3,37 @@
     <name>z_REPENTANCE+ KOREAN</name>
     <directory>repentance+ korean</directory>
     <id>3371064337</id>
-    <description>[b] !!!This mod is for Koreans only. Change your Steam language to Korean to view the mod description!!! [/b]</description>
-    <version>1.23</version>
+    <description>[h2] [b]　구독 전 유의사항 [/b] [/h2]
+[h3]　먼저 정독 후 이용바랍니다. [b]일반 사용자분들은 특히 6번[/b] [/h3]
+[code][b]1. 본 모드는 온라인에서 사용할 수 없습니다.
+[hr][/hr]2. '엄마' 보스를 처치하지 않은 파일에서 모드를 켜고 플레이하면 게임 진행 상황이 기록되지 않습니다.
+[hr][/hr]3. 설치 시 게임을 한 번 재시작해야 모드가 정상적으로 적용됩니다.
+[hr][/hr]4. 본 모드는 적용 우선순위가 낮아 아이템, 몬스터 등을 추가시키는 모드나 메인 메뉴 그래픽을 수정하는 모드와
+　 같이 사용하면 번역 기능이 정상적으로 작동하지 않을 수 있습니다. [strike]충돌은 최대한 없애는 편이니 안심하라구![/strike]
+[hr][/hr]5. 더럽혀진 캐릭터들의 액티브 아이템 중 맛있는 심장(c45, Yum Heart), 제작 가방(c710, Bag of Crafting),
+　 흑마술(c705, Dark Arts), 저장(c715, Hold), 섬토리움(c713, Sumptorium), 뒤집기(c711, Flip),
+　 무저갱(c706, Abyss), 회수(c714, Recall), 레메게톤(c712, Lemegeton), 아니마 솔라(c722, Anima Sola)와
+　 몬스터/보스의 이름은 entities2.xml 또는 items.xml을 덮어쓰는 모드가 없는 한 콘솔에서 검색할 수 없습니다.
+[hr][/hr]6. 본 모드는 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드
+[/url]의 설정에 관여하지 않습니다. 설명모드는 기본적으로 게임 언어 설정을 따르며, 현재
+　 리펜턴스+ 베타는 공식적으로 영어만을 지원합니다. 한글패치는 번역된 리소스로 덮어씌워주는 모드이며,
+　 게임 언어 자체를 변경해주지 않습니다. [url=https://steamcommunity.com/workshop/filedetails/?id=2681875787]Mod Config Menu Pure[/url]로 직접 설명모드의 언어를 다시 설정해주세요!
+　 (가장 자주 묻는 질문)
+[hr][/hr]7. '통계' 메뉴 내 아이템 이름(⁵ 제외)과 엔티티별 통계, 이스터 에그 시드 이름, "You Feel Blessed!" 효과, 
+　 그리고 멀티플레이 관련 문구와 기타 등등은 기술적 한계로 모드에서 접근 할 수 없어 번역되지 않았습니다.[/b]
+[/code]
+
+[h2] [b]　크레딧 [/b] [/h2]
+[code][b]1. 번역 / 아트: [url=https://badagames.net/]바다게임즈[/url]/ [url=https://www.nicalis.com/]Rojen & Nicalis[/url]
+2. 재번역: 사왈이(업로더) 외 다수¹
+3. 기술지원: [url=https://github.com/raiiiny]Rai_ny_[/url]
+4. Special Thanks: [url=https://github.com/ddeeddii/eztools]ddeeddii[/url]& [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2640122564]kittenchilly[/url] & [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2093082675]siraxtas[/url] & Blackcreamtea²[/b]
+[hr][/hr]¹ 본 패치의 아이템 이름과 설명, 장신구 이름과 설명, 보스명 그래픽의 재번역본은 전부 리펜턴스의
+  한국어 번역본과 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3124459064]한국어 번역+[/url]를 기준으로 제작되었습니다. 한국어 번역+는 리펜턴스 번역본에
+  대한 익명의 유저분들의 의견을 합한 모드입니다.
+² (구)리펜턴스 한국어 모드 제작자 분이며, 해당 모드에서 한국어 로고 및 일부 번역을 차용했습니다.
+[/code]</description>
+    <version>1.25</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>

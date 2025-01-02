@@ -205,7 +205,7 @@ if next(changes.trinkets) ~= nil then
             t_queueNow[playerKey] = player.QueuedItem.Item
             if (t_queueNow[playerKey] ~= nil) then
                 local trinket = changes.trinkets[tostring(t_queueNow[playerKey].ID)]
-                if trinket and t_queueNow[playerKey]:IsTrinket() and t_queueLastFrame[playerKey] == nil then
+                if trinket and t_queueNow[playerKey]:IsTrinket() and t_queueLastFrame[playerKey] == nil and Game():GetNumPlayers() < 2 then
                     Game():GetHUD():ShowItemText(trinket.name, trinket.description)
                 end
             end
@@ -232,12 +232,12 @@ if next(changes.items) ~= nil then
                 if itemID == CollectibleType.COLLECTIBLE_BIRTHRIGHT then   -- 생득권이라면
                     local b_playerType = player:GetPlayerType()
                     local b_description = birthrightDesc[b_playerType]
-                    if b_description then
+                    if b_description and Game():GetNumPlayers() < 2 then
                         Game():GetHUD():ShowItemText("생득권", b_description or "???")
                     end
                 else
                     local item = changes.items[tostring(itemID)]   -- 일반 아이템이라면
-                    if item then
+                    if item and Game():GetNumPlayers() < 2 then
                         Game():GetHUD():ShowItemText(item.name, item.description)
                     end
                 end
@@ -284,10 +284,10 @@ local function SetWispText(familiar)
     w_queueNow[familiarKey] = WispID
     if WispID > 0 and w_queueLastFrame[familiarKey] == nil then
         local wisp = changes.items[tostring(WispID)]
-        if wisp then
+        if wisp and Game():GetNumPlayers() < 2 then
             Game():GetHUD():ShowItemText(wisp.name or "일종의 오류발생 메시지", wisp.description or "모드 제작자에게 연락바람")
         else
-            print("[ EzTools | " .. tostring(mod.Name) .. "] Wisp ID " .. tostring(WispID) .. " not found in data")
+            print(tostring(WispID) .. "을 찾지 못 했거나 온라인 게임/밀짚인형을 획득한 상태입니다.")
         end
     end
     w_queueLastFrame[familiarKey] = w_queueNow[familiarKey]
@@ -331,7 +331,7 @@ function mod:SavePlayerStats(player)
     lastStats[player.InitSeed] = {
         HP = player:GetMaxHearts(),
         Speed = player.MoveSpeed,
-        Tears = player.FireDelay,
+        Tears = player.MaxFireDelay,
         Range = player.TearRange,
         ShotSpeed = player.ShotSpeed,
         Luck = player.Luck
@@ -346,7 +346,7 @@ function mod:CompareStats(player)
     local ExpillCurrentStats = {
         HP = player:GetMaxHearts(),
         Speed = player.MoveSpeed,
-        Tears = player.FireDelay,
+        Tears = player.MaxFireDelay,
         Range = player.TearRange,
         ShotSpeed = player.ShotSpeed,
         Luck = player.Luck
@@ -362,10 +362,18 @@ function mod:CompareStats(player)
     }
 
     for stat, value in pairs(lastStats[player.InitSeed]) do
-        if ExpillCurrentStats[stat] > value then
-            table.insert(ExpillChanges.increased, statNames[stat] .. " 증가")
-        elseif ExpillCurrentStats[stat] < value then
-            table.insert(ExpillChanges.decreased, statNames[stat] .. " 감소")
+        if stat == "Tears" then
+            if ExpillCurrentStats[stat] < value then
+                table.insert(ExpillChanges.increased, statNames[stat] .. " 증가")
+            elseif ExpillCurrentStats[stat] > value then
+                table.insert(ExpillChanges.decreased, statNames[stat] .. " 감소")
+            end
+        else
+            if ExpillCurrentStats[stat] > value then
+                table.insert(ExpillChanges.increased, statNames[stat] .. " 증가")
+            elseif ExpillCurrentStats[stat] < value then
+                table.insert(ExpillChanges.decreased, statNames[stat] .. " 감소")
+            end
         end
     end
 
@@ -380,13 +388,15 @@ function mod:CompareStats(player)
         ExpillDescription = ExpillDescription .. table.concat(ExpillChanges.decreased, ", ")
     end
 
-    Game():GetHUD():ShowItemText("실험약", ExpillDescription)
+    if Game():GetNumPlayers() < 2 then
+        Game():GetHUD():ShowItemText("실험약", ExpillDescription)
+    end
 end
 
 function mod:FakePillText(pillEffect, player)
     if pillEffect == PillEffect.PILLEFFECT_EXPERIMENTAL then
         pendingStatComparison[player.InitSeed] = true
-    elseif pillNames[pillEffect] then
+    elseif pillNames[pillEffect] and Game():GetNumPlayers() < 2 then
         Game():GetHUD():ShowItemText(pillNames[pillEffect], pillDescriptions[pillEffect])
     end
 end
@@ -411,7 +421,7 @@ function mod:FakeCardText()
     for _, pickup in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, -1, false, false)) do
         if pickup:IsDead() then
             local cardID = pickup.SubType
-            if cardNames[cardID] and not textDisplayed then
+            if cardNames[cardID] and not textDisplayed and Game():GetNumPlayers() < 2 then
                 Game():GetHUD():ShowItemText(cardNames[cardID], cardDescriptions[cardID])
                 textDisplayed = true
                 resetTimer = 18      -- 왜인지는 모르는데 꼭 이렇게 코드를 짜야지 카드를 들자마자 텍스트가 뜸
@@ -446,7 +456,7 @@ function mod:LuckyPennyPickup(pickup, collider)
 end
 
 function mod:DelayedLuckyPennyText()   -- 1프레임 지연 실행
-    if delayLuckyPenny then
+    if delayLuckyPenny and Game():GetNumPlayers() < 2 then
         Game():GetHUD():ShowItemText("행운의 동전", "행운 증가")
         delayLuckyPenny = nil
     end
@@ -454,7 +464,6 @@ end
 
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.LuckyPennyPickup, PickupVariant.PICKUP_COIN)
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.DelayedLuckyPennyText)
-
 
 
 ------ 포켓 GO ------
@@ -511,7 +520,7 @@ mod.SpecialSeeds = {
     "C0WR D1CE", "AX1S ALGN", "SVPE RH0T", "M0DE SEVN"
 }
 
-local function showSpecialSeed()
+local function ShowSpecialSeed()
     local seed = mod.SpecialSeeds[math.random(#mod.SpecialSeeds)]
     Game():GetHUD():ShowFortuneText(seed)
 end
@@ -626,7 +635,7 @@ end, CollectibleType.COLLECTIBLE_FORTUNE_COOKIE)
 mod:AddCallback(ModCallbacks.MC_USE_CARD, function(_, card)
     if card == Card.CARD_RULES then
         if math.random() < 0.1 then   -- 10% 확률로 시드
-            showSpecialSeed()
+            ShowSpecialSeed()
         else
             mod:ShowRule()
         end
@@ -640,7 +649,7 @@ end)
 
 APIOverride.OverrideClassFunction(Game, "ShowRule", function()
     if math.random() < 0.1 then   -- 10% 확률로 시드
-        showSpecialSeed()
+        ShowSpecialSeed()
     else
         mod:ShowRule()
     end
