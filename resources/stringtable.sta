@@ -206,7 +206,7 @@
         <key name="INPUT_EMOTE">
             <string>Emote:</string>
             <string>Emote:</string>
-            <string>Emote:</string>
+            <string>감정표현:</string>
             <string>Emote:</string>
             <string>Emote:</string>
             <string>Emote:</string>
@@ -1196,7 +1196,7 @@
         <key name="PROMPT_OK">
             <string>OK</string>
             <string></string>
-            <string></string>
+            <string>확인</string>
             <string></string>
             <string></string>
             <string></string>
@@ -1206,7 +1206,7 @@
         <key name="PROMPT_YES">
             <string>YES</string>
             <string></string>
-            <string></string>
+            <string>네</string>
             <string></string>
             <string></string>
             <string></string>
@@ -1216,7 +1216,7 @@
         <key name="PROMPT_NO">
             <string>NO</string>
             <string></string>
-            <string></string>
+            <string>아니오</string>
             <string></string>
             <string></string>
             <string></string>
@@ -1226,7 +1226,7 @@
         <key name="RESELECT_CONTROLLER_HEADER">
             <string>Select a Controller!</string>
             <string></string>
-            <string></string>
+            <string>컨트롤러를 선택해주세요!</string>
             <string></string>
             <string></string>
             <string></string>
@@ -1236,7 +1236,7 @@
         <key name="RESELECT_CONTROLLER_MESSAGE">
             <string>Press any button on the controller you would like to use</string>
             <string></string>
-            <string></string>
+            <string>사용할 컨트롤러의 아무 버튼을 눌러주세요.</string>
             <string></string>
             <string></string>
             <string></string>
@@ -1246,7 +1246,7 @@
         <key name="PROMPT_CONTINUE">
             <string>Continue</string>
             <string></string>
-            <string></string>
+            <string>계속하기</string>
             <string></string>
             <string></string>
             <string></string>
@@ -1256,7 +1256,7 @@
         <key name="PROMPT_EXIT">
             <string>Exit</string>
             <string></string>
-            <string></string>
+            <string>나가기</string>
             <string></string>
             <string></string>
             <string></string>

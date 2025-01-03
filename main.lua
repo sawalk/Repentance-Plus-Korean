@@ -1,6 +1,18 @@
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
+------ 온라인에서 비활성화 ------
+mod.offline = true
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
+    local WhoAmI = player:GetPlayerType()
+    if WhoAmI ~= PlayerType.PLAYER_JACOB and WhoAmI ~= PlayerType.PLAYER_ESAU and (Game():GetNumPlayers() > 1 or player:HasCollectible(CollectibleType.COLLECTIBLE_STRAW_MAN)) then
+        mod.offline = false
+    else
+        mod.offline = true
+    end
+end)
+
+
 ------ 리펜턴스 경고 ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
 local runningRep = REPENTANCE and not REPENTANCE_PLUS
@@ -205,7 +217,7 @@ if next(changes.trinkets) ~= nil then
             t_queueNow[playerKey] = player.QueuedItem.Item
             if (t_queueNow[playerKey] ~= nil) then
                 local trinket = changes.trinkets[tostring(t_queueNow[playerKey].ID)]
-                if trinket and t_queueNow[playerKey]:IsTrinket() and t_queueLastFrame[playerKey] == nil and Game():GetNumPlayers() < 2 then
+                if trinket and t_queueNow[playerKey]:IsTrinket() and t_queueLastFrame[playerKey] == nil and mod.offline then
                     Game():GetHUD():ShowItemText(trinket.name, trinket.description)
                 end
             end
@@ -232,12 +244,12 @@ if next(changes.items) ~= nil then
                 if itemID == CollectibleType.COLLECTIBLE_BIRTHRIGHT then   -- 생득권이라면
                     local b_playerType = player:GetPlayerType()
                     local b_description = birthrightDesc[b_playerType]
-                    if b_description and Game():GetNumPlayers() < 2 then
+                    if b_description and mod.offline then
                         Game():GetHUD():ShowItemText("생득권", b_description or "???")
                     end
                 else
                     local item = changes.items[tostring(itemID)]   -- 일반 아이템이라면
-                    if item and Game():GetNumPlayers() < 2 then
+                    if item and mod.offline then
                         Game():GetHUD():ShowItemText(item.name, item.description)
                     end
                 end
@@ -284,7 +296,7 @@ local function SetWispText(familiar)
     w_queueNow[familiarKey] = WispID
     if WispID > 0 and w_queueLastFrame[familiarKey] == nil then
         local wisp = changes.items[tostring(WispID)]
-        if wisp and Game():GetNumPlayers() < 2 then
+        if wisp and mod.offline then
             Game():GetHUD():ShowItemText(wisp.name or "일종의 오류발생 메시지", wisp.description or "모드 제작자에게 연락바람")
         else
             print(tostring(WispID) .. "을 찾지 못 했거나 온라인 게임/밀짚인형을 획득한 상태입니다.")
@@ -396,7 +408,7 @@ end
 function mod:FakePillText(pillEffect, player)
     if pillEffect == PillEffect.PILLEFFECT_EXPERIMENTAL then
         pendingStatComparison[player.InitSeed] = true
-    elseif pillNames[pillEffect] and Game():GetNumPlayers() < 2 then
+    elseif pillNames[pillEffect] and mod.offline then
         Game():GetHUD():ShowItemText(pillNames[pillEffect], pillDescriptions[pillEffect])
     end
 end
@@ -421,7 +433,7 @@ function mod:FakeCardText()
     for _, pickup in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, -1, false, false)) do
         if pickup:IsDead() then
             local cardID = pickup.SubType
-            if cardNames[cardID] and not textDisplayed and Game():GetNumPlayers() < 2 then
+            if cardNames[cardID] and not textDisplayed and mod.offline then
                 Game():GetHUD():ShowItemText(cardNames[cardID], cardDescriptions[cardID])
                 textDisplayed = true
                 resetTimer = 18      -- 왜인지는 모르는데 꼭 이렇게 코드를 짜야지 카드를 들자마자 텍스트가 뜸
@@ -456,7 +468,7 @@ function mod:LuckyPennyPickup(pickup, collider)
 end
 
 function mod:DelayedLuckyPennyText()   -- 1프레임 지연 실행
-    if delayLuckyPenny and Game():GetNumPlayers() < 2 then
+    if delayLuckyPenny and mod.offline then
         Game():GetHUD():ShowItemText("행운의 동전", "행운 증가")
         delayLuckyPenny = nil
     end
@@ -615,17 +627,15 @@ function mod:checkFortuneMachine()
 	if #totalFortune > 0 then
 		for _, fortuneMachine in ipairs(totalFortune) do
 			local fortunsprite = fortuneMachine:GetSprite()
-			if fortunsprite:IsPlaying("Prize") then
-				if fortunsprite:GetFrame() == 4 then
-					local pickupFound
-					for _, pickup in pairs(Isaac.FindByType(5, -1, -1)) do
-						if pickup and pickup.Type == 5 and pickup.FrameCount <= 0 then
-							pickupFound = true
-						end
+			if fortunsprite:IsPlaying("Prize") and fortunsprite:GetFrame() == 4 then
+				local pickupFound
+				for _, pickup in pairs(Isaac.FindByType(5, -1, -1)) do
+					if pickup and pickup.Type == 5 and pickup.FrameCount <= 0 then
+						pickupFound = true
 					end
-					if not pickupFound then
-						mod:ShowFortune()
-					end
+				end
+				if not pickupFound then
+					mod:ShowFortune()
 				end
 			end
 		end
@@ -668,3 +678,55 @@ APIOverride.OverrideClassFunction(Game, "ShowRule", function()
     end
     return
 end)
+
+
+------ 축복 받은 느낌! ------
+------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
+local lastSacrificeAngelChance = nil
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
+    if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE then
+        local currentAngelChance = Game():GetLevel():GetAngelRoomChance()
+
+        if lastSacrificeAngelChance == nil then
+            lastSacrificeAngelChance = currentAngelChance
+        end
+
+        if currentAngelChance > lastSacrificeAngelChance then
+            Game():GetHUD():ShowFortuneText("축복 받은 느낌!")
+        end
+        lastSacrificeAngelChance = currentAngelChance
+    else
+        lastSacrificeAngelChance = nil
+    end
+end)
+
+local lastConfessionalAngelChance = nil
+local previousCurses = nil
+function mod:checkConfessional()
+    local confessionals = Isaac.FindByType(EntityType.ENTITY_SLOT, 17)
+    if #confessionals > 0 then
+        for _, confessional in ipairs(confessionals) do
+            local confessionalSprite = confessional:GetSprite()
+            if confessionalSprite:IsPlaying("Prize") and (TMplus or tmmc or confessionalSprite:GetFrame() == 4) then
+                local currentAngelChance = Game():GetLevel():GetAngelRoomChance()
+                local currentCurses = Game():GetLevel():GetCurses()
+
+                if lastConfessionalAngelChance == nil then
+                    lastConfessionalAngelChance = currentAngelChance
+                end
+
+                if currentAngelChance > lastConfessionalAngelChance then
+                    Game():GetHUD():ShowFortuneText("축복 받은 느낌!")
+                elseif previousCurses ~= nil and previousCurses ~= 0 and currentCurses == 0 then
+                    Game():GetHUD():ShowFortuneText("축복 받은 느낌!")
+                end
+
+                lastConfessionalAngelChance = currentAngelChance
+                previousCurses = currentCurses
+            end
+        end
+    else
+        lastConfessionalAngelChance = nil
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.checkConfessional)
