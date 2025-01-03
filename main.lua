@@ -357,6 +357,7 @@ function mod:CompareStats(player)
     if not pendingStatComparison[player.InitSeed] then return end
     pendingStatComparison[player.InitSeed] = false
 
+    if player:HasCollectible(CollectibleType.COLLECTIBLE_LIBRA) then return end   -- 천칭자리 소지 시 번역 비활성화
     local ExpillChanges = { increased = {}, decreased = {} }
     local ExpillCurrentStats = {
         HP = player:GetMaxHearts(),
