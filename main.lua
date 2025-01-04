@@ -268,14 +268,14 @@ function mod:FakeDeadSeaScrolls(item, rng)
     for _, player in pairs(Isaac.FindByType(EntityType.ENTITY_PLAYER, -1, -1, false, false)) do
         local pData = player:GetData()
         player = player:ToPlayer()
-        if player:GetActiveItem() == CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then
-            if item ~= CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then
+        if player:GetActiveItem() == CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then   -- 사해사본을 소지하지 않은 상태에서
+            if item ~= CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then                 -- 와일드 카드로 사해사본을 발동하면 번역 안 됨
                 local deadSeaScrollsData = jsonData.items[tostring(item)]
                 if deadSeaScrollsData then
                     Game():GetHUD():ShowItemText(deadSeaScrollsData.name)
                     pData.deadSeaScrollsIndicator_time = Game():GetFrameCount()
                 else
-                    print("오류:" .. tostring(item))
+                    Game():GetHUD():ShowItemText("한글패치 오류:", "개발자에게 연락 바람")
                 end
             end
         end
@@ -358,6 +358,7 @@ function mod:CompareStats(player)
     pendingStatComparison[player.InitSeed] = false
 
     if player:HasCollectible(CollectibleType.COLLECTIBLE_LIBRA) then return end   -- 천칭자리 소지 시 번역 비활성화
+    
     local ExpillChanges = { increased = {}, decreased = {} }
     local ExpillCurrentStats = {
         HP = player:GetMaxHearts(),
@@ -627,24 +628,39 @@ function mod:ShowRule(forcedrule)
 end
 
 function mod:checkFortuneMachine()
-	local totalFortune = Isaac.FindByType(EntityType.ENTITY_SLOT, 3)
-	if #totalFortune > 0 then
-		for _, fortuneMachine in ipairs(totalFortune) do
-			local fortunsprite = fortuneMachine:GetSprite()
-			if fortunsprite:IsPlaying("Prize") and fortunsprite:GetFrame() == 4 then
-				local pickupFound
-				for _, pickup in pairs(Isaac.FindByType(5, -1, -1)) do
-					if pickup and pickup.Type == 5 and pickup.FrameCount <= 0 then
-						pickupFound = true
-					end
-				end
-				if not pickupFound then
-					mod:ShowFortune()
-				end
-			end
-		end
-	end
+    local totalFortune = Isaac.FindByType(EntityType.ENTITY_SLOT, 3)
+    if #totalFortune > 0 then
+        for _, fortuneMachine in ipairs(totalFortune) do
+            local sprite = fortuneMachine:GetSprite()
+            local fortuneData = fortuneMachine:GetData()
+
+            if sprite:IsPlaying("Prize") then
+                local frame = sprite:GetFrame()
+                if sprite:GetAnimation() == "Prize" and frame >= 4 then
+                    if not fortuneData.prizeTriggered then
+                        local pickupFound = false
+                        for _, pickup in pairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, -1, -1)) do
+                            if pickup.FrameCount <= 0 then
+                            pickupFound = true
+                            end
+                        end
+                        if not pickupFound then
+                            mod:ShowFortune()
+                        end
+                        fortuneData.prizeTriggered = true
+                    end
+                end
+
+                if frame == 0 then
+                    fortuneData.prizeTriggered = false
+                end
+            else
+                fortuneData.prizeTriggered = false
+            end
+        end
+    end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.checkFortuneMachine)
 
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, function()
@@ -661,7 +677,7 @@ end, CollectibleType.COLLECTIBLE_FORTUNE_COOKIE)
 
 mod:AddCallback(ModCallbacks.MC_USE_CARD, function(_, card)
     if card == Card.CARD_RULES then
-        if math.random() < 0.1 then   -- 10% 확률로 시드
+        if math.random() < 0.1 then   -- 10% 확률로 시드 표시
             ShowSpecialSeed()
         else
             mod:ShowRule()
@@ -675,7 +691,7 @@ APIOverride.OverrideClassFunction(Game, "ShowFortune", function()
 end)
 
 APIOverride.OverrideClassFunction(Game, "ShowRule", function()
-    if math.random() < 0.1 then   -- 10% 확률로 시드
+    if math.random() < 0.1 then   -- 10% 확률로 시드 표시
         ShowSpecialSeed()
     else
         mod:ShowRule()
