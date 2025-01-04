@@ -268,13 +268,15 @@ function mod:FakeDeadSeaScrolls(item, rng)
     for _, player in pairs(Isaac.FindByType(EntityType.ENTITY_PLAYER, -1, -1, false, false)) do
         local pData = player:GetData()
         player = player:ToPlayer()
-        if item ~= CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then
-            local deadSeaScrollsData = jsonData.items[tostring(item)]
-            if deadSeaScrollsData then
-                Game():GetHUD():ShowItemText(deadSeaScrollsData.name)
-                pData.deadSeaScrollsIndicator_time = Game():GetFrameCount()
-            else
-                Game():GetHUD():ShowItemText("한글패치 오류:", "개발자에게 연락 바람")
+        if player:GetActiveItem() == CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then   -- 사해사본을 소지하지 않은 상태에서
+            if item ~= CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then                 -- 와일드 카드로 사해사본을 발동하면 번역되지 않는 문제 있음
+                local deadSeaScrollsData = jsonData.items[tostring(item)]
+                if deadSeaScrollsData then
+                    Game():GetHUD():ShowItemText(deadSeaScrollsData.name)
+                    pData.deadSeaScrollsIndicator_time = Game():GetFrameCount()
+                else
+                    Game():GetHUD():ShowItemText("한글패치 오류:", "개발자에게 연락 바람")
+                end
             end
         end
     end
@@ -290,7 +292,7 @@ local w_queueNow = {}
 local delayedWisps = {}
 local gameStarted = false   -- 게임 시작 시 초기화용
 
-local function SetWispText(familiar)
+local function WispText(familiar)
     local familiarKey = tostring(familiar.InitSeed)
     local WispID = familiar.SubType
     
@@ -326,7 +328,7 @@ end
 
 function mod:ShowWispText()
     if #delayedWisps > 0 then
-        SetWispText(delayedWisps[1])   -- 1프레임 지연 실행
+        WispText(delayedWisps[1])   -- 1프레임 지연 실행
         table.remove(delayedWisps, 1)
     end
 end
