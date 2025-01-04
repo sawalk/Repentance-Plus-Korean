@@ -268,15 +268,13 @@ function mod:FakeDeadSeaScrolls(item, rng)
     for _, player in pairs(Isaac.FindByType(EntityType.ENTITY_PLAYER, -1, -1, false, false)) do
         local pData = player:GetData()
         player = player:ToPlayer()
-        if player:GetActiveItem() == CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then   -- 사해사본을 소지하지 않은 상태에서
-            if item ~= CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then                 -- 와일드 카드로 사해사본을 발동하면 번역 안 됨
-                local deadSeaScrollsData = jsonData.items[tostring(item)]
-                if deadSeaScrollsData then
-                    Game():GetHUD():ShowItemText(deadSeaScrollsData.name)
-                    pData.deadSeaScrollsIndicator_time = Game():GetFrameCount()
-                else
-                    Game():GetHUD():ShowItemText("한글패치 오류:", "개발자에게 연락 바람")
-                end
+        if item ~= CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then
+            local deadSeaScrollsData = jsonData.items[tostring(item)]
+            if deadSeaScrollsData then
+                Game():GetHUD():ShowItemText(deadSeaScrollsData.name)
+                pData.deadSeaScrollsIndicator_time = Game():GetFrameCount()
+            else
+                Game():GetHUD():ShowItemText("한글패치 오류:", "개발자에게 연락 바람")
             end
         end
     end
@@ -302,7 +300,7 @@ local function SetWispText(familiar)
         if wisp and mod.offline then
             Game():GetHUD():ShowItemText(wisp.name or "일종의 오류발생 메시지", wisp.description or "모드 제작자에게 연락바람")
         else
-            print(tostring(WispID) .. "을 찾지 못 했거나 온라인 게임/밀짚인형을 획득한 상태입니다.")
+            print("[ Repentance+ Korean ]\n" .. tostring(WispID) .. "번 아이템이 모드 아이템이거나 플레이어가 2인 이상인 상태입니다.")
         end
     end
     w_queueLastFrame[familiarKey] = w_queueNow[familiarKey]
@@ -315,9 +313,16 @@ end
 
 function mod:DetectWisp(familiar)
     if familiar.Type == 3 and familiar.Variant == 237 and gameStarted then
+        local wispData = familiar:GetData()
+
+        if HiddenItemManager and (HiddenItemManager.IsAnyHiddenItemManagerWisp(familiar) or wispData.HIDDEN_ITEM_MANAGER_WISP) then return end
+        if familiar.Position:Distance(Vector(-1000, -1000)) < 1 then return end     -- 임시방편입니다. 히든 아이템 매니저를 사용하는 모드와 충돌을 없애기 위한 코드입니다.
+        if familiar.SubType == 0 then return end                                    -- Q. 엥 이거 간단하게 해결할 수 있는데?               A. 저 GPT로 코드짜서 못 합니다.
+
         table.insert(delayedWisps, familiar)
     end
 end
+
 
 function mod:ShowWispText()
     if #delayedWisps > 0 then
