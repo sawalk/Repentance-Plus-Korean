@@ -268,14 +268,14 @@ function mod:FakeDeadSeaScrolls(item, rng)
     for _, player in pairs(Isaac.FindByType(EntityType.ENTITY_PLAYER, -1, -1, false, false)) do
         local pData = player:GetData()
         player = player:ToPlayer()
-        if player:GetActiveItem() == CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then   -- 사해사본을 소지하지 않은 상태에서
-            if item ~= CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then                 -- 와일드 카드로 사해사본을 발동하면 번역되지 않는 문제 있음
-                local deadSeaScrollsData = jsonData.items[tostring(item)]
-                if deadSeaScrollsData then
+        if player:GetActiveItem() == CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then
+            if item ~= CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then                 -- 사해사본을 소지하지 않은 상태에서
+                local deadSeaScrollsData = jsonData.items[tostring(item)]                -- 와일드 카드로 사해사본을 발동하면 번역되지 않는 문제 있음
+                if deadSeaScrollsData then                                               -- 근데 누가 와일드 카드 그 아까운 걸 사해사본으로 씀
                     Game():GetHUD():ShowItemText(deadSeaScrollsData.name)
                     pData.deadSeaScrollsIndicator_time = Game():GetFrameCount()
                 else
-                    Game():GetHUD():ShowItemText("한글패치 오류:", "개발자에게 연락 바람")
+                    Game():GetHUD():ShowItemText("일종의 오류발생 메시지", "모드 제작자에게 연락바람")
                 end
             end
         end
@@ -316,15 +316,10 @@ end
 function mod:DetectWisp(familiar)
     if familiar.Type == 3 and familiar.Variant == 237 and gameStarted then
         local wispData = familiar:GetData()
-
-        if HiddenItemManager and (HiddenItemManager.IsAnyHiddenItemManagerWisp(familiar) or wispData.HIDDEN_ITEM_MANAGER_WISP) then return end
-        if familiar.Position:Distance(Vector(-1000, -1000)) < 1 then return end     -- 임시방편입니다. 히든 아이템 매니저를 사용하는 모드와 충돌을 없애기 위한 코드입니다.
-        if familiar.SubType == 0 then return end                                    -- Q. 엥 이거 간단하게 해결할 수 있는데?               A. 저 GPT로 코드짜서 못 합니다.
-
+        if familiar.Position:Distance(Vector(-1000, -1000)) < 1 then return end     -- 임시방편. HiddenItemManager를 사용하는 모드와 충돌 방지
         table.insert(delayedWisps, familiar)
     end
 end
-
 
 function mod:ShowWispText()
     if #delayedWisps > 0 then
@@ -500,36 +495,29 @@ local friendlyNames = {
     [234] = { [0] = "원 투스" },
     [258] = { [0] = "뚱뚱한 박쥐" }
 }
-
 local friendlyEntityCounts = {}
+
+function mod:MarkPokeGOMonster(entity)
+    if entity:ToNPC() then
+        entity:GetData().IsPokeGOMonster = true   -- IsPokeGoMonster로 포켓GO 몬스터인지 구분
+    end
+end
 
 function mod:ShowPokeGOText()
     if Game():GetRoom():GetFrameCount() == 0 then
         local currentCounts = {}
-        local playerHasPokeGO = false
+        for _, entity in ipairs(Isaac.GetRoomEntities()) do
+            if entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) and entity:ToNPC() then
+                local entityType = entity.Type
+                local entityVariant = entity.Variant
+                local entityName = friendlyNames[entityType] and friendlyNames[entityType][entityVariant]
 
-        for i = 0, Game():GetNumPlayers() - 1 do
-            local PokeGoPlayer = Game():GetPlayer(i)
-            if PokeGoPlayer:HasCollectible(CollectibleType.COLLECTIBLE_POKE_GO) then
-                playerHasPokeGO = true
-                break
-            end
-        end
+                if entityName and entity:GetData().IsPokeGOMonster then
+                    local friendlyEntityKey = entityName .. "_" .. entity.InitSeed
+                    currentCounts[friendlyEntityKey] = (currentCounts[friendlyEntityKey] or 0) + 1
 
-
-        if playerHasPokeGO then
-            for _, entity in ipairs(Isaac.GetRoomEntities()) do
-                if entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) and entity:ToNPC() then
-                    local entityType = entity.Type
-                    local entityVariant = entity.Variant
-                    local entityName = friendlyNames[entityType] and friendlyNames[entityType][entityVariant]
-
-                    if entityName then
-                        currentCounts[entityName] = (currentCounts[entityName] or 0) + 1
-
-                        if not friendlyEntityCounts[entityName] or currentCounts[entityName] > friendlyEntityCounts[entityName] then
-                            Game():GetHUD():ShowFortuneText(entityName .. "(이)가 튀어나왔다!")
-                        end
+                    if not friendlyEntityCounts[friendlyEntityKey] or currentCounts[friendlyEntityKey] > friendlyEntityCounts[friendlyEntityKey] then
+                        Game():GetHUD():ShowFortuneText(entityName .. "(이)가 튀어나왔다!")
                     end
                 end
             end
@@ -539,7 +527,16 @@ function mod:ShowPokeGOText()
     end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.ShowPokeGOText)
+mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, function(_, npc)
+    if npc.SpawnerType == EntityType.ENTITY_PLAYER and npc.SpawnerVariant == 0 then
+        mod:MarkPokeGOMonster(npc)
+    end
+end)
+
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
+    mod:ShowPokeGOText()
+end)
+
 
 ------ 운세/규칙 by kittenchilly ------
 include("fortune_apioverride")
