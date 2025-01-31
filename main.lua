@@ -16,17 +16,29 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
 end)
 
 
------- 리펜턴스 경고 ------
+------ 경고 띄우기 ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
 local runningRep = REPENTANCE and not REPENTANCE_PLUS
+local killingMom = false
 local conflictKLP = false
 if KoreanLocalizingPlus then
     conflictKLP = true
 end
 
-local function checkRepentance()
+local sprite = Sprite()
+local function checkConflictsAndLoadAnm2()
+    killingMom = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT):IsAvailable()
+    if not killingMom then
+        print("\n[Repentance+ Korean]\nIn your current save file, you haven't killed Mom once.\nIf you proceed as is, the achievement won't unlock!\n")
+    end
     if runningRep then
         print("\n[Repentance+ Korean]\nz_REPENTANCE+ KOREAN mod is only available with the Repentance+ DLC.\nPLEASE DISABLE THE MOD NOW.\n")
+    end
+
+    if not killingMom or runningRep or conflictKLP then
+        sprite:Load("gfx/ui/popup_warning2.anm2", true)
+    else
+        sprite:Load("gfx/cutscenes/backwards.anm2", true)
     end
 end
 
@@ -39,18 +51,11 @@ local function GetScreenSize()
     return Vector(rx*2 + 13*26, ry*2 + 7*26)
 end
 
-local sprite = Sprite()
-if runningRep or conflictKLP then
-    sprite:Load("gfx/ui/popup_warning2.anm2", true)
-else
-    sprite:Load("gfx/cutscenes/backwards.anm2", true)
-end
-
 function RenderSub(Anm2)
     sprite:Play(Anm2)
     sprite:Update()
     sprite.Scale = Vector(1, 1)
-    if runningRep or conflictKLP then
+    if not killingMom or runningRep or conflictKLP then
         sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
         sprite:Render(Vector(GetScreenSize().X/1.96, GetScreenSize().Y/2.2), Vector(0,0), Vector(0,0))
     else
@@ -63,7 +68,7 @@ local showAnm2 = false
 local renderingTime = 15
 local DisplayedTime = 0
 local function updateRenderAnm2()
-    if runningRep or conflictKLP then
+    if not killingMom or runningRep or conflictKLP then
         DisplayedTime = DisplayedTime + 1
         if DisplayedTime >= renderingTime then
             showAnm2 = true
@@ -71,19 +76,17 @@ local function updateRenderAnm2()
     end
 end
 
-local function NonRepentancePlus()
+local function renderWarning()
     if showAnm2 then
-        if not conflictKLP then
-            RenderSub("runningRep")
-        else
-            RenderSub("conflictWithKLP")
-        end
+        if not killingMom then RenderSub("notKillingMom")
+        elseif not conflictKLP then RenderSub("runningRep")
+        else RenderSub("conflictWithKLP") end
     end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, checkRepentance)
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, checkConflictsAndLoadAnm2)
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, updateRenderAnm2)
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, NonRepentancePlus)
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, renderWarning)
 
 
 ------ 아빠의 쪽지 자막 by blackcreamtea ------
@@ -114,7 +117,7 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 
 
 ------ EzItems by ddeeddii ------
-local data = include('data')   -- support by raiiiny
+local data = include('misc.data')   -- support by raiiiny
 local json = require('json')
 local jsonData = json.decode(data)
 
@@ -232,7 +235,7 @@ end
 if next(changes.items) ~= nil then
     local i_queueLastFrame = {}
     local i_queueNow = {}
-    local birthrightDesc = include("data_birthrightDesc")
+    local birthrightDesc = include('misc.data_birthrightDesc')
 
     mod:AddCallback(
         ModCallbacks.MC_POST_PLAYER_UPDATE,
@@ -270,7 +273,7 @@ function mod:FakeDeadSeaScrolls(item, rng)
         player = player:ToPlayer()
         if player:GetActiveItem() == CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then
             if item ~= CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then                 -- 사해사본을 소지하지 않은 상태에서
-                local deadSeaScrollsData = jsonData.items[tostring(item)]                -- 와일드 카드로 사해사본을 발동하면 번역되지 않는 문제 있음
+                local deadSeaScrollsData = jsonData.items[tostring(item)]                -- 와일드 카드/보이드로 사해사본을 발동하면 번역되지 않는 문제 있음
                 if deadSeaScrollsData then                                               -- 근데 누가 와일드 카드 그 아까운 걸 사해사본으로 씀
                     Game():GetHUD():ShowItemText(deadSeaScrollsData.name)
                     pData.deadSeaScrollsIndicator_time = Game():GetFrameCount()
@@ -335,7 +338,7 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.ShowWispText)
 
 ------ 알약 ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
-local pillNames = include("data_pillNames")
+local pillNames = include('misc.data_pillNames')
 local pillDescriptions = {
     [PillEffect.PILLEFFECT_I_FOUND_PILLS] = "...먹어 버렸어",
     [PillEffect.PILLEFFECT_EXPERIMENTAL] = ""
@@ -430,8 +433,8 @@ mod:AddCallback(ModCallbacks.MC_USE_PILL, mod.FakePillText)
 
 ------ 카드 ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
-local cardNames = include("data_cardNames")
-local cardDescriptions = include("data_cardDescriptions")
+local cardNames = include('misc.data_cardNames')
+local cardDescriptions = include('misc.data_cardDescriptions')
 
 local textDisplayed = false
 local resetTimer = 0
@@ -499,7 +502,7 @@ local friendlyEntityCounts = {}
 
 function mod:MarkPokeGOMonster(entity)
     if entity:ToNPC() then
-        entity:GetData().IsPokeGOMonster = true   -- IsPokeGoMonster로 포켓GO 몬스터인지 구분
+        entity:GetData().IsPokeGOMonster = true
     end
 end
 
@@ -539,9 +542,9 @@ end)
 
 
 ------ 운세/규칙 by kittenchilly ------
-include("fortune_apioverride")
-mod.Fortunes = include("fortune_cookie")
-mod.Rules = include("fortune_rule")
+include('misc.fortune_apioverride')
+mod.Fortunes = include('misc.fortune_cookie')
+mod.Rules = include('misc.fortune_rule')
 mod.SpecialSeeds = {
     "SL0W 4ME2", "HART BEAT", "CAM0 K1DD", "CAM0 F0ES", "CAM0 DR0P", "FART SNDS", "B00B T00B", "DYSL EX1A",
     "KEEP TRAK", "KEEP AWAY", "DRAW KCAB", "CHAM P10N", "1MN0 B0DY", "BL1N DEYE", "BASE MENT", "C0CK FGHT",
@@ -754,3 +757,80 @@ function mod:checkConfessional()
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.checkConfessional)
+
+
+
+------ 휴지통 ------
+--[[   기획만 해둔 코드들입니다.
+
+
+-- 예의 밥말아쳐먹은 코드
+local function GetCurrentModPath()
+    if debug then
+        return string.sub(debug.getinfo(GetCurrentModPath).source, 2) .. "/../"
+    else
+        return nil
+    end
+end
+
+local function GetModsPath()
+    local currentModPath = GetCurrentModPath()
+    if not currentModPath then return nil end
+    return string.match(currentModPath, "(.+/mods/)")
+end
+
+local modsPath = GetModsPath()
+if wakaba_krdesc and modsPath then
+    local filePath = modsPath .. "fiendfolio-reheated-eidkr_2852472516/main.lua"
+    local backupPath = filePath .. ".backup"
+
+    local function createBackup()
+        if not io.open(backupPath, "r") then
+            local file = io.open(filePath, "r")
+            if file then
+                local content = file:read("*all")
+                file:close()
+
+                local backupFile = io.open(backupPath, "w")
+                backupFile:write(content)
+                backupFile:close()
+            end
+        end
+    end
+
+    local function modifyFile()
+        local file = io.open(filePath, "r")
+        if file then
+            local content = file:read("*all")
+            file:close()
+
+            content = content:gsub(
+                "if Options.Language ~= \"kr\" then return end",
+                "if not REPKOR and Options.Language ~= \"kr\" then return end"
+            )
+
+            local writeFile = io.open(filePath, "w")
+            writeFile:write(content)
+            writeFile:close()
+        end
+    end
+
+    local function restoreBackup()
+        local backupFile = io.open(backupPath, "r")
+        if backupFile then
+            local content = backupFile:read("*all")
+            backupFile:close()
+
+            local writeFile = io.open(filePath, "w")
+            writeFile:write(content)
+            writeFile:close()
+
+            os.remove(backupPath)
+        end
+    end
+
+    createBackup()
+    modifyFile()
+    mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, restoreBackup)
+end
+--]]

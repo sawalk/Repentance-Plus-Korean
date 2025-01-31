@@ -36,8 +36,8 @@ return {
 	[PlayerType.PLAYER_APOLLYON_B] = "고통",
 	[PlayerType.PLAYER_THEFORGOTTEN_B] = "되돌아오라",
 	[PlayerType.PLAYER_BETHANY_B] = "아티팩트",
-	[PlayerType.PLAYER_JACOB_B] = "탈출 불가능",
+	[PlayerType.PLAYER_JACOB_B] = "네 거 아니야",
 	[PlayerType.PLAYER_LAZARUS2_B] = "중첩",
-	[PlayerType.PLAYER_JACOB2_B] = "탈출 불가능",
+	[PlayerType.PLAYER_JACOB2_B] = "네 거 아니야",
 	[PlayerType.PLAYER_THESOUL_B] = "되돌아오라"
 }

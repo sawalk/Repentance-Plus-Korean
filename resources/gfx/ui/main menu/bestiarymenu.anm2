@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="Unknown" CreatedOn="2025-01-03 05:36:59" Version="11" Fps="30"/>
+	<Info CreatedBy="Unknown" CreatedOn="2025-01-22 03:30:34" Version="12" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="BestiaryMenu.png" Id="0"/>
@@ -57,7 +57,7 @@
 					<Frame XPosition="219" YPosition="147" XPivot="16" YPivot="16" XCrop="480" YCrop="110" Width="30" Height="30" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="180" Interpolated="false"/>
 				</LayerAnimation>
 				<LayerAnimation LayerId="9" Visible="true">
-					<Frame XPosition="226" YPosition="215" XPivot="16" YPivot="16" XCrop="0" YCrop="0" Width="112" Height="100" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+					<Frame XPosition="220" YPosition="207" XPivot="16" YPivot="16" XCrop="0" YCrop="0" Width="112" Height="100" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</LayerAnimation>
 			</LayerAnimations>
 			<NullAnimations/>
