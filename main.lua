@@ -21,6 +21,7 @@ end)
 local runningRep = REPENTANCE and not REPENTANCE_PLUS
 local killingMom = false
 local conflictKLP = false
+
 if KoreanLocalizingPlus then
     conflictKLP = true
 end
@@ -29,10 +30,11 @@ local sprite = Sprite()
 local function checkConflictsAndLoadAnm2()
     killingMom = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT):IsAvailable()
     if not killingMom then
-        print("\n[Repentance+ Korean]\nIn your current save file, you haven't killed Mom once.\nIf you proceed as is, the achievement won't unlock!\n")
+        print("\n[ Repentance+ Korean ]\nIn your current save file, you haven't killed Mom once.\nIf you proceed as is, the achievement won't unlock!\n")
     end
+
     if runningRep then
-        print("\n[Repentance+ Korean]\nz_REPENTANCE+ KOREAN mod is only available with the Repentance+ DLC.\nPLEASE DISABLE THE MOD NOW.\n")
+        print("\n[ Repentance+ Korean ]\nz_REPENTANCE+ KOREAN mod is only available with the Repentance+ DLC.\nPLEASE DISABLE THE MOD NOW.\n")
     end
 
     if not killingMom or runningRep or conflictKLP then
@@ -55,9 +57,19 @@ function RenderSub(Anm2)
     sprite:Play(Anm2)
     sprite:Update()
     sprite.Scale = Vector(1, 1)
-    if not killingMom or runningRep or conflictKLP then
-        sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
-        sprite:Render(Vector(GetScreenSize().X/1.96, GetScreenSize().Y/2.2), Vector(0,0), Vector(0,0))
+    sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
+
+    local warningPosX = Vector(0,0)
+    if not killingMom then
+        if Options.FoundHUD then
+            warningPosX = GetScreenSize().X/1.33
+        else
+            warningPosX = GetScreenSize().X/4
+        end
+        sprite.Scale = Vector(0.5, 0.5)
+        sprite:Render(Vector(warningPosX, GetScreenSize().Y/1.5), Vector(0,0), Vector(0,0))
+    elseif runningRep or conflictKLP then
+        sprite:Render(Vector(GetScreenSize().Y/1.96, GetScreenSize().Y/2.2), Vector(0,0), Vector(0,0))
     else
         sprite.Color = Color(1, 1, 1, 0.6, 0, 0, 0)
         sprite:Render(Vector(GetScreenSize().X/2, GetScreenSize().Y*0.85), Vector(0,0), Vector(0,0))
@@ -78,9 +90,14 @@ end
 
 local function renderWarning()
     if showAnm2 then
-        if not killingMom then RenderSub("notKillingMom")
-        elseif not conflictKLP then RenderSub("runningRep")
-        else RenderSub("conflictWithKLP") end
+        if not killingMom then
+            if EID then return end
+            RenderSub("notKillingMom")
+        elseif not conflictKLP then
+            RenderSub("runningRep")
+        else
+            RenderSub("conflictWithKLP")
+        end
     end
 end
 
@@ -410,7 +427,7 @@ function mod:CompareStats(player)
         ExpillDescription = ExpillDescription .. table.concat(ExpillChanges.decreased, ", ")
     end
 
-    if Game():GetNumPlayers() < 2 then
+    if mod.offline then
         Game():GetHUD():ShowItemText("실험약", ExpillDescription)
     end
 end
