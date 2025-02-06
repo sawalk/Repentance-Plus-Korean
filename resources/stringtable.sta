@@ -2448,7 +2448,7 @@
         <key name="THE_BATTERY_NAME">
             <string>The Battery</string>
             <string>電池</string>
-            <string>충전지</string>
+            <string>배터리</string>
             <string>蓄电池</string>
             <string>Батарейка</string>
             <string>Die Batterie</string>
@@ -3508,7 +3508,7 @@
         <key name="9_VOLT_NAME">
             <string>9 Volt</string>
             <string>９ボルト</string>
-            <string>9볼트 건전지</string>
+            <string>9볼트 배터리</string>
             <string>9伏特</string>
             <string>9 вольт</string>
             <string>9 Volt</string>
@@ -3728,7 +3728,7 @@
         <key name="FORGET_ME_NOW_NAME">
             <string>Forget Me Now</string>
             <string>フォーゲットミーなぅ</string>
-            <string>잊어줘 알약</string>
+            <string>날 잊어 주세요</string>
             <string>遗忘药</string>
             <string>Забудь меня</string>
             <string>Vergissmeinjetzt</string>
@@ -4508,7 +4508,7 @@
         <key name="D20_NAME">
             <string>D20</string>
             <string>D２０</string>
-            <string>20면 주사위</string>
+            <string>20면체 주사위</string>
             <string>二十面骰</string>
             <string>D20</string>
             <string>W20</string>
@@ -5928,7 +5928,7 @@
         <key name="KEY_PIECE_1_NAME">
             <string>Key Piece 1</string>
             <string>カギのかけら１</string>
-            <string>첫번째 열쇠 조각</string>
+            <string>열쇠 조각 1</string>
             <string>钥匙碎片1</string>
             <string>1 часть Ключа</string>
             <string>Schlüsselteil 1</string>
@@ -5948,7 +5948,7 @@
         <key name="KEY_PIECE_2_NAME">
             <string>Key Piece 2</string>
             <string>カギのかけら２</string>
-            <string>두번째 열쇠 조각</string>
+            <string>열쇠 조각 2</string>
             <string>钥匙碎片2</string>
             <string>2 часть Ключа</string>
             <string>Schlüsselteil 2</string>
@@ -6828,7 +6828,7 @@
         <key name="D100_NAME">
             <string>D100</string>
             <string>D１００</string>
-            <string>100면 주사위</string>
+            <string>100면체 주사위</string>
             <string>一百面骰</string>
             <string>D100</string>
             <string>W100</string>
@@ -6848,7 +6848,7 @@
         <key name="D4_NAME">
             <string>D4</string>
             <string>D４</string>
-            <string>4면 주사위</string>
+            <string>4면체 주사위</string>
             <string>四面骰</string>
             <string>D4</string>
             <string>W4</string>
@@ -6868,7 +6868,7 @@
         <key name="D10_NAME">
             <string>D10</string>
             <string>D１０</string>
-            <string>10면 주사위</string>
+            <string>10면체 주사위</string>
             <string>十面骰</string>
             <string>D10</string>
             <string>W10</string>
@@ -8268,7 +8268,7 @@
         <key name="MOMS_PEARLS_NAME">
             <string>Mom's Pearls</string>
             <string>ママのパール</string>
-            <string>엄마의 진주</string>
+            <string>엄마의 진주 목걸이</string>
             <string>妈妈的珍珠项链</string>
             <string>Мамин жемчуг</string>
             <string>Mamas Perlen</string>
@@ -9928,7 +9928,7 @@
         <key name="BINKY_NAME">
             <string>Binky</string>
             <string>おしゃぶりチクビ</string>
-            <string>아기처럼</string>
+            <string>쪽쪽이</string>
             <string>奶嘴</string>
             <string>Соска-пустышка</string>
             <string>Binky</string>
@@ -10008,7 +10008,7 @@
         <key name="DARK_PRINCES_CROWN_NAME">
             <string>Dark Prince's Crown</string>
             <string>ダークプリンスの冠</string>
-            <string>다크 프린스의 왕관</string>
+            <string>암흑 왕자의 왕관</string>
             <string>黑王子之冠</string>
             <string>Корона тёмного принца</string>
             <string>Dunkelprinz-Krone</string>
@@ -10288,7 +10288,7 @@
         <key name="MIDNIGHT_SNACK_NAME">
             <string>Midnight Snack</string>
             <string>カビの生えたパン</string>
-            <string>야식!</string>
+            <string>야식</string>
             <string>夜宵</string>
             <string>Полуночный перекус</string>
             <string>Mitternachtssnack</string>
@@ -10308,7 +10308,7 @@
         <key name="CONE_HEAD_NAME">
             <string>Cone Head</string>
             <string>コーンあたま</string>
-            <string>콘 머리</string>
+            <string>콘헤드</string>
             <string>蛋头</string>
             <string>Яйцеголовый</string>
             <string>Kegelkopf</string>
@@ -10688,7 +10688,7 @@
         <key name="D1_NAME">
             <string>D1</string>
             <string>Ｄ１</string>
-            <string>1면 주사위</string>
+            <string>1면체 주사위</string>
             <string>一面骰</string>
             <string>D1</string>
             <string>W1</string>
@@ -10858,7 +10858,7 @@
         <key name="WAIT_WHAT_DESCRIPTION">
             <string>I can't believe it's not butter bean!</string>
             <string>バタービーンじゃないの！？</string>
-            <string>버터 콩이 아니었다니!</string>
+            <string>흰강낭콩이 아니었다니!</string>
             <string>惊了，这道具居然不是棉豆！</string>
             <string>Не могу поверить, это не фасоль!</string>
             <string>Ich kann nicht glauben, dass es keine Butterbohne ist!</string>
@@ -11098,7 +11098,7 @@
         <key name="EUTHANASIA_DESCRIPTION">
             <string>Needle shot</string>
             <string>ニードルショット</string>
-            <string>니들 샷</string>
+            <string>주삿바늘 공격</string>
             <string>针筒泪弹</string>
             <string>Игольный снаряд</string>
             <string>Nadelschuss</string>
@@ -12628,7 +12628,7 @@
         <key name="IMMACULATE_HEART_NAME">
             <string>Immaculate Heart</string>
             <string>けがれのないハート</string>
-            <string>티없는 심장</string>
+            <string>원죄없는 심장</string>
             <string>无瑕圣心</string>
             <string>Непорочное сердце</string>
             <string>Unbeflecktes Herz</string>
@@ -12888,7 +12888,7 @@
         <key name="THE_STAIRWAY_NAME">
             <string>The Stairway</string>
             <string>天国への階段</string>
-            <string>계단</string>
+            <string>천국의 계단</string>
             <string>天堂阶梯</string>
             <string>Лестница</string>
             <string>Die Leiter</string>
@@ -12898,7 +12898,7 @@
         <key name="THE_STAIRWAY_DESCRIPTION">
             <string>May you get what you came for</string>
             <string>求めていたものが手に入りますように</string>
-            <string>왔던 곳으로 다시 돌아갈 수 있기를</string>
+            <string>원하던 것을 얻을 수 있기를</string>
             <string>愿你得偿所望</string>
             <string>Получи то, за чем пришел</string>
             <string>Mögest du erhalten, wofür du gekommen bist</string>
@@ -13628,7 +13628,7 @@
         <key name="KNIFE_PIECE_1_NAME">
             <string>Knife Piece 1</string>
             <string>ナイフピース１</string>
-            <string>칼조각 1</string>
+            <string>칼 조각 1</string>
             <string>菜刀碎片1</string>
             <string>1 часть Ножа</string>
             <string>Messerteil 1</string>
@@ -13648,7 +13648,7 @@
         <key name="KNIFE_PIECE_2_NAME">
             <string>Knife Piece 2</string>
             <string>ナイフピース２</string>
-            <string>칼조각 2</string>
+            <string>칼 조각 2</string>
             <string>菜刀碎片2</string>
             <string>2 часть Ножа</string>
             <string>Messerteil 2</string>
@@ -13978,7 +13978,7 @@
         <key name="CONSOLATION_PRIZE_DESCRIPTION">
             <string>+1 to lowest stat</string>
             <string>最も低いステータスを１つアップ</string>
-            <string>가장 낮은 스탯 +1</string>
+            <string>가장 낮은 능력치 +1</string>
             <string>给最低的属性+1</string>
             <string>+1 к самой низкой характеристике</string>
             <string>+1 zum niedrigsten Wert</string>
@@ -14028,7 +14028,7 @@
         <key name="4_5_VOLT_NAME">
             <string>4.5 Volt</string>
             <string>４.５ボルト</string>
-            <string>4.5볼트</string>
+            <string>4.5볼트 배터리</string>
             <string>4.5伏特</string>
             <string>4.5 Вольт</string>
             <string>4,5 Volt</string>
@@ -15688,7 +15688,7 @@
         <key name="AAA_BATTERY_NAME">
             <string>AAA Battery</string>
             <string>単４電池</string>
-            <string>AAA 건전지</string>
+            <string>AAA 배터리</string>
             <string>7号电池</string>
             <string>Батарейка ААА</string>
             <string>AAA-Batterie</string>
@@ -17048,7 +17048,7 @@
         <key name="WATCH_BATTERY_NAME">
             <string>Watch Battery</string>
             <string>時計の電池</string>
-            <string>손목시계용 전지</string>
+            <string>시계 배터리</string>
             <string>钮扣电池</string>
             <string>Часовая батарейка</string>
             <string>Uhrenbatterie</string>
