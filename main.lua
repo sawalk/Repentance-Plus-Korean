@@ -12,6 +12,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
         mod.offline = false
     else
         mod.offline = true
+        end
     end
 end)
 
@@ -305,6 +306,31 @@ end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.FakeDeadSeaScrolls)
 
 
+------ 제작 가방 ------
+local function BoCText(player)
+    if EID.BoC and EID.BoC.BagItems and #EID.BoC.BagItems == 8 then
+        local craftedOutput = EID:calculateBagOfCrafting(EID.BoC.BagItems)
+        if craftedOutput and craftedOutput ~= 0 then
+            local bagofCraftingData = jsonData.items[tostring(craftedOutput)]
+            if bagofCraftingData then
+                Game():GetHUD():ShowItemText(bagofCraftingData.name, bagofCraftingData.description)
+            else
+                print("[ Repentance+ Korean ]\n" .. craftedOutput .. "번 아이템의 번역어가 없습니다.")
+            end
+        end
+    end
+end
+
+if EID then
+    mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
+        if player:GetPlayerType() ~= PlayerType.PLAYER_CAIN_B then return end
+        BoCText(player)
+    end)
+else
+    Isaac.DebugString("EID가 설치되지 않았습니다. 더럽혀진 카인이 아이템을 획득해도 그 아이템의 이름과 설명은 번역되지 않습니다.")
+end
+
+
 ------ 레메게톤 ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
 local w_queueLastFrame = {}
@@ -455,8 +481,62 @@ local cardDescriptions = include('misc.data_cardDescriptions')
 
 local textDisplayed = false
 local resetTimer = 0
+local bagFlagTimer = 0
+
+local pickupCollected = {}
+local pickupJustTouched = {}
+local byBagofCrafting = false
+
+mod.meaninglessLOL = {}
+mod.pickupIDLookup = {}
+mod.runeIDs = {}
+
+function mod:getBagOfCraftingID(Variant, SubType)
+	local entry = mod.pickupIDLookup[Variant.."."..SubType]
+	if entry ~= nil then
+		return entry
+	elseif Variant == 300 then
+		if SubType == 0 then
+			return nil
+		elseif mod.runeIDs[SubType] then
+			return {23}
+		else
+			return {21}
+		end
+	end
+	return nil
+end
+
+mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup,collider,_)
+	if collider.Type == EntityType.ENTITY_PLAYER or collider.Type == EntityType.ENTITY_FAMILIAR or
+		collider.Type == EntityType.ENTITY_BUMBINO or collider.Type == EntityType.ENTITY_ULTRA_GREED then
+        pickupJustTouched[pickup.Index] = true
+	end
+end)
+
+---@diagnostic disable-next-line: duplicate-set-field
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+    for _, pickup in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, -1, false, false)) do
+        if pickup:GetSprite():GetAnimation() == "Collect" and not pickupCollected[pickup.Index] then
+            pickupCollected[pickup.Index] = true
+            if not pickupJustTouched[pickup.Index] then
+                local REPKORcraftingIDs = mod:getBagOfCraftingID(pickup.Variant, pickup.SubType)
+                if REPKORcraftingIDs ~= nil then
+                    for _,v in ipairs(REPKORcraftingIDs) do
+						if #mod.meaninglessLOL >= 8 then table.remove(mod.meaninglessLOL, 1) end
+						table.insert(mod.meaninglessLOL, v)
+                        byBagofCrafting = true
+                        bagFlagTimer = 18        -- 오로지 제작 가방으로 카드를 수집할 때 텍스트가 뜨는 걸 방지하기 위한 코드
+					end                          -- Original by EID Developers
+                end
+            end
+        end
+        pickupJustTouched[pickup.Index] = nil
+    end
+end)
 
 function mod:FakeCardText()
+    if byBagofCrafting then return end
     for _, pickup in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, -1, false, false)) do
         if pickup:IsDead() then
             local cardID = pickup.SubType
@@ -476,11 +556,22 @@ function mod:ResetTextFlag()
         if resetTimer == 0 then
             textDisplayed = false
         end
+    elseif bagFlagTimer > 0 then
+        bagFlagTimer = bagFlagTimer - 1
+        if bagFlagTimer == 0 then
+            byBagofCrafting = false
+        end
     end
 end
 
+function mod:BoCOnNewRoom(_)
+	pickupsCollected = {}
+    byBagofCrafting = false
+    bagFlagTimer = 0
+end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.FakeCardText)
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.ResetTextFlag)
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.BoCOnNewRoom)
 
 
 ------ 행운의 동전 ------
