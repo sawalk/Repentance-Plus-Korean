@@ -333,7 +333,6 @@ end, deadSeaScrolls)
 if EID then
     local previousBagItems = {}
     local lastPlayerType = -1
-    local getPlayer = Isaac.GetPlayer(0)
 
     local function ShowCraftedItem(player)
         local recipeID = EID:calculateBagOfCrafting(previousBagItems)
@@ -345,12 +344,12 @@ if EID then
     end
 
     mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
-        if getPlayer:GetPlayerType() ~= lastPlayerType then
+        if Isaac.GetPlayer(0):GetPlayerType() ~= lastPlayerType then
             previousBagItems = {}
-            lastPlayerType = getPlayer:GetPlayerType()
+            lastPlayerType = Isaac.GetPlayer(0):GetPlayerType()
         end
 
-        if lastPlayerType ~= 23 then return end
+        if lastPlayerType ~= 23 then return end   -- 더렵하진 카인이 아니면 종료
 
         local currentBagCount = #EID.BoC.BagItems
         if #previousBagItems == 8 and currentBagCount == 0 then
