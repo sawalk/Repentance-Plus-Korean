@@ -134,7 +134,7 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 
 
 ------ EzItems by ddeeddii ------
-local data = include('misc.data')   -- support by raiiiny
+local data = include('include.data')   -- support by raiiiny
 local json = require('json')
 local jsonData = json.decode(data)
 
@@ -252,7 +252,7 @@ end
 if next(changes.items) ~= nil then
     local i_queueLastFrame = {}
     local i_queueNow = {}
-    local birthrightDesc = include('misc.data_birthrightDesc')
+    local birthrightDesc = include('include.data_birthrightDesc')
 
     mod:AddCallback(
         ModCallbacks.MC_POST_PLAYER_UPDATE,
@@ -426,7 +426,7 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.ShowWispText)
 
 ------ 알약 ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
-local pillNames = include('misc.data_pillNames')
+local pillNames = include('include.data_pillNames')
 local pillDescriptions = {
     [PillEffect.PILLEFFECT_I_FOUND_PILLS] = "...먹어 버렸어",
     [PillEffect.PILLEFFECT_EXPERIMENTAL] = ""
@@ -521,8 +521,8 @@ mod:AddCallback(ModCallbacks.MC_USE_PILL, mod.FakePillText)
 
 ------ 카드 ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
-local cardNames = include('misc.data_cardNames')
-local cardDescriptions = include('misc.data_cardDescriptions')
+local cardNames = include('include.data_cardNames')
+local cardDescriptions = include('include.data_cardDescriptions')
 
 local textDisplayed = false
 local resetTimer = 0
@@ -695,9 +695,9 @@ end)
 
 
 ------ 운세/규칙 by kittenchilly ------
-include('misc.fortune_apioverride')
-mod.Fortunes = include('misc.fortune_cookie')
-mod.Rules = include('misc.fortune_rule')
+include('include.fortune_apioverride')
+mod.Fortunes = include('include.fortune_cookie')
+mod.Rules = include('include.fortune_rule')
 mod.SpecialSeeds = {
     "SL0W 4ME2", "HART BEAT", "CAM0 K1DD", "CAM0 F0ES", "CAM0 DR0P", "FART SNDS", "B00B T00B", "DYSL EX1A",
     "KEEP TRAK", "KEEP AWAY", "DRAW KCAB", "CHAM P10N", "1MN0 B0DY", "BL1N DEYE", "BASE MENT", "C0CK FGHT",
