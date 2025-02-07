@@ -330,50 +330,37 @@ end, deadSeaScrolls)
 
 
 ------ 제작 가방 ------
---[[ 머리 깨질 거 같아서 그냥 버림
-local holdCounters = {}
-local holdThreshold = 60    -- 더럽혀진 카인은 60프레임 이상 키를 누르고 있어야 아이템을 획득
+if EID then
+    local previousBagItems = {}
+    local lastPlayerType = -1
+    local getPlayer = Isaac.GetPlayer(0)
 
-local function BoCText(player)
-    if EID.BoC and EID.BoC.BagItems and #EID.BoC.BagItems == 8 then
-        local craftedOutput = EID:calculateBagOfCrafting(EID.BoC.BagItems)
-        if craftedOutput and craftedOutput ~= 0 then
-            local bagofCraftingData = jsonData.items[tostring(craftedOutput)]
-            if bagofCraftingData then
-                Game():GetHUD():ShowItemText(bagofCraftingData.name, bagofCraftingData.description)
-            else
-                print("[ Repentance+ Korean ]\n" .. craftedOutput .. "번 아이템의 번역어가 없습니다.")
-            end
+    local function ShowCraftedItem(player)
+        local recipeID = EID:calculateBagOfCrafting(previousBagItems)
+        local BoCItems = jsonData.items[tostring(recipeID)]
+        
+        if mod.offline then
+            Game():GetHUD():ShowItemText(BoCItems.name, BoCItems.description)
         end
     end
-end
 
-if EID then
-    mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
-        if player:GetPlayerType() ~= PlayerType.PLAYER_CAIN_B then return end
-
-        local pillCardSeed = tostring(player.InitSeed)
-        if not holdCounters[pillCardSeed] then
-            holdCounters[pillCardSeed] = 0
+    mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+        if getPlayer:GetPlayerType() ~= lastPlayerType then
+            previousBagItems = {}
+            lastPlayerType = getPlayer:GetPlayerType()
         end
 
-        if Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, player.ControllerIndex) then
-            holdCounters[pillCardSeed] = holdCounters[pillCardSeed] + 1
-            if holdCounters[pillCardSeed] >= holdThreshold then
-                local playerGetAnm = player:GetSprite():GetAnimation()
-                if playerGetAnm ~= "PickupWalkDown" and playerGetAnm ~= "PickupWalkLeft" and playerGetAnm ~= "PickupWalkUp" and playerGetAnm ~= "PickupWalkRight" then
-                    holdCounters[pillCardSeed] = 0
-                    return
-                end
-                BoCText(player)
-            end
-        else
-            holdCounters[pillCardSeed] = 0
+        if lastPlayerType ~= 23 then return end
+
+        local currentBagCount = #EID.BoC.BagItems
+        if #previousBagItems == 8 and currentBagCount == 0 then
+            ShowCraftedItem()
         end
+        previousBagItems = EID.BoC.BagItems
     end)
 else
     Isaac.DebugString("EID가 설치되지 않았습니다. 더럽혀진 카인이 아이템을 획득해도 그 아이템의 이름과 설명은 번역되지 않습니다.")
-end --]]
+end
 
 
 ------ 레메게톤 ------
