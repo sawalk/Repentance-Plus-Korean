@@ -12,7 +12,6 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
         mod.offline = false
     else
         mod.offline = true
-        end
     end
 end)
 
@@ -284,29 +283,57 @@ if next(changes.items) ~= nil then
 end
 
 
------- 사해사본 by siraxtas ------
-function mod:FakeDeadSeaScrolls(item, rng)
-    for _, player in pairs(Isaac.FindByType(EntityType.ENTITY_PLAYER, -1, -1, false, false)) do
-        local pData = player:GetData()
-        player = player:ToPlayer()
-        if player:GetActiveItem() == CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then
-            if item ~= CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS then                 -- 사해사본을 소지하지 않은 상태에서
-                local deadSeaScrollsData = jsonData.items[tostring(item)]                -- 와일드 카드/보이드로 사해사본을 발동하면 번역되지 않는 문제 있음
-                if deadSeaScrollsData then                                               -- 근데 누가 와일드 카드 그 아까운 걸 사해사본으로 씀
-                    Game():GetHUD():ShowItemText(deadSeaScrollsData.name)
-                    pData.deadSeaScrollsIndicator_time = Game():GetFrameCount()
-                else
-                    Game():GetHUD():ShowItemText("일종의 오류발생 메시지", "모드 제작자에게 연락바람")
-                end
-            end
+------ 사해사본 by 双笙子佯谬 ------
+local deadSeaScrolls = CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS
+local deadSeaScrollsList = {34,35,37,38,39,41,42,44,45,56,49,58,77,65,66,78,83,84,85,86,93,97,107,102,47,123,136,146,158,160,171,192}
+
+local function getNextDeadSeaScrollsItem(rng)
+    return deadSeaScrollsList[rng:RandomInt(#deadSeaScrollsList) + 1]
+end
+
+local lastPredictedID = nil
+local activePredictor = {
+    [deadSeaScrolls] = getNextDeadSeaScrollsItem,
+}
+
+local function PredictDeadSeaScrolls(player)
+    local predFunc = activePredictor[deadSeaScrolls]
+    if predFunc then
+        local rng = RNG()
+        rng:SetSeed(player:GetCollectibleRNG(deadSeaScrolls):GetSeed(), 35)
+        lastPredictedID = predFunc(rng)
+    end
+end
+
+local function FakeDeadSeaScrolls()
+    if lastPredictedID and lastPredictedID ~= 0 then
+        local deadSeaScrollsData = jsonData.items[tostring(lastPredictedID)]
+        if deadSeaScrollsData and mod.offline then
+            Game():GetHUD():ShowItemText(deadSeaScrollsData.name)
+        else
+            Game():GetHUD():ShowItemText("일종의 오류발생 메시지", "모드 제작자에게 연락바람")
         end
     end
 end
 
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.FakeDeadSeaScrolls)
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
+    PredictDeadSeaScrolls(player)
+end)
+
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, item, rng, player, flags)
+    if item == deadSeaScrolls then
+        FakeDeadSeaScrolls()
+        PredictDeadSeaScrolls(player)
+    end
+    return true
+end, deadSeaScrolls)
 
 
 ------ 제작 가방 ------
+--[[ 머리 깨질 거 같아서 그냥 버림
+local holdCounters = {}
+local holdThreshold = 60    -- 더럽혀진 카인은 60프레임 이상 키를 누르고 있어야 아이템을 획득
+
 local function BoCText(player)
     if EID.BoC and EID.BoC.BagItems and #EID.BoC.BagItems == 8 then
         local craftedOutput = EID:calculateBagOfCrafting(EID.BoC.BagItems)
@@ -324,11 +351,29 @@ end
 if EID then
     mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
         if player:GetPlayerType() ~= PlayerType.PLAYER_CAIN_B then return end
-        BoCText(player)
+
+        local pillCardSeed = tostring(player.InitSeed)
+        if not holdCounters[pillCardSeed] then
+            holdCounters[pillCardSeed] = 0
+        end
+
+        if Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, player.ControllerIndex) then
+            holdCounters[pillCardSeed] = holdCounters[pillCardSeed] + 1
+            if holdCounters[pillCardSeed] >= holdThreshold then
+                local playerGetAnm = player:GetSprite():GetAnimation()
+                if playerGetAnm ~= "PickupWalkDown" and playerGetAnm ~= "PickupWalkLeft" and playerGetAnm ~= "PickupWalkUp" and playerGetAnm ~= "PickupWalkRight" then
+                    holdCounters[pillCardSeed] = 0
+                    return
+                end
+                BoCText(player)
+            end
+        else
+            holdCounters[pillCardSeed] = 0
+        end
     end)
 else
     Isaac.DebugString("EID가 설치되지 않았습니다. 더럽혀진 카인이 아이템을 획득해도 그 아이템의 이름과 설명은 번역되지 않습니다.")
-end
+end --]]
 
 
 ------ 레메게톤 ------
@@ -865,80 +910,3 @@ function mod:checkConfessional()
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.checkConfessional)
-
-
-
------- 휴지통 ------
---[[   기획만 해둔 코드들입니다.
-
-
--- 예의 밥말아쳐먹은 코드
-local function GetCurrentModPath()
-    if debug then
-        return string.sub(debug.getinfo(GetCurrentModPath).source, 2) .. "/../"
-    else
-        return nil
-    end
-end
-
-local function GetModsPath()
-    local currentModPath = GetCurrentModPath()
-    if not currentModPath then return nil end
-    return string.match(currentModPath, "(.+/mods/)")
-end
-
-local modsPath = GetModsPath()
-if wakaba_krdesc and modsPath then
-    local filePath = modsPath .. "fiendfolio-reheated-eidkr_2852472516/main.lua"
-    local backupPath = filePath .. ".backup"
-
-    local function createBackup()
-        if not io.open(backupPath, "r") then
-            local file = io.open(filePath, "r")
-            if file then
-                local content = file:read("*all")
-                file:close()
-
-                local backupFile = io.open(backupPath, "w")
-                backupFile:write(content)
-                backupFile:close()
-            end
-        end
-    end
-
-    local function modifyFile()
-        local file = io.open(filePath, "r")
-        if file then
-            local content = file:read("*all")
-            file:close()
-
-            content = content:gsub(
-                "if Options.Language ~= \"kr\" then return end",
-                "if not REPKOR and Options.Language ~= \"kr\" then return end"
-            )
-
-            local writeFile = io.open(filePath, "w")
-            writeFile:write(content)
-            writeFile:close()
-        end
-    end
-
-    local function restoreBackup()
-        local backupFile = io.open(backupPath, "r")
-        if backupFile then
-            local content = backupFile:read("*all")
-            backupFile:close()
-
-            local writeFile = io.open(filePath, "w")
-            writeFile:write(content)
-            writeFile:close()
-
-            os.remove(backupPath)
-        end
-    end
-
-    createBackup()
-    modifyFile()
-    mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, restoreBackup)
-end
---]]
