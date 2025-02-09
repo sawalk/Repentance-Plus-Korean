@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="Unknown" CreatedOn="2025-01-01 20:09:58" Version="6" Fps="30"/>
+	<Info CreatedBy="Unknown" CreatedOn="2025-02-09 23:47:48" Version="8" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="ControllerSelectMenu.png" Id="0"/>
@@ -36,7 +36,7 @@
 					<Frame XPosition="423" YPosition="80" XPivot="16" YPivot="16" XCrop="2" YCrop="91" Width="55" Height="35" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</LayerAnimation>
 				<LayerAnimation LayerId="5" Visible="true">
-					<Frame XPosition="431" YPosition="110" XPivot="16" YPivot="16" XCrop="59" YCrop="91" Width="70" Height="38" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="15" Interpolated="false"/>
+					<Frame XPosition="424" YPosition="114" XPivot="16" YPivot="16" XCrop="59" YCrop="91" Width="70" Height="38" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="15" Interpolated="false"/>
 				</LayerAnimation>
 				<LayerAnimation LayerId="6" Visible="true">
 					<Frame XPosition="-15" YPosition="115" XPivot="16" YPivot="16" XCrop="198" YCrop="165" Width="56" Height="83" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>

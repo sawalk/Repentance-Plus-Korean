@@ -264,14 +264,14 @@ if next(changes.items) ~= nil then
             i_queueNow[playerKey] = player.QueuedItem.Item
             if i_queueNow[playerKey] and i_queueNow[playerKey]:IsCollectible() and i_queueLastFrame[playerKey] == nil then
                 local itemID = i_queueNow[playerKey].ID
-                if itemID == CollectibleType.COLLECTIBLE_BIRTHRIGHT then   -- 생득권이라면
+                if itemID == 619 then    -- 생득권이라면
                     local b_playerType = player:GetPlayerType()
                     local b_description = birthrightDesc[b_playerType]
                     if b_description and mod.offline then
                         Game():GetHUD():ShowItemText("생득권", b_description or "???")
                     end
                 else
-                    local item = changes.items[tostring(itemID)]   -- 일반 아이템이라면
+                    local item = changes.items[tostring(itemID)]    -- 일반 아이템이라면
                     if item and mod.offline then
                         Game():GetHUD():ShowItemText(item.name, item.description)
                     end
@@ -284,7 +284,6 @@ end
 
 
 ------ 사해사본 by 双笙子佯谬 ------
-local deadSeaScrolls = CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS
 local deadSeaScrollsList = {34,35,37,38,39,41,42,44,45,56,49,58,77,65,66,78,83,84,85,86,93,97,107,102,47,123,136,146,158,160,171,192}
 
 local function getNextDeadSeaScrollsItem(rng)
@@ -293,23 +292,23 @@ end
 
 local lastPredictedID = nil
 local activePredictor = {
-    [deadSeaScrolls] = getNextDeadSeaScrollsItem,
+    [124] = getNextDeadSeaScrollsItem,
 }
 
 local function PredictDeadSeaScrolls(player)
-    local predFunc = activePredictor[deadSeaScrolls]
+    local predFunc = activePredictor[124]
     if predFunc then
         local rng = RNG()
-        rng:SetSeed(player:GetCollectibleRNG(deadSeaScrolls):GetSeed(), 35)
+        rng:SetSeed(player:GetCollectibleRNG(124):GetSeed(), 35)
         lastPredictedID = predFunc(rng)
     end
 end
 
 local function FakeDeadSeaScrolls()
     if lastPredictedID and lastPredictedID ~= 0 then
-        local deadSeaScrollsData = jsonData.items[tostring(lastPredictedID)]
-        if deadSeaScrollsData and mod.offline then
-            Game():GetHUD():ShowItemText(deadSeaScrollsData.name)
+        local d_data = jsonData.items[tostring(lastPredictedID)]
+        if d_data and mod.offline then
+            Game():GetHUD():ShowItemText(d_data.name)
         else
             Game():GetHUD():ShowItemText("일종의 오류발생 메시지", "모드 제작자에게 연락바람")
         end
@@ -321,12 +320,12 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
 end)
 
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, item, rng, player, flags)
-    if item == deadSeaScrolls then
+    if item == 124 then
         FakeDeadSeaScrolls()
         PredictDeadSeaScrolls(player)
     end
     return true
-end, deadSeaScrolls)
+end, 124)
 
 
 ------ 제작 가방 ------
@@ -343,10 +342,10 @@ if EID then
         end
     end
 
-    mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
-        if Isaac.GetPlayer(0):GetPlayerType() ~= lastPlayerType then
+    mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
+        if player:GetPlayerType() ~= lastPlayerType then
             previousBagItems = {}
-            lastPlayerType = Isaac.GetPlayer(0):GetPlayerType()
+            lastPlayerType = player:GetPlayerType()
         end
 
         if lastPlayerType ~= 23 then return end   -- 더렵하진 카인이 아니면 종료
@@ -436,10 +435,10 @@ function mod:CompareStats(player)
     if not pendingStatComparison[player.InitSeed] then return end
     pendingStatComparison[player.InitSeed] = false
 
-    if player:HasCollectible(CollectibleType.COLLECTIBLE_LIBRA) then return end   -- 천칭자리 소지 시 번역 비활성화
+    if player:HasCollectible(304) then return end    -- 천칭자리 소지 시 번역 비활성화
     
-    local ExpillChanges = { increased = {}, decreased = {} }
-    local ExpillCurrentStats = {
+    local e_changes = { increased = {}, decreased = {} }
+    local e_currentstats = {
         HP = player:GetMaxHearts(),
         Speed = player.MoveSpeed,
         Tears = player.MaxFireDelay,
@@ -459,38 +458,38 @@ function mod:CompareStats(player)
 
     for stat, value in pairs(lastStats[player.InitSeed]) do
         if stat == "Tears" then
-            if ExpillCurrentStats[stat] < value then
-                table.insert(ExpillChanges.increased, statNames[stat] .. " 증가")
-            elseif ExpillCurrentStats[stat] > value then
-                table.insert(ExpillChanges.decreased, statNames[stat] .. " 감소")
+            if e_currentstats[stat] < value then
+                table.insert(e_changes.increased, statNames[stat] .. " 증가")
+            elseif e_currentstats[stat] > value then
+                table.insert(e_changes.decreased, statNames[stat] .. " 감소")
             end
         else
-            if ExpillCurrentStats[stat] > value then
-                table.insert(ExpillChanges.increased, statNames[stat] .. " 증가")
-            elseif ExpillCurrentStats[stat] < value then
-                table.insert(ExpillChanges.decreased, statNames[stat] .. " 감소")
+            if e_currentstats[stat] > value then
+                table.insert(e_changes.increased, statNames[stat] .. " 증가")
+            elseif e_currentstats[stat] < value then
+                table.insert(e_changes.decreased, statNames[stat] .. " 감소")
             end
         end
     end
 
-    local ExpillDescription = ""
-    if #ExpillChanges.increased > 0 then
-        ExpillDescription = table.concat(ExpillChanges.increased, ", ")
+    local e_description = ""
+    if #e_changes.increased > 0 then
+        e_description = table.concat(e_changes.increased, ", ")
     end
-    if #ExpillChanges.decreased > 0 then
-        if ExpillDescription ~= "" then
-            ExpillDescription = ExpillDescription .. ", "
+    if #e_changes.decreased > 0 then
+        if e_description ~= "" then
+            e_description = e_description .. ", "
         end
-        ExpillDescription = ExpillDescription .. table.concat(ExpillChanges.decreased, ", ")
+        e_description = e_description .. table.concat(e_changes.decreased, ", ")
     end
 
     if mod.offline then
-        Game():GetHUD():ShowItemText("실험약", ExpillDescription)
+        Game():GetHUD():ShowItemText("실험약", e_description)
     end
 end
 
 function mod:FakePillText(pillEffect, player)
-    if pillEffect == PillEffect.PILLEFFECT_EXPERIMENTAL then
+    if pillEffect == 49 then
         pendingStatComparison[player.InitSeed] = true
     elseif pillNames[pillEffect] and mod.offline then
         Game():GetHUD():ShowItemText(pillNames[pillEffect], pillDescriptions[pillEffect])
@@ -518,7 +517,7 @@ local pickupCollected = {}
 local pickupJustTouched = {}
 local byBagofCrafting = false
 
-mod.meaninglessLOL = {}
+mod.carftingBag = {}
 mod.pickupIDLookup = {}
 mod.runeIDs = {}
 
@@ -554,10 +553,10 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
                 local REPKORcraftingIDs = mod:getBagOfCraftingID(pickup.Variant, pickup.SubType)
                 if REPKORcraftingIDs ~= nil then
                     for _,v in ipairs(REPKORcraftingIDs) do
-						if #mod.meaninglessLOL >= 8 then table.remove(mod.meaninglessLOL, 1) end
-						table.insert(mod.meaninglessLOL, v)
+						if #mod.carftingBag >= 8 then table.remove(mod.carftingBag, 1) end
+						table.insert(mod.carftingBag, v)
                         byBagofCrafting = true
-                        bagFlagTimer = 18        -- 오로지 제작 가방으로 카드를 수집할 때 텍스트가 뜨는 걸 방지하기 위한 코드
+                        bagFlagTimer = 18        -- 제작 가방으로 카드를 수집할 때 텍스트가 뜨는 걸 방지하기 위한 코드
 					end                          -- Original by EID Developers
                 end
             end
@@ -896,3 +895,55 @@ function mod:checkConfessional()
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.checkConfessional)
+
+
+------ 아스트로버스 ------
+if Astro then
+    local astroData = include('include.custom.Astrobirth')
+
+    if next(astroData.trinkets) ~= nil then
+        local astro_t_queueLastFrame = {}
+        local astro_t_queueNow = {}
+        
+        mod:AddCallback(
+            ModCallbacks.MC_POST_PLAYER_UPDATE,
+      
+            ---@param player EntityPlayer
+            function(_, player)
+                local astro_playerKey = tostring(player.InitSeed)
+                
+                astro_t_queueNow[astro_playerKey] = player.QueuedItem.Item
+                if (astro_t_queueNow[astro_playerKey] ~= nil) then
+                    local astro_trinket = astroData.trinkets[tostring(astro_t_queueNow[astro_playerKey].Name)]
+                    if astro_trinket and astro_t_queueNow[astro_playerKey]:IsTrinket() and astro_t_queueLastFrame[astro_playerKey] == nil and mod.offline then
+                        Game():GetHUD():ShowItemText(astro_trinket.name, astro_trinket.description)
+                    end
+                end
+                astro_t_queueLastFrame[astro_playerKey] = astro_t_queueNow[astro_playerKey]
+            end
+        )
+    end
+
+    if next(astroData.items) ~= nil then
+        local astro_i_queueLastFrame = {}
+        local astro_i_queueNow = {}
+    
+        mod:AddCallback(
+            ModCallbacks.MC_POST_PLAYER_UPDATE,
+    
+            ---@param player EntityPlayer
+            function(_, player)
+                local astro_playerKey = tostring(player.InitSeed)
+
+                astro_i_queueNow[astro_playerKey] = player.QueuedItem.Item
+                if astro_i_queueNow[astro_playerKey] and astro_i_queueNow[astro_playerKey]:IsCollectible() and astro_i_queueLastFrame[astro_playerKey] == nil then
+                    local astro_item = astroData.items[tostring(astro_i_queueNow[astro_playerKey].Name)]
+                    if astro_item and mod.offline then
+                        Game():GetHUD():ShowItemText(astro_item.name, astro_item.description)
+                    end
+                end
+                astro_i_queueLastFrame[astro_playerKey] = astro_i_queueNow[astro_playerKey]
+            end
+        )
+    end
+end
