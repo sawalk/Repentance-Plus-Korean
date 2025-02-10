@@ -18,9 +18,9 @@ end)
 
 ------ 경고 띄우기 ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
-local runningRep = REPENTANCE and not REPENTANCE_PLUS
-local killingMom = false
-local conflictKLP = false
+local runningRep = REPENTANCE and not REPENTANCE_PLUS    -- 리펜턴스 DLC인지
+local killingMom = false                                 -- 엄마를 처치했는지
+local conflictKLP = false                                -- 한국어 번역+가 켜져있는지
 
 if KoreanLocalizingPlus then
     conflictKLP = true
@@ -113,7 +113,7 @@ mod.IsHidden = false
 local VoiceSFX = SFXManager()
 local function onRender()
     if Input.IsButtonTriggered(39, 0) then
-        mod.IsHidden = not mod.IsHidden   -- '키로 자막 토글
+        mod.IsHidden = not mod.IsHidden    -- '키로 자막 토글
     end
     if mod.IsHidden then return end
 
@@ -134,7 +134,7 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 
 
 ------ EzItems by ddeeddii ------
-local data = include('include.data')   -- support by raiiiny
+local data = include('include.data')    -- support by raiiiny
 local json = require('json')
 local jsonData = json.decode(data)
 
@@ -290,7 +290,7 @@ local function getNextDeadSeaScrollsItem(rng)
     return deadSeaScrollsList[rng:RandomInt(#deadSeaScrollsList) + 1]
 end
 
-local lastPredictedID = nil
+local lastPredictedID = nil    -- 마지막으로 예측된 아이템 ID 저장
 local activePredictor = {
     [124] = getNextDeadSeaScrollsItem,
 }
@@ -330,7 +330,7 @@ end, 124)
 
 ------ 제작 가방 ------
 if EID then
-    local previousBagItems = {}
+    local previousBagItems = {}    -- 이전 제작 가방 아이템 목록
     local lastPlayerType = -1
 
     local function ShowCraftedItem(player)
@@ -348,7 +348,7 @@ if EID then
             lastPlayerType = player:GetPlayerType()
         end
 
-        if lastPlayerType ~= 23 then return end   -- 더렵하진 카인이 아니면 종료
+        if lastPlayerType ~= 23 then return end    -- 더렵하진 카인이 아니면 종료
 
         local currentBagCount = #EID.BoC.BagItems
         if #previousBagItems == 8 and currentBagCount == 0 then
@@ -363,10 +363,10 @@ end
 
 ------ 레메게톤 ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
-local w_queueLastFrame = {}
-local w_queueNow = {}
-local delayedWisps = {}
-local gameStarted = false   -- 게임 시작 시 초기화용
+local w_queueLastFrame = {}    -- 이전 프레임에 처리된 위습 데이터를 저장
+local w_queueNow = {}          -- 현재 프레임에 처리되는 위습 데이터를 저장
+local delayedWisps = {}        -- 일정 프레임 지연 후 처리할 위습을 저장
+local gameStarted = false      -- 게임 시작 시 초기화용
 
 local function WispText(familiar)
     local familiarKey = tostring(familiar.InitSeed)
@@ -392,14 +392,14 @@ end
 function mod:DetectWisp(familiar)
     if familiar.Type == 3 and familiar.Variant == 237 and gameStarted then
         local wispData = familiar:GetData()
-        if familiar.Position:Distance(Vector(-1000, -1000)) < 1 then return end     -- 임시방편. HiddenItemManager를 사용하는 모드와 충돌 방지
+        if familiar.Position:Distance(Vector(-1000, -1000)) < 1 then return end    -- 임시방편. HiddenItemManager를 사용하는 모드와 충돌 방지
         table.insert(delayedWisps, familiar)
     end
 end
 
 function mod:ShowWispText()
     if #delayedWisps > 0 then
-        WispText(delayedWisps[1])   -- 1프레임 지연 실행
+        WispText(delayedWisps[1])    -- 1프레임 지연 실행
         table.remove(delayedWisps, 1)
     end
 end
@@ -417,8 +417,8 @@ local pillDescriptions = {
     [PillEffect.PILLEFFECT_EXPERIMENTAL] = ""
 }
 
-local lastStats = {}
-local pendingStatComparison = {}
+local lastStats = {}    -- 알약 사용 이전 플레이어의 능력치 저장
+local pendingStatComparison = {}    -- 스탯 비교가 필요한 플레이어를 표시
 
 function mod:SavePlayerStats(player)
     lastStats[player.InitSeed] = {
@@ -509,15 +509,14 @@ mod:AddCallback(ModCallbacks.MC_USE_PILL, mod.FakePillText)
 local cardNames = include('include.data_cardNames')
 local cardDescriptions = include('include.data_cardDescriptions')
 
-local textDisplayed = false
-local resetTimer = 0
-local bagFlagTimer = 0
+local pickedUpCards = {}    -- 플레이어가 수집한 카드의 인덱스
+local pickupCollected = {}    -- 해당 픽업의 인덱스를 키로 하여, 픽업이 "Collect" 애니메이션 상태일 때 이미 처리되었는지 여부를 기록
+local pickupJustTouched = {}    -- 특정 엔티티가 픽업에 닿았는지
 
-local pickupCollected = {}
-local pickupJustTouched = {}
-local byBagofCrafting = false
+local byBagofCrafting = false    -- 제작 가방을 통해 카드를 수집했음을 나타내는 플래그로, 이 값이 참이면 카드 텍스트 표시를 방지
+local bagFlagTimer = 0    -- 제작 가방으로 카드를 수집한 후 카드 텍스트가 표시되지 않도록 하는 타이머입니다.
 
-mod.carftingBag = {}
+mod.craftingBag = {}
 mod.pickupIDLookup = {}
 mod.runeIDs = {}
 
@@ -546,15 +545,15 @@ end)
 
 ---@diagnostic disable-next-line: duplicate-set-field
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
-    for _, pickup in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, -1, false, false)) do
+    for _, pickup in ipairs(Isaac.FindByType(5, 300, -1, false, false)) do
         if pickup:GetSprite():GetAnimation() == "Collect" and not pickupCollected[pickup.Index] then
             pickupCollected[pickup.Index] = true
             if not pickupJustTouched[pickup.Index] then
                 local REPKORcraftingIDs = mod:getBagOfCraftingID(pickup.Variant, pickup.SubType)
                 if REPKORcraftingIDs ~= nil then
                     for _,v in ipairs(REPKORcraftingIDs) do
-						if #mod.carftingBag >= 8 then table.remove(mod.carftingBag, 1) end
-						table.insert(mod.carftingBag, v)
+						if #mod.craftingBag >= 8 then table.remove(mod.craftingBag, 1) end
+						table.insert(mod.craftingBag, v)
                         byBagofCrafting = true
                         bagFlagTimer = 18        -- 제작 가방으로 카드를 수집할 때 텍스트가 뜨는 걸 방지하기 위한 코드
 					end                          -- Original by EID Developers
@@ -565,28 +564,27 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
     end
 end)
 
-function mod:FakeCardText()
+mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup,collider,_)
+	if collider.Type == EntityType.ENTITY_PLAYER then
+        pickedUpCards[pickup.Index] = true
+	end
+end, 300)
+
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
     if byBagofCrafting then return end
-    for _, pickup in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, -1, false, false)) do
-        if pickup:IsDead() then
+    for _, pickup in ipairs(Isaac.FindByType(5, 300, -1, false, false)) do
+        if pickup:IsDead() and pickedUpCards[pickup.Index] then
             local cardID = pickup.SubType
             if cardNames[cardID] and not textDisplayed and mod.offline then
                 Game():GetHUD():ShowItemText(cardNames[cardID], cardDescriptions[cardID])
-                textDisplayed = true
-                resetTimer = 18      -- 왜인지는 모르는데 꼭 이렇게 코드를 짜야지 카드를 들자마자 텍스트가 뜸
-                break                -- 피격 등의 이유로 18 프레임 내에 카드를 다시 들게 되면 HUD.ShowItemText 미작동
+                pickedUpCards[pickup.Index] = nil
             end
         end
     end
-end
+end)
 
-function mod:ResetTextFlag()
-    if resetTimer > 0 then
-        resetTimer = resetTimer - 1
-        if resetTimer == 0 then
-            textDisplayed = false
-        end
-    elseif bagFlagTimer > 0 then
+function mod:ResetBagFlag()
+    if bagFlagTimer > 0 then
         bagFlagTimer = bagFlagTimer - 1
         if bagFlagTimer == 0 then
             byBagofCrafting = false
@@ -595,27 +593,29 @@ function mod:ResetTextFlag()
 end
 
 function mod:BoCOnNewRoom(_)
+    pickedUpCards = {}
+    pickupJustTouched = {}
 	pickupsCollected = {}
     byBagofCrafting = false
     bagFlagTimer = 0
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.FakeCardText)
-mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.ResetTextFlag)
+
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.ResetBagFlag)
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.BoCOnNewRoom)
 
 
 ------ 행운의 동전 ------
-local delayLuckyPenny = nil
+local delayLuckyPenny = nil    -- 1프레임 지연 실행용
 
 function mod:LuckyPennyPickup(pickup, collider)
-    if pickup.Variant == PickupVariant.PICKUP_COIN and pickup.SubType == CoinSubType.COIN_LUCKYPENNY then
+    if pickup.Variant == 20 and pickup.SubType == 5 then
         if collider.Type == EntityType.ENTITY_PLAYER then
             delayLuckyPenny = true
         end
     end
 end
 
-function mod:DelayedLuckyPennyText()   -- 1프레임 지연 실행
+function mod:DelayedLuckyPennyText()
     if delayLuckyPenny and mod.offline then
         Game():GetHUD():ShowItemText("행운의 동전", "행운 증가")
         delayLuckyPenny = nil
@@ -636,7 +636,7 @@ local friendlyNames = {
     [234] = { [0] = "원 투스" },
     [258] = { [0] = "뚱뚱한 박쥐" }
 }
-local friendlyEntityCounts = {}
+local friendlyEntityCounts = {}    -- 이전에 표시된 엔티티의 등장 횟수를 저장
 
 function mod:MarkPokeGOMonster(entity)
     if entity:ToNPC() then
@@ -822,7 +822,7 @@ end, CollectibleType.COLLECTIBLE_FORTUNE_COOKIE)
 
 mod:AddCallback(ModCallbacks.MC_USE_CARD, function(_, card)
     if card == Card.CARD_RULES then
-        if math.random() < 0.1 then   -- 10% 확률로 시드 표시
+        if math.random() < 0.1 then    -- 10% 확률로 시드 표시
             ShowSpecialSeed()
         else
             mod:ShowRule()
@@ -836,7 +836,7 @@ APIOverride.OverrideClassFunction(Game, "ShowFortune", function()
 end)
 
 APIOverride.OverrideClassFunction(Game, "ShowRule", function()
-    if math.random() < 0.1 then   -- 10% 확률로 시드 표시
+    if math.random() < 0.1 then    -- 10% 확률로 시드 표시
         ShowSpecialSeed()
     else
         mod:ShowRule()
@@ -847,7 +847,8 @@ end)
 
 ------ 축복 받은 느낌! ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
-local lastSacrificeAngelChance = nil
+local lastSacrificeAngelChance = nil    -- 이전 프레임의 천사방 확률 저장
+
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
     if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE then
         local currentAngelChance = Game():GetLevel():GetAngelRoomChance()
@@ -865,8 +866,9 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
     end
 end)
 
-local lastConfessionalAngelChance = nil
-local previousCurses = nil
+local lastConfessionalAngelChance = nil    -- 이전 프레임의 천사방 확률 저장
+local previousCurses = nil    -- 이전 프레임의 저주 상태 저장
+
 function mod:checkConfessional()
     local confessionals = Isaac.FindByType(EntityType.ENTITY_SLOT, 17)
     if #confessionals > 0 then
