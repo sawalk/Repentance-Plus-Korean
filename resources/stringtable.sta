@@ -30399,6 +30399,16 @@
             <string></string>
             <string></string>
         </key>
+        <key name="NO_LOBBIES">
+            <string>로비가 없습니다</string>
+            <string> </string>
+            <string> </string>
+            <string> </string>
+            <string> </string>
+            <string> </string>
+            <string> </string>
+            <string> </string>
+        </key>
         <key name="IN_LOBBY">
             <string>Lobby</string>
             <string></string>
@@ -31173,16 +31183,6 @@
             <string>Killed a boss with a ghost baby shot</string>
             <string></string>
             <string>유령 상태로 보스를 격파함</string>
-            <string></string>
-            <string></string>
-            <string></string>
-            <string></string>
-            <string></string>
-        </key>
-        <key name="RUN_RESTART_NO_OTHER_PLAYERS">
-            <string>You are the only player in the group. Do you want to continue?</string>
-            <string></string>
-            <string>그룹에 혼자 있습니다. 계속하시겠습니까?</string>
             <string></string>
             <string></string>
             <string></string>

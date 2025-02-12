@@ -37,7 +37,7 @@
 	<rune type="rune" pickup="3" achievement="92" description="정화" id="35" name="다가즈" announcer="336" mimiccharge="6" />
 	<rune type="rune" pickup="4" achievement="93" description="시야" id="36" name="안수즈" announcer="327" mimiccharge="2" />
 	<rune type="rune" pickup="4" achievement="94" description="체인지" id="37" name="페르트로" announcer="354" mimiccharge="4" />
-	<rune type="rune" pickup="4" achievement="95" description="동료" id="38" name="베르카노" announcer="331" mimiccharge="2" />
+	<rune type="rune" pickup="4" achievement="95" description="동료" id="38" name="베르카노" announcer="331" mimiccharge="4" />
 	<rune type="rune" pickup="4" achievement="96" description="저항" id="39" name="알기즈" announcer="325" mimiccharge="4" />
 	<rune type="rune" pickup="4" achievement="233" description="???" id="40" name="공백 룬" mimiccharge="3" />
 	<rune type="rune" pickup="7" achievement="309" description="보이드" id="41" name="검은 룬" announcer="457" announcerdelay="150" mimiccharge="4" />
