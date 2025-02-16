@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <stringtable>
-    <info version="1.0" modified="Tue Nov 26 21:29:43 2024" modifiedby="John"/>
+    <info version="1.0" modified="Thu Jan 30 21:21:42 2025" modifiedby="John"/>
     <languages>
         <language id="21" index="0" name="Key"/>
         <language id="0" index="1" name="English"/>
@@ -206,7 +206,7 @@
         <key name="INPUT_EMOTE">
             <string>Emote:</string>
             <string>Emote:</string>
-            <string>감정표현:</string>
+            <string>Emote:</string>
             <string>Emote:</string>
             <string>Emote:</string>
             <string>Emote:</string>
@@ -596,7 +596,7 @@
         <key name="STAT_UP_TEARS_1">
             <string>Tears up</string>
             <string>涙アップ</string>
-            <string>공격 속도 증가</string>
+            <string>더 많은 눈물</string>
             <string>射速上升</string>
             <string>Скорострельность ↑</string>
             <string>Tränen hoch</string>
@@ -606,7 +606,7 @@
         <key name="STAT_UP_TEARS_2">
             <string>tears up</string>
             <string>涙アップ</string>
-            <string>공격 속도 증가</string>
+            <string>더 많은 눈물</string>
             <string>射速上升</string>
             <string>скорострельность ↑</string>
             <string>Tränen hoch</string>
@@ -616,7 +616,7 @@
         <key name="STAT_DOWN_TEARS_1">
             <string>Tears down</string>
             <string>涙ダウン</string>
-            <string>공격 속도 감소</string>
+            <string>더 적은 눈물</string>
             <string>射速下降</string>
             <string>Скорострельность ↓</string>
             <string>Tränen runter</string>
@@ -626,7 +626,7 @@
         <key name="STAT_DOWN_TEARS_2">
             <string>tears down</string>
             <string>涙ダウン</string>
-            <string>공격 속도 감소</string>
+            <string>더 적은 눈물</string>
             <string>射速下降</string>
             <string>скорострельность ↓</string>
             <string>Tränen runter</string>
@@ -716,7 +716,7 @@
         <key name="STAT_UP_SHOT_SPEED_1">
             <string>Shot speed up</string>
             <string>ショットスピードアップ</string>
-            <string>투사체 속도 증가</string>
+            <string>공격 속도 증가</string>
             <string>弹速上升</string>
             <string>Скорость снаряда ↑</string>
             <string>Schusstempo hoch</string>
@@ -726,7 +726,7 @@
         <key name="STAT_UP_SHOT_SPEED_2">
             <string>shot speed up</string>
             <string>ショットスピードアップ</string>
-            <string>투사체 속도 증가</string>
+            <string>공격 속도 증가</string>
             <string>弹速上升</string>
             <string>скорость снаряда ↑</string>
             <string>Schusstempo hoch</string>
@@ -736,7 +736,7 @@
         <key name="STAT_DOWN_SHOT_SPEED_1">
             <string>Shot speed down</string>
             <string>ショットスピードダウン</string>
-            <string>투사체 속도 감소</string>
+            <string>공격 속도 감소</string>
             <string>弹速下降</string>
             <string>Скорость снаряда ↓</string>
             <string>Schusstempo runter</string>
@@ -746,7 +746,7 @@
         <key name="STAT_DOWN_SHOT_SPEED_2">
             <string>shot speed down</string>
             <string>ショットスピードダウン</string>
-            <string>투사체 속도 감소</string>
+            <string>공격 속도 감소</string>
             <string>弹速下降</string>
             <string>скорость снаряда ↓</string>
             <string>Schusstempo runter</string>
@@ -2448,7 +2448,7 @@
         <key name="THE_BATTERY_NAME">
             <string>The Battery</string>
             <string>電池</string>
-            <string>배터리</string>
+            <string>충전지</string>
             <string>蓄电池</string>
             <string>Батарейка</string>
             <string>Die Batterie</string>
@@ -3318,7 +3318,7 @@
         <key name="MR_MEGA_DESCRIPTION">
             <string>Bigger boom</string>
             <string>爆発ダメージと距離アップ</string>
-            <string>강력한 폭탄</string>
+            <string>폭발 대미지</string>
             <string>更大的爆炸</string>
             <string>Большой бум</string>
             <string>Größere Explosion</string>
@@ -3358,7 +3358,7 @@
         <key name="THE_WAFER_DESCRIPTION">
             <string>Damage resistance</string>
             <string>防御力アップ</string>
-            <string>받는 피해 감소</string>
+            <string>받는 대미지 감소</string>
             <string>伤害抗性</string>
             <string>Сопротивление урону</string>
             <string>Schadensresistenz</string>
@@ -3508,7 +3508,7 @@
         <key name="9_VOLT_NAME">
             <string>9 Volt</string>
             <string>９ボルト</string>
-            <string>9볼트 배터리</string>
+            <string>9볼트 건전지</string>
             <string>9伏特</string>
             <string>9 вольт</string>
             <string>9 Volt</string>
@@ -3728,7 +3728,7 @@
         <key name="FORGET_ME_NOW_NAME">
             <string>Forget Me Now</string>
             <string>フォーゲットミーなぅ</string>
-            <string>날 잊어 주세요</string>
+            <string>잊어줘 알약</string>
             <string>遗忘药</string>
             <string>Забудь меня</string>
             <string>Vergissmeinjetzt</string>
@@ -4508,7 +4508,7 @@
         <key name="D20_NAME">
             <string>D20</string>
             <string>D２０</string>
-            <string>20면체 주사위</string>
+            <string>20면 주사위</string>
             <string>二十面骰</string>
             <string>D20</string>
             <string>W20</string>
@@ -4648,7 +4648,7 @@
         <key name="MITRE_NAME">
             <string>Mitre</string>
             <string>司教の冠</string>
-            <string>주교관</string>
+            <string>미트라</string>
             <string>主教冠</string>
             <string>Митра</string>
             <string>Mitra</string>
@@ -5218,7 +5218,7 @@
         <key name="IRON_BAR_DESCRIPTION">
             <string>DMG up + concussive tears</string>
             <string>ダメージアップとスタン涙</string>
-            <string>공격력 증가 + 뇌진탕 눈물</string>
+            <string>데미지 증가 + 스턴 공격</string>
             <string>伤害上升+眩晕泪弹</string>
             <string>Урон ↑ + оглушающие слезы</string>
             <string>Schaden hoch + erschütternde Tränen</string>
@@ -5288,7 +5288,7 @@
         <key name="SHARP_PLUG_NAME">
             <string>Sharp Plug</string>
             <string>シャーププラグ</string>
-            <string>날카로운 플러그</string>
+            <string>플러그</string>
             <string>锋利插头</string>
             <string>Острый штепсель</string>
             <string>Scharfkantiger Stecker</string>
@@ -5928,7 +5928,7 @@
         <key name="KEY_PIECE_1_NAME">
             <string>Key Piece 1</string>
             <string>カギのかけら１</string>
-            <string>열쇠 조각 1</string>
+            <string>첫번째 열쇠 조각</string>
             <string>钥匙碎片1</string>
             <string>1 часть Ключа</string>
             <string>Schlüsselteil 1</string>
@@ -5948,7 +5948,7 @@
         <key name="KEY_PIECE_2_NAME">
             <string>Key Piece 2</string>
             <string>カギのかけら２</string>
-            <string>열쇠 조각 2</string>
+            <string>두번째 열쇠 조각</string>
             <string>钥匙碎片2</string>
             <string>2 часть Ключа</string>
             <string>Schlüsselteil 2</string>
@@ -6828,7 +6828,7 @@
         <key name="D100_NAME">
             <string>D100</string>
             <string>D１００</string>
-            <string>100면체 주사위</string>
+            <string>100면 주사위</string>
             <string>一百面骰</string>
             <string>D100</string>
             <string>W100</string>
@@ -6848,7 +6848,7 @@
         <key name="D4_NAME">
             <string>D4</string>
             <string>D４</string>
-            <string>4면체 주사위</string>
+            <string>4면 주사위</string>
             <string>四面骰</string>
             <string>D4</string>
             <string>W4</string>
@@ -6868,7 +6868,7 @@
         <key name="D10_NAME">
             <string>D10</string>
             <string>D１０</string>
-            <string>10면체 주사위</string>
+            <string>10면 주사위</string>
             <string>十面骰</string>
             <string>D10</string>
             <string>W10</string>
@@ -7578,7 +7578,7 @@
         <key name="S_ONLY_FRIEND_DESCRIPTION">
             <string>Controlled friend</string>
             <string>傀儡フレンド</string>
-            <string>조종당하는 친구</string>
+            <string>귀신들린 친구</string>
             <string>可控伙伴</string>
             <string>Контролируемый друг</string>
             <string>Kontrollierter Freund</string>
@@ -7908,7 +7908,7 @@
         <key name="BROKEN_WATCH_NAME">
             <string>Broken Watch</string>
             <string>壊れた時計</string>
-            <string>부서진 시계</string>
+            <string>고장난 손목시계</string>
             <string>损坏的怀表</string>
             <string>Сломанные часы</string>
             <string>Defekte Uhr</string>
@@ -7938,7 +7938,7 @@
         <key name="THE_BOOMERANG_DESCRIPTION">
             <string>It will never leave you</string>
             <string>必ず戻るよ君の許に</string>
-            <string>돌아오는 거야!</string>
+            <string>돌아오는거야!</string>
             <string>绝不离手</string>
             <string>Он никогда тебя не покинет</string>
             <string>Er wird dich nie verlassen</string>
@@ -7998,7 +7998,7 @@
         <key name="TORN_PHOTO_DESCRIPTION">
             <string>Tears + shot speed up</string>
             <string>涙とショットスピードアップ</string>
-            <string>공격 속도, 투사체 속도 증가</string>
+            <string>발사 속도, 투사체 속도 증가</string>
             <string>射速+弹速上升</string>
             <string>Скорострельность + Скорость снаряда ↑</string>
             <string>Tränen + Schusstempo hoch</string>
@@ -8178,7 +8178,7 @@
         <key name="TOXIC_SHOCK_DESCRIPTION">
             <string>Mass poison</string>
             <string>毒がドクドク！</string>
-            <string>광역 중독</string>
+            <string>어마어마한 독</string>
             <string>群体中毒</string>
             <string>Массовое отравление</string>
             <string>Massenvergiftung</string>
@@ -8258,7 +8258,7 @@
         <key name="CRACK_JACKS_DESCRIPTION">
             <string>HP up. Don't swallow the prize!</string>
             <string>ＨＰアップ、菓子と一緒におまけを飲み込まないでね</string>
-            <string>체력 증가. 상품까지 먹지는 마세요!</string>
+            <string>상품까지 먹지는 마세요!</string>
             <string>体力上升。别把赠品吞了！</string>
             <string>ОЗ ↑. Не проглоти приз!</string>
             <string>TP hoch. Verschluck den Preis nicht!</string>
@@ -8268,7 +8268,7 @@
         <key name="MOMS_PEARLS_NAME">
             <string>Mom's Pearls</string>
             <string>ママのパール</string>
-            <string>엄마의 진주 목걸이</string>
+            <string>엄마의 진주</string>
             <string>妈妈的珍珠项链</string>
             <string>Мамин жемчуг</string>
             <string>Mamas Perlen</string>
@@ -8278,7 +8278,7 @@
         <key name="MOMS_PEARLS_DESCRIPTION">
             <string>Range + luck up</string>
             <string>射程距離と運アップ</string>
-            <string>사거리 + 행운 증가</string>
+            <string>거리 + 행운 증가</string>
             <string>射程+运气上升</string>
             <string>Дальность + Удача ↑</string>
             <string>Reichweite + Glück hoch</string>
@@ -8628,7 +8628,7 @@
         <key name="DEAD_EYE_NAME">
             <string>Dead Eye</string>
             <string>死者の目</string>
-            <string>명사수</string>
+            <string>죽은 눈</string>
             <string>死亡之眼</string>
             <string>Мертвый глаз</string>
             <string>Totes Auge</string>
@@ -8808,7 +8808,7 @@
         <key name="FRIENDLY_BALL_NAME">
             <string>Friendly Ball</string>
             <string>フレンドリーボール</string>
-            <string>프렌들리볼</string>
+            <string>친절한 공</string>
             <string>友好球</string>
             <string>Дружелюбный шар</string>
             <string>Freundschaftsball</string>
@@ -9068,7 +9068,7 @@
         <key name="TECH_X_NAME">
             <string>Tech X</string>
             <string>テックＸ</string>
-            <string>기계 X</string>
+            <string>기술 X</string>
             <string>科技X</string>
             <string>Технология X</string>
             <string>Tech X</string>
@@ -9098,7 +9098,7 @@
         <key name="VENTRICLE_RAZOR_DESCRIPTION">
             <string>Short cutter</string>
             <string>ショートカッター</string>
-            <string>지름길 생성기</string>
+            <string>짧은 커터</string>
             <string>切入捷径</string>
             <string>Сокращатель</string>
             <string>Schneiden und abkürzen</string>
@@ -9188,7 +9188,7 @@
         <key name="EXPLOSIVO_NAME">
             <string>Explosivo</string>
             <string>エクスプロシボ</string>
-            <string>폭발물</string>
+            <string>아주 강하게!</string>
             <string>爆炸物</string>
             <string>Взрывчатко</string>
             <string>Explosivo</string>
@@ -9388,7 +9388,7 @@
         <key name="LUSTY_BLOOD_NAME">
             <string>Lusty Blood</string>
             <string>頑健ブラッド</string>
-            <string>욕망의 피</string>
+            <string>건강한 피</string>
             <string>血嗜</string>
             <string>Вожделенная кровь</string>
             <string>Lustvolles Blut</string>
@@ -9928,7 +9928,7 @@
         <key name="BINKY_NAME">
             <string>Binky</string>
             <string>おしゃぶりチクビ</string>
-            <string>쪽쪽이</string>
+            <string>아기처럼</string>
             <string>奶嘴</string>
             <string>Соска-пустышка</string>
             <string>Binky</string>
@@ -10008,7 +10008,7 @@
         <key name="DARK_PRINCES_CROWN_NAME">
             <string>Dark Prince's Crown</string>
             <string>ダークプリンスの冠</string>
-            <string>암흑 왕자의 왕관</string>
+            <string>다크 프린스의 왕관</string>
             <string>黑王子之冠</string>
             <string>Корона тёмного принца</string>
             <string>Dunkelprinz-Krone</string>
@@ -10048,7 +10048,7 @@
         <key name="LEAD_PENCIL_NAME">
             <string>Lead Pencil</string>
             <string>シャープペンシル</string>
-            <string>연필</string>
+            <string>샤프 펜슬</string>
             <string>铅笔</string>
             <string>Графитовый карандаш</string>
             <string>Bleistift</string>
@@ -10108,7 +10108,7 @@
         <key name="LINGER_BEAN_NAME">
             <string>Linger Bean</string>
             <string>リンガービーンズ</string>
-            <string>납작한 콩</string>
+            <string>링거 콩</string>
             <string>流连豆</string>
             <string>Тормозной боб</string>
             <string>Verweilende Bohne</string>
@@ -10148,7 +10148,7 @@
         <key name="METAL_PLATE_NAME">
             <string>Metal Plate</string>
             <string>メタルプレート</string>
-            <string>강철판</string>
+            <string>메탈 플레이트</string>
             <string>金属板</string>
             <string>Металлическая пластина</string>
             <string>Metallplatte</string>
@@ -10188,7 +10188,7 @@
         <key name="TAROT_CLOTH_NAME">
             <string>Tarot Cloth</string>
             <string>タロットクロス</string>
-            <string>타로 천</string>
+            <string>타롯 클로스</string>
             <string>塔罗牌桌布</string>
             <string>Сукно Таро</string>
             <string>Tarot-Tuch</string>
@@ -10268,7 +10268,7 @@
         <key name="DADS_LOST_COIN_NAME">
             <string>Dad's Lost Coin</string>
             <string>パパが失くしたコイン</string>
-            <string>아빠의 잃어버린 동전</string>
+            <string>아빠의 잃어버린 코인</string>
             <string>爸爸丢失的硬币</string>
             <string>Папина потерянная монета</string>
             <string>Papas verlorene Münze</string>
@@ -10288,7 +10288,7 @@
         <key name="MIDNIGHT_SNACK_NAME">
             <string>Midnight Snack</string>
             <string>カビの生えたパン</string>
-            <string>야식</string>
+            <string>야식!</string>
             <string>夜宵</string>
             <string>Полуночный перекус</string>
             <string>Mitternachtssnack</string>
@@ -10308,7 +10308,7 @@
         <key name="CONE_HEAD_NAME">
             <string>Cone Head</string>
             <string>コーンあたま</string>
-            <string>콘헤드</string>
+            <string>콘 머리</string>
             <string>蛋头</string>
             <string>Яйцеголовый</string>
             <string>Kegelkopf</string>
@@ -10398,7 +10398,7 @@
         <key name="PARASITOID_DESCRIPTION">
             <string>Egg tears!</string>
             <string>たまご涙！</string>
-            <string>알까기 눈물!</string>
+            <string>달걀 눈물!</string>
             <string>虫卵泪弹！</string>
             <string>Слёзы-яйца!</string>
             <string>Eiertränen!</string>
@@ -10518,7 +10518,7 @@
         <key name="FINGER_DESCRIPTION">
             <string>Watch where you point that!</string>
             <string>どこ突きつけてるんだよ！</string>
-            <string>저 놈을 주목해!</string>
+            <string>어딜 만져! 어딜 만지냐고!</string>
             <string>小心你指的地方！</string>
             <string>Смотри куда тычешь!</string>
             <string>Pass auf, wohin du damit zeigst!</string>
@@ -10688,7 +10688,7 @@
         <key name="D1_NAME">
             <string>D1</string>
             <string>Ｄ１</string>
-            <string>1면체 주사위</string>
+            <string>D1</string>
             <string>一面骰</string>
             <string>D1</string>
             <string>W1</string>
@@ -10858,7 +10858,7 @@
         <key name="WAIT_WHAT_DESCRIPTION">
             <string>I can't believe it's not butter bean!</string>
             <string>バタービーンじゃないの！？</string>
-            <string>흰강낭콩이 아니었다니!</string>
+            <string>버터 콩이 아니었다니!</string>
             <string>惊了，这道具居然不是棉豆！</string>
             <string>Не могу поверить, это не фасоль!</string>
             <string>Ich kann nicht glauben, dass es keine Butterbohne ist!</string>
@@ -10948,7 +10948,7 @@
         <key name="D_INFINITY_NAME">
             <string>D infinity</string>
             <string>Ｄインフィニティー</string>
-            <string>무한 주사위</string>
+            <string>D 인피니티</string>
             <string>无限面骰</string>
             <string>Бесконечный D</string>
             <string>W unendlich</string>
@@ -10988,7 +10988,7 @@
         <key name="ACID_BABY_NAME">
             <string>Acid Baby</string>
             <string>アシッドベイビー</string>
-            <string>환각 아기</string>
+            <string>산성 아기</string>
             <string>毒瘾宝宝</string>
             <string>Кислотный малыш</string>
             <string>Drogen-Baby</string>
@@ -11068,7 +11068,7 @@
         <key name="GHOST_PEPPER_NAME">
             <string>Ghost Pepper</string>
             <string>ゴーストペッパー</string>
-            <string>유령 고추</string>
+            <string>유령 후추</string>
             <string>断魂椒</string>
             <string>Призрачный перец</string>
             <string>Ghost Pepper</string>
@@ -11098,7 +11098,7 @@
         <key name="EUTHANASIA_DESCRIPTION">
             <string>Needle shot</string>
             <string>ニードルショット</string>
-            <string>주삿바늘 공격</string>
+            <string>니들 샷</string>
             <string>针筒泪弹</string>
             <string>Игольный снаряд</string>
             <string>Nadelschuss</string>
@@ -11148,7 +11148,7 @@
         <key name="EUCHARIST_NAME">
             <string>Eucharist</string>
             <string>エウカリスト</string>
-            <string>성찬</string>
+            <string>유칼리스트</string>
             <string>圣餐</string>
             <string>Причастие</string>
             <string>Eucharistie</string>
@@ -11218,7 +11218,7 @@
         <key name="LARGE_ZIT_DESCRIPTION">
             <string>Creep shots</string>
             <string>クリープショット</string>
-            <string>여드름 공격</string>
+            <string>무음 촬영</string>
             <string>油脂射击</string>
             <string>Омерзительные выстрелы</string>
             <string>Kriecherschüsse</string>
@@ -11308,7 +11308,7 @@
         <key name="SHARP_STRAW_NAME">
             <string>Sharp Straw</string>
             <string>シャープストロー</string>
-            <string>날카로운 빨대</string>
+            <string>샤프 스트로</string>
             <string>尖头吸管</string>
             <string>Острая соломинка</string>
             <string>Scharfer Strohhalm</string>
@@ -11548,7 +11548,7 @@
         <key name="LIL_DELIRIUM_NAME">
             <string>Lil Delirium</string>
             <string>リトルデリリアム</string>
-            <string>작은 섬망</string>
+            <string>리틀 델리리엄</string>
             <string>精神错乱宝宝</string>
             <string>Малютка Сумасшествие</string>
             <string>Kleines Delirium</string>
@@ -11648,7 +11648,7 @@
         <key name="TECHNOLOGY_ZERO_NAME">
             <string>Technology Zero</string>
             <string>テクノロジーゼロ</string>
-            <string>기계 장치 제로</string>
+            <string>테크놀로지 제로</string>
             <string>科技零</string>
             <string>Технология Ноль</string>
             <string>Technologie Null</string>
@@ -12268,7 +12268,7 @@
         <key name="GOLDEN_RAZOR_NAME">
             <string>Golden Razor</string>
             <string>ゴールデン レイザー</string>
-            <string>황금 면도날</string>
+            <string>황금 면도기</string>
             <string>金剃刀片</string>
             <string>Золотая бритва</string>
             <string>Goldenes Rasiermesser</string>
@@ -12288,7 +12288,7 @@
         <key name="SULFUR_NAME">
             <string>Sulfur</string>
             <string>硫黄</string>
-            <string>황</string>
+            <string>유황</string>
             <string>炼金硫磺</string>
             <string>Сульфур</string>
             <string>Schwefel</string>
@@ -12628,7 +12628,7 @@
         <key name="IMMACULATE_HEART_NAME">
             <string>Immaculate Heart</string>
             <string>けがれのないハート</string>
-            <string>원죄없는 심장</string>
+            <string>티없는 심장</string>
             <string>无瑕圣心</string>
             <string>Непорочное сердце</string>
             <string>Unbeflecktes Herz</string>
@@ -12888,7 +12888,7 @@
         <key name="THE_STAIRWAY_NAME">
             <string>The Stairway</string>
             <string>天国への階段</string>
-            <string>천국의 계단</string>
+            <string>계단</string>
             <string>天堂阶梯</string>
             <string>Лестница</string>
             <string>Die Leiter</string>
@@ -12898,7 +12898,7 @@
         <key name="THE_STAIRWAY_DESCRIPTION">
             <string>May you get what you came for</string>
             <string>求めていたものが手に入りますように</string>
-            <string>원하던 것을 얻을 수 있기를</string>
+            <string>왔던 곳으로 다시 돌아갈 수 있기를</string>
             <string>愿你得偿所望</string>
             <string>Получи то, за чем пришел</string>
             <string>Mögest du erhalten, wofür du gekommen bist</string>
@@ -13138,7 +13138,7 @@
         <key name="VOODOO_HEAD_DESCRIPTION">
             <string>Extra curse rooms</string>
             <string>いたるところに呪いの部屋が・・・</string>
-            <string>추가 저주 방</string>
+            <string>추가 저주방</string>
             <string>额外诅咒房</string>
             <string>Дополнительные проклятые комнаты</string>
             <string>Mehr Fluchräume</string>
@@ -13288,7 +13288,7 @@
         <key name="BOILED_BABY_NAME">
             <string>Boiled Baby</string>
             <string>ボイルド ベイビー</string>
-            <string>물집 아기</string>
+            <string>끓는 아기</string>
             <string>脓液囊宝宝</string>
             <string>Малыш нарыв</string>
             <string>Verbeultes Baby</string>
@@ -13608,7 +13608,7 @@
         <key name="MEGA_MUSH_NAME">
             <string>Mega Mush</string>
             <string>メガ　マッシュ</string>
-            <string>대왕 버섯</string>
+            <string>메가 무쉬</string>
             <string>超级蘑菇</string>
             <string>Мегагриб</string>
             <string>Megapilz</string>
@@ -13628,7 +13628,7 @@
         <key name="KNIFE_PIECE_1_NAME">
             <string>Knife Piece 1</string>
             <string>ナイフピース１</string>
-            <string>칼 조각 1</string>
+            <string>칼조각 1</string>
             <string>菜刀碎片1</string>
             <string>1 часть Ножа</string>
             <string>Messerteil 1</string>
@@ -13648,7 +13648,7 @@
         <key name="KNIFE_PIECE_2_NAME">
             <string>Knife Piece 2</string>
             <string>ナイフピース２</string>
-            <string>칼 조각 2</string>
+            <string>칼조각 2</string>
             <string>菜刀碎片2</string>
             <string>2 часть Ножа</string>
             <string>Messerteil 2</string>
@@ -13798,7 +13798,7 @@
         <key name="STITCHES_DESCRIPTION">
             <string>Bait and switch</string>
             <string>キミが囮ね</string>
-            <string>유인하고 바꿔치기</string>
+            <string>미끼랑 자리 바꾸기</string>
             <string>偷天换日</string>
             <string>Примани и переключись</string>
             <string>Lockvogeltaktik</string>
@@ -13978,7 +13978,7 @@
         <key name="CONSOLATION_PRIZE_DESCRIPTION">
             <string>+1 to lowest stat</string>
             <string>最も低いステータスを１つアップ</string>
-            <string>가장 낮은 능력치 +1</string>
+            <string>가장 낮은 스탯 +1</string>
             <string>给最低的属性+1</string>
             <string>+1 к самой низкой характеристике</string>
             <string>+1 zum niedrigsten Wert</string>
@@ -14028,7 +14028,7 @@
         <key name="4_5_VOLT_NAME">
             <string>4.5 Volt</string>
             <string>４.５ボルト</string>
-            <string>4.5볼트 배터리</string>
+            <string>4.5볼트</string>
             <string>4.5伏特</string>
             <string>4.5 Вольт</string>
             <string>4,5 Volt</string>
@@ -14398,7 +14398,7 @@
         <key name="SAUSAGE_DESCRIPTION">
             <string>All stats up</string>
             <string>全ステータスアップ</string>
-            <string>모든 능력치 증가</string>
+            <string>모든 스탯 증가</string>
             <string>所有属性上升</string>
             <string>Все характеристики ↑ !</string>
             <string>Alle Werte hoch</string>
@@ -15198,7 +15198,7 @@
         <key name="SUPLEX_DESCRIPTION">
             <string>Angel breaker</string>
             <string>「エンジェェェェル ブレイカーッ！」</string>
-            <string>천사도 이길 기술</string>
+            <string>엔젤 브레이커가 들어 갑니다!</string>
             <string>弑神暴击</string>
             <string>Ангельский крушитель</string>
             <string>Engelsbrecher</string>
@@ -15278,7 +15278,7 @@
         <key name="SUMPTORIUM_DESCRIPTION">
             <string>Blood to blood</string>
             <string>戻る</string>
-            <string>피에서 피로</string>
+            <string>돌아가기</string>
             <string>以血还血</string>
             <string>Кровь к крови</string>
             <string>Rückkehr</string>
@@ -15328,7 +15328,7 @@
         <key name="KEEPERS_SACK_NAME">
             <string>Keeper's Sack</string>
             <string>キーパーズ サック</string>
-            <string>키퍼의 자루</string>
+            <string>상점 키퍼 가방</string>
             <string>店主的胯袋</string>
             <string>Мошна Хранителя</string>
             <string>Sack des Hüters</string>
@@ -15348,7 +15348,7 @@
         <key name="KEEPERS_KIN_NAME">
             <string>Keeper's Kin</string>
             <string>キーパーズ キン</string>
-            <string>키퍼의 친척</string>
+            <string>상점 키퍼 친척</string>
             <string>店主的亲友</string>
             <string>Родня Хранителя</string>
             <string>Hüterverwandter</string>
@@ -15368,7 +15368,7 @@
         <key name="KEEPERS_BOX_NAME">
             <string>Keeper's Box</string>
             <string>キーパーズ ボックス</string>
-            <string>키퍼의 상자</string>
+            <string>상점 키퍼 상자</string>
             <string>店主的盒子</string>
             <string>Коробок Хранителя</string>
             <string>Kiste des Hüters</string>
@@ -15488,7 +15488,7 @@
         <key name="IBS_NAME">
             <string>IBS</string>
             <string>ＩＢＳ</string>
-            <string>과민성 대장 증후군</string>
+            <string>IBS</string>
             <string>大肠激躁症</string>
             <string>СРК</string>
             <string>RDS</string>
@@ -15688,7 +15688,7 @@
         <key name="AAA_BATTERY_NAME">
             <string>AAA Battery</string>
             <string>単４電池</string>
-            <string>AAA 배터리</string>
+            <string>AAA 건전지</string>
             <string>7号电池</string>
             <string>Батарейка ААА</string>
             <string>AAA-Batterie</string>
@@ -16988,7 +16988,7 @@
         <key name="FADED_POLAROID_NAME">
             <string>Faded Polaroid</string>
             <string>消えかけインスタント写真</string>
-            <string>흐려진 즉석사진</string>
+            <string>흐려진 폴라로이드</string>
             <string>褪色的全家福</string>
             <string>Выцветшая фотокарточка</string>
             <string>Blasses Polaroid</string>
@@ -17038,7 +17038,7 @@
         <key name="BOBS_BLADDER_DESCRIPTION">
             <string>Creepy bombs</string>
             <string>キモ過ぎ爆弾</string>
-            <string>장판 폭탄</string>
+            <string>오싹한 폭탄</string>
             <string>恐怖的炸弹</string>
             <string>Жуткие бомбы</string>
             <string>Gruselige Bomben</string>
@@ -17048,7 +17048,7 @@
         <key name="WATCH_BATTERY_NAME">
             <string>Watch Battery</string>
             <string>時計の電池</string>
-            <string>시계 배터리</string>
+            <string>손목시계용 전지</string>
             <string>钮扣电池</string>
             <string>Часовая батарейка</string>
             <string>Uhrenbatterie</string>
@@ -17148,7 +17148,7 @@
         <key name="BLISTER_NAME">
             <string>Blister</string>
             <string>水泡</string>
-            <string>물집</string>
+            <string>블리스터</string>
             <string>水疱</string>
             <string>Волдырь</string>
             <string>Blase</string>
@@ -17158,7 +17158,7 @@
         <key name="BLISTER_DESCRIPTION">
             <string>Bounce back!</string>
             <string>跳ね返る！</string>
-            <string>튕겨나가라!</string>
+            <string>사라져라!</string>
             <string>弹回来！</string>
             <string>Отскакивает!</string>
             <string>Abprallen!</string>
@@ -17198,7 +17198,7 @@
         <key name="ENDLESS_NAMELESS_DESCRIPTION">
             <string>I'm stuck in a loop...</string>
             <string>ぼく・・・無限ループにハマってね？</string>
-            <string>루프에 갇혀버렸어…</string>
+            <string>루프에 열중하고 있어…</string>
             <string>我陷入了死循环…</string>
             <string>Я застрял в петле...</string>
             <string>Ich stecke in einer Schleife fest ...</string>
@@ -17348,7 +17348,7 @@
         <key name="MOMS_LOCKET_NAME">
             <string>Mom's Locket</string>
             <string>ママのロケット</string>
-            <string>엄마의 로켓</string>
+            <string>엄마의 심장</string>
             <string>妈妈的吊坠</string>
             <string>Мамин медальон</string>
             <string>Mamas Medaillon</string>
@@ -17458,7 +17458,7 @@
         <key name="CRACKED_CROWN_DESCRIPTION">
             <string>Stat booster</string>
             <string>ステータスアップ</string>
-            <string>능력치 증폭</string>
+            <string>스탯 부스팅</string>
             <string>属性强化</string>
             <string>Усилитель характеристик</string>
             <string>Werte-Booster</string>
@@ -17758,7 +17758,7 @@
         <key name="CROW_HEART_DESCRIPTION">
             <string>Drain me</string>
             <string>排水して</string>
-            <string>나를 빼 줘</string>
+            <string>나를 흡수해 줘</string>
             <string>抽干我的血</string>
             <string>Осуши меня</string>
             <string>Entleere mich</string>
@@ -18378,7 +18378,7 @@
         <key name="M_DESCRIPTION">
             <string>t's broken9Reroll your dest</string>
             <string>壊れ®廷いｍス。運ｍネイを切®開く</string>
-            <string>고장ㄴㅏㅆ9운명을굴ㄹㅣ는력</string>
+            <string>ㅏㅇ가졋네9목적지리롤ㄱ</string>
             <string>坏了9重置你的命</string>
             <string>н слома9Перевени вою суд</string>
             <string>st kaputt9Würfle dein Schicks</string>
@@ -18518,7 +18518,7 @@
         <key name="PERFECTION_DESCRIPTION">
             <string>Luck way up. Don't lose it!</string>
             <string>めちゃ運アップ、失くしちゃダメ！</string>
-            <string>행운 수직 상승. 잃지 말라구!</string>
+            <string>운이 좋네. 그 행운을 잃지 말라구!</string>
             <string>运气大幅上升，别弄丢了！</string>
             <string>Удача ↑. Не потеряй её!</string>
             <string>Glück extrem hoch. Verlier es nicht!</string>
@@ -23022,7 +23022,7 @@
         <key name="THE_MATRIARCH">
             <string>The Matriarch</string>
             <string>ザ メイトリアーク</string>
-            <string>대모</string>
+            <string>메이트리아크</string>
             <string>胖蛆族母</string>
             <string>Матриарх</string>
             <string>Die Matriarchin</string>
@@ -24122,7 +24122,7 @@
         <key name="REAP_CREEP">
             <string>Reap Creep</string>
             <string>リープ クリープ</string>
-            <string>융합 거미</string>
+            <string>사신 크리프</string>
             <string>裂面爬墙蛛</string>
             <string>Ползучий Жнец</string>
             <string>Todeskriecher</string>
@@ -24142,7 +24142,7 @@
         <key name="RAINMAKER">
             <string>Rainmaker</string>
             <string>レインメーカー</string>
-            <string>기우사</string>
+            <string>레인메이커</string>
             <string>造雨人</string>
             <string>Призыватель Дождя</string>
             <string>Regenmacher</string>
@@ -24152,7 +24152,7 @@
         <key name="THE_VISAGE">
             <string>The Visage</string>
             <string>ザ ビザージ</string>
-            <string>안면</string>
+            <string>비사지</string>
             <string>锁链假面</string>
             <string>Лик</string>
             <string>Die Visage</string>
@@ -24172,7 +24172,7 @@
         <key name="THE_HERETIC">
             <string>The Heretic</string>
             <string>ザ ヘレティック</string>
-            <string>이단자</string>
+            <string>불신자</string>
             <string>大异端</string>
             <string>Еретик</string>
             <string>Der Ketzer</string>
@@ -24262,7 +24262,7 @@
         <key name="MIN_MIN">
             <string>Min Min</string>
             <string>ミンミン</string>
-            <string>도깨비불</string>
+            <string>민 민</string>
             <string>冥明火灵</string>
             <string>Мин Мин</string>
             <string>Min Min</string>
@@ -24272,7 +24272,7 @@
         <key name="CLOG">
             <string>Clog</string>
             <string>クロッグ</string>
-            <string>숙변</string>
+            <string>클로그</string>
             <string>拦路屎</string>
             <string>Засор</string>
             <string>Verstopfer</string>
@@ -24282,7 +24282,7 @@
         <key name="SINGE">
             <string>Singe</string>
             <string>シンジュ</string>
-            <string>숯검댕이</string>
+            <string>신즈</string>
             <string>焦皮小子</string>
             <string>Ожог</string>
             <string>Versenger</string>
@@ -24302,7 +24302,7 @@
         <key name="COLOSTOMIA">
             <string>Colostomia</string>
             <string>コロストミア</string>
-            <string>똥주머니</string>
+            <string>콜로스토미아</string>
             <string>结肠造口袋</string>
             <string>Колостомия</string>
             <string>Kolostomia</string>
@@ -24626,7 +24626,7 @@
         <key name="CAIN_BIRTHRIGHT">
             <string>Better arcades + luck up</string>
             <string>楽しいアーケードがいっぱい、運アップ</string>
-            <string>더 재밌는 오락실 + 행운 증가</string>
+            <string>조작성 + 행운 증가</string>
             <string>更好的赌博房+运气上升</string>
             <string>Лучшие Аркады + ↑ Удачи</string>
             <string>Bessere Spielhallen + Glück hoch</string>
@@ -24846,7 +24846,7 @@
         <key name="LILITH_BIRTHRIGHT">
             <string>Offensive formation</string>
             <string>いやーなフォーメーション</string>
-            <string>공격형 대형</string>
+            <string>공격적 위치</string>
             <string>进攻阵型</string>
             <string>Атакующее построение</string>
             <string>Offensivformation</string>
@@ -25136,7 +25136,7 @@
         <key name="THE_FORGOTTEN_B_BIRTHRIGHT">
             <string>Recall</string>
             <string>リコール</string>
-            <string>되돌아오라</string>
+            <string>회상</string>
             <string>召回</string>
             <string>Отзыв</string>
             <string>Rückruf</string>
@@ -27508,7 +27508,7 @@
         <key name="XLAX_NAME">
             <string>X-Lax</string>
             <string>ＫＯらっく</string>
-            <string>설사약</string>
+            <string>X-랙스</string>
             <string>泻药</string>
             <string>Слабительное</string>
             <string>X-Lax</string>
@@ -27558,7 +27558,7 @@
         <key name="HORF_NAME">
             <string>Horf!</string>
             <string>バクバク！</string>
-            <string>퉤엣!</string>
+            <string>홀프!</string>
             <string>呕！</string>
             <string>Хорф!</string>
             <string>Horf!</string>
@@ -27588,7 +27588,7 @@
         <key name="SHOT_SPEED_DOWN_NAME">
             <string>Shot Speed Down</string>
             <string>ショットスピードダウン</string>
-            <string>투사체 속도 감소</string>
+            <string>공격 속도 감소</string>
             <string>弹速下降</string>
             <string>Скорость снаряда ↓</string>
             <string>Schusstempo runter</string>
@@ -27598,7 +27598,7 @@
         <key name="SHOT_SPEED_UP_NAME">
             <string>Shot Speed Up</string>
             <string>ショットスピードアップ</string>
-            <string>투사체 속도 증가</string>
+            <string>공격 속도 증가</string>
             <string>弹速上升</string>
             <string>Скорость снаряда ↑</string>
             <string>Schusstempo hoch</string>
@@ -27900,7 +27900,7 @@
         <key name="SEED_47">
             <string>Full heart damage</string>
             <string>ハート フル ダメージ</string>
-            <string>체력 한 칸 피해</string>
+            <string>모든 심장 피해</string>
             <string>1颗心伤害</string>
             <string>Урон Полного Сердца</string>
             <string>Voller Herzschaden</string>
@@ -27910,7 +27910,7 @@
         <key name="SEED_48">
             <string>Twelve heart damage</string>
             <string>１２ハート ダメージ</string>
-            <string>체력 전체 피해</string>
+            <string>열두 심장 피해</string>
             <string>12颗心伤害</string>
             <string>Урон Дюжины Сердец</string>
             <string>12-Herzschaden</string>
@@ -27940,7 +27940,7 @@
         <key name="SEED_28">
             <string>30 minute limit</string>
             <string>３０分リミット</string>
-            <string>30분 제한</string>
+            <string>30 분 제한</string>
             <string>30分钟限制</string>
             <string>30-минутный лимит</string>
             <string>30-Minuten-Limit</string>
@@ -28330,7 +28330,7 @@
         <key name="SEED_78">
             <string>Retro Vision</string>
             <string>レトロビジョン</string>
-            <string>전자오락 시야경</string>
+            <string>레트로 비전</string>
             <string>复古视野</string>
             <string>Ретро Видение</string>
             <string>Retro-Vision</string>
@@ -29104,7 +29104,7 @@
         <key name="Entry_46">
             <string>rebirth got cancelled</string>
             <string>リバースはキャンセルされた</string>
-            <string>리버스 개발은 취소됐어요</string>
+            <string>부활은 취소되었다</string>
             <string>重生取消发行</string>
             <string>перерождение|отменили</string>
             <string>Rebirth wurde|eingestellt</string>
@@ -30130,7 +30130,7 @@
         <key name="ROOM_BARREN">
             <string>Playing in Isaac's Room in %s</string>
             <string></string>
-            <string>%s의 아이작의 방에서 플레이 중</string>
+            <string>%s 안 아이작의 방에서 플레이 중</string>
             <string></string>
             <string></string>
             <string></string>
@@ -30140,7 +30140,7 @@
         <key name="ROOM_ISAACS">
             <string>Playing in Isaac's Room in %s</string>
             <string></string>
-            <string>%s의 아이작의 방에서 플레이 중</string>
+            <string>%s 안 아이작의 방에서 플레이 중</string>
             <string></string>
             <string></string>
             <string></string>
@@ -30150,7 +30150,7 @@
         <key name="ROOM_SHOP">
             <string>Shopping in %s</string>
             <string></string>
-            <string>%s에서 쇼핑 중</string>
+            <string>%s에서 장보는 중</string>
             <string></string>
             <string></string>
             <string></string>
@@ -30160,7 +30160,7 @@
         <key name="ROOM_BLACK_MARKET">
             <string>Shopping the black market in %s</string>
             <string></string>
-            <string>%s의 암시장에서 쇼핑 중</string>
+            <string>%s의 암시장에서 장보는 중</string>
             <string></string>
             <string></string>
             <string></string>
@@ -30210,7 +30210,7 @@
         <key name="ROOM_DICE">
             <string>Contemplating a reroll in %s</string>
             <string></string>
-            <string>%s의 주사위 방에서 고민 중</string>
+            <string>%s 안 주사위 방에서 고민 중</string>
             <string></string>
             <string></string>
             <string></string>
@@ -30400,9 +30400,9 @@
             <string></string>
         </key>
         <key name="NO_LOBBIES">
+            <string>No lobbies found</string>
+            <string> </string>
             <string>로비가 없습니다</string>
-            <string> </string>
-            <string> </string>
             <string> </string>
             <string> </string>
             <string> </string>
@@ -30942,7 +30942,7 @@
         <key name="COOP_AWARD_ESCAPE_ARTIST_DESC">
             <string>Teleported out of a Challenge Room, Boss Rush, I Am Error Room, or Curse Room (minimum 2)</string>
             <string></string>
-            <string>도전 방, 보스 러시, I Am Error 방 또는 저주 방에서 가장 많이 순간이동으로 탈출 (최소 2회)</string>
+            <string>도전방, 보스 러시, I Am Error 방 또는 저주방에서 가장 많이 순간이동으로 탈출 (최소 2회)</string>
             <string></string>
             <string></string>
             <string></string>
@@ -30982,7 +30982,7 @@
         <key name="COOP_AWARD_GAMBLER_DESC">
             <string>Gambled the most at Slot Machine, Claw Game, or 3 Skull Monty (minimum 20)</string>
             <string></string>
-            <string>가장 많이 슬롯 머신, 인형 뽑기 또는 해골 야바위에서 도박함 (최소 20회)</string>
+            <string>가장 많이 슬롯머신, 인형 뽑기 또는 해골 게임에서 도박함 (최소 20회)</string>
             <string></string>
             <string></string>
             <string></string>
@@ -31142,7 +31142,7 @@
         <key name="COOP_AWARD_EXPLORER_DESC">
             <string>Opened most secret rooms (minimum 3)</string>
             <string></string>
-            <string>가장 많이 비밀 방을 엶 (최소 3회)</string>
+            <string>가장 많이 비밀방을 열음 (최소 3회)</string>
             <string></string>
             <string></string>
             <string></string>
@@ -31210,7 +31210,7 @@
             <string></string>
         </key>
         <key name="NO_CONNECTION_TO_HOST">
-            <string>You have lost connection to the game host. Please check your security/firewall settings and try again.</string>
+            <string>You have lost connection to the game host.  Please check your security/firewall settings and try again.</string>
             <string></string>
             <string>게임 호스트와 연결이 끊겼습니다. 보안/방화벽 설정을 확인하고 다시 시도해주세요.</string>
             <string></string>

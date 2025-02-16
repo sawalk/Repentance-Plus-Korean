@@ -1,7 +1,7 @@
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
------- 온라인에서 비활성화 ------
+------ 번역 비활성화 여부 ------
 mod.offline = true
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
     local WhoAmI = player:GetPlayerType()
@@ -12,6 +12,15 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
         mod.offline = false
     else
         mod.offline = true
+    end
+end)
+
+mod.hasTM = false
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player)
+    if player:HasCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
+        mod.hasTM = true
+    else
+        mod.hasTM = false
     end
 end)
 
@@ -28,16 +37,20 @@ end
 
 local sprite = Sprite()
 local function checkConflictsAndLoadAnm2()
-    killingMom = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT):IsAvailable()
-    if not killingMom then
-        print("\n[ Repentance+ Korean ]\nIn your current save file, you haven't killed Mom once.\nIf you proceed as is, the achievement won't unlock!\n")
+    killingMom = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT):IsAvailable()    -- 고기 조각을 현재 게임에서 사용할 수 없고
+    if not killingMom and not Game():GetSeeds():IsCustomRun() then                                               -- 현재 게임이 챌린지이거나 시드가 설정된 게임이 아니라면
+        if mod.hasTM then
+            print("\n[ Repentance+ Korean ]\nTMTRAINER를 소지 중입니다. 일부 기능이 작동하지 않습니다.\n")
+        else
+            print("\n[ Repentance+ Korean ]\nIn your current save file, you haven't killed Mom once.\nIf you proceed as is, the achievement won't unlock!\n")
+        end
     end
 
     if runningRep then
         print("\n[ Repentance+ Korean ]\nz_REPENTANCE+ KOREAN mod is only available with the Repentance+ DLC.\nPLEASE DISABLE THE MOD NOW.\n")
     end
 
-    if not killingMom or runningRep or conflictKLP then
+    if (not killingMom or runningRep or conflictKLP) and not mod.hasTM then
         sprite:Load("gfx/ui/popup_warning2.anm2", true)
     else
         sprite:Load("gfx/cutscenes/backwards.anm2", true)
@@ -307,8 +320,9 @@ end
 local function FakeDeadSeaScrolls()
     if lastPredictedID and lastPredictedID ~= 0 then
         local d_data = jsonData.items[tostring(lastPredictedID)]
-        if d_data and mod.offline then
+        if d_data and mod.offline and not mod.hasTM then
             Game():GetHUD():ShowItemText(d_data.name)
+        elseif mod.hasTM then return
         else
             Game():GetHUD():ShowItemText("일종의 오류발생 메시지", "모드 제작자에게 연락바람")
         end

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <stringtable>
-    <info version="1.0" modified="Wed Dec 4 23:15:54 2024" modifiedby="Jerm"/>
+    <info version="1.0" modified="Wed Feb 12 14:37:40 2025" modifiedby="Jerm"/>
     <languages>
         <language id="21" index="0" name="Key"/>
         <language id="0" index="1" name="English"/>
@@ -96,7 +96,7 @@
         <key name="CONFIRM_EXIT_GAME">
             <string>Are you sure you want to exit?</string>
             <string></string>
-            <string>게임을 종료하시겠습니까?</string>
+            <string>내가 정말 죽길 바라니?</string>
             <string></string>
             <string></string>
             <string></string>
