@@ -405,7 +405,8 @@ end
 
 function mod:DetectWisp(familiar)
     if ANDROMEDA and Isaac.GetPlayer(0):GetName() == "AndromedaB" and familiar.SubType == CollectibleType.COLLECTIBLE_ANALOG_STICK then
-        print("[ Repentance+ Korean ]\nThis message is output for compatibility with Andromeda mod.") return end    -- 테스트. 안드로메다의 위습 시스템을 읽지 않게 함.
+        print("[ Repentance+ Korean ]\nThis message is output for compatibility with Andromeda mod.")    -- 테스트. 안드로메다의 위습 시스템을 읽지 않게 함.
+        return
     end
     
     if familiar.Type == 3 and familiar.Variant == 237 and gameStarted then
