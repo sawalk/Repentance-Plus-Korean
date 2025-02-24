@@ -28,7 +28,7 @@
 	<card type="suit" pickup="2" description="아이템 두 배" id="26" name="하트 2" announcer="389" mimiccharge="12" />
 	<card type="suit" pickup="2" achievement="322" description="전부 변환" id="27" name="클로버 에이스" announcer="456" announcerdelay="90" mimiccharge="6" />
 	<card type="suit" pickup="2" achievement="326" description="전부 변환" id="28" name="다이아몬드 에이스" announcer="455" announcerdelay="90" mimiccharge="6" />
-	<card type="suit" pickup="2" achievement="327" description="카드 뽑기의 행운" id="29" name="스페이드 10" announcer="447" announcerdelay="90" mimiccharge="6" />
+	<card type="suit" pickup="2" achievement="327" description="전부 변환" id="29" name="스페이드 에이스" announcer="447" announcerdelay="90" mimiccharge="6" />
 	<card type="suit" pickup="2" achievement="329" description="전부 변환" id="30" name="하트 에이스" announcer="450" announcerdelay="90" mimiccharge="6" />
 	<card type="suit" pickup="2" description="???" id="31" name="조커" announcer="347" announcerdelay="60" mimiccharge="2" />
 	<rune type="rune" pickup="3" achievement="89" description="파괴" id="32" name="하갈라즈" announcer="341" mimiccharge="2" />

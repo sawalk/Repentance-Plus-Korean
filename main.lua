@@ -16,7 +16,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
 end)
 
 mod.hasTM = false
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player)
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player, cacheFlag)
     if player:HasCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
         mod.hasTM = true
     else
@@ -37,8 +37,8 @@ end
 
 local sprite = Sprite()
 local function checkConflictsAndLoadAnm2()
-    killingMom = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT):IsAvailable()    -- 고기 조각을 현재 게임에서 사용할 수 없고
-    if not killingMom and not Game():GetSeeds():IsCustomRun() then                                               -- 현재 게임이 챌린지이거나 시드가 설정된 게임이 아니라면
+    killingMom = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT):IsAvailable()     -- 고기 조각을 현재 게임에서 사용할 수 없고
+    if not killingMom and not Game():GetSeeds():IsCustomRun() and Isaac.GetPlayer(0):GetPlayerType() < 21 then    -- 현재 게임이 챌린지이거나 시드가 설정된 게임이거나 더럽혀진 캐릭터가 플레이 중인 게임이 아니라면
         if mod.hasTM then
             print("\n[ Repentance+ Korean ]\nTMTRAINER를 소지 중입니다. 일부 기능이 작동하지 않습니다.\n")
         else
@@ -404,9 +404,13 @@ function mod:ResetWispData()
 end
 
 function mod:DetectWisp(familiar)
+    if ANDROMEDA and Isaac.GetPlayer(0):GetName() == "AndromedaB" and familiar.SubType == CollectibleType.COLLECTIBLE_ANALOG_STICK then
+        print("[ Repentance+ Korean ]\nThis message is output for compatibility with Andromeda mod.") return end    -- 테스트. 안드로메다의 위습 시스템을 읽지 않게 함.
+    end
+    
     if familiar.Type == 3 and familiar.Variant == 237 and gameStarted then
         local wispData = familiar:GetData()
-        if familiar.Position:Distance(Vector(-1000, -1000)) < 1 then return end    -- 임시방편. HiddenItemManager를 사용하는 모드와 충돌 방지
+        if familiar.Position:Distance(Vector(-1000, -1000)) < 1 then return end    -- 임시방편. HiddenItemManager의 위습을 읽지 않게 함.
         table.insert(delayedWisps, familiar)
     end
 end
