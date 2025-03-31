@@ -52,8 +52,20 @@ return {
 			name = "학사학위",
 			description = "..."
 		},
+		["Birthright - Blue Baby"] = {
+			name = "생득권 - 블루베이비",
+			description = "..."
+		},
+		["Birthright - Cain"] = {
+			name = "생득권 - 케인",
+			description = "..."
+		},
 		["Birthright - Eden"] = {
 			name = "생득권 - 에덴",
+			description = "..."
+		},
+		["Birthright - Eve"] = {
+			name = "생득권 - 이브",
 			description = "..."
 		},
 		["Birthright - Isaac"] = {
@@ -180,6 +192,10 @@ return {
 			name = "빛의 성검 단넬",
 			description = "..."
 		},
+		["Entoma Vasilissa Zeta"] = {
+			name = "엔토마 바실리사 제타타",
+			description = "벌레를 사랑하는 메이드"
+		},
 		["Absolut Guppy"] = {
 			name = "앱솔루트 구피",
 			description = "..."
@@ -228,6 +244,10 @@ return {
 			name = "하트 꽃",
 			description = "..."
 		},
+		["Hot Potato"] = {
+			name = "뜨거운 감자",
+			description = "..."
+		},
 		["JUPITER EX"] = {
 			name = "초 목성",
 			description = "..."
@@ -250,6 +270,18 @@ return {
 		},
 		["Lucky Rock Bottom"] = {
 			name = "운 좋은 밑바닥",
+			description = "..."
+		},
+		["TAANA - Defense Helper"] = {
+			name = "TAANA - 방어 도우미",
+			description = "..."
+		},
+		["SEERI the Combat Helper"] = {
+			name = "SEERI - 전투 도우미",
+			description = "..."
+		},
+		["KAAEN - Auto Reloader"] = {
+			name = "KAAEN - 재장전 도우미",
 			description = "..."
 		},
 		["LUNA EX"] = {
@@ -392,6 +424,10 @@ return {
 			name = "퀘이사",
 			description = "..."
 		},
+		["Qubit Dice"] = {
+			name = "qubit-dice",
+			description = "..."
+		},
 		["Rapid Rock Bottom"] = {
 			name = "재빠른 밑바닥",
 			description = "..."
@@ -410,11 +446,7 @@ return {
 		},
 		["Rite of Aramesir"] = {
 			name = "아라메시아의 의",
-			description = "..."
-		},
-		["Aquarius"] = {
-			name = "당신은 오랜 맹약의 의식에 의해 이 세계에 내려왔습니다.",
-			description = "..."
+			description = "당신은 오랜 맹약의 의식에 의해 이 세계에 내려왔습니다."
 		},
 		["Sacred Dice"] = {
 			name = "성스러운 주사위",
@@ -478,6 +510,10 @@ return {
 		},
 		["Brown Stew"] = {
 			name = "갈색 스튜",
+			description = "..."
+		},
+		["Strawberry Milk"] = {
+			name = "딸기 우유",
 			description = "..."
 		},
 		["Super Magneto"] = {
