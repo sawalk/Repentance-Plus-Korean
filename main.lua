@@ -1,7 +1,19 @@
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
------- 번역 비활성화 여부 ------
+local sprite = Sprite()
+local json = require('json')
+
+------ 경고 띄우기 ------
+local runningRep = REPENTANCE and not REPENTANCE_PLUS    -- 리펜턴스 DLC인지
+local killingMom = false                                 -- 엄마를 처치했는지
+local conflictKLP = false                                -- 한국어 번역+가 켜져있는지
+local firstRun = false                                  -- 설치 후 재실행을 했는지
+
+if KoreanLocalizingPlus then
+    conflictKLP = true
+end
+
 mod.offline = true
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
     local WhoAmI = player:GetPlayerType()
@@ -24,18 +36,13 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player, cacheFlag)
     end
 end)
 
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
+    if not mod:HasData() then
+        firstRun = true
+        mod:SaveData("-- Check whether or not the game has been restarted after installing the mod.")
+    end
+end)
 
------- 경고 띄우기 ------
------- To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
-local runningRep = REPENTANCE and not REPENTANCE_PLUS    -- 리펜턴스 DLC인지
-local killingMom = false                                 -- 엄마를 처치했는지
-local conflictKLP = false                                -- 한국어 번역+가 켜져있는지
-
-if KoreanLocalizingPlus then
-    conflictKLP = true
-end
-
-local sprite = Sprite()
 local function checkConflictsAndLoadAnm2()
     killingMom = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT):IsAvailable()     -- 고기 조각을 현재 게임에서 사용할 수 없고
     if not killingMom and not Game():GetSeeds():IsCustomRun() and Isaac.GetPlayer(0):GetPlayerType() < 21 then    -- 현재 게임이 챌린지이거나 시드가 설정된 게임이거나 더럽혀진 캐릭터가 플레이 중인 게임이 아니라면
@@ -50,7 +57,7 @@ local function checkConflictsAndLoadAnm2()
         print("\n[ Repentance+ Korean ]\nz_REPENTANCE+ KOREAN mod is only available with the Repentance+ DLC.\nPLEASE DISABLE THE MOD NOW.\n")
     end
 
-    if (not killingMom or runningRep or conflictKLP) and not mod.hasTM then
+    if (not killingMom or runningRep or conflictKLP or firstRun) and not mod.hasTM then
         sprite:Load("gfx/ui/popup_warning2.anm2", true)
     else
         sprite:Load("gfx/cutscenes/backwards.anm2", true)
@@ -73,7 +80,7 @@ function RenderSub(Anm2)
     sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
 
     local warningPosX = Vector(0,0)
-    if not killingMom then
+    if not killingMom or firstRun then
         if Options.FoundHUD then
             warningPosX = GetScreenSize().X/1.33
         else
@@ -82,7 +89,7 @@ function RenderSub(Anm2)
         sprite.Scale = Vector(0.5, 0.5)
         sprite:Render(Vector(warningPosX, GetScreenSize().Y/1.5), Vector(0,0), Vector(0,0))
     elseif runningRep or conflictKLP then
-        sprite:Render(Vector(GetScreenSize().Y/1.96, GetScreenSize().Y/2.2), Vector(0,0), Vector(0,0))
+        sprite:Render(Vector(GetScreenSize().X/1.96, GetScreenSize().Y/2.2), Vector(0,0), Vector(0,0))
     else
         sprite.Color = Color(1, 1, 1, 0.6, 0, 0, 0)
         sprite:Render(Vector(GetScreenSize().X/2, GetScreenSize().Y*0.85), Vector(0,0), Vector(0,0))
@@ -93,7 +100,7 @@ local showAnm2 = false
 local renderingTime = 15
 local DisplayedTime = 0
 local function updateRenderAnm2()
-    if not killingMom or runningRep or conflictKLP then
+    if not killingMom or runningRep or conflictKLP or firstRun then
         DisplayedTime = DisplayedTime + 1
         if DisplayedTime >= renderingTime then
             showAnm2 = true
@@ -106,10 +113,14 @@ local function renderWarning()
         if not killingMom then
             if EID then return end
             RenderSub("notKillingMom")
-        elseif not conflictKLP then
+        elseif conflictKLP then
+            RenderSub("conflictWithKLP")
+        elseif firstRun then
+            RenderSub("notRestart")
+        elseif runningRep then
             RenderSub("runningRep")
         else
-            RenderSub("conflictWithKLP")
+            print("한글패치 제작자에게 연락 바람")
         end
     end
 end
@@ -148,7 +159,6 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 
 ------ EzItems by ddeeddii ------
 local data = include('include.data')    -- support by raiiiny
-local json = require('json')
 local jsonData = json.decode(data)
 
 local changes = {
