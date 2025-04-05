@@ -9,34 +9,23 @@
 [img]https://imgur.com/oGiLZIY.png[/img]
 1. [url=https://github.com/sawalk/Repentance-Plus-Korean/issues/6]기술적 한계로 인해[/url]게임 내 플레이어가 2인 이상인 경우 아이템 번역 기능이 비활성화됩니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-2. '엄마' 보스를 처치하지 않은 파일에서 모드를 켜고 플레이하면 게임 진행 상황이 기록되지 않습니다. 해당 상황에서
-　 게임을 시작하면 화면 하단에 경고 메시지가 6초간 표시됩니다.
+2. '엄마' 보스를 처치하지 않은 파일에서 모드를 켜고 플레이하면 게임 진행 상황이 기록되지 않습니다. 해당 상황에서 게임을 시작하면 화면 하단에 경고 메시지가 6초간 표시됩니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
 3. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]가 비활성화/미설치돼있으면 더럽혀진 카인이 제작 가방으로 제작한 아이템이 번역되지 않습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
 4. 모드 설치 후 게임을 최소 한 번 재시작해야 모드가 정상적으로 적용됩니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-5. 아이템·몬스터 추가 모드나 UI를 수정하는 모드와 같이 사용하면 한글패치가 의도대로 작동하지 않을 수 있으며, 
-　 [url=https://steamcommunity.com/workshop/filedetails/?id=3371830680]Time Machine PLUS[/url]와 같이 사용(가속도 4 이상) 시 운세기계·참회실이 일시적으로 번역되지 않을 수 있습니다.
+5. 아이템·몬스터 추가 모드나 UI를 수정하는 모드와 같이 사용하면 한글패치가 의도대로 작동하지 않을 수 있으며, [url=https://steamcommunity.com/workshop/filedetails/?id=3371830680]Time Machine PLUS[/url]와 같이 사용(가속도 4 이상) 시 운세기계·참회실이 일시적으로 번역되지 않을 수 있습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-6. 더럽혀진 캐릭터들의 액티브 아이템 중 맛있는 심장(c45, Yum Heart), 제작 가방(c710, Bag of Crafting),
-　 흑마술(c705, Dark Arts), 저장(c715, Hold), 섬토리움(c713, Sumptorium), 뒤집기(c711, Flip),
-　 무저갱(c706, Abyss), 회수(c714, Recall), 레메게톤(c712, Lemegeton), 아니마 솔라(c722, Anima Sola)와
-　 몬스터/보스의 이름은 entities2.xml 또는 items.xml을 덮어쓰는 모드가 없는 한 콘솔에서 검색할 수 없습니다.
+6. 더럽혀진 캐릭터들의 액티브 아이템 중 맛있는 심장(c45, Yum Heart), 제작 가방(c710, Bag of Crafting), 흑마술(c705, Dark Arts), 저장(c715, Hold), 섬토리움(c713, Sumptorium), 뒤집기(c711, Flip), 무저갱(c706, Abyss), 회수(c714, Recall), 레메게톤(c712, Lemegeton), 아니마 솔라(c722, Anima Sola)와 몬스터/보스의 이름은 entities2.xml 또는 items.xml을 덮어쓰는 모드가 없는 한 콘솔에서 검색할 수 없습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
 7. (가장 자주 묻는 질문)
-[h2][b]           한글패치는 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]의 언어를 바꿔주는 모드가 아니며,
-           설명모드의 어떠한 부분도 건드리지 않습니다.[/b][/h2]
-　 설명모드는 기본적으로 게임 언어 설정을 따르며, 현재 리펜턴스+ 베타는 공식적으로 영어만 지원하고 있습니다.
-　 한글패치는 게임의 리소스를 번역된 리소스로 덮어주는 모드지, 게임 언어 자체를 바꿔주는 모드가 아닙니다.
- 　  [url=https://steamcommunity.com/workshop/filedetails/?id=2681875787]Mod Config Menu Pure[/url]로 직접 설명모드의 언어를 설정하세요.
+[h2][b]한글패치는 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]의 언어를 바꿔주는 모드가 아니며, 설명모드의 어떠한 부분도 건드리지 않습니다.[/b][/h2]
+설명모드는 기본적으로 게임 언어 설정을 따르며, 현재 리펜턴스+ 베타는 공식적으로 영어만 지원하고 있습니다. 한글패치는 게임의 리소스를 번역된 리소스로 덮어주는 모드지, 게임 언어 자체를 바꿔주는 모드가 아닙니다. [url=https://steamcommunity.com/workshop/filedetails/?id=2681875787]Mod Config Menu Pure[/url]로 직접 설명모드의 언어를 설정하세요.
 [img]https://imgur.com/oGiLZIY.png[/img]
-8. 인게임에서 &quot;리펜턴스+ 한글패치가 리펜턴스에서 실행되었습니다!&quot;라는 메시지가 뜨는 경우 Steam 아이작 속성에서
-　 리펜턴스+ DLC가 체크되어있는지 확인하세요. 간단한 확인 방법으로, 게임에서 '온라인' 메뉴에 진입했을 때 온라인
-　 메뉴가 뜨는지(리펜턴스+), 도전 과제 메뉴가 뜨는지(리펜턴스)로 판단할 수 있습니다.
+8. 인게임에서 &quot;리펜턴스+ 한글패치가 리펜턴스에서 실행되었습니다!&quot;라는 메시지가 뜨는 경우 Steam 아이작 속성에서 리펜턴스+ DLC가 체크되어있는지 확인하세요. 간단한 확인 방법으로, 게임에서 '온라인' 메뉴에 진입했을 때 온라인 메뉴가 뜨는지(리펜턴스+), 도전 과제 메뉴가 뜨는지(리펜턴스)로 판단할 수 있습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-9. '통계' 메뉴 내 '아이템'(⁵ 제외)과 '온라인', 이스터 에그, (천칭자리 소지 상태에서)실험약으로 증감한 능력치, 일부 UI 
-　 텍스트(시간·점수 HUD, 게임 종료 메시지 등), 기타 등등은 기술적 한계로 인해 번역되지 않았습니다.[/b]
+9. '통계' 메뉴 내 '아이템'(⁵ 제외)과 '온라인', 이스터 에그, (천칭자리 소지 상태에서)실험약으로 증감한 능력치, 일부 UI 텍스트(시간·점수 HUD, 게임 종료 메시지 등), 기타 등등은 기술적 한계로 인해 번역되지 않았습니다.[/b]
 [/code]
 
 [h2] [b]　크레딧 [/b] [/h2]
@@ -50,7 +39,7 @@
   유저분들의 피드백을 차용한 모드입니다.
 ² (구)리펜턴스 한국어 모드 제작자 분이며, 해당 모드에서 한국어 로고 및 일부 번역을 차용했습니다.
 [/code]</description>
-    <version>1.56</version>
+    <version>1.59</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>
