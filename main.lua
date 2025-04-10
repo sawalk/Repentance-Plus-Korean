@@ -8,7 +8,7 @@ local json = require('json')
 local runningRep = REPENTANCE and not REPENTANCE_PLUS    -- 리펜턴스 DLC인지
 local killingMom = false                                 -- 엄마를 처치했는지
 local conflictKLP = false                                -- 한국어 번역+가 켜져있는지
-local firstRun = false                                  -- 설치 후 재실행을 했는지
+local firstRun = false                                   -- 설치 후 재실행을 했는지
 
 if KoreanLocalizingPlus then
     conflictKLP = true
@@ -119,8 +119,6 @@ local function renderWarning()
             RenderSub("notRestart")
         elseif runningRep then
             RenderSub("runningRep")
-        else
-            print("한글패치 제작자에게 연락 바람")
         end
     end
 end
@@ -275,6 +273,8 @@ end
 if next(changes.items) ~= nil then
     local i_queueLastFrame = {}
     local i_queueNow = {}
+
+    local gFuelDesc = include('include.data_gFuelDesc')
     local birthrightDesc = include('include.data_birthrightDesc')
 
     mod:AddCallback(
@@ -287,7 +287,13 @@ if next(changes.items) ~= nil then
             i_queueNow[playerKey] = player.QueuedItem.Item
             if i_queueNow[playerKey] and i_queueNow[playerKey]:IsCollectible() and i_queueLastFrame[playerKey] == nil then
                 local itemID = i_queueNow[playerKey].ID
-                if itemID == 619 then    -- 생득권이라면
+                if itemID == -1 then    -- G FUEL!
+                    local g_random = math.random(1, 50)
+                    local g_description = gFuelDesc[g_random]
+                    if g_description and mod.offline then
+                        Game():GetHUD():ShowItemText("G FUEL!", g_description or "일종의 오류발생 메시지. 한글패치 제작자에게 연락바람")
+                    end
+                elseif itemID == 619 then    -- 생득권이라면
                     local b_playerType = player:GetPlayerType()
                     local b_description = birthrightDesc[b_playerType]
                     if b_description and mod.offline then
@@ -332,9 +338,10 @@ local function FakeDeadSeaScrolls()
         local d_data = jsonData.items[tostring(lastPredictedID)]
         if d_data and mod.offline and not mod.hasTM then
             Game():GetHUD():ShowItemText(d_data.name)
-        elseif mod.hasTM then return
+        elseif mod.hasTM then
+            return
         else
-            Game():GetHUD():ShowItemText("일종의 오류발생 메시지", "모드 제작자에게 연락바람")
+            Game():GetHUD():ShowItemText("일종의 오류발생 메시지", "한글패치 제작자에게 연락바람")
         end
     end
 end
@@ -400,7 +407,7 @@ local function WispText(familiar)
     if WispID > 0 and w_queueLastFrame[familiarKey] == nil then
         local wisp = changes.items[tostring(WispID)]
         if wisp and mod.offline then
-            Game():GetHUD():ShowItemText(wisp.name or "일종의 오류발생 메시지", wisp.description or "모드 제작자에게 연락바람")
+            Game():GetHUD():ShowItemText(wisp.name or "일종의 오류발생 메시지", wisp.description or "한글패치 제작자에게 연락바람")
         else
             print("[ Repentance+ Korean ]\n" .. tostring(WispID) .. "번 아이템이 모드 아이템이거나 플레이어가 2인 이상인 상태입니다.")
         end
@@ -421,7 +428,7 @@ function mod:DetectWisp(familiar)
     
     if familiar.Type == 3 and familiar.Variant == 237 and gameStarted then
         local wispData = familiar:GetData()
-        if familiar.Position:Distance(Vector(-1000, -1000)) < 1 then return end    -- 임시방편. HiddenItemManager의 위습을 읽지 않게 함.
+        if familiar.Position:Distance(Vector(-1000, -1000)) < 1 then return end    -- HiddenItemManager의 위습을 읽지 않게 함.
         table.insert(delayedWisps, familiar)
     end
 end
