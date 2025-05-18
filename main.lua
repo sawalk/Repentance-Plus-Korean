@@ -933,3 +933,10 @@ function mod:checkConfessional()
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.checkConfessional)
+
+
+------ EID ------
+function mod:ChangeEIDLanguage()
+    return "ko_kr"    -- EID에서 언어를 Auto로 설정했을 때, 한국어가 선택되도록 변경
+end
+mod:AddCallback("EID_EVALUATE_AUTO_LANG", mod.ChangeEIDLanguage)
