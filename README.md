@@ -1,1 +1,2 @@
-# Repentance-Plus-Korean
+# 리펜턴스+ 한글패치
+제곧내
