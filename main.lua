@@ -4,11 +4,38 @@ local mod = REPKOR
 local sprite = Sprite()
 local json = require('json')
 
------- 경고 띄우기 ------
+------ EID & 경고 띄우기 ------
+function mod:ChangeEIDLanguage()
+    return "ko_kr"    -- EID(v4.99 이상)에서 언어를 Auto로 설정했을 때 한국어가 선택되도록 변경
+end
+mod:AddCallback("EID_EVALUATE_AUTO_LANG", mod.ChangeEIDLanguage)
+
+if EID then
+    EID:addDescriptionModifier(
+        "Repentance+ Korean",
+        function(descObj)
+            local isTargetPickup =
+                descObj.ObjType == 5 and (
+                    (descObj.ObjVariant == 100 and descObj.ObjSubType == 667) or
+                    (descObj.ObjVariant == 300 and (descObj.ObjSubType == 95 or descObj.ObjSubType == 97))
+                )
+
+            if isTargetPickup then
+                EID:appendToDescription(descObj,
+                    "#{{Warning}} {{ColorError}}한글패치 관련:#{{Blank}} {{ColorError}}획득(사용) 이후 플레이어가 픽업을 얻을 때 텍스트가 이중으로 표시됩니다."
+                )
+            end
+
+            return descObj
+        end
+    )
+end
+
 local runningRep = REPENTANCE and not REPENTANCE_PLUS    -- 리펜턴스 DLC인지
 local killingMom = false                                 -- 엄마를 처치했는지
 local conflictKLP = false                                -- 한국어 번역+가 켜져있는지
 local firstRun = false                                   -- 설치 후 재실행을 했는지
+local notEIDKorean = false                               -- EID가 한국어로 설정돼있는지
 
 if KoreanLocalizingPlus then
     conflictKLP = true
@@ -16,12 +43,14 @@ end
 
 mod.offline = true
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
+    local player = Isaac.GetPlayer()
     local WhoAmI = player:GetPlayerType()
     if (WhoAmI ~= PlayerType.PLAYER_JACOB and WhoAmI ~= PlayerType.PLAYER_ESAU) and
     (WhoAmI ~= PlayerType.PLAYER_THEFORGOTTEN and WhoAmI ~= PlayerType.PLAYER_THESOUL) and
     (WhoAmI ~= PlayerType.PLAYER_THEFORGOTTEN_B and WhoAmI ~= PlayerType.PLAYER_THESOUL_B) and
-    (Game():GetNumPlayers() > 1 or player:HasCollectible(CollectibleType.COLLECTIBLE_STRAW_MAN)) then
-        mod.offline = false
+    Game():GetNumPlayers() > 1 or player:HasCollectible(CollectibleType.COLLECTIBLE_STRAW_MAN) then
+     -- mod.offline = false
+        mod.offline = true    -- 임시방편
     else
         mod.offline = true
     end
@@ -41,6 +70,14 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
         firstRun = true
         mod:SaveData("-- Check whether or not the game has been restarted after installing the mod.")
     end
+
+    if EID then
+        if EID.ModVersion < 4.99 and EID.Config["Language"] ~= "ko_kr" then
+            notEIDKorean = true
+        else
+            notEIDKorean = false
+        end
+    end
 end)
 
 local function checkConflictsAndLoadAnm2()
@@ -57,7 +94,7 @@ local function checkConflictsAndLoadAnm2()
         print("\n[ Repentance+ Korean ]\nz_REPENTANCE+ KOREAN mod is only available with the Repentance+ DLC.\nPLEASE DISABLE THE MOD NOW.\n")
     end
 
-    if (not killingMom or runningRep or conflictKLP or firstRun) and not mod.hasTM then
+    if (not killingMom or runningRep or conflictKLP or firstRun or notEIDKorean) and not mod.hasTM then
         sprite:Load("gfx/ui/popup_warning2.anm2", true)
     else
         sprite:Load("gfx/cutscenes/backwards.anm2", true)
@@ -80,7 +117,7 @@ function RenderSub(Anm2)
     sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
 
     local warningPosX = Vector(0,0)
-    if not killingMom or firstRun then
+    if not killingMom or firstRun or notEIDKorean then
         if Options.FoundHUD then
             warningPosX = GetScreenSize().X/1.33
         else
@@ -100,7 +137,7 @@ local showAnm2 = false
 local renderingTime = 15
 local DisplayedTime = 0
 local function updateRenderAnm2()
-    if not killingMom or runningRep or conflictKLP or firstRun then
+    if not killingMom or runningRep or conflictKLP or firstRun or notEIDKorean then
         DisplayedTime = DisplayedTime + 1
         if DisplayedTime >= renderingTime then
             showAnm2 = true
@@ -110,15 +147,17 @@ end
 
 local function renderWarning()
     if showAnm2 then
-        if not killingMom then
-            if EID then return end
-            RenderSub("notKillingMom")
-        elseif conflictKLP then
+        if conflictKLP then
             RenderSub("conflictWithKLP")
-        elseif firstRun then
-            RenderSub("notRestart")
         elseif runningRep then
             RenderSub("runningRep")
+        elseif firstRun then
+            RenderSub("notRestart")
+        elseif not killingMom then
+            if EID then return end
+            RenderSub("notKillingMom")
+        elseif notEIDKorean then
+            RenderSub("notEIDKorean")
         end
     end
 end
@@ -935,8 +974,6 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.checkConfessional)
 
 
------- EID ------
-function mod:ChangeEIDLanguage()
-    return "ko_kr"    -- EID에서 언어를 Auto로 설정했을 때, 한국어가 선택되도록 변경
-end
-mod:AddCallback("EID_EVALUATE_AUTO_LANG", mod.ChangeEIDLanguage)
+------ 버전 출력 ------
+mod.version = 1.73
+print("Repentance+ Korean v" .. mod.version .. " loaded.")
