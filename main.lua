@@ -37,7 +37,7 @@ local conflictKLP = false                                -- 한국어 번역+가
 local firstRun = false                                   -- 설치 후 재실행을 했는지
 local notEIDKorean = false                               -- EID가 한국어로 설정돼있는지
 
-if KoreanLocalizingPlus then
+if KoreanLocalizingPlus and not KoreanFontChange then
     conflictKLP = true
 end
 
@@ -72,7 +72,7 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
     end
 
     if EID then
-        if EID.ModVersion < 4.99 and EID.Config["Language"] ~= "ko_kr" then
+        if EID.ModVersion > 4.2 and EID.ModVersion < 4.99 and EID.Config["Language"] ~= "ko_kr" then
             notEIDKorean = true
         else
             notEIDKorean = false
