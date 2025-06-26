@@ -301,7 +301,7 @@ if next(changes.trinkets) ~= nil then
             t_queueNow[playerKey] = player.QueuedItem.Item
             if (t_queueNow[playerKey] ~= nil) then
                 local trinket = changes.trinkets[tostring(t_queueNow[playerKey].ID)]
-                if trinket and t_queueNow[playerKey]:IsTrinket() and t_queueLastFrame[playerKey] == nil and mod.offline then
+                if trinket and t_queueNow[playerKey]:IsTrinket() and t_queueLastFrame[playerKey] == nil and not REPENTOGON then
                     Game():GetHUD():ShowItemText(trinket.name, trinket.description)
                 end
             end
@@ -330,18 +330,18 @@ if next(changes.items) ~= nil then
                 if itemID == -1 then    -- G FUEL!
                     local g_random = math.random(1, 50)
                     local g_description = gFuelDesc[g_random]
-                    if g_description and mod.offline then
+                    if g_description then
                         Game():GetHUD():ShowItemText("G FUEL!", g_description or "일종의 오류발생 메시지. 한글패치 제작자에게 연락바람")
                     end
                 elseif itemID == 619 then    -- 생득권이라면
                     local b_playerType = player:GetPlayerType()
                     local b_description = birthrightDesc[b_playerType]
-                    if b_description and mod.offline then
+                    if b_description then
                         Game():GetHUD():ShowItemText("생득권", b_description or "???")
                     end
                 else
                     local item = changes.items[tostring(itemID)]    -- 일반 아이템이라면
-                    if item and mod.offline then
+                    if item and not REPENTOGON then
                         Game():GetHUD():ShowItemText(item.name, item.description)
                     end
                 end
@@ -376,11 +376,11 @@ end
 local function FakeDeadSeaScrolls()
     if lastPredictedID and lastPredictedID ~= 0 then
         local d_data = jsonData.items[tostring(lastPredictedID)]
-        if d_data and mod.offline and not mod.hasTM then
+        if d_data and not REPENTOGON and not mod.hasTM then
             Game():GetHUD():ShowItemText(d_data.name)
         elseif mod.hasTM then
             return
-        else
+        elseif not REPENTOGON then
             Game():GetHUD():ShowItemText("일종의 오류발생 메시지", "한글패치 제작자에게 연락바람")
         end
     end
@@ -408,7 +408,7 @@ if EID then
         local recipeID = EID:calculateBagOfCrafting(previousBagItems)
         local BoCItems = jsonData.items[tostring(recipeID)]
         
-        if mod.offline then
+        if not REPENTOGON then
             Game():GetHUD():ShowItemText(BoCItems.name, BoCItems.description)
         end
     end
@@ -446,10 +446,12 @@ local function WispText(familiar)
     w_queueNow[familiarKey] = WispID
     if WispID > 0 and w_queueLastFrame[familiarKey] == nil then
         local wisp = changes.items[tostring(WispID)]
-        if wisp and mod.offline then
+        if wisp and not REPENTOGON then
             Game():GetHUD():ShowItemText(wisp.name or "일종의 오류발생 메시지", wisp.description or "한글패치 제작자에게 연락바람")
         else
-            print("[ Repentance+ Korean ]\n" .. tostring(WispID) .. "번 아이템이 모드 아이템이거나 플레이어가 2인 이상인 상태입니다.")
+            if not REPENTOGON then
+                print("[ Repentance+ Korean ]\n" .. tostring(WispID) .. "번 아이템이 모드 아이템이거나 플레이어가 2인 이상인 상태입니다.")
+            end
         end
     end
     w_queueLastFrame[familiarKey] = w_queueNow[familiarKey]
@@ -559,15 +561,13 @@ function mod:CompareStats(player)
         e_description = e_description .. table.concat(e_changes.decreased, ", ")
     end
 
-    if mod.offline then
-        Game():GetHUD():ShowItemText("실험약", e_description)
-    end
+    Game():GetHUD():ShowItemText("실험약", e_description)
 end
 
 function mod:FakePillText(pillEffect, player)
     if pillEffect == 49 then
         pendingStatComparison[player.InitSeed] = true
-    elseif pillNames[pillEffect] and mod.offline then
+    elseif pillNames[pillEffect] then
         Game():GetHUD():ShowItemText(pillNames[pillEffect], pillDescriptions[pillEffect])
     end
 end
@@ -651,7 +651,7 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
     for _, pickup in ipairs(Isaac.FindByType(5, 300, -1, false, false)) do
         if pickup:IsDead() and pickedUpCards[pickup.Index] then
             local cardID = pickup.SubType
-            if cardNames[cardID] and not textDisplayed and mod.offline then
+            if cardNames[cardID] and not textDisplayed and not REPENTOGON then
                 Game():GetHUD():ShowItemText(cardNames[cardID], cardDescriptions[cardID])
                 pickedUpCards[pickup.Index] = nil
             end
@@ -692,7 +692,7 @@ function mod:LuckyPennyPickup(pickup, collider)
 end
 
 function mod:DelayedLuckyPennyText()
-    if delayLuckyPenny and mod.offline then
+    if delayLuckyPenny then
         Game():GetHUD():ShowItemText("행운의 동전", "행운 증가")
         delayLuckyPenny = nil
     end
@@ -975,6 +975,56 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.checkConfessional)
 
 
+------ REPENTOGON ------
+if REPENTOGON then
+    mod:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, function()
+        local conf = Isaac.GetItemConfig()
+
+        if jsonData.items then
+            for key, entry in pairs(jsonData.items) do
+                local id = tonumber(key)
+                if id and id ~= -1 then
+                    local cfg = conf:GetCollectible(id)
+                    cfg.Name = entry.name
+                    cfg.Description = entry.description
+                end
+            end
+        end
+
+        if jsonData.trinkets then
+            for key, entry in pairs(jsonData.trinkets) do
+                local id = tonumber(key)
+                if id and id ~= -1 then
+                    local cfg = conf:GetTrinket(id)
+                    cfg.Name = entry.name
+                    cfg.Description = entry.description
+                end
+            end
+        end
+
+        if cardNames then
+            for id, name in pairs(cardNames) do
+                local cfg = conf:GetCard(id)
+                if cfg then cfg.Name = name end
+            end
+        end
+        if cardDescriptions then
+            for id, desc in pairs(cardDescriptions) do
+                local cfg = conf:GetCard(id)
+                if cfg then cfg.Description = desc end
+            end
+        end
+
+        if pillNames then
+            for effect, name in pairs(pillNames) do
+                local cfg = conf:GetPillEffect(effect)
+                if cfg then cfg.Name = name end
+            end
+        end
+    end)
+end
+
+
 ------ 버전 출력 ------
-mod.version = 1.74
-print("Repentance+ Korean v" .. mod.version .. " loaded.")
+mod.version = 1.75
+print("\n리펜턴스+ 한글패치 v" .. mod.version .. " 불러옴.")
