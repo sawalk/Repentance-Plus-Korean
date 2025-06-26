@@ -22,7 +22,8 @@ if EID then
 
             if isTargetPickup then
                 EID:appendToDescription(descObj,
-                    "#{{Warning}} {{ColorError}}한글패치 관련:#{{Blank}} {{ColorError}}획득(사용) 이후 플레이어가 픽업을 얻을 때 텍스트가 이중으로 표시됩니다."
+                    "#{{Warning}} {{ColorError}}한글패치 관련:" ..
+                    "#{{Blank}} {{ColorError}}획득(사용) 이후 플레이어가 픽업을 얻을 때 텍스트가 이중으로 표시됩니다."
                 )
             end
 
@@ -975,5 +976,5 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.checkConfessional)
 
 
 ------ 버전 출력 ------
-mod.version = 1.73
+mod.version = 1.74
 print("Repentance+ Korean v" .. mod.version .. " loaded.")
