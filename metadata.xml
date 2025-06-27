@@ -39,7 +39,7 @@
 ² (구)리펜턴스 한국어 모드 제작자 분이며, 해당 모드에서 한국어 로고 및 일부 번역을 차용했습니다.
 ³ 설명모드의 한국어 담당자 분이며, 비공식 언어 패치를 위한 언어 변경 콜백을 제작하셨습니다.
 [/code]</description>
-    <version>1.74</version>
+    <version>1.75</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>
