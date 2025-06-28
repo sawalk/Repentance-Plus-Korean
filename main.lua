@@ -30,18 +30,26 @@ if EID then
             return descObj
         end
     )
+    
+    if EdenBlessingFix then
+        EID:addCollectible(
+            CollectibleType.COLLECTIBLE_EDENS_BLESSING,"↑ {{TearsSmall}}연사 +0.7#다음 게임에서 랜덤 아이템을 하나 들고 시작합니다.#{{Blank}} {{ColorGray}}(최대 10개)"
+        )
+    end
 end
 
-local runningRep = REPENTANCE and not REPENTANCE_PLUS    -- 리펜턴스 DLC인지
-local killingMom = false                                 -- 엄마를 처치했는지
-local conflictKLP = false                                -- 한국어 번역+가 켜져있는지
-local firstRun = false                                   -- 설치 후 재실행을 했는지
-local notEIDKorean = false                               -- EID가 한국어로 설정돼있는지
+mod.runningRep = REPENTANCE and not REPENTANCE_PLUS    -- 리펜턴스 DLC인지
+mod.killingMom = false                                 -- 엄마를 처치했는지
+mod.conflictKLP = false                                -- 한국어 번역+가 켜져있는지
+mod.firstRun = false                                   -- 설치 후 재실행을 했는지
+mod.notEIDKorean = false                               -- EID가 한국어로 설정돼있는지
+mod.hasTM = false
 
 if KoreanLocalizingPlus and not KoreanFontChange then
-    conflictKLP = true
+    mod.conflictKLP = true
 end
 
+--[[
 mod.offline = true
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
     local player = Isaac.GetPlayer()
@@ -56,8 +64,8 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
         mod.offline = true
     end
 end)
+]]
 
-mod.hasTM = false
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player, cacheFlag)
     if player:HasCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
         mod.hasTM = true
@@ -68,22 +76,22 @@ end)
 
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
     if not mod:HasData() then
-        firstRun = true
+        mod.firstRun = true
         mod:SaveData("-- Check whether or not the game has been restarted after installing the mod.")
     end
 
     if EID then
         if EID.ModVersion > 4.2 and EID.ModVersion < 4.99 and EID.Config["Language"] ~= "ko_kr" then
-            notEIDKorean = true
+            mod.notEIDKorean = true
         else
-            notEIDKorean = false
+            mod.notEIDKorean = false
         end
     end
 end)
 
 local function checkConflictsAndLoadAnm2()
-    killingMom = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT):IsAvailable()     -- 고기 조각을 현재 게임에서 사용할 수 없고
-    if not killingMom and not Game():GetSeeds():IsCustomRun() and Isaac.GetPlayer(0):GetPlayerType() < 21 then    -- 현재 게임이 챌린지이거나 시드가 설정된 게임이거나 더럽혀진 캐릭터가 플레이 중인 게임이 아니라면
+    mod.killingMom = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT):IsAvailable()     -- 고기 조각을 현재 게임에서 사용할 수 없고
+    if not mod.killingMom and not Game():GetSeeds():IsCustomRun() and Isaac.GetPlayer(0):GetPlayerType() < 21 then    -- 현재 게임이 챌린지이거나 시드가 설정된 게임이거나 더럽혀진 캐릭터가 플레이 중인 게임이 아니라면
         if mod.hasTM then
             print("\n[ Repentance+ Korean ]\nTMTRAINER를 소지 중입니다. 일부 기능이 작동하지 않습니다.\n")
         else
@@ -91,11 +99,11 @@ local function checkConflictsAndLoadAnm2()
         end
     end
 
-    if runningRep then
+    if mod.runningRep then
         print("\n[ Repentance+ Korean ]\nz_REPENTANCE+ KOREAN mod is only available with the Repentance+ DLC.\nPLEASE DISABLE THE MOD NOW.\n")
     end
 
-    if (not killingMom or runningRep or conflictKLP or firstRun or notEIDKorean) and not mod.hasTM then
+    if (not mod.killingMom or mod.runningRep or mod.conflictKLP or mod.firstRun or mod.notEIDKorean) and not mod.hasTM then
         sprite:Load("gfx/ui/popup_warning2.anm2", true)
     else
         sprite:Load("gfx/cutscenes/backwards.anm2", true)
@@ -118,7 +126,7 @@ function RenderSub(Anm2)
     sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
 
     local warningPosX = Vector(0,0)
-    if not killingMom or firstRun or notEIDKorean then
+    if not mod.killingMom or mod.firstRun or mod.notEIDKorean then
         if Options.FoundHUD then
             warningPosX = GetScreenSize().X/1.33
         else
@@ -126,7 +134,7 @@ function RenderSub(Anm2)
         end
         sprite.Scale = Vector(0.5, 0.5)
         sprite:Render(Vector(warningPosX, GetScreenSize().Y/1.5), Vector(0,0), Vector(0,0))
-    elseif runningRep or conflictKLP then
+    elseif mod.runningRep or mod.conflictKLP then
         sprite:Render(Vector(GetScreenSize().X/1.96, GetScreenSize().Y/2.2), Vector(0,0), Vector(0,0))
     else
         sprite.Color = Color(1, 1, 1, 0.6, 0, 0, 0)
@@ -138,7 +146,7 @@ local showAnm2 = false
 local renderingTime = 15
 local DisplayedTime = 0
 local function updateRenderAnm2()
-    if not killingMom or runningRep or conflictKLP or firstRun or notEIDKorean then
+    if not mod.killingMom or mod.runningRep or mod.conflictKLP or mod.firstRun or mod.notEIDKorean then
         DisplayedTime = DisplayedTime + 1
         if DisplayedTime >= renderingTime then
             showAnm2 = true
@@ -148,16 +156,16 @@ end
 
 local function renderWarning()
     if showAnm2 then
-        if conflictKLP then
+        if mod.conflictKLP then
             RenderSub("conflictWithKLP")
-        elseif runningRep then
+        elseif mod.runningRep then
             RenderSub("runningRep")
-        elseif firstRun then
+        elseif mod.firstRun then
             RenderSub("notRestart")
-        elseif not killingMom then
+        elseif not mod.killingMom then
             if EID then return end
             RenderSub("notKillingMom")
-        elseif notEIDKorean then
+        elseif mod.notEIDKorean then
             RenderSub("notEIDKorean")
         end
     end
@@ -196,7 +204,7 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 
 
 ------ EzItems by ddeeddii ------
-local data = include('include.data')    -- support by raiiiny
+local data = include('data.items_and_trinkets')
 local jsonData = json.decode(data)
 
 local changes = {
@@ -314,8 +322,8 @@ if next(changes.items) ~= nil then
     local i_queueLastFrame = {}
     local i_queueNow = {}
 
-    local gFuelDesc = include('include.data_gFuelDesc')
-    local birthrightDesc = include('include.data_birthrightDesc')
+    local gFuelDesc = include('data.gfuel')
+    local birthrightDesc = include('data.birthright')
 
     mod:AddCallback(
         ModCallbacks.MC_POST_PLAYER_UPDATE,
@@ -489,7 +497,7 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.ShowWispText)
 
 ------ 알약 ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
-local pillNames = include('include.data_pillNames')
+local pillNames = include('data.pill_names')
 local pillDescriptions = {
     [PillEffect.PILLEFFECT_I_FOUND_PILLS] = "...먹어 버렸어",
     [PillEffect.PILLEFFECT_EXPERIMENTAL] = ""
@@ -582,8 +590,8 @@ mod:AddCallback(ModCallbacks.MC_USE_PILL, mod.FakePillText)
 
 ------ 카드 ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
-local cardNames = include('include.data_cardNames')
-local cardDescriptions = include('include.data_cardDescriptions')
+local cardNames = include('data.card_names')
+local cardDescriptions = include('data.card_descs')
 
 local pickedUpCards = {}    -- 플레이어가 수집한 카드의 인덱스
 local pickupCollected = {}    -- 해당 픽업의 인덱스를 키로 하여, 픽업이 "Collect" 애니메이션 상태일 때 이미 처리되었는지 여부를 기록
@@ -756,9 +764,9 @@ end)
 
 
 ------ 운세/규칙 by kittenchilly ------
-include('include.fortune_apioverride')
-mod.Fortunes = include('include.fortune_cookie')
-mod.Rules = include('include.fortune_rule')
+include('data.fortune_apioverride')
+mod.Fortunes = include('data.fortune_cookie')
+mod.Rules = include('data.fortune_rule')
 mod.SpecialSeeds = {
     "SL0W 4ME2", "HART BEAT", "CAM0 K1DD", "CAM0 F0ES", "CAM0 DR0P", "FART SNDS", "B00B T00B", "DYSL EX1A",
     "KEEP TRAK", "KEEP AWAY", "DRAW KCAB", "CHAM P10N", "1MN0 B0DY", "BL1N DEYE", "BASE MENT", "C0CK FGHT",
