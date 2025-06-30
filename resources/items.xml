@@ -735,7 +735,7 @@
 	<passive	id="707"	gfx="Collectibles_707_Supper.png" name="#SUPPER_NAME" description="#SUPPER_DESCRIPTION" hearts="4" maxhearts="2" />
 	<passive	id="708"	gfx="Collectibles_708_Stapler.png" name="#STAPLER_NAME" description="#STAPLER_DESCRIPTION" cache="damage" />
 	<active		id="709"	achievement="437" gfx="Collectibles_709_Suplex.png" name="#SUPLEX_NAME" description="#SUPLEX_DESCRIPTION" maxcharges="200" chargetype="timed" />
-	<active		id="710"	achievement="586" gfx="Collectibles_710_BagOfCrafting.png" name="제작 가방" description="운명을 직접 만들어라" />
+	<active		id="710"	achievement="586" gfx="Collectibles_710_BagOfCrafting.png" name="#BAG_OF_CRAFTING_NAME" description="#BAG_OF_CRAFTING_DESCRIPTION" />
 	<active		id="711"	achievement="592" gfx="Collectibles_711_Flip.png" name="뒤집기" description="생사의 경계에서" maxcharges="6" />
 	<active		id="712"	achievement="599" gfx="Collectibles_712_Lemegeton.png" name="레메게톤" description="아이템 소환" maxcharges="6" />
 	<active		id="713"	achievement="589" gfx="Collectibles_713_Sumptorium.png" name="섬토리움" description="피에서 피로" maxcharges="300" chargetype="timed" cooldown="60" />

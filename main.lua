@@ -17,10 +17,11 @@ if EID then
             local isTargetPickup =
                 descObj.ObjType == 5 and (
                     (descObj.ObjVariant == 100 and descObj.ObjSubType == 667) or
-                    (descObj.ObjVariant == 300 and (descObj.ObjSubType == 95 or descObj.ObjSubType == 97))
+                    (descObj.ObjVariant == 300 and (descObj.ObjSubType == 95 or descObj.ObjSubType == 97)) or
+                    (descObj.ObjVariant == 350 and descObj.ObjSubType == 180)
                 )
 
-            if isTargetPickup then
+            if isTargetPickup and not REPENTOGON then
                 EID:appendToDescription(descObj,
                     "#{{Warning}} {{ColorError}}한글패치 관련:" ..
                     "#{{Blank}} {{ColorError}}획득(사용) 이후 플레이어가 픽업을 얻을 때 텍스트가 이중으로 표시됩니다."
@@ -1029,10 +1030,15 @@ if REPENTOGON then
                 if cfg then cfg.Name = name end
             end
         end
+
+        local stageNames = include("data.stages")
+        for stageType, name in pairs(stageNames) do
+            RoomConfig.GetStage(stageType):SetDisplayName(name)
+        end
     end)
 end
 
 
 ------ 버전 출력 ------
-mod.version = 1.75
+mod.version = 1.76
 print("\n리펜턴스+ 한글패치 v" .. mod.version .. " 불러옴.")
