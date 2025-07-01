@@ -4,7 +4,7 @@
     <directory>repentance+ korean</directory>
     <id>3371064337</id>
     <description>[h2] [b]　모드를 이용하기 전에... [/b] [/h2]
-[h3]　아래 사항을 모두 정독 후 이용바랍니다. [u]안 봐놓고 개지랄 떨지 마세요[/u] [/h3]
+[h3]　아래 사항을 모두 정독 후 이용바랍니다. [u]꼭 좀![/u] [/h3]
 [code][b]0. 버그나 호환성 이슈, 번역 오류는 건의 사항은 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues]Github[/url]Issues에 작성 바랍니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
 1. 기술적 한계로 인해 게임 내 플레이어가 2인 이상인 경우 아이템의 한국어/영어명이 이중으로 출력됩니다. (밀짚인형, 포가튼의 영혼, 잃어버린 영혼 사용/소지 시에도 동일)
@@ -13,7 +13,7 @@
 [img]https://imgur.com/oGiLZIY.png[/img]
 3. 모드 설치 후 게임을 최소 한 번 재시작해야 모드가 정상적으로 적용됩니다. 재시작을 하지 않은 상태에서 게임을 시작하면 화면 하단에 경고 메시지가 6초간 표시됩니다. (세이브 파일마다 따로 표시)
 [img]https://imgur.com/oGiLZIY.png[/img]
-4. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]의 Language 옵션이 Auto(리펜턴스+ 기준 English)로 설정되어 있을 때, 한글패치가 이를 Korean으로 변경합니다. v4.98 이하의 버전에선 자동으로 바꿔주지 않으니, [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]Mod Config Menu Pure[/url]를 설치하고 인게임 내 안내를 따라 Korean으로 설정하셔야 합니다. [u]제대로 안 읽고 '이거 왜 한국어 안 돼요?' 이지랄 해도 답변 안 드립니다.[/u]
+4. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]의 Language 옵션이 Auto(리펜턴스+ 기준 English)로 설정되어 있을 때, 한글패치가 이를 Korean으로 변경합니다. v4.98 이하의 버전에선 자동으로 바꿔주지 않으니, [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]Mod Config Menu Pure[/url]를 설치하고 인게임 내 안내를 따라 Korean으로 설정하셔야 합니다.[/u]
 [img]https://imgur.com/oGiLZIY.png[/img]
 5. 아이템 설명모드가 비활성화/미설치돼있으면 더럽혀진 카인이 제작 가방으로 제작한 아이템이 번역되지 않습니다. 여러 이유로 인하여 제작한 아이템의 번역은 실제 결과와 일치하지 않을 수 있습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
@@ -21,7 +21,7 @@
 [img]https://imgur.com/oGiLZIY.png[/img]
 7. items.xml을 덮어쓰는 모드가 없는 한 콘솔의 giveitem(g) 명령어에서 더럽혀진 캐릭터들의 액티브 아이템(c45, c710, c705, c715, c713, c711, c706, c714, c712, c722)의 이름은 검색할 수 없습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-8. 인게임에서 &quot;리펜턴스+ 한글패치가 리펜턴스에서 실행되었습니다!&quot;라는 메시지가 뜨는 경우 Steam 아이작 속성에서 리펜턴스+ DLC가 체크되어있는지 확인하세요. 간단한 확인 방법으로, 게임에서 '온라인' 메뉴에 진입했을 때 온라인 메뉴가 뜨는지(리펜턴스+), 도전 과제 메뉴가 뜨는지(리펜턴스)로 판단할 수 있습니다.
+8. 인게임에서 "리펜턴스+ 한글패치가 리펜턴스에서 실행되었습니다!"라는 메시지가 뜨는 경우 Steam 아이작 속성에서 리펜턴스+ DLC가 체크되어있는지 확인하세요. 간단한 확인 방법으로, 게임에서 '온라인' 메뉴에 진입했을 때 온라인 메뉴가 뜨는지(리펜턴스+), 도전 과제 메뉴가 뜨는지(리펜턴스)로 판단할 수 있습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
 9. 실험약 사용 시 표시되는 능력치 변화 설명은 부정확할 수 있으며, ‘천칭자리’ 소지 시 영어 원문으로 표시됩니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
@@ -29,9 +29,9 @@
 [/code]
 
 [h2] [b]　크레딧 [/b] [/h2]
-[code][b]1. 번역 / 아트: [url=https://badagames.net/]바다게임즈[/url]/ [url=https://www.nicalis.com/]Rojen &amp; Nicalis[/url]
+[code][b]1. 번역 / 아트: [url=https://badagames.net/]바다게임즈[/url]/ [url=https://www.nicalis.com/]Rojen & Nicalis[/url]
 2. 검수: 사왈이(업로더) 외 다수¹
-3. Special Thanks: [url=https://github.com/ddeeddii/eztools]ddeeddii[/url]&amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2640122564]kittenchilly[/url] &amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3095155110]双笙子佯谬[/url] &amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]Wofsauge[/url] &amp; Blackcreamtea² &amp; [url=https://steamcommunity.com/id/_kohashiwakaba/]리셰[/url]³[/b]
+3. Special Thanks: [url=https://github.com/ddeeddii/eztools]ddeeddii[/url]& [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2640122564]kittenchilly[/url] & [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3095155110]双笙子佯谬[/url] & [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]Wofsauge[/url] & Blackcreamtea² & [url=https://steamcommunity.com/id/_kohashiwakaba/]리셰[/url]³[/b]
 [img]https://imgur.com/oGiLZIY.png[/img]
 ¹ 본 패치의 아이템 이름과 설명, 장신구 이름과 설명, 보스명 그래픽의 번역은 전부 리펜턴스의
   한국어 번역과 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3124459064]한국어 번역+[/url]를 기준으로 제작되었습니다. 한국어 번역+는 리펜턴스 번역에 대한
