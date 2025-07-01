@@ -16,9 +16,9 @@ if EID then
         function(descObj)
             local isTargetPickup =
                 descObj.ObjType == 5 and (
-                    (descObj.ObjVariant == 100 and descObj.ObjSubType == 667) or
-                    (descObj.ObjVariant == 300 and (descObj.ObjSubType == 95 or descObj.ObjSubType == 97)) or
-                    (descObj.ObjVariant == 350 and descObj.ObjSubType == 180)
+                    (descObj.ObjVariant == 100 and descObj.ObjSubType == 667) or                                 -- 밀짚인형
+                    (descObj.ObjVariant == 300 and (descObj.ObjSubType == 95 or descObj.ObjSubType == 97)) or    -- 포가튼의 영혼, 야곱과 에사우의 영혼
+                    (descObj.ObjVariant == 350 and descObj.ObjSubType == 180)                                    -- 되찾은 영혼
                 )
 
             if isTargetPickup and not REPENTOGON then
@@ -34,20 +34,24 @@ if EID then
     
     if EdenBlessingFix then
         EID:addCollectible(
-            CollectibleType.COLLECTIBLE_EDENS_BLESSING,"↑ {{TearsSmall}}연사 +0.7#다음 게임에서 랜덤 아이템을 하나 들고 시작합니다.#{{Blank}} {{ColorGray}}(최대 10개)"
+            CollectibleType.COLLECTIBLE_EDENS_BLESSING, "↑ {{TearsSmall}}연사 +0.7#다음 게임에서 랜덤 아이템을 하나 들고 시작합니다.#{{Blank}} {{ColorGray}}(최대 10개)"
         )
     end
 end
 
-mod.runningRep = REPENTANCE and not REPENTANCE_PLUS    -- 리펜턴스 DLC인지
-mod.killingMom = false                                 -- 엄마를 처치했는지
-mod.conflictKLP = false                                -- 한국어 번역+가 켜져있는지
-mod.firstRun = false                                   -- 설치 후 재실행을 했는지
-mod.notEIDKorean = false                               -- EID가 한국어로 설정돼있는지
+mod.runningRep = REPENTANCE and not REPENTANCE_PLUS    -- 리펜턴스 DLC인가?
+mod.killingMom = false                                 -- 엄마를 처치했는가?
+mod.conflictKLP = false                                -- 한국어 번역+가 켜져있는가?
+mod.firstRun = false                                   -- 설치 후 재실행을 했는가?
+mod.notEIDKorean = false                               -- EID가 한국어로 설정돼있는가?
 mod.hasTM = false
 
 if KoreanLocalizingPlus and not KoreanFontChange then
     mod.conflictKLP = true
+end
+
+if StageAPI then
+    print("\n[ Repentance+ Korean ]\nStageAPI detected. The stage names will not be translated.")
 end
 
 --[[
@@ -1040,5 +1044,5 @@ end
 
 
 ------ 버전 출력 ------
-mod.version = 1.76
-print("\n리펜턴스+ 한글패치 v" .. mod.version .. " 불러옴.")
+mod.version = 1.78
+print("\nRepentance+ Korean v" .. mod.version .. " loaded.")
