@@ -31,13 +31,14 @@
 2. 검수: 사왈이(업로더) 외 다수¹
 3. Special Thanks: [url=https://github.com/ddeeddii/eztools]ddeeddii[/url]&amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2640122564]kittenchilly[/url] &amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3095155110]双笙子佯谬[/url] &amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]Wofsauge[/url] &amp; Blackcreamtea² &amp; [url=https://steamcommunity.com/id/_kohashiwakaba/]리셰[/url]³[/b]
 [img]https://imgur.com/oGiLZIY.png[/img]
-¹ 본 패치의 아이템 이름과 설명, 장신구 이름과 설명, 보스명 그래픽의 번역은 전부 리펜턴스의
-  한국어 번역과 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3124459064]한국어 번역+[/url]를 기준으로 제작되었습니다. 한국어 번역+는 리펜턴스 번역에 대한
-  유저분들의 피드백을 차용한 모드입니다.
+¹ 본 패치의 번역은 전부 리펜턴스의 한국어 번역과 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3124459064]한국어 번역+[/url]를 기준으로 제작되었습니다.
+  한국어 번역+는 리펜턴스 번역에 대한 유저분들의 피드백을 차용한 모드입니다.
 ² (구)리펜턴스 한국어 모드 제작자 분이며, 해당 모드에서 한국어 로고 및 일부 번역을 차용했습니다.
 ³ 설명모드의 한국어 담당자 분이며, 비공식 언어 패치를 위한 언어 변경 콜백을 제작하셨습니다.
-[/code]</description>
-    <version>1.80</version>
+[/code]
+
+　[url=https://github.com/sawalk/Repentance-Plus-Korean] [img]https://i.imgur.com/P6a8043.png[/img] 소스 코드[/url]</description>
+    <version>1.81</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>
