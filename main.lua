@@ -988,6 +988,67 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.checkConfessional)
 
 
+------ 미니 보스 ------
+local playerNames = include("data.player_names")
+local minibossNames = {
+    [EntityType.ENTITY_SLOTH] = {
+        [0] = "나태",
+        [1] = "초 나태",
+        [2] = "왕 교만"    -- 뭐여ㅅㅂ
+    },
+    [EntityType.ENTITY_LUST] = {
+        [0] = "성욕",
+        [1] = "초 성욕"
+    },
+    [EntityType.ENTITY_WRATH] = {
+        [0] = "분노",
+        [1] = "초 분노"
+    },
+    [EntityType.ENTITY_GLUTTONY] = {
+        [0] = "대식",
+        [1] = "초 대식"
+    },
+    [EntityType.ENTITY_GREED] = {
+        [0] = "탐욕",
+        [1] = "초 탐욕"
+    },
+    [EntityType.ENTITY_ENVY] = {
+        [0] = "질투",
+        [1] = "초 질투"
+    },
+    [EntityType.ENTITY_PRIDE] = {
+        [0] = "교만",
+        [1] = "초 교만"
+    },
+    [EntityType.ENTITY_FALLEN] = {
+        [1] = "크람푸스"
+    }
+}
+
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
+    local player = Isaac.GetPlayer(0)
+    local pType = player:GetPlayerType()
+    if pType > 40 then return end    -- 모드 캐릭터는 일단 제외
+
+    local room = Game():GetRoom()
+    local rType = room:GetType()
+    if rType ~= RoomType.ROOM_MINIBOSS and rType ~= RoomType.ROOM_DEVIL then return end
+
+    for _, ent in ipairs(Isaac.GetRoomEntities()) do
+        if ent:IsActiveEnemy() and minibossNames[ent.Type] then
+            local playerName = playerNames[pType] or player:GetName()
+
+            local nameTable = minibossNames[ent.Type]
+            local vb = ent.Variant or 0
+            local minibossName = nameTable[vb] or nameTable[0]
+
+            Game():GetHUD():ShowItemText(playerName .. " VS " .. minibossName)
+            break
+        end
+    end
+end)
+
+
 ------ REPENTOGON ------
 if REPENTOGON then
     mod:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, function()
@@ -1044,5 +1105,5 @@ end
 
 
 ------ 버전 출력 ------
-mod.version = 1.82
+mod.version = 1.84
 print("Repentance+ Korean " .. string.format("%.2f", mod.version) .. " loaded.")
