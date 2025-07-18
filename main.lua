@@ -1,43 +1,63 @@
+-- 누가 이 개십스파게티 코드 좀 고쳐줘!!!!!!!!!!!!!
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
-
-local sprite = Sprite()
 local json = require('json')
 
------- EID & 경고 띄우기 ------
+------ EID ------
 function mod:ChangeEIDLanguage()
     return "ko_kr"    -- EID(v4.99 이상)에서 언어를 Auto로 설정했을 때 한국어가 선택되도록 변경
 end
 mod:AddCallback("EID_EVALUATE_AUTO_LANG", mod.ChangeEIDLanguage)
 
-if EID then
-    EID:addDescriptionModifier(
-        "Repentance+ Korean",
-        function(descObj)
-            local isTargetPickup =
-                descObj.ObjType == 5 and (
-                    (descObj.ObjVariant == 100 and descObj.ObjSubType == 667) or                                 -- 밀짚인형
-                    (descObj.ObjVariant == 300 and (descObj.ObjSubType == 95 or descObj.ObjSubType == 97)) or    -- 포가튼의 영혼, 야곱과 에사우의 영혼
-                    (descObj.ObjVariant == 350 and descObj.ObjSubType == 180)                                    -- 되찾은 영혼
-                )
+local function AddPickupWarning(descObj)
+    local targetPickup =
+        descObj.ObjType == EntityType.ENTITY_PICKUP and (
+            (descObj.ObjVariant == 100 and descObj.ObjSubType == 667) or                                   -- 밀짚인형
+            (descObj.ObjVariant == 300 and (descObj.ObjSubType == 95 or descObj.ObjSubType == 97)) or      -- 포가튼/야곱과 에사우의 영혼
+            (descObj.ObjVariant == 350 and descObj.ObjSubType == 180)                                      -- 되찾은 영혼
+        )
 
-            if isTargetPickup and not REPENTOGON then
-                EID:appendToDescription(descObj,
-                    "#{{Warning}} {{ColorError}}한글패치 관련:" ..
-                    "#{{Blank}} {{ColorError}}획득(사용) 이후 플레이어가 픽업을 얻을 때 텍스트가 이중으로 표시됩니다."
-                )
-            end
-
-            return descObj
-        end
-    )
-    
-    if EdenBlessingFix then
-        EID:addCollectible(
-            CollectibleType.COLLECTIBLE_EDENS_BLESSING, "↑ {{TearsSmall}}연사 +0.7#다음 게임에서 랜덤 아이템을 하나 들고 시작합니다.#{{Blank}} {{ColorGray}}(최대 10개)"
+    if targetPickup then
+        EID:appendToDescription(descObj,
+            "#{{Warning}} {{ColorError}}한글패치 관련:" ..
+            "#{{Blank}} {{ColorError}}획득(사용) 이후 플레이어가 픽업을 얻을 때 텍스트가 이중으로 표시됩니다."
         )
     end
+
+    return descObj
 end
+
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
+    if not EID then return end
+
+    EID:addDescriptionModifier("", AddPickupWarning)
+
+    EID:addPill(
+        PillEffect.PILLEFFECT_EXPERIMENTAL,
+        -- 원본
+        "랜덤 능력치 두가지가 증가하거나 감소합니다." ..
+        -- 경고
+        "#{{Warning}} {{ColorError}}한글패치 관련:" ..
+        "#{{Blank}} {{ColorError}}사용 이후 표시되는 능력치 증감 설명은 부정확할 수 있으며," ..
+        " {{Collectible304}} Libra 소지 시 번역되지 않습니다.",
+        -- 나머지
+        "실험용 알약",
+        "ko_kr"
+    )
+
+    if EdenBlessingFix then    -- 왜인진 모르겠는데 패치안됨
+        EID:addCollectible(
+            CollectibleType.COLLECTIBLE_EDENS_BLESSING,
+            "↑ {{TearsSmall}}연사 +0.7#다음 게임에서 랜덤 아이템을 하나 들고 시작합니다.#{{Blank}} {{ColorGray}}(최대 10개)",
+            "에덴의 축복",
+            "ko_kr"
+        )
+    end
+end)
+
+
+------ 경고 메시지 ------
+local sprite = Sprite()
 
 mod.runningRep = REPENTANCE and not REPENTANCE_PLUS    -- 리펜턴스 DLC인가?
 mod.killingMom = false                                 -- 엄마를 처치했는가?
@@ -48,10 +68,6 @@ mod.hasTM = false
 
 if KoreanLocalizingPlus and not KoreanFontChange then
     mod.conflictKLP = true
-end
-
-if StageAPI then
-    print("\n[ Repentance+ Korean ]\nStageAPI detected. The stage names will not be translated.")
 end
 
 --[[
@@ -91,6 +107,10 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
         else
             mod.notEIDKorean = false
         end
+    end
+
+    if StageAPI then
+        print("\n[ Repentance+ Korean ]\nStageAPI가 실행돼있습니다. 스테이지 이름이 번역되지 않을 수 있습니다.")
     end
 end)
 
@@ -1105,5 +1125,5 @@ end
 
 
 ------ 버전 출력 ------
-mod.version = 1.84
+mod.version = 1.85
 print("Repentance+ Korean " .. string.format("%.2f", mod.version) .. " loaded.")

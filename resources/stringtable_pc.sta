@@ -56,7 +56,7 @@
         <key name="ONLINE_MODS_BANNED">
             <string>Mods are not allowed in online play, please disable all mods and then restart the game</string>
             <string></string>
-            <string>온라인 플레이에선 모드가 허용되지 않습니다. 모드를 비활성화하고 게임을 다시 시작해주세요.</string>
+            <string>온라인 플레이에선 모드가 허용되지 않습니다. 모드를 비활성화하고 게임을 다시 시작해주세요</string>
             <string></string>
             <string></string>
             <string></string>
@@ -65,13 +65,13 @@
         </key>
         <key name="ONLINE_MODS_PERMABANNED">
             <string>Mods are not allowed in online play, please disable all mods and then restart the game.</string>
-            <string> </string>
+            <string></string>
             <string>온라인 플레이에선 모드가 허용되지 않습니다. 모드를 비활성화하고 게임을 다시 시작해주세요.</string>
-            <string> </string>
-            <string> </string>
-            <string> </string>
-            <string> </string>
-            <string> </string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
         </key>
         <key name="UNRECOGNIZED_CONTROLLER_HEADER">
             <string>Unrecognized Gamepad!</string>
@@ -86,7 +86,7 @@
         <key name="UNRECOGNIZED_CONTROLLER_MESSAGE">
             <string>Please setup a key config for the connected controller</string>
             <string></string>
-            <string>연결된 컨트롤러의 조작 설정을 해주세요.</string>
+            <string>연결된 컨트롤러의 조작 설정을 해주세요</string>
             <string></string>
             <string></string>
             <string></string>
@@ -94,9 +94,9 @@
             <string></string>
         </key>
         <key name="CONFIRM_EXIT_GAME">
-            <string>Are you sure you want to exit?</string>
+            <string>Are you sure you want me to die?</string>
             <string></string>
-            <string>내가 정말 죽길 바라니?</string>
+            <string>정말 내가 죽길 바라니?</string>
             <string></string>
             <string></string>
             <string></string>
@@ -106,7 +106,7 @@
         <key name="NOT_CONNECTED_TO_SERVER">
             <string>Connection Failure!\n\nMake sure you are connected to the internet and Steam is running</string>
             <string></string>
-            <string>연결 실패!\n\n인터넷의 연결 상태와 Steam이 실행 중인지 확인해주세요.</string>
+            <string>연결 실패!\n\n인터넷의 연결 상태와 Steam이 실행 중인지 확인해주세요</string>
             <string></string>
             <string></string>
             <string></string>
@@ -126,7 +126,7 @@
         <key name="AFTERBIRTH_DLC_NOT_INSTALLED">
             <string>You must own The Binding of Isaac: Afterbirth and it must be installed in order to play The Binding of Isaac: Repentance+</string>
             <string></string>
-            <string>아이작의 번제: 리펜턴스+를 플레이하려면 아이작의 번제: 애프터버스를 소유하고 설치해야 합니다.</string>
+            <string>아이작의 번제: 리펜턴스+를 플레이하려면 아이작의 번제: 애프터버스를 소유하고 설치해야 합니다</string>
             <string></string>
             <string></string>
             <string></string>
@@ -136,7 +136,7 @@
         <key name="AFTERBIRTH_PLUS_DLC_NOT_INSTALLED">
             <string>You must own The Binding of Isaac: Afterbirth+ and it must be installed in order to play The Binding of Isaac: Repentance+</string>
             <string></string>
-            <string>아이작의 번제: 리펜턴스+를 플레이하려면 아이작의 번제: 애프터버스+를 소유하고 설치해야 합니다.</string>
+            <string>아이작의 번제: 리펜턴스+를 플레이하려면 아이작의 번제: 애프터버스+를 소유하고 설치해야 합니다</string>
             <string></string>
             <string></string>
             <string></string>
@@ -146,7 +146,7 @@
         <key name="REPENTANCE_DLC_NOT_INSTALLED">
             <string>You must own The Binding of Isaac: Repentance and it must be installed in order to play The Binding of Isaac: Repentance+</string>
             <string></string>
-            <string>아이작의 번제: 리펜턴스+를 플레이하려면 아이작의 번제: 리펜턴스를 소유하고 설치해야 합니다.</string>
+            <string>아이작의 번제: 리펜턴스+를 플레이하려면 아이작의 번제: 리펜턴스를 소유하고 설치해야 합니다</string>
             <string></string>
             <string></string>
             <string></string>
