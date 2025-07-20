@@ -1,4 +1,17 @@
--- 누가 이 개십스파게티 코드 좀 고쳐줘!!!!!!!!!!!!!
+-- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
+-- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
+-- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
+-- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
+-- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
+-- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
+-- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
+-- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
+-- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
+-- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
+-- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
+-- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
+-- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
+
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 local json = require('json')
@@ -10,17 +23,23 @@ end
 mod:AddCallback("EID_EVALUATE_AUTO_LANG", mod.ChangeEIDLanguage)
 
 local function AddPickupWarning(descObj)
-    local targetPickup =
-        descObj.ObjType == EntityType.ENTITY_PICKUP and (
+    local targetPickup = descObj.ObjType == 5 and (
             (descObj.ObjVariant == 100 and descObj.ObjSubType == 667) or                                   -- 밀짚인형
             (descObj.ObjVariant == 300 and (descObj.ObjSubType == 95 or descObj.ObjSubType == 97)) or      -- 포가튼/야곱과 에사우의 영혼
             (descObj.ObjVariant == 350 and descObj.ObjSubType == 180)                                      -- 되찾은 영혼
         )
-
-    if targetPickup then
+    if targetPickup and not REPENTOGON then
         EID:appendToDescription(descObj,
             "#{{Warning}} {{ColorError}}한글패치 관련:" ..
             "#{{Blank}} {{ColorError}}획득(사용) 이후 플레이어가 픽업을 얻을 때 텍스트가 이중으로 표시됩니다."
+        )
+    end
+
+    local targetPickup2 = descObj.ObjType == 5 and descObj.ObjVariant == 100 and descObj.ObjSubType == 505    -- 포켓 GO
+    if targetPickup2 then
+        EID:appendToDescription(descObj,
+            "#{{Warning}} {{ColorError}}한글패치 관련:" ..
+            "#{{Blank}} {{ColorError}}아군 등장 텍스트가 잘못 표시될 수 있습니다."
         )
     end
 
@@ -30,7 +49,7 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
     if not EID then return end
 
-    EID:addDescriptionModifier("", AddPickupWarning)
+    EID:addDescriptionModifier("한글패치 EID 경고용", AddPickupWarning)
 
     EID:addPill(
         PillEffect.PILLEFFECT_EXPERIMENTAL,
@@ -64,6 +83,8 @@ mod.killingMom = false                                 -- 엄마를 처치했는
 mod.conflictKLP = false                                -- 한국어 번역+가 켜져있는가?
 mod.firstRun = false                                   -- 설치 후 재실행을 했는가?
 mod.notEIDKorean = false                               -- EID가 한국어로 설정돼있는가?
+mod.detectStageAPI = false                             -- StageAPI가 켜져있는가?
+mod.stageAPITimer = 0
 mod.hasTM = false
 
 if KoreanLocalizingPlus and not KoreanFontChange then
@@ -110,7 +131,8 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
     end
 
     if StageAPI then
-        print("\n[ Repentance+ Korean ]\nStageAPI가 실행돼있습니다. 스테이지 이름이 번역되지 않을 수 있습니다.")
+        mod.detectStageAPI = true
+        mod.stageAPITimer = 60
     end
 end)
 
@@ -170,12 +192,17 @@ end
 local showAnm2 = false
 local renderingTime = 15
 local DisplayedTime = 0
+
 local function updateRenderAnm2()
     if not mod.killingMom or mod.runningRep or mod.conflictKLP or mod.firstRun or mod.notEIDKorean then
         DisplayedTime = DisplayedTime + 1
         if DisplayedTime >= renderingTime then
             showAnm2 = true
         end
+    end
+
+    if mod.stageAPITimer > 0 then
+        mod.stageAPITimer = mod.stageAPITimer - 1
     end
 end
 
@@ -194,6 +221,18 @@ local function renderWarning()
             RenderSub("notEIDKorean")
         end
     end
+
+    if mod.detectStageAPI then
+        if mod.stageAPITimer > 0 then
+            local text = nil
+            if REPENTOGON then
+                text = "('지하 묘지' 스테이지의 이름만 번역되지 않습니다.)"
+            else
+                text = "(스테이지 이름이 번역되지 않습니다. REPENTOGON+ 적용 시 해결됩니다.)"
+            end 
+            Isaac.RenderScaledText(text, 58, Isaac.GetScreenHeight() - 12, 0.5, 0.5, 1, 1, 1, (mod.stageAPITimer / 60) * 0.5)
+        end
+    end
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, checkConflictsAndLoadAnm2)
@@ -207,6 +246,10 @@ mod.IsHidden = false
 
 local VoiceSFX = SFXManager()
 local function onRender()
+    if not sprite:IsLoaded() then
+        sprite:Load("gfx/cutscenes/backwards.anm2", true)
+    end
+
     if Input.IsButtonTriggered(39, 0) then
         mod.IsHidden = not mod.IsHidden    -- '키로 자막 토글
     end
@@ -1125,5 +1168,5 @@ end
 
 
 ------ 버전 출력 ------
-mod.version = 1.85
+mod.version = 1.86
 print("Repentance+ Korean " .. string.format("%.2f", mod.version) .. " loaded.")

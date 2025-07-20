@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="2025-01-22 03:36:48" Version="1" Fps="30"/>
+	<Info CreatedBy="sawalk" CreatedOn="2025-07-21 03:29:09" Version="2" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="EndingsMenuPaper.png" Id="0"/>
@@ -16,6 +16,7 @@
 			<Layer Name="sketch3" Id="5" SpritesheetId="2"/>
 			<Layer Name="sketch4" Id="6" SpritesheetId="2"/>
 			<Layer Name="sketch5" Id="7" SpritesheetId="3"/>
+			<Layer Name="fuktyrone" Id="8" SpritesheetId="0"/>
 		</Layers>
 		<Nulls>
 			<Null Name="TextStartPos" Id="0" ShowRect="false"/>
@@ -72,6 +73,9 @@
 					<Frame XPosition="304" YPosition="120" XPivot="0" YPivot="0" XCrop="80" YCrop="240" Width="16" Height="16" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 					<Frame XPosition="304" YPosition="134" XPivot="0" YPivot="0" XCrop="80" YCrop="240" Width="16" Height="16" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 					<Frame XPosition="304" YPosition="148" XPivot="0" YPivot="0" XCrop="80" YCrop="240" Width="16" Height="16" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+				</LayerAnimation>
+				<LayerAnimation LayerId="8" Visible="true">
+					<Frame XPosition="377" YPosition="210" XPivot="16" YPivot="16" XCrop="436" YCrop="230" Width="80" Height="38" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</LayerAnimation>
 			</LayerAnimations>
 			<NullAnimations>

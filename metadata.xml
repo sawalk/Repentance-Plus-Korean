@@ -21,9 +21,9 @@
 [img]https://imgur.com/oGiLZIY.png[/img]
 7. '실험약' 사용 시 표시되는 능력치 변화 설명은 부정확할 수 있으며, ‘천칭자리’ 소지 시 영어 원문으로 표시됩니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-9. 기술적 한계로 인해 게임 내 플레이어가 2인 이상인 경우 아이템의 한국어/영어명이 이중으로 출력됩니다. (밀짚인형, 포가튼의 영혼, 잃어버린 영혼 사용/소지 시에도 동일)
+8. 기술적 한계로 인해 게임 내 플레이어가 2인 이상인 경우 아이템의 한국어/영어명이 이중으로 출력됩니다. (밀짚인형, 포가튼의 영혼, 잃어버린 영혼 사용/소지 시에도 동일)
 [img]https://imgur.com/oGiLZIY.png[/img]
-8. '통계' 메뉴 내 '아이템'과 '온라인' 메뉴, 이스터 에그, 일부 UI 텍스트(시간·점수 HUD, 게임 종료 메시지 등), 기타 등등은 모드에서 접근할 수 없는 관계로 번역되지 않았습니다.[/b]
+9. '통계' 메뉴 내 '아이템'과 '온라인' 메뉴, 이스터 에그, 일부 UI 텍스트(시간·점수 HUD, 게임 종료 메시지 등), 기타 등등은 모드에서 접근할 수 없는 관계로 번역되지 않았습니다.[/b]
 [/code]
 
 [h2] [b]　크레딧 [/b] [/h2]
@@ -38,7 +38,7 @@
 [/code]
 
 　[url=https://github.com/sawalk/Repentance-Plus-Korean] [img]https://i.imgur.com/P6a8043.png[/img] 소스 코드[/url]</description>
-    <version>1.85</version>
+    <version>1.86</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>
