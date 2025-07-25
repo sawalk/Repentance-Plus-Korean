@@ -12,7 +12,7 @@ return {
     [StbType.DANK_DEPTHS] = "습한 나락",
     [StbType.WOMB] = "자궁",
     [StbType.UTERO] = "자궁 속",
-    [StbType.SCARRED_WOMB] = "상처난 자국",
+    [StbType.SCARRED_WOMB] = "상처난 자궁",
     [StbType.BLUE_WOMB] = "???",
     [StbType.SHEOL] = "저승",
     [StbType.CATHEDRAL] = "대성당",
