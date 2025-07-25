@@ -3,7 +3,8 @@
     <name>z_REPENTANCE+ KOREAN</name>
     <directory>repentance+ korean</directory>
     <id>3371064337</id>
-    <description>[h2] [b]　모드를 이용하기 전에... [/b] [/h2]
+    <description>[img]https://i.imgur.com/qNIBKvT.png[/img]
+[h2] [b]　모드를 이용하기 전에... [/b] [/h2]
 [h3]　아래 사항을 모두 정독 후 이용바랍니다. [u]제발![/u] [/h3]
 [code][b]0. 버그나 호환성 이슈, 번역 오류 및 건의 사항은 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues]Github[/url]Issues에 작성 바랍니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
@@ -29,16 +30,19 @@
 [h2] [b]　크레딧 [/b] [/h2]
 [code][b]1. 번역 / 아트: [url=https://badagames.net/]바다게임즈[/url]/ [url=https://www.nicalis.com/]Rojen &amp; Nicalis[/url]
 2. 검수: 사왈이(업로더) 외 다수¹
-3. Special Thanks: [url=https://github.com/ddeeddii/eztools]ddeeddii[/url]&amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2640122564]kittenchilly[/url] &amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3095155110]双笙子佯谬[/url] &amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]Wofsauge[/url] &amp; Blackcreamtea² &amp; [url=https://steamcommunity.com/id/_kohashiwakaba/]리셰[/url]³[/b]
+3. 더빙: [url=https://www.instagram.com/youknow4pril]윤호[/url] &amp; [url=https://www.youtube.com/@칩스]Chips[/url]²
+4. Special Thanks: [url=https://github.com/ddeeddii/eztools]ddeeddii[/url]&amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2640122564]kittenchilly[/url] &amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3095155110]双笙子佯谬[/url] &amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]Wofsauge[/url] &amp; Blackcreamtea³ &amp; [url=https://steamcommunity.com/id/_kohashiwakaba/]리셰[/url]⁴[/b]
 [img]https://imgur.com/oGiLZIY.png[/img]
 ¹ 본 패치의 번역은 전부 리펜턴스의 한국어 번역과 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3124459064]한국어 번역+[/url]를 기준으로 제작되었습니다.
   한국어 번역+는 리펜턴스 번역에 대한 유저분들의 피드백을 차용한 모드입니다.
-² (구)리펜턴스 한국어 모드 제작자 분이며, 해당 모드에서 한국어 로고 및 일부 번역을 차용했습니다.
-³ 설명모드의 한국어 담당자 분이며, 비공식 언어 패치를 위한 언어 변경 콜백을 제작하셨습니다.
+² [url=https://steamcommunity.com/workshop/filedetails/?id=3360615255]한국어 더빙 모드[/url]를 구독 해제하여 영어 음성으로 들으실 수 있습니다. 자세한 내용은 한국어
+  더빙 모드 페이지를 참고하세요.
+³ (구)리펜턴스 한국어 모드 제작자 분이며, 해당 모드에서 한국어 로고 및 일부 번역을 차용했습니다.
+⁴ 설명모드의 한국어 담당자 분이며, 비공식 언어 패치를 위한 언어 변경 콜백을 제작하셨습니다.
 [/code]
 
 　[url=https://github.com/sawalk/Repentance-Plus-Korean] [img]https://i.imgur.com/P6a8043.png[/img] 소스 코드[/url]</description>
-    <version>1.87</version>
+    <version>1.88</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>
