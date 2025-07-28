@@ -1,16 +1,16 @@
--- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
--- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
--- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
--- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
--- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
--- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
--- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
--- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
--- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
--- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
--- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
--- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
--- 누가 이 개병신 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!
+-- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
@@ -75,23 +75,7 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
 end)
 
 
------- 경고 메시지 ------
-local sprite = Sprite()
-
-mod.runningRep = REPENTANCE and not REPENTANCE_PLUS    -- 리펜턴스 DLC인가?
-mod.killingMom = false                                 -- 엄마를 처치했는가?
-mod.conflictKLP = false                                -- 한국어 번역+가 켜져있는가?
-mod.firstRun = false                                   -- 설치 후 재실행을 했는가?
-mod.notEIDKorean = false                               -- EID가 한국어로 설정돼있는가?
-mod.detectStageAPI = false                             -- StageAPI가 켜져있는가?
-mod.stageAPITimer = 0
-mod.hasTM = false
-
-if KoreanLocalizingPlus and not KoreanFontChange then
-    mod.conflictKLP = true
-end
-
---[[
+--[[-- 온라인 -----
 mod.offline = true
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
     local player = Isaac.GetPlayer()
@@ -105,156 +89,148 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
     else
         mod.offline = true
     end
-end)
-]]
+end)]]
 
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player, cacheFlag)
-    if player:HasCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
-        mod.hasTM = true
-    else
-        mod.hasTM = false
-    end
-end)
+
+------ 경고 메시지 ------
+mod.warningTimers = {}
+mod.warningsToShow = {}
+mod.warningRed = 1
+mod.warningScale = 0.5
+
+mod.runningRep = REPENTANCE and not REPENTANCE_PLUS    -- 리펜턴스 DLC인가?
+mod.notKillingMom = false                              -- 엄마를 처치했는가?
+mod.notRestart = false                                 -- 설치 후 재실행을 했는가?
+mod.notRunningEID = false                              -- EID가 실행 중인가?
+mod.notEIDKorean = false                               -- EID가 한국어로 설정돼있는가?
+
+mod.detectStageAPI = false                             -- StageAPI가 켜져있는가?
+mod.stageAPITimer = 0
+
+mod.hasTM = false                                      -- TMTRAINER를 소지 중인가?
+mod.tmWarningShown = false
+
+local messages = {
+    notKillingMom = "지금 모드를 적용하면 도전 과제가 해금되지 않을 수 있습니다!",
+    notRestart = "게임을 재실행 해야 한글패치가 정상적으로 작동합니다!",
+    notRunningEID = "아이템 설명모드를 감지하지 못했습니다! 일부 번역 기능이 동작하지 않습니다!",
+    notEIDKorean = "아이템 설명모드가 한국어로 설정돼있지 않습니다. Mod Config Menu Pure를 구독한 후 수동으로 설정하세요.",
+    stageAPI = REPENTOGON and "('지하 묘지' 스테이지의 이름만 번역되지 않습니다.)"
+                           or "(스테이지 이름이 번역되지 않습니다. REPENTOGON+ 적용 시 해결됩니다.)",
+    hasTM = "TMTRAINER를 소지 중입니다! 일부 번역 기능이 동작하지 않습니다!"
+}
 
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
     if not mod:HasData() then
-        mod.firstRun = true
+        mod.notRestart = true
+        ----
+        mod.warningRed = 0.5
+        mod.warningTimers[messages.notRestart] = 180
         mod:SaveData("-- Check whether or not the game has been restarted after installing the mod.")
     end
 
     if EID then
-        if EID.ModVersion > 4.2 and EID.ModVersion < 4.99 and EID.Config["Language"] ~= "ko_kr" then
-            mod.notEIDKorean = true
-        else
-            mod.notEIDKorean = false
+        if EID.ModVersion > 4.2 and EID.ModVersion < 4.99 then
+            if EID.Config["Language"] ~= "ko_kr" then
+                mod.notEIDKorean = true
+                ----
+                mod.warningTimers[messages.notEIDKorean] = 180
+            end
         end
+    else
+        mod.notRunningEID = true
+        ----
+        mod.warningRed = 0.5
+        mod.warningTimers[messages.notRunningEID] = 180
     end
 
     if StageAPI then
         mod.detectStageAPI = true
         mod.stageAPITimer = 60
     end
+
+    mod.notKillingMom = not Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT):IsAvailable()
+    if mod.notKillingMom and not EID then
+        mod.warningRed = 0.5
+        mod.warningTimers[messages.notKillingMom] = 180
+    end
 end)
 
-local function checkConflictsAndLoadAnm2()
-    mod.killingMom = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT):IsAvailable()     -- 고기 조각을 현재 게임에서 사용할 수 없고
-    if not mod.killingMom and not Game():GetSeeds():IsCustomRun() and Isaac.GetPlayer(0):GetPlayerType() < 21 then    -- 현재 게임이 챌린지이거나 시드가 설정된 게임이거나 더럽혀진 캐릭터가 플레이 중인 게임이 아니라면
-        if mod.hasTM then
-            print("\n[ Repentance+ Korean ]\nTMTRAINER를 소지 중입니다. 일부 기능이 작동하지 않습니다.\n")
-        else
-            print("\n[ Repentance+ Korean ]\nIn your current save file, you haven't killed Mom once.\nIf you proceed as is, the achievement won't unlock!\n")
-        end
-    end
-
-    if mod.runningRep then
-        print("\n[ Repentance+ Korean ]\nz_REPENTANCE+ KOREAN mod is only available with the Repentance+ DLC.\nPLEASE DISABLE THE MOD NOW.\n")
-    end
-
-    if (not mod.killingMom or mod.runningRep or mod.conflictKLP or mod.firstRun or mod.notEIDKorean) and not mod.hasTM then
-        sprite:Load("gfx/ui/popup_warning2.anm2", true)
+mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function()
+    if Isaac.GetPlayer():HasCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) and not mod.tmWarningShown then
+        mod.hasTM = true
+        mod.tmWarningShown = true
+        mod.warningTimers[messages.hasTM] = 180
     else
-        sprite:Load("gfx/cutscenes/backwards.anm2", true)
+        mod.hasTM = false
     end
-end
+end)
 
-local function GetScreenSize()
-    local pos = Game():GetRoom():WorldToScreenPosition(Vector(0,0)) - Game():GetRoom():GetRenderScrollOffset() - Game().ScreenShakeOffset
-  
-    local rx = pos.X + 60 * 26 / 40
-    local ry = pos.Y + 162.5 * (26 / 40)
-  
-    return Vector(rx*2 + 13*26, ry*2 + 7*26)
-end
-
-function RenderSub(Anm2)
-    sprite:Play(Anm2)
-    sprite:Update()
-    sprite.Scale = Vector(1, 1)
-    sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
-
-    local warningPosX = Vector(0,0)
-    if not mod.killingMom or mod.firstRun or mod.notEIDKorean then
-        if Options.FoundHUD then
-            warningPosX = GetScreenSize().X/1.33
-        else
-            warningPosX = GetScreenSize().X/4
-        end
-        sprite.Scale = Vector(0.5, 0.5)
-        sprite:Render(Vector(warningPosX, GetScreenSize().Y/1.5), Vector(0,0), Vector(0,0))
-    elseif mod.runningRep or mod.conflictKLP then
-        sprite:Render(Vector(GetScreenSize().X/1.96, GetScreenSize().Y/2.2), Vector(0,0), Vector(0,0))
-    else
-        sprite.Color = Color(1, 1, 1, 0.6, 0, 0, 0)
-        sprite:Render(Vector(GetScreenSize().X/2, GetScreenSize().Y*0.85), Vector(0,0), Vector(0,0))
-    end
-end
-
-local showAnm2 = false
-local renderingTime = 15
-local DisplayedTime = 0
-
-local function updateRenderAnm2()
-    if not mod.killingMom or mod.runningRep or mod.conflictKLP or mod.firstRun or mod.notEIDKorean then
-        DisplayedTime = DisplayedTime + 1
-        if DisplayedTime >= renderingTime then
-            showAnm2 = true
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+    for string, time in pairs(mod.warningTimers) do
+        mod.warningTimers[string] = time - 1
+        if mod.warningTimers[string] <= 0 then
+            mod.warningTimers[string] = nil
         end
     end
-
+    
     if mod.stageAPITimer > 0 then
         mod.stageAPITimer = mod.stageAPITimer - 1
     end
-end
+end)
 
-local function renderWarning()
-    if showAnm2 then
-        if mod.conflictKLP then
-            RenderSub("conflictWithKLP")
-        elseif mod.runningRep then
-            RenderSub("runningRep")
-        elseif mod.firstRun then
-            RenderSub("notRestart")
-        elseif not mod.killingMom then
-            if EID then return end
-            RenderSub("notKillingMom")
-        elseif mod.notEIDKorean then
-            RenderSub("notEIDKorean")
-        end
+local warningSprite = Sprite()
+warningSprite:Load("gfx/ui/popup_runningrep.anm2", true)
+
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+    --[[ if Isaac.GetScreenPointScale() == 3 then
+        mod.warningScale = 0.66
+    else
+        mod.warningScale = 0.5
+    end ]]
+    
+    for warning, time in pairs(mod.warningTimers) do
+        Isaac.RenderScaledText(
+            "[한글패치] " .. warning,
+            12,
+            Isaac.GetScreenHeight() - 20,
+            mod.warningScale, mod.warningScale,
+            1, mod.warningRed, mod.warningRed,
+            math.min(time / 180, 1) * 0.75)
     end
 
-    if mod.detectStageAPI then
-        if mod.stageAPITimer > 0 then
-            local text = nil
-            if REPENTOGON then
-                text = "('지하 묘지' 스테이지의 이름만 번역되지 않습니다.)"
-            else
-                text = "(스테이지 이름이 번역되지 않습니다. REPENTOGON+ 적용 시 해결됩니다.)"
-            end 
-            Isaac.RenderScaledText(text, 58, Isaac.GetScreenHeight() - 12, 0.5, 0.5, 1, 1, 1, (mod.stageAPITimer / 60) * 0.5)
-        end
+    if mod.detectStageAPI and mod.stageAPITimer > 0 then
+        Isaac.RenderScaledText(
+            messages.stageAPI,
+            58,
+            Isaac.GetScreenHeight() - 12,
+            0.5, 0.5,
+            1, 1, 1,
+            (mod.stageAPITimer / 60) * 0.5)
     end
-end
 
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, checkConflictsAndLoadAnm2)
-mod:AddCallback(ModCallbacks.MC_POST_UPDATE, updateRenderAnm2)
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, renderWarning)
+    if mod.runningRep then
+        warningSprite:Play("runningRep")
+        warningSprite:Update()
+        warningSprite:Render(Vector(Isaac.GetScreenWidth() / 1.97, Isaac.GetScreenHeight() / 2))
+    end
+end)
 
 
 ------ 아빠의 쪽지 자막 by blackcreamtea ------
-mod.isVisible = true
-mod.IsHidden = false
+local subtitleSprite = Sprite()
+subtitleSprite:Load("gfx/cutscenes/backwards.anm2", true)
+
+local function RenderSub(Anm2)
+    subtitleSprite:Play(Anm2)
+    subtitleSprite:Update()
+    subtitleSprite.Scale = Vector(1, 1)
+    subtitleSprite.Color = Color(1, 1, 1, 0.6, 0, 0, 0)
+    subtitleSprite:Render(Vector(Isaac.GetScreenWidth() / 2, Isaac.GetScreenHeight() * 0.9))
+end
 
 local VoiceSFX = SFXManager()
-local function onRender()
-    if not sprite:IsLoaded() then
-        sprite:Load("gfx/cutscenes/backwards.anm2", true)
-    end
-
-    if Input.IsButtonTriggered(39, 0) then
-        mod.IsHidden = not mod.IsHidden    -- '키로 자막 토글
-    end
-    if mod.IsHidden then return end
-
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
     for i = 598, 601 do
         if KoreanVoiceDubbing then
             if VoiceSFX:IsPlaying(Isaac.GetSoundIdByName("DADS_NOTE_KOREAN_" .. (i - 597))) then
@@ -266,9 +242,7 @@ local function onRender()
             end
         end
     end
-end
-
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
+end)
 
 
 ------ EzItems by ddeeddii ------
@@ -1168,5 +1142,5 @@ end
 
 
 ------ 버전 출력 ------
-mod.version = 1.87
+mod.version = 1.88
 print("Repentance+ Korean " .. string.format("%.2f", mod.version) .. " loaded.")
