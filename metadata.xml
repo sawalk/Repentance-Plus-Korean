@@ -28,9 +28,9 @@
 [/code]
 
 [h2] [b]　크레딧 [/b] [/h2]
-[code][b]1. 번역 / 아트: [url=https://badagames.net/]바다게임즈[/url]/ [url=https://www.nicalis.com/]Rojen &amp; Nicalis[/url]
-2. 검수: 사왈이(업로더) 외 다수¹
-3. 더빙: [url=https://www.instagram.com/youknow4pril]윤호[/url] &amp; [url=https://www.youtube.com/@칩스]Chips[/url]²
+[code][b]1. 리펜턴스 번역: [url=https://badagames.net/]바다게임즈(초벌 번역)[/url]&amp; [url=https://www.nicalis.com]Nicalis(LQA)[/url]/ [url=https://x.com/Rojen241]Rojen(아트)[/url]
+2. 검수 및 그래픽: 사왈이(업로더) 외 다수¹
+3. 더빙: [url=https://www.instagram.com/youknow4pril]윤호[/url]&amp; [url=https://www.youtube.com/@칩스]Chips[/url]²
 4. Special Thanks: [url=https://github.com/ddeeddii/eztools]ddeeddii[/url]&amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2640122564]kittenchilly[/url] &amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3095155110]双笙子佯谬[/url] &amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]Wofsauge[/url] &amp; Blackcreamtea³ &amp; [url=https://steamcommunity.com/id/_kohashiwakaba/]리셰[/url]⁴[/b]
 [img]https://imgur.com/oGiLZIY.png[/img]
 ¹ 본 패치의 번역은 전부 리펜턴스의 한국어 번역과 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3124459064]한국어 번역+[/url]를 기준으로 제작되었습니다.
@@ -39,10 +39,12 @@
   더빙 모드 페이지를 참고하세요.
 ³ (구)리펜턴스 한국어 모드 제작자 분이며, 해당 모드에서 한국어 로고 및 일부 번역을 차용했습니다.
 ⁴ 설명모드의 한국어 담당자 분이며, 비공식 언어 패치를 위한 언어 변경 콜백을 제작하셨습니다.
+[img]https://imgur.com/oGiLZIY.png[/img]
+[b]게임을 한국어로 즐기기 위해 대가 없이 한글패치를 제작해주셨던 Team.SM 및 다른 유저 분들, 유저들의 편의와 재미를 위해 열과 성으로 시간을 투자해 모드를 개발하시는 모더 분들, 리펜턴스의 수많은 오역에 피드백을 전달해주셨던, 게임에 애정을 가져주시고 플레이해 주셨던 그 모든 분들께 감사의 말씀을 드립니다.[/b]
 [/code]
 
 　[url=https://github.com/sawalk/Repentance-Plus-Korean] [img]https://i.imgur.com/P6a8043.png[/img] 소스 코드[/url]</description>
-    <version>1.88</version>
+    <version>1.89</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>

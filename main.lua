@@ -124,7 +124,7 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
     if not mod:HasData() then
         mod.notRestart = true
         ----
-        mod.warningRed = 0.5
+        mod.warningRed = 1
         mod.warningTimers[messages.notRestart] = 180
         mod:SaveData("-- Check whether or not the game has been restarted after installing the mod.")
     end
@@ -140,7 +140,6 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
     else
         mod.notRunningEID = true
         ----
-        mod.warningRed = 0.5
         mod.warningTimers[messages.notRunningEID] = 180
     end
 
@@ -151,7 +150,6 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
 
     mod.notKillingMom = not Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT):IsAvailable()
     if mod.notKillingMom and not EID then
-        mod.warningRed = 0.5
         mod.warningTimers[messages.notKillingMom] = 180
     end
 end)
@@ -1142,5 +1140,5 @@ end
 
 
 ------ 버전 출력 ------
-mod.version = 1.88
+mod.version = 1.89
 print("Repentance+ Korean " .. string.format("%.2f", mod.version) .. " loaded.")
