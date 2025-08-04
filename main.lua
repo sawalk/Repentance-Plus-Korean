@@ -12,9 +12,9 @@
 -- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 -- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
-local json = require('json')
 
 ------ EID ------
 function mod:ChangeEIDLanguage()
@@ -95,8 +95,10 @@ end)]]
 ------ 경고 메시지 ------
 mod.warningTimers = {}
 mod.warningsToShow = {}
+mod.warningMaxTimes = {}
 mod.warningRed = 1
 mod.warningScale = 0.5
+mod.warningOpacity = 0.75
 
 mod.runningRep = REPENTANCE and not REPENTANCE_PLUS    -- 리펜턴스 DLC인가?
 mod.notKillingMom = false                              -- 엄마를 처치했는가?
@@ -106,27 +108,40 @@ mod.notEIDKorean = false                               -- EID가 한국어로 �
 
 mod.detectStageAPI = false                             -- StageAPI가 켜져있는가?
 mod.stageAPITimer = 0
+mod.stageAPIoffset = 0
 
 mod.hasTM = false                                      -- TMTRAINER를 소지 중인가?
 mod.tmWarningShown = false
 
 local messages = {
     notKillingMom = "지금 모드를 적용하면 도전 과제가 해금되지 않을 수 있습니다!",
-    notRestart = "게임을 재실행 해야 한글패치가 정상적으로 작동합니다!",
+    notRestart = "게임을 재시작해야 합니다!",
     notRunningEID = "아이템 설명모드를 감지하지 못했습니다! 일부 번역 기능이 동작하지 않습니다!",
     notEIDKorean = "아이템 설명모드가 한국어로 설정돼있지 않습니다. Mod Config Menu Pure를 구독한 후 수동으로 설정하세요.",
+    hasTM = "TMTRAINER를 소지 중입니다! 일부 번역 기능이 동작하지 않습니다!",
+
     stageAPI = REPENTOGON and "('지하 묘지' 스테이지의 이름만 번역되지 않습니다.)"
-                           or "(스테이지 이름이 번역되지 않습니다. REPENTOGON+ 적용 시 해결됩니다.)",
-    hasTM = "TMTRAINER를 소지 중입니다! 일부 번역 기능이 동작하지 않습니다!"
+                           or "(스테이지 이름이 번역되지 않습니다. REPENTOGON+ 적용 시 해결됩니다.)"
+}
+
+local warningDurations = {
+    [messages.notKillingMom] = 180,
+    [messages.notRestart] = 18000,
+    [messages.notRunningEID] = 180,
+    [messages.notEIDKorean] = 180,
+    [messages.hasTM] = 180
 }
 
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
     if not mod:HasData() then
         mod.notRestart = true
-        ----
-        mod.warningRed = 1
-        mod.warningTimers[messages.notRestart] = 180
         mod:SaveData("-- Check whether or not the game has been restarted after installing the mod.")
+        ----
+        local duration = warningDurations[messages.notRestart]
+        mod.warningTimers[messages.notRestart] = duration
+        mod.warningMaxTimes[messages.notRestart] = duration
+        mod.warningRed = 0.25
+        mod.warningOpacity = 1
     end
 
     if EID then
@@ -134,23 +149,30 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
             if EID.Config["Language"] ~= "ko_kr" then
                 mod.notEIDKorean = true
                 ----
-                mod.warningTimers[messages.notEIDKorean] = 180
+                local duration = warningDurations[messages.notEIDKorean]
+                mod.warningTimers[messages.notEIDKorean] = duration
+                mod.warningMaxTimes[messages.notEIDKorean] = duration
             end
         end
     else
         mod.notRunningEID = true
         ----
-        mod.warningTimers[messages.notRunningEID] = 180
+        local duration = warningDurations[messages.notRunningEID]
+        mod.warningTimers[messages.notRunningEID] = duration
+        mod.warningMaxTimes[messages.notRunningEID] = duration
     end
 
     if StageAPI then
         mod.detectStageAPI = true
         mod.stageAPITimer = 60
+        mod.stageAPIoffset = 8
     end
 
     mod.notKillingMom = not Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT):IsAvailable()
     if mod.notKillingMom and not EID then
-        mod.warningTimers[messages.notKillingMom] = 180
+        local duration = warningDurations[messages.notKillingMom]
+        mod.warningTimers[messages.notKillingMom] = duration
+        mod.warningMaxTimes[messages.notKillingMom] = duration
     end
 end)
 
@@ -158,7 +180,10 @@ mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function()
     if Isaac.GetPlayer():HasCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) and not mod.tmWarningShown then
         mod.hasTM = true
         mod.tmWarningShown = true
-        mod.warningTimers[messages.hasTM] = 180
+        ----
+        local duration = warningDurations[messages.hasTM]
+        mod.warningTimers[messages.hasTM] = duration
+        mod.warningMaxTimes[messages.hasTM] = duration
     else
         mod.hasTM = false
     end
@@ -169,6 +194,7 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
         mod.warningTimers[string] = time - 1
         if mod.warningTimers[string] <= 0 then
             mod.warningTimers[string] = nil
+            mod.warningMaxTimes[string] = nil
         end
     end
     
@@ -188,13 +214,14 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
     end ]]
     
     for warning, time in pairs(mod.warningTimers) do
+        local maxTime = mod.warningMaxTimes[warning] or 180
         Isaac.RenderScaledText(
             "[한글패치] " .. warning,
             12,
-            Isaac.GetScreenHeight() - 20,
+            Isaac.GetScreenHeight() - (12 + mod.stageAPIoffset),
             mod.warningScale, mod.warningScale,
             1, mod.warningRed, mod.warningRed,
-            math.min(time / 180, 1) * 0.75)
+            math.min(time / maxTime, 1) * 0.75)
     end
 
     if mod.detectStageAPI and mod.stageAPITimer > 0 then
@@ -244,6 +271,7 @@ end)
 
 
 ------ EzItems by ddeeddii ------
+local json = require('json')
 local data = include('data.items_and_trinkets')
 local jsonData = json.decode(data)
 
@@ -375,7 +403,7 @@ if next(changes.items) ~= nil then
             i_queueNow[playerKey] = player.QueuedItem.Item
             if i_queueNow[playerKey] and i_queueNow[playerKey]:IsCollectible() and i_queueLastFrame[playerKey] == nil then
                 local itemID = i_queueNow[playerKey].ID
-                if itemID == -1 then    -- G FUEL!
+                if itemID == -1 and i_queueNow[playerKey].Name == "G FUEL!" then    -- G FUEL!
                     local g_random = math.random(1, 50)
                     local g_description = gFuelDesc[g_random]
                     if g_description then
@@ -1140,5 +1168,5 @@ end
 
 
 ------ 버전 출력 ------
-mod.version = 1.89
+mod.version = 1.91
 print("Repentance+ Korean " .. string.format("%.2f", mod.version) .. " loaded.")

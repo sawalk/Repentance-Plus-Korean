@@ -3,48 +3,37 @@
     <name>z_REPENTANCE+ KOREAN</name>
     <directory>repentance+ korean</directory>
     <id>3371064337</id>
-    <description>[img]https://i.imgur.com/qNIBKvT.png[/img]
-[h2] [b]　모드를 이용하기 전에... [/b] [/h2]
-[h3]　아래 사항을 모두 정독 후 이용바랍니다. [u]제발![/u] [/h3]
-[code][b]0. 버그나 호환성 이슈, 번역 오류 및 건의 사항은 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues]Github[/url]Issues에 작성 바랍니다.
+    <description>[h1] [b]　FAQ [/b] [/h1]
+[code][b]Q. 버그가 있어요! 오역이 있어요!
+A. 버그나 호환성 이슈, 번역 오류 및 건의 사항은 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues]Github[/url]Issues에 작성 바랍니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-1. '엄마' 보스를 처치하지 않은 저장파일에서 패치를 적용하면 도전 과제가 해금되지 않습니다. (모든 모드 공통)
+Q. 모드를 적용하고 게임을 하는데 도전 과제가 해금되지 않아요!
+A. '엄마' 보스를 처치하지 않은 저장파일에서 모드를 활성화하면 도전 과제가 해금되지 않습니다. (모든 모드 공통)
 [img]https://imgur.com/oGiLZIY.png[/img]
-2. 인게임에서 &quot;리펜턴스+ 한글패치가 리펜턴스에서 실행되었습니다!&quot;라는 메시지가 뜨는 경우 The Binding of Isaac: Rebirth 속성에서 Repentance+ DLC가 체크되어있는지 확인하세요.
+Q. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]를 필수로 구독해야 되나요?
+A. 네. 없으면 일부 부분에서 번역이 작동하지 않습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-3. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]의 언어가 Auto로 설정되어 있을 때, 한글패치가 이를 Korean으로 변경합니다. v4.98 이하의 버전에선 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]Mod Config Menu Pure[/url]를 통해 수동으로 설정해야 합니다.
+Q. 아이템 설명모드를 한국어로 바꾸고 싶어요!
+A. 한글패치가 활성화 돼있다면 설명모드의 언어는 자동으로 한국어로 설정됩니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-4. 아이템 설명모드가 없거나 꺼져 있으면 더럽혀진 카인이 제작한 아이템이 번역되지 않으며, 제작된 아이템의 번역은 실제 결과와 다를 수 있습니다.
+Q. 더빙을 끌 순 없나요?
+A. [url=https://steamcommunity.com/workshop/filedetails/?id=3360615255]한국어 더빙 모드[/url]를 구독 해제하여 영어 음성으로 들으실 수 있습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-5. 디버그 콘솔에서 더럽혀진 캐릭터들의 액티브 아이템은 검색되지 않습니다.
+Q. 몇몇 인터페이스가 영어로 나와요!
+A. 이스터 에그 메뉴나 통계 메뉴의 일부, 기타 등등은 모드에서 접근할 수 없는 관계로 번역되지 않았습니다. 캐릭터 추가 모드나 UI를 수정하는 모드에서 그래픽을 덮어씌우기도 합니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-6. 아이템·몬스터 추가 모드나 UI를 수정하는 모드와 같이 사용하면 한글패치가 의도대로 작동하지 않을 수 있습니다.
+Q. 디버그 콘솔에서 몇몇 아이템이 검색되지 않아요!
+A. 더럽혀진 캐릭터들의 액티브 아이템이 해당합니다. 기술적 한계로 인해 해결은 어렵습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-7. '실험약' 사용 시 표시되는 능력치 변화 설명은 부정확할 수 있으며, ‘천칭자리’ 소지 시 영어 원문으로 표시됩니다.
+Q. 실험약(Experimental Pill)을 썼는데 능력치가 이상하게 표시돼요!
+A. 해당 능력치 변화 설명은 부정확할 수 있으며, 천칭자리(Libra) 소지 시 영어 원문으로 표시됩니다. 기술적 한계로 인해 해결은 어렵습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-8. 기술적 한계로 인해 게임 내 플레이어가 2인 이상인 경우 아이템의 한국어/영어명이 이중으로 출력됩니다. (밀짚인형, 포가튼의 영혼, 잃어버린 영혼 사용/소지 시에도 동일)
-[img]https://imgur.com/oGiLZIY.png[/img]
-9. '통계' 메뉴 내 '아이템'과 '온라인' 메뉴, 이스터 에그, 일부 UI 텍스트(시간·점수 HUD, 게임 종료 메시지 등), 기타 등등은 모드에서 접근할 수 없는 관계로 번역되지 않았습니다.[/b]
-[/code]
-
-[h2] [b]　크레딧 [/b] [/h2]
-[code][b]1. 리펜턴스 번역: [url=https://badagames.net/]바다게임즈(초벌 번역)[/url]&amp; [url=https://www.nicalis.com]Nicalis(LQA)[/url]/ [url=https://x.com/Rojen241]Rojen(아트)[/url]
-2. 검수 및 그래픽: 사왈이(업로더) 외 다수¹
-3. 더빙: [url=https://www.instagram.com/youknow4pril]윤호[/url]&amp; [url=https://www.youtube.com/@칩스]Chips[/url]²
-4. Special Thanks: [url=https://github.com/ddeeddii/eztools]ddeeddii[/url]&amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2640122564]kittenchilly[/url] &amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3095155110]双笙子佯谬[/url] &amp; [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]Wofsauge[/url] &amp; Blackcreamtea³ &amp; [url=https://steamcommunity.com/id/_kohashiwakaba/]리셰[/url]⁴[/b]
-[img]https://imgur.com/oGiLZIY.png[/img]
-¹ 본 패치의 번역은 전부 리펜턴스의 한국어 번역과 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3124459064]한국어 번역+[/url]를 기준으로 제작되었습니다.
-  한국어 번역+는 리펜턴스 번역에 대한 유저분들의 피드백을 차용한 모드입니다.
-² [url=https://steamcommunity.com/workshop/filedetails/?id=3360615255]한국어 더빙 모드[/url]를 구독 해제하여 영어 음성으로 들으실 수 있습니다. 자세한 내용은 한국어
-  더빙 모드 페이지를 참고하세요.
-³ (구)리펜턴스 한국어 모드 제작자 분이며, 해당 모드에서 한국어 로고 및 일부 번역을 차용했습니다.
-⁴ 설명모드의 한국어 담당자 분이며, 비공식 언어 패치를 위한 언어 변경 콜백을 제작하셨습니다.
-[img]https://imgur.com/oGiLZIY.png[/img]
-[b]게임을 한국어로 즐기기 위해 대가 없이 한글패치를 제작해주셨던 Team.SM 및 다른 유저 분들, 유저들의 편의와 재미를 위해 열과 성으로 시간을 투자해 모드를 개발하시는 모더 분들, 리펜턴스의 수많은 오역에 피드백을 전달해주셨던, 게임에 애정을 가져주시고 플레이해 주셨던 그 모든 분들께 감사의 말씀을 드립니다.[/b]
-[/code]
+Q. 아이템을 먹으면 텍스트가 이중으로 떠요!
+A. 게임 내 플레이어가 2인 이상인 경우 그렇습니다. [url=https://www.notion.so/REPENTOGON-23bb86b00d93805cb3b5e68ea959f1e6]REPENTOGON+ 적용 시 해결됩니다.[/url]
+[/b][/code]
 
 　[url=https://github.com/sawalk/Repentance-Plus-Korean] [img]https://i.imgur.com/P6a8043.png[/img] 소스 코드[/url]</description>
-    <version>1.89</version>
+    <version>1.91</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>

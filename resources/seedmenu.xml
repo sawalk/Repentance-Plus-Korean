@@ -12,18 +12,18 @@
 	<seed id="16" name="무한 지하실"/>
 	<seed id="11" name="나를 따르라"/>
 	<seed id="72" name="획득 시간 제한"/>
-	<seed id="33" name="F2P 버전"/>
+	<seed id="33" name="부분 유료화"/>
 	<seed id="25" name="평화주의"/>
 	<seed id="32" name="적들이 부활함"/>
 	<seed id="71" name="돌이킬 수 없는"/>
 	<seed id="24" name="응아 기차"/>
-	<seed id="73" name="앗 모드"/>
-	<seed id="55" name="아이들의 협동 모드"/>
+	<seed id="73" name="겁쟁이들의 모드"/>
+	<seed id="55" name="어린이용 협동 모드"/>
 	<spacer />
 	
 	<seed id="56" name="영원한 어둠"/>
-	<seed id="57" name="벗어날 수 없는 미로"/>
-	<seed id="58" name="절망적인 길 잃음"/>
+	<seed id="57" name="벗어날 수 없는 미궁"/>
+	<seed id="58" name="절망적인 방황"/>
 	<seed id="59" name="영원한 미지"/>
 	<seed id="60" name="끝없는 미로"/>
 	<seed id="61" name="치료할 수 없는 실명"/>
@@ -31,26 +31,26 @@
 	<spacer />
 	
 	<seed id="63" name="어둠을 빛내리"/>
-	<seed id="64" name="미로를 탈출"/>
-	<seed id="65" name="더 이상 길 잃지 않아"/>
-	<seed id="66" name="모름을 알게됨"/>
-	<seed id="67" name="미궁을 빠져나가자"/>
-	<seed id="68" name="보이지 않음을 치료"/>
+	<seed id="64" name="미궁 탈출"/>
+	<seed id="65" name="더 이상 길을 잃지 않아"/>
+	<seed id="66" name="미지를 알게 됨"/>
+	<seed id="67" name="미로를 빠져나가자"/>
+	<seed id="68" name="눈 먼자에게 치유를"/>
 	<seed id="70" name="모든 저주 면제"/>
 	<spacer />
 	
 	<seed id="47" name="체력 한 칸 피해"/>
-	<seed id="48" name="체력 전체 피해"/>
+	<seed id="48" name="열 두 체력 피해"/>
 	<seed id="26" name="움직임을 멈추지 마라"/>
-	<seed id="27" name="타이머가 망가짐"/>
+	<seed id="27" name="카운트다운"/>
 	<seed id="28" name="30분 제한"/>
 	<spacer />
 	
-	<seed id="52" name="얼음 물리" />
+	<seed id="52" name="빙판길" />
 	<seed id="74" name="용맹"/>
 	<seed id="75" name="비겁"/>
-	<seed id="12" name="반전된 조작"/>
-	<seed id="76" name="축 정렬 조작"/>
+	<seed id="12" name="조작 반전"/>
+	<seed id="76" name="직선으로만 조작"/>
 	<spacer />
 	
 	<seed id="3" name="위장한 플레이어"/>
@@ -61,8 +61,8 @@
 	<seed id="15" name="투명한 적"/>
 	<spacer />
 	
-	<seed id="46" name="비어있음"/>
-	<seed id="53" name="그레이 스케일"/>
+	<seed id="46" name="빈 얼굴"/>
+	<seed id="53" name="회색조"/>
 	<seed id="54" name="크리스마스"/>
 	<seed id="35" name="대두 모드"/>
 	<seed id="36" name="소두 모드"/>
@@ -70,14 +70,14 @@
 	<spacer />
 	
 	<seed id="38" name="빛나는 눈물"/>
-	<seed id="23" name="엑스트라 고어"/>
+	<seed id="23" name="더 많은 피"/>
 	<spacer />
 
-	<seed id="8" name="음극선!"/>
+	<seed id="8" name="브라운관 화면"/>
 	<seed id="9" name="난독증"/>
 	<seed id="10" name="HUD 없음"/>
-	<seed id="29" name="불가사의한 알약"/>
-	<seed id="30" name="불가사의한 카드"/>
+	<seed id="29" name="수수께끼의 알약"/>
+	<seed id="30" name="수수께끼의 카드"/>
 	<spacer />
 
 	<seed id="13" name="챔피언 적"/>
@@ -85,7 +85,7 @@
 	<seed id="18" name="혼란스러운 적"/>
 	<seed id="19" name="겁쟁이 적"/>
 	<seed id="20" name="개구쟁이 적"/>
-	<seed id="21" name="비 사교적인 적"/>
+	<seed id="21" name="비사교적인 적"/>
 	<spacer />
 	
 	<seed id="7" name="방귀스런 소리"/>
