@@ -87,7 +87,7 @@
 	<card type="special" announcer="742" announcerdelay="70" pickup="17" achievement="610" description="한번 더" id="80" name="와일드 카드" mimiccharge="6" />
 	
 	<!-- Soul stones -->
-	<card type="rune" pickup="18" achievement="618" announcer="743" description="리롤하든가 말든가" id="81" name="아이작의 영혼" mimiccharge="4" />
+	<card type="rune" pickup="18" achievement="618" announcer="743" description="굴리거나... 말거나" id="81" name="아이작의 영혼" mimiccharge="4" />
 	<card type="rune" pickup="19" achievement="619" announcer="744" description="네 사랑을 줘!" id="82" name="막달레나의 영혼" mimiccharge="3" />
 	<card type="rune" pickup="20" achievement="620" announcer="745" description="열 수 없는 것을 열라" id="83" name="카인의 영혼" mimiccharge="6" />
 	<card type="rune" pickup="21" achievement="621" announcer="746" description="어둠 속으로" id="84" name="유다의 영혼" mimiccharge="2" />

@@ -346,7 +346,7 @@
         <key name="BESTIARY_HITS">
             <string>Hits</string>
             <string>ヒット数</string>
-            <string>피격</string>
+            <string>피격 횟수</string>
             <string>受伤害次数</string>
             <string>Удары</string>
             <string>Treffer</string>
@@ -356,7 +356,7 @@
         <key name="BESTIARY_DEATHS">
             <string>Deaths</string>
             <string>死んだ回数</string>
-            <string>죽음</string>
+            <string>사망 횟수</string>
             <string>被击杀次数</string>
             <string>Смерти</string>
             <string>Tode</string>
@@ -366,7 +366,7 @@
         <key name="BESTIARY_KILLS">
             <string>Kills</string>
             <string>倒した数</string>
-            <string>처치</string>
+            <string>처치 횟수</string>
             <string>击杀次数</string>
             <string>Убийства</string>
             <string>Kills</string>
@@ -376,7 +376,7 @@
         <key name="BESTIARY_ENCOUNTERS">
             <string>Encounters</string>
             <string>エンカウント数</string>
-            <string>조우</string>
+            <string>조우 횟수</string>
             <string>遭遇次数</string>
             <string>Встреча</string>
             <string>Begegnungen</string>
@@ -1688,7 +1688,7 @@
         <key name="TRANSCENDENCE_DESCRIPTION">
             <string>We all float down here...</string>
             <string>空中浮遊！</string>
-            <string>이젠 떠가는 거야…</string>
+            <string>여기선 모두가 떠다녀...</string>
             <string>我们在这都会飞起来...</string>
             <string>Мы все летаем здесь...</string>
             <string>Wir schweben alle hier unten ...</string>
@@ -2108,7 +2108,7 @@
         <key name="MOMS_PAD_DESCRIPTION">
             <string>Mass fear</string>
             <string>キモっ・・・</string>
-            <string>기분 나빠…</string>
+            <string>기분 나빠...</string>
             <string>群体恐惧</string>
             <string>Массовый страх</string>
             <string>Massenpanik</string>
@@ -2388,7 +2388,7 @@
         <key name="LEMON_MISHAP_DESCRIPTION">
             <string>Oops...</string>
             <string>あっ・・・</string>
-            <string>앗…</string>
+            <string>앗...</string>
             <string>哎呀…</string>
             <string>Упс...</string>
             <string>Ups ...</string>
@@ -3398,7 +3398,7 @@
         <key name="MONEY__POWER_NAME">
             <string>Money = Power</string>
             <string>お金は権力なり</string>
-            <string>돈의 힘</string>
+            <string>돈 = 힘</string>
             <string>金钱=力量</string>
             <string>Деньги = Сила</string>
             <string>Geld = Macht</string>
@@ -3768,7 +3768,7 @@
         <key name="FORGET_ME_NOW_DESCRIPTION">
             <string>I don't remember...</string>
             <string>なんだっけ・・・？</string>
-            <string>모두 잊어버렸어…</string>
+            <string>기억이 안 나...</string>
             <string>我不记得了…</string>
             <string>Я не помню...</string>
             <string>Ich erinnere mich nicht ...</string>
@@ -5128,7 +5128,7 @@
         <key name="MOMS_COIN_PURSE_DESCRIPTION">
             <string>What's all this...?</string>
             <string>これは・・・何だ！？</string>
-            <string>이게 다 뭐지…?</string>
+            <string>이게 다 뭐지...?</string>
             <string>这都是些什么...？</string>
             <string>Что это такое...?</string>
             <string>Was ist das alles ...?</string>
@@ -5298,7 +5298,7 @@
         <key name="FANNY_PACK_NAME">
             <string>Fanny Pack</string>
             <string>ファニーパック</string>
-            <string>작은 주머니</string>
+            <string>주머니 가방</string>
             <string>挎包</string>
             <string>Поясная сумка</string>
             <string>Gürteltasche</string>
@@ -5308,7 +5308,7 @@
         <key name="FANNY_PACK_DESCRIPTION">
             <string>Filled with goodies</string>
             <string>良いものイッパイつまってる</string>
-            <string>잡동사니 가방</string>
+            <string>멋진 것들이 가득</string>
             <string>装满了好东西</string>
             <string>Она наполнена ништяками!</string>
             <string>Randvoll mit schicken Sachen</string>
@@ -5568,7 +5568,7 @@
         <key name="MOMS_WIG_DESCRIPTION">
             <string>You feel itchy...</string>
             <string>なんだか痒い・・・</string>
-            <string>머리가 가려워…</string>
+            <string>머리가 가려워...</string>
             <string>头痒的感觉…</string>
             <string>Ты чувствуешь зуд...</string>
             <string>Juckt furchtbar ...</string>
@@ -6028,7 +6028,7 @@
         <key name="CONTRACT_FROM_BELOW_DESCRIPTION">
             <string>Wealth... but at what cost?</string>
             <string>大金持ち・・・だが、代償は大きい</string>
-            <string>부유해졌지만… 그 대가는?</string>
+            <string>부유해졌지만... 그 대가는?</string>
             <string>财富...但代价是什么呢？</string>
             <string>Богатство...но какой ценой?</string>
             <string>Reichtum ... aber zu welchem Preis?</string>
@@ -6698,7 +6698,7 @@
         <key name="LIL_BRIMSTONE_NAME">
             <string>Lil Brimstone</string>
             <string>小さなブリムストーン</string>
-            <string>작은 유황불</string>
+            <string>꼬마 유황</string>
             <string>硫磺火宝宝</string>
             <string>Маленькая Сера</string>
             <string>Mini-Schwefel</string>
@@ -6738,7 +6738,7 @@
         <key name="LIL_HAUNT_NAME">
             <string>Lil Haunt</string>
             <string>チビホーント</string>
-            <string>리틀 헌트</string>
+            <string>꼬마 유령</string>
             <string>恶灵宝宝</string>
             <string>Маленький преследователь</string>
             <string>Kleiner Spuk</string>
@@ -7678,7 +7678,7 @@
         <key name="UNDEFINED_NAME">
             <string>Undefined</string>
             <string>未定義</string>
-            <string>오류</string>
+            <string>정의되지 않음</string>
             <string>未定义</string>
             <string>Неопределённый</string>
             <string>Nicht definiert</string>
@@ -7688,7 +7688,7 @@
         <key name="UNDEFINED_DESCRIPTION">
             <string>Undefined</string>
             <string>未定義</string>
-            <string>오류</string>
+            <string>정의되지 않음</string>
             <string>未定义</string>
             <string>Неопределённый</string>
             <string>Nicht definiert</string>
@@ -8248,7 +8248,7 @@
         <key name="GLASS_CANNON_DESCRIPTION">
             <string>Be gentle...</string>
             <string>そーっと使ってね・・・</string>
-            <string>조심해서 다루세요…</string>
+            <string>조심해서 다루세요...</string>
             <string>轻拿轻放...</string>
             <string>Будь нежен...</string>
             <string>Sei sanft ...</string>
@@ -8438,7 +8438,7 @@
         <key name="LIL_CHEST_NAME">
             <string>Lil Chest</string>
             <string>小さな収納箱</string>
-            <string>작은 상자</string>
+            <string>꼬마 상자</string>
             <string>小箱子</string>
             <string>Сундучок</string>
             <string>Kleine Truhe</string>
@@ -8628,7 +8628,7 @@
         <key name="CURSE_OF_THE_TOWER_DESCRIPTION">
             <string>Embrace chaos</string>
             <string>この爆弾の数、ヤバくね・・？</string>
-            <string>저주받은 느낌이야…</string>
+            <string>저주받은 느낌이야...</string>
             <string>拥抱混乱</string>
             <string>Прими хаос</string>
             <string>Umarme das Chaos</string>
@@ -8768,7 +8768,7 @@
         <key name="NUMBER_TWO_DESCRIPTION">
             <string>Uh oh...</string>
             <string>やばい・・・</string>
-            <string>어 음…</string>
+            <string>어 음...</string>
             <string>糟糕...</string>
             <string>О-оу...</string>
             <string>Oh-oh ...</string>
@@ -8878,7 +8878,7 @@
         <key name="LIL_GURDY_NAME">
             <string>Lil Gurdy</string>
             <string>リトル ガーディー</string>
-            <string>리틀 거디</string>
+            <string>꼬마 거디</string>
             <string>肉山宝宝</string>
             <string>Малютка Гёрди</string>
             <string>Kleiner Gurdy</string>
@@ -9308,7 +9308,7 @@
         <key name="GB_BUG_DESCRIPTION">
             <string>Double tap glitch</string>
             <string>ダブルタップしたらバグった！？</string>
-            <string>게임 고장내는 버그!</string>
+            <string>두 번 눌러서 글리치 발생</string>
             <string>双击故障</string>
             <string>Глюк двойным нажатием</string>
             <string>Doppeldruck-Glitch</string>
@@ -9728,7 +9728,7 @@
         <key name="OBSESSED_FAN_DESCRIPTION">
             <string>Follows my every move...</string>
             <string>すべての動きを真似してる・・・</string>
-            <string>어디든 따라갈게요…</string>
+            <string>어디든 따라갈게요...</string>
             <string>有样学样...</string>
             <string>Следит за каждым моим шагом...</string>
             <string>Folgt jeder meiner Bewegungen ...</string>
@@ -9898,7 +9898,7 @@
         <key name="LIL_LOKI_NAME">
             <string>Lil Loki</string>
             <string>リトル ロキ</string>
-            <string>리틀 로키</string>
+            <string>꼬마 로키</string>
             <string>洛基宝宝</string>
             <string>Малыш Локи</string>
             <string>Kleiner Loki</string>
@@ -9928,7 +9928,7 @@
         <key name="MILK_DESCRIPTION">
             <string>Don't cry over it...</string>
             <string>泣かないで・・・</string>
-            <string>엎질러진 건 어쩔 수 없어…</string>
+            <string>엎질러진 건 어쩔 수 없어...</string>
             <string>别为它哭泣...</string>
             <string>Не плачь над ним...</string>
             <string>Weine nicht darüber ...</string>
@@ -10148,7 +10148,7 @@
         <key name="LINGER_BEAN_DESCRIPTION">
             <string>Crying makes me toot</string>
             <string>泣くとピューと吹く</string>
-            <string>난 울 때마다…잇몸이 시리다…</string>
+            <string>울면 가스가 차요</string>
             <string>边哭边放屁</string>
             <string>От плача я пукаю</string>
             <string>Weinen bringt mich zum Pupsen</string>
@@ -10188,7 +10188,7 @@
         <key name="METAL_PLATE_DESCRIPTION">
             <string>It itches...</string>
             <string>かゆい・・・</string>
-            <string>가려워…</string>
+            <string>가려워...</string>
             <string>好痒...</string>
             <string>Она чешется...</string>
             <string>Sie juckt ...</string>
@@ -10248,7 +10248,7 @@
         <key name="VARICOSE_VEINS_DESCRIPTION">
             <string>I'm leaking...</string>
             <string>もれてマス・・・</string>
-            <string>빠져버려요…</string>
+            <string>줄줄 새고 있어...</string>
             <string>我流血了...</string>
             <string>Я протекаю...</string>
             <string>Ich laufe aus ...</string>
@@ -10308,7 +10308,7 @@
         <key name="DADS_LOST_COIN_DESCRIPTION">
             <string>I remember this...</string>
             <string>コレ覚えてる・・・</string>
-            <string>이건 기억나…</string>
+            <string>이건 기억나...</string>
             <string>这个我还记得...</string>
             <string>Я помню это...</string>
             <string>Ich erinnere mich daran ...</string>
@@ -10598,7 +10598,7 @@
         <key name="HUSHY_NAME">
             <string>Hushy</string>
             <string>ハッシー</string>
-            <string>허쉬</string>
+            <string>침묵이</string>
             <string>死寂宝宝</string>
             <string>Молчун</string>
             <string>Hushy</string>
@@ -10608,7 +10608,7 @@
         <key name="HUSHY_DESCRIPTION">
             <string>Lil hush!</string>
             <string>リトルハッシュ！</string>
-            <string>리틀 허쉬!</string>
+            <string>꼬마 침묵!</string>
             <string>迷你死寂！</string>
             <string>Маленькое молчание!</string>
             <string>Kleiner Hush!</string>
@@ -10618,7 +10618,7 @@
         <key name="LIL_MONSTRO_NAME">
             <string>Lil Monstro</string>
             <string>リトルモンストロ</string>
-            <string>리틀 몬스트로</string>
+            <string>꼬마 몬스트로</string>
             <string>萌死戳宝宝</string>
             <string>Маленький Монстро</string>
             <string>Kleiner Monstro</string>
@@ -10928,7 +10928,7 @@
         <key name="DULL_RAZOR_DESCRIPTION">
             <string>I feel numb...</string>
             <string>ナニモカンジナイ・・・</string>
-            <string>감각이 없소…</string>
+            <string>감각이 없소...</string>
             <string>感觉不痛不痒...</string>
             <string>Я чувствую онемение...</string>
             <string>Ich fühle mich benommen ...</string>
@@ -10948,7 +10948,7 @@
         <key name="POTATO_PEELER_DESCRIPTION">
             <string>A pound of flesh...</string>
             <string>１ポンドの肉・・・</string>
-            <string>1 파운드 고기…</string>
+            <string>1파운드의 살...</string>
             <string>一磅肉…</string>
             <string>Фунт плоти...</string>
             <string>Ein Pfund Fleisch ...</string>
@@ -11578,7 +11578,7 @@
         <key name="LIL_DELIRIUM_NAME">
             <string>Lil Delirium</string>
             <string>リトルデリリアム</string>
-            <string>작은 섬망</string>
+            <string>꼬마 섬망</string>
             <string>精神错乱宝宝</string>
             <string>Малютка Сумасшествие</string>
             <string>Kleines Delirium</string>
@@ -11588,7 +11588,7 @@
         <key name="LIL_DELIRIUM_DESCRIPTION">
             <string>Delirious friend</string>
             <string>うわごとを言っている</string>
-            <string>기뻐 날뛰는 친구</string>
+            <string>혼란스러운 친구</string>
             <string>错乱伙伴</string>
             <string>Сумасшедший друг</string>
             <string>Freund im Delirium</string>
@@ -11728,7 +11728,7 @@
         <key name="7_SEALS_DESCRIPTION">
             <string>Lil harbingers!</string>
             <string>リトルハービンジャーズ</string>
-            <string>작은 전령!</string>
+            <string>꼬마 징조들!</string>
             <string>天启宝宝！</string>
             <string>Маленькие Всадники!</string>
             <string>Kleine Vorboten!</string>
@@ -11938,7 +11938,7 @@
         <key name="LIL_SPEWER_NAME">
             <string>Lil Spewer</string>
             <string>リトルゲロゲロ</string>
-            <string>작은 구토꾼</string>
+            <string>꼬마 구토꾼</string>
             <string>呕吐虫宝宝</string>
             <string>Маленький блевун</string>
             <string>Kleiner Speier</string>
@@ -11948,7 +11948,7 @@
         <key name="LIL_SPEWER_DESCRIPTION">
             <string>Puking buddy</string>
             <string>吐き友</string>
-            <string>토쟁이 친구</string>
+            <string>구토쟁이 친구</string>
             <string>呕吐伙伴</string>
             <string>Блюющий друг</string>
             <string>Kotzender Kumpel</string>
@@ -13458,7 +13458,7 @@
         <key name="LIL_DUMPY_NAME">
             <string>Lil Dumpy</string>
             <string>リトル ダンピー</string>
-            <string>작은 덤피</string>
+            <string>꼬마 덤피</string>
             <string>屁球宝宝</string>
             <string>Пышка</string>
             <string>Kleiner Dumpy</string>
@@ -13608,7 +13608,7 @@
         <key name="SHARP_KEY_DESCRIPTION">
             <string>Open your enemies</string>
             <string>ひらけテキ！</string>
-            <string>적들의 가슴을 열자</string>
+            <string>적들을 따버려라</string>
             <string>打开你的敌人</string>
             <string>Вскрой своих врагов</string>
             <string>Öffne deine Feinde</string>
@@ -14618,7 +14618,7 @@
         <key name="LIL_ABADDON_NAME">
             <string>Lil Abaddon</string>
             <string>リトル アバドン</string>
-            <string>작은 아바돈</string>
+            <string>꼬마 아바돈</string>
             <string>亚巴顿宝宝</string>
             <string>Маленький Абаддон</string>
             <string>Kleiner Abaddon</string>
@@ -14628,7 +14628,7 @@
         <key name="LIL_ABADDON_DESCRIPTION">
             <string>Abyssal friend</string>
             <string>深淵のオトモダチ</string>
-            <string>무저갱에서 온 작은 친구</string>
+            <string>무저갱에서 온 친구</string>
             <string>深渊伙伴</string>
             <string>Друг из бездны</string>
             <string>Abgründiger Freund</string>
@@ -14658,7 +14658,7 @@
         <key name="LIL_PORTAL_NAME">
             <string>Lil Portal</string>
             <string>リトル ポータル</string>
-            <string>작은 포탈</string>
+            <string>꼬마 포탈</string>
             <string>黑洞宝宝</string>
             <string>Маленький портал</string>
             <string>Kleines Portal</string>
@@ -16708,7 +16708,7 @@
         <key name="TICK_DESCRIPTION">
             <string>Well, that's not coming off</string>
             <string>取れない・・・</string>
-            <string>안 떨어져…</string>
+            <string>안 떨어져...</string>
             <string>得，它赖着不走了</string>
             <string>Что ж, он не отрывается</string>
             <string>Tja, die bleibt dran</string>
@@ -16988,7 +16988,7 @@
         <key name="CRACKED_DICE_DESCRIPTION">
             <string>You feel cursed... kinda.</string>
             <string>多少呪われた的な気分・・・みたいな？</string>
-            <string>저주에 걸린 것…같다</string>
+            <string>저주에 걸린 것... 같다?</string>
             <string>你感到受诅咒…大概</string>
             <string>Ты проклят... вроде.</string>
             <string>Du fühlst dich verflucht ... irgendwie.</string>
@@ -17048,7 +17048,7 @@
         <key name="LOUSE_DESCRIPTION">
             <string>Itchy, tasty...</string>
             <string>かゆい・・・うま</string>
-            <string>가려워, 가려워…</string>
+            <string>가려워, 가려워...</string>
             <string>好痒，好想啃…</string>
             <string>Зудящий, вкусный...</string>
             <string>Juckend, lecker ...</string>
@@ -17128,7 +17128,7 @@
         <key name="STUD_FINDER_DESCRIPTION">
             <string>The ground below feels hollow...</string>
             <string>足の下に感じる殺気・・・</string>
-            <string>아래에 빈 공간이 있는 것 같아…</string>
+            <string>아래에 빈 공간이 있는 것 같아...</string>
             <string>地下好像是空的...</string>
             <string>Под землёй чувствуется пустота...</string>
             <string>Der Boden darunter fühlt sich hohl an ...</string>
@@ -17358,7 +17358,7 @@
         <key name="LIL_LARVA_NAME">
             <string>Lil Larva</string>
             <string>リトル幼虫</string>
-            <string>리틀 라바</string>
+            <string>꼬마 라바</string>
             <string>小幼虫</string>
             <string>Малютка личинка</string>
             <string>Kleine Larve</string>
@@ -17428,7 +17428,7 @@
         <key name="CHILD_LEASH_DESCRIPTION">
             <string>Keep your friends close...</string>
             <string>ほら、離れないで。</string>
-            <string>친구들과 긴밀한 관계를 유지하세요</string>
+            <string>친구들과 떨어지지 마...</string>
             <string>让你的朋友保持亲密…</string>
             <string>Держи друзей близко...</string>
             <string>Halte deine Freunde in deiner Nähe ...</string>
@@ -18388,7 +18388,7 @@
         <key name="MYOSOTIS_DESCRIPTION">
             <string>Forget me not...</string>
             <string>私を忘れないで・・・</string>
-            <string>나를 잊지 말아요</string>
+            <string>날 잊지 말아요...</string>
             <string>别把我忘了…</string>
             <string>Не забывай меня...</string>
             <string>Vergiss mich nicht ...</string>
@@ -19158,7 +19158,7 @@
         <key name="LIL_CLOT_NAME">
             <string>Lil Clot</string>
             <string>リトル クロット</string>
-            <string>작은 혈전</string>
+            <string>꼬마 혈전</string>
             <string>小血团</string>
             <string>Малыш сгусток</string>
             <string>Kleiner Klumpen</string>
@@ -19168,7 +19168,7 @@
         <key name="LIL_CLOT_DESCRIPTION">
             <string>Mini friend</string>
             <string>ミニ フレンド</string>
-            <string>꼬마 친구</string>
+            <string>조그만 친구</string>
             <string>迷你伙伴</string>
             <string>Мини друг</string>
             <string>Mini-Freund</string>
@@ -19308,7 +19308,7 @@
         <key name="THE_TWINS_DESCRIPTION">
             <string>I'm seeing double...</string>
             <string>ダブって見えるよ・・・</string>
-            <string>모든 게 두 개로 보이는데...</string>
+            <string>두 개로 보여...</string>
             <string>我眼睛重影了…</string>
             <string>В глазах двоится...</string>
             <string>Ich sehe doppelt ...</string>
@@ -24162,7 +24162,7 @@
         <key name="LIL_BLUB">
             <string>Lil Blub</string>
             <string>リトル ブラブ</string>
-            <string>작은 납작</string>
+            <string>꼬마 퐁당</string>
             <string>小水泡</string>
             <string>Маленький Пузырь</string>
             <string>Kleiner Blubberer</string>
@@ -24292,7 +24292,7 @@
         <key name="MIN_MIN">
             <string>Min Min</string>
             <string>ミンミン</string>
-            <string>민 민</string>
+            <string>도깨비불</string>
             <string>冥明火灵</string>
             <string>Мин Мин</string>
             <string>Min Min</string>
@@ -26088,7 +26088,7 @@
         <key name="A_CARD_AGAINST_HUMANITY_DESCRIPTION">
             <string>Something stinks...</string>
             <string>なんか臭う・・・</string>
-            <string>냄새…</string>
+            <string>냄새...</string>
             <string>好臭…</string>
             <string>Что-то воняет...</string>
             <string>Etwas stinkt hier ...</string>
@@ -26808,7 +26808,7 @@
         <key name="SOUL_OF_ISAAC_DESCRIPTION">
             <string>Reroll... or not</string>
             <string>やり直す・・・かも？</string>
-            <string>리롤하든가 말든가</string>
+            <string>굴리거나... 말거나</string>
             <string>重置…还是不重置</string>
             <string>Меняй...или нет</string>
             <string>Neu würfeln ... oder nicht</string>
@@ -27770,7 +27770,7 @@
         <key name="SEED_73">
             <string>Dog Mode</string>
             <string>ドッゴ モード</string>
-            <string>겁쟁이 모드</string>
+            <string>겁쟁이들의 모드</string>
             <string>怂狗模式</string>
             <string>Режим Гоб</string>
             <string>Ttog-Modus</string>
@@ -31012,7 +31012,7 @@
         <key name="COOP_AWARD_GAMBLER_DESC">
             <string>Gambled the most at Slot Machine, Claw Game, or 3 Skull Monty (minimum 20)</string>
             <string />
-            <string>가장 많이 슬롯머신, 인형 뽑기, or 해골 야바위로 도박함 (최소 20희)</string>
+            <string>가장 많이 슬롯머신, 인형 뽑기, 해골 야바위로 도박함 (최소 20회)</string>
             <string />
             <string />
             <string />

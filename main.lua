@@ -101,8 +101,10 @@ mod.warningScale = 0.5
 mod.warningOpacity = 0.75
 
 mod.runningRep = REPENTANCE and not REPENTANCE_PLUS    -- 리펜턴스 DLC인가?
-mod.notKillingMom = false                              -- 엄마를 처치했는가?
 mod.notRestart = false                                 -- 설치 후 재실행을 했는가?
+mod.saveDataDummy = tonumber(mod:LoadData()) or 0
+
+mod.notKillingMom = false                              -- 엄마를 처치했는가?
 mod.notRunningEID = false                              -- EID가 실행 중인가?
 mod.notEIDKorean = false                               -- EID가 한국어로 설정돼있는가?
 
@@ -115,7 +117,6 @@ mod.tmWarningShown = false
 
 local messages = {
     notKillingMom = "지금 모드를 적용하면 도전 과제가 해금되지 않을 수 있습니다!",
-    notRestart = "게임을 재시작해야 합니다!",
     notRunningEID = "아이템 설명모드를 감지하지 못했습니다! 일부 번역 기능이 동작하지 않습니다!",
     notEIDKorean = "아이템 설명모드가 한국어로 설정돼있지 않습니다. Mod Config Menu Pure를 구독한 후 수동으로 설정하세요.",
     hasTM = "TMTRAINER를 소지 중입니다! 일부 번역 기능이 동작하지 않습니다!",
@@ -126,7 +127,6 @@ local messages = {
 
 local warningDurations = {
     [messages.notKillingMom] = 180,
-    [messages.notRestart] = 18000,
     [messages.notRunningEID] = 180,
     [messages.notEIDKorean] = 180,
     [messages.hasTM] = 180
@@ -135,14 +135,9 @@ local warningDurations = {
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
     if not mod:HasData() then
         mod.notRestart = true
-        mod:SaveData("-- Check whether or not the game has been restarted after installing the mod.")
-        ----
-        local duration = warningDurations[messages.notRestart]
-        mod.warningTimers[messages.notRestart] = duration
-        mod.warningMaxTimes[messages.notRestart] = duration
-        mod.warningRed = 0.25
-        mod.warningOpacity = 1
     end
+    mod.saveDataDummy = mod.saveDataDummy + 1
+    mod:SaveData(mod.saveDataDummy)
 
     if EID then
         if EID.ModVersion > 4.2 and EID.ModVersion < 4.99 then
@@ -203,8 +198,46 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
     end
 end)
 
-local warningSprite = Sprite()
-warningSprite:Load("gfx/ui/popup_runningrep.anm2", true)
+local function GetCurrentModPath()
+	if debug then
+		return string.sub(debug.getinfo(GetCurrentModPath).source,2) .. "/../"
+	end
+	--use some very hacky trickery to get the path to this mod
+	local _, err = pcall(require, "")
+	local _, basePathStart = string.find(err, "no file '", 1)
+	local _, modPathStart = string.find(err, "no file '", basePathStart)
+	local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
+	local modPath = string.sub(err, modPathStart+1, modPathEnd-1)
+	modPath = string.gsub(modPath, "\\", "/")
+	modPath = string.gsub(modPath, "//", "/")
+	modPath = string.gsub(modPath, ":/", ":\\")
+
+	return modPath
+end
+mod.modPath = GetCurrentModPath()
+
+local warningFontBlack = Font()
+warningFontBlack:Load("font/cjk/lanapixel.fnt")
+
+local warningFont12 = Font()
+warningFont12:Load(mod.modPath .. "resources/font/teammeatex/teammeatex12.fnt")
+
+local warningFont16 = Font()
+warningFont16:Load(mod.modPath .. "resources/font/teammeatex/teammeatex16.fnt")
+
+local function DrawWarningString(font, text, offset, color)
+    if Game():GetHUD():IsVisible() then
+        Game():GetHUD():SetVisible(false)
+    end
+
+    if Isaac.GetPlayer().ControlsEnabled then
+	    Isaac.GetPlayer().ControlsEnabled = false
+    end
+
+	local x = Isaac.GetScreenWidth() / 2 - font:GetStringWidthUTF8(text) / 2
+    local y = Isaac.GetScreenHeight() / 2 - offset
+    font:DrawStringUTF8(text, x, y, color or KColor(1, 1, 1, 1), 0, true)
+end
 
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
     --[[ if Isaac.GetScreenPointScale() == 3 then
@@ -212,6 +245,26 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
     else
         mod.warningScale = 0.5
     end ]]
+
+    if mod.runningRep then
+        warningFontBlack:DrawStringScaledUTF8("쀏", 400, -1500, 400, 400, KColor(0, 0, 0, 1), 0, true)
+        DrawWarningString(warningFont16, "리펜턴스+ 한글패치가", 79, KColor(1, 0.5, 0.5, 1))
+        DrawWarningString(warningFont16, "리펜턴스에서 실행되었습니다!", 55, KColor(1, 0.5, 0.5, 1))
+        DrawWarningString(warningFont12, "현재 상태로는 게임 진행이 불가합니다.", 22, KColor(1, 1, 1, 0.5))
+        DrawWarningString(warningFont12, "일시정지 키로 게임을 나가고 아래 매뉴얼을 따르세요.", 4, KColor(1, 1, 1, 0.5))
+        DrawWarningString(warningFont12, "리펜턴스로 하시려면 z_REPENTANCE+ KOREAN 모드를 꺼주세요.", -24)
+        DrawWarningString(warningFont12, "리펜턴스+로 하시려면 DLC를 제대로 적용했는지 다시 확인하세요.", -44)
+        return
+    end
+
+    if mod.notRestart then
+        warningFontBlack:DrawStringScaledUTF8("쀏", 400, -1500, 400, 400, KColor(0, 0, 0, 1), 0, true)
+        DrawWarningString(warningFont16, "게임을 재실행해야 합니다!", 55, KColor(1, 0.5, 0.5, 1))
+        DrawWarningString(warningFont12, "한글패치는 최소 한 번 게임에 진입한 저장파일에서만", 18)
+        DrawWarningString(warningFont12, "정상적으로 작동합니다. 양해바랍니다.", 0)
+        DrawWarningString(warningFont12, "(현재 상태로는 게임 진행이 불가합니다)", -24, KColor(1, 1, 1, 0.5))
+        return
+    end
     
     for warning, time in pairs(mod.warningTimers) do
         local maxTime = mod.warningMaxTimes[warning] or 180
@@ -221,7 +274,8 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
             Isaac.GetScreenHeight() - (12 + mod.stageAPIoffset),
             mod.warningScale, mod.warningScale,
             1, mod.warningRed, mod.warningRed,
-            math.min(time / maxTime, 1) * 0.75)
+            math.min(time / maxTime, 1) * 0.75
+        )
     end
 
     if mod.detectStageAPI and mod.stageAPITimer > 0 then
@@ -231,13 +285,8 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
             Isaac.GetScreenHeight() - 12,
             0.5, 0.5,
             1, 1, 1,
-            (mod.stageAPITimer / 60) * 0.5)
-    end
-
-    if mod.runningRep then
-        warningSprite:Play("runningRep")
-        warningSprite:Update()
-        warningSprite:Render(Vector(Isaac.GetScreenWidth() / 1.97, Isaac.GetScreenHeight() / 2))
+            (mod.stageAPITimer / 60) * 0.5
+        )
     end
 end)
 
@@ -1168,5 +1217,5 @@ end
 
 
 ------ 버전 출력 ------
-mod.version = 1.91
+mod.version = 1.92
 print("Repentance+ Korean " .. string.format("%.2f", mod.version) .. " loaded.")

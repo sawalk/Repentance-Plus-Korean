@@ -4,20 +4,21 @@
     <directory>repentance+ korean</directory>
     <id>3371064337</id>
     <description>[h1] [b]　FAQ [/b] [/h1]
+[h3]　 [b]패치에 대해 / 게임에 대해[/b][/h3]
 [code][b]Q. 버그가 있어요! 오역이 있어요!
 A. 버그나 호환성 이슈, 번역 오류 및 건의 사항은 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues]Github[/url]Issues에 작성 바랍니다.
+[img]https://imgur.com/oGiLZIY.png[/img]
+Q. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]를 필수로 구독해야 되나요?
+A. 네. 없으면 일부 부분에서 번역이 작동하지 않습니다.
+[/b][/code]
+[code][b]Q. 더빙을 끌 순 없나요?
+A. [url=https://steamcommunity.com/workshop/filedetails/?id=3360615255]한국어 더빙 모드[/url]를 구독 해제하여 영어 음성으로 들으실 수 있습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
 Q. 모드를 적용하고 게임을 하는데 도전 과제가 해금되지 않아요!
 A. '엄마' 보스를 처치하지 않은 저장파일에서 모드를 활성화하면 도전 과제가 해금되지 않습니다. (모든 모드 공통)
 [img]https://imgur.com/oGiLZIY.png[/img]
-Q. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]를 필수로 구독해야 되나요?
-A. 네. 없으면 일부 부분에서 번역이 작동하지 않습니다.
-[img]https://imgur.com/oGiLZIY.png[/img]
 Q. 아이템 설명모드를 한국어로 바꾸고 싶어요!
 A. 한글패치가 활성화 돼있다면 설명모드의 언어는 자동으로 한국어로 설정됩니다.
-[img]https://imgur.com/oGiLZIY.png[/img]
-Q. 더빙을 끌 순 없나요?
-A. [url=https://steamcommunity.com/workshop/filedetails/?id=3360615255]한국어 더빙 모드[/url]를 구독 해제하여 영어 음성으로 들으실 수 있습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
 Q. 몇몇 인터페이스가 영어로 나와요!
 A. 이스터 에그 메뉴나 통계 메뉴의 일부, 기타 등등은 모드에서 접근할 수 없는 관계로 번역되지 않았습니다. 캐릭터 추가 모드나 UI를 수정하는 모드에서 그래픽을 덮어씌우기도 합니다.
@@ -25,15 +26,12 @@ A. 이스터 에그 메뉴나 통계 메뉴의 일부, 기타 등등은 모드�
 Q. 디버그 콘솔에서 몇몇 아이템이 검색되지 않아요!
 A. 더럽혀진 캐릭터들의 액티브 아이템이 해당합니다. 기술적 한계로 인해 해결은 어렵습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-Q. 실험약(Experimental Pill)을 썼는데 능력치가 이상하게 표시돼요!
-A. 해당 능력치 변화 설명은 부정확할 수 있으며, 천칭자리(Libra) 소지 시 영어 원문으로 표시됩니다. 기술적 한계로 인해 해결은 어렵습니다.
-[img]https://imgur.com/oGiLZIY.png[/img]
 Q. 아이템을 먹으면 텍스트가 이중으로 떠요!
 A. 게임 내 플레이어가 2인 이상인 경우 그렇습니다. [url=https://www.notion.so/REPENTOGON-23bb86b00d93805cb3b5e68ea959f1e6]REPENTOGON+ 적용 시 해결됩니다.[/url]
 [/b][/code]
 
 　[url=https://github.com/sawalk/Repentance-Plus-Korean] [img]https://i.imgur.com/P6a8043.png[/img] 소스 코드[/url]</description>
-    <version>1.91</version>
+    <version>1.92</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>

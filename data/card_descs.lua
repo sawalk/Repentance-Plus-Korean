@@ -79,7 +79,7 @@ return {
 	[Card.CARD_CRACKED_KEY] = "???",
 	[Card.CARD_QUEEN_OF_HEARTS] = "<3",
 	[Card.CARD_WILD] = "한번 더",
-	[Card.CARD_SOUL_ISAAC] = "리롤하든가 말든가",
+	[Card.CARD_SOUL_ISAAC] = "굴리거나... 말거나",
 	[Card.CARD_SOUL_MAGDALENE] = "네 사랑을 줘!",
 	[Card.CARD_SOUL_CAIN] = "열 수 없는 것을 열라",
 	[Card.CARD_SOUL_JUDAS] = "어둠 속으로",
