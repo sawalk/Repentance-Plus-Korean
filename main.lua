@@ -1059,7 +1059,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
         end
 
         if currentAngelChance > lastSacrificeAngelChance then
-            Game():GetHUD():ShowFortuneText("축복 받은 느낌!")
+            Game():GetHUD():ShowFortuneText("축복받은 느낌!")
         end
         lastSacrificeAngelChance = currentAngelChance
     else
@@ -1084,9 +1084,9 @@ function mod:checkConfessional()
                 end
 
                 if currentAngelChance > lastConfessionalAngelChance then
-                    Game():GetHUD():ShowFortuneText("축복 받은 느낌!")
+                    Game():GetHUD():ShowFortuneText("축복받은 느낌!")
                 elseif previousCurses ~= nil and previousCurses ~= 0 and currentCurses == 0 then
-                    Game():GetHUD():ShowFortuneText("축복 받은 느낌!")
+                    Game():GetHUD():ShowFortuneText("축복받은 느낌!")
                 end
 
                 lastConfessionalAngelChance = currentAngelChance
@@ -1217,5 +1217,5 @@ end
 
 
 ------ 버전 출력 ------
-mod.version = 1.92
+mod.version = 1.93
 print("Repentance+ Korean " .. string.format("%.2f", mod.version) .. " loaded.")

@@ -4562,7 +4562,7 @@
     <entity anm2path="866.000_dark esau.anm2" baseHP="100" boss="0" champion="0" collisionDamage="0" collisionMass="1" collisionRadius="13" friction="1" id="866" name="Dark Esau's Pit" numGridCollisionPoints="0" shadowSize="0" stageHP="0" tags="noreroll" variant="1">
         <gibs amount="0" blood="1" bone="1" eye="1" gut="1" large="0" />
     </entity>
-    <entity anm2path="867.000_mothers shadow.anm2" baseHP="250" boss="1" champion="0" collisionDamage="2" collisionMass="50" collisionRadius="30" friction="1" id="867" name="엄마의 그림자 (Mother's Shadow)" numGridCollisionPoints="12" portrait="139" shadowSize="14" shieldStrength="0" stageHP="20" tags="noreroll nodelirium" variant="0">
+    <entity anm2path="867.000_mothers shadow.anm2" baseHP="250" boss="1" champion="0" collisionDamage="2" collisionMass="50" collisionRadius="30" friction="1" id="867" name="어머니의 그림자 (Mother's Shadow)" numGridCollisionPoints="12" portrait="139" shadowSize="14" shieldStrength="0" stageHP="20" tags="noreroll nodelirium" variant="0">
         <bestiary anim="Idle" transform="0,-10,1" />
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>

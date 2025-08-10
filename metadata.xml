@@ -10,6 +10,12 @@ A. 버그나 호환성 이슈, 번역 오류 및 건의 사항은 [url=https://g
 [img]https://imgur.com/oGiLZIY.png[/img]
 Q. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]를 필수로 구독해야 되나요?
 A. 네. 없으면 일부 부분에서 번역이 작동하지 않습니다.
+[img]https://imgur.com/oGiLZIY.png[/img]
+Q. 온라인 매치에서 사용할 수 있나요?
+A. 아니요. 온라인 매치를 플레이하려면 모드를 비활성화해야 합니다.
+[img]https://imgur.com/oGiLZIY.png[/img]
+Q. Can I modify and publish this patch? (For those who want to create a patches in other languages)
+A. Yes, but please note that this patch is updated frequently in both major and minor ways, so immediate maintenance will be required. Additionally, we cannot guarantee that it will function reliably. If you publish a modified version, you must include credits for this patch.
 [/b][/code]
 [code][b]Q. 더빙을 끌 순 없나요?
 A. [url=https://steamcommunity.com/workshop/filedetails/?id=3360615255]한국어 더빙 모드[/url]를 구독 해제하여 영어 음성으로 들으실 수 있습니다.
@@ -31,7 +37,7 @@ A. 게임 내 플레이어가 2인 이상인 경우 그렇습니다. [url=https:
 [/b][/code]
 
 　[url=https://github.com/sawalk/Repentance-Plus-Korean] [img]https://i.imgur.com/P6a8043.png[/img] 소스 코드[/url]</description>
-    <version>1.92</version>
+    <version>1.93</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>
