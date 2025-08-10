@@ -43,7 +43,7 @@
 	<active description="#BOBS_ROTTEN_HEAD_DESCRIPTION" gfx="Collectibles_042_BobsRottenHead.png" id="42" maxcharges="2" name="#BOBS_ROTTEN_HEAD_NAME" />
 	<!-- <active description="#PILLS_HERE_DESCRIPTION" id="43" name="#PILLS_HERE_NAME" /> -->
 	<active cooldown="30" description="#TELEPORT_DESCRIPTION" gfx="Collectibles_044_Teleport.png" id="44" maxcharges="2" name="#TELEPORT_NAME" />
-	<active description="충전식 회복 아이템" gfx="Collectibles_045_YumHeart.png" id="45" maxcharges="4" name="맛있는 심장" />
+	<active description="충전식 체력 회복" gfx="Collectibles_045_YumHeart.png" id="45" maxcharges="4" name="맛있는 심장" />
 	<passive cache="luck" description="#LUCKY_FOOT_DESCRIPTION" gfx="Collectibles_046_LuckyFoot.png" id="46" name="#LUCKY_FOOT_NAME" />
 	<active description="#DOCTORS_REMOTE_DESCRIPTION" gfx="Collectibles_047_DoctorsRemote.png" id="47" maxcharges="2" name="#DOCTORS_REMOTE_NAME" />
 	<passive cache="tearflag" description="#CUPIDS_ARROW_DESCRIPTION" gfx="Collectibles_048_CupidsArrow.png" id="48" name="#CUPIDS_ARROW_NAME" />
@@ -605,7 +605,7 @@
 	<active		id="577"	achievement="432" gfx="Collectibles_577_Damocles.png" name="#DAMOCLES_NAME" description="#DAMOCLES_DESCRIPTION" maxcharges="0" devilprice="2" cache="familiars" />
 	<active		id="578"	gfx="Collectibles_578_FreeLemonade.png" name="#FREE_LEMONADE_NAME" description="#FREE_LEMONADE_DESCRIPTION" maxcharges="4" />
 	<passive	id="579"	achievement="520" gfx="Collectibles_579_SpiritSword.png" name="#SPIRIT_SWORD_NAME" description="#SPIRIT_SWORD_DESCRIPTION" cache="weapon damage firedelay" special="true" devilprice="2" />
-	<active		id="580"	achievement="415" gfx="Collectibles_580_SecretKey.png" name="#RED_KEY_NAME" description="#RED_KEY_DESCRIPTION" maxcharges="4" />
+	<active		id="580"	achievement="415" gfx="Collectibles_580_SecretKey.png" name="붉은 열쇠" description="저 너머로의 여행" maxcharges="4" />
 	<familiar	id="581"	gfx="Collectibles_581_PsyFly.png" name="#PSY_FLY_NAME" description="#PSY_FLY_DESCRIPTION" />
 	<active		id="582"	gfx="Collectibles_582_WavyCap.png" name="#WAVY_CAP_NAME" description="#WAVY_CAP_DESCRIPTION" maxcharges="900" chargetype="timed" cache="firedelay damage speed" />
 	<passive	id="583"	gfx="Collectibles_583_RocketInAJar.png" name="#ROCKET_IN_A_JAR_NAME" description="#ROCKET_IN_A_JAR_DESCRIPTION" bombs="5" />
@@ -730,17 +730,17 @@
 	<passive	id="702"	achievement="506" gfx="Collectibles_702_BloodSoul.png" name="#VENGEFUL_SPIRIT_NAME" description="#VENGEFUL_SPIRIT_DESCRIPTION" />
 	<active		id="703"	achievement="507" gfx="Collectibles_703_EsauJr.png" name="#ESAU_JR_NAME" description="#ESAU_JR_DESCRIPTION" maxcharges="1" />
 	<active		id="704"	achievement="590" gfx="Collectibles_704_Berserk.png" name="#BERSERK_NAME" description="#BERSERK_DESCRIPTION" maxcharges="100000" chargetype="special" initcharge="50000" cache="all" cooldown="150" persistent="true" />
-	<active		id="705"	achievement="587" gfx="Collectibles_705_DarkArts.png" name="흑마술" description="어둠과 함께 하는 자" maxcharges="180" chargetype="timed" cooldown="30" cache="speed" />
+	<active		id="705"	achievement="587" gfx="Collectibles_705_DarkArts.png" name="흑마술" description="어둠과 하나 된 자" maxcharges="180" chargetype="timed" cooldown="30" cache="speed" />
 	<active		id="706"	achievement="597" gfx="Collectibles_706_Abyss.png" name="무저갱" description="나락에서 올라오라" maxcharges="4" />
 	<passive	id="707"	gfx="Collectibles_707_Supper.png" name="#SUPPER_NAME" description="#SUPPER_DESCRIPTION" hearts="4" maxhearts="2" />
 	<passive	id="708"	gfx="Collectibles_708_Stapler.png" name="#STAPLER_NAME" description="#STAPLER_DESCRIPTION" cache="damage" />
 	<active		id="709"	achievement="437" gfx="Collectibles_709_Suplex.png" name="#SUPLEX_NAME" description="#SUPLEX_DESCRIPTION" maxcharges="200" chargetype="timed" />
 	<active		id="710"	achievement="586" gfx="Collectibles_710_BagOfCrafting.png" name="#BAG_OF_CRAFTING_NAME" description="#BAG_OF_CRAFTING_DESCRIPTION" />
 	<active		id="711"	achievement="592" gfx="Collectibles_711_Flip.png" name="뒤집기" description="생사의 경계에서" maxcharges="6" />
-	<active		id="712"	achievement="599" gfx="Collectibles_712_Lemegeton.png" name="레메게톤" description="아이템 소환" maxcharges="6" />
+	<active		id="712"	achievement="599" gfx="Collectibles_712_Lemegeton.png" name="레메게톤" description="아이템 소환서" maxcharges="6" />
 	<active		id="713"	achievement="589" gfx="Collectibles_713_Sumptorium.png" name="섬토리움" description="피에서 피로" maxcharges="300" chargetype="timed" cooldown="60" />
 	<active		id="714"	gfx="Collectibles_714_Recall.png" name="회수" description="돌아오렴" maxcharges="90" chargetype="timed" cache="flying" cooldown="150" hidden="true" />
-	<active		id="715"	gfx="Collectibles_715_Hold.png" name="저장" description="다음에 쓸 데가 있을 거야" maxcharges="0" hidden="true" />
+	<active		id="715"	gfx="Collectibles_715_Hold.png" name="저장" description="나중을 위해" maxcharges="0" hidden="true" />
 	<passive	id="716"	achievement="464" gfx="Collectibles_716_KeepersSack.png" name="#KEEPERS_SACK_NAME" description="#KEEPERS_SACK_DESCRIPTION" cache="damage speed range" />
 	<passive	id="717"	achievement="596" gfx="Collectibles_717_KeepersKin.png" name="#KEEPERS_KIN_NAME" description="#KEEPERS_KIN_DESCRIPTION" />
 	<active		id="719"	achievement="465" gfx="Collectibles_719_KeepersBox.png" name="#KEEPERS_BOX_NAME" description="#KEEPERS_BOX_DESCRIPTION" maxcharges="4" />

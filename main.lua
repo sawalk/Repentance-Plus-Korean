@@ -1217,5 +1217,5 @@ end
 
 
 ------ 버전 출력 ------
-mod.version = 1.93
+mod.version = 1.94
 print("Repentance+ Korean " .. string.format("%.2f", mod.version) .. " loaded.")

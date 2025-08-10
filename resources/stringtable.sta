@@ -2168,7 +2168,7 @@
         <key name="YUM_HEART_DESCRIPTION">
             <string>Reusable regeneration</string>
             <string>再利用型再生能力</string>
-            <string>충전식 회복 아이템</string>
+            <string>충전식 체력 회복</string>
             <string>充能型体力回复</string>
             <string>Многоразовая регенерация</string>
             <string>Wiederverwendbare Regeneration</string>
@@ -11138,7 +11138,7 @@
         <key name="CAMO_UNDIES_NAME">
             <string>Camo Undies</string>
             <string>カモフラパンツ</string>
-            <string>위장용 속옷</string>
+            <string>위장 속옷</string>
             <string>迷彩内裤</string>
             <string>Камуфляжные трусы</string>
             <string>Tarn-Unterwäsche</string>
@@ -25308,7 +25308,7 @@
         <key name="THE_HIEROPHANT_DESCRIPTION">
             <string>Two prayers for the lost</string>
             <string>消えゆくものに祈りを</string>
-            <string>잃은 자에게 기도를</string>
+            <string>잃은 자를 위한 두 기도</string>
             <string>为迷途者祷告两次</string>
             <string>Две молитвы за заблудших</string>
             <string>Zwei Gebete für die Verlorenen</string>
@@ -25328,7 +25328,7 @@
         <key name="THE_LOVERS_DESCRIPTION">
             <string>May you prosper and be in good health</string>
             <string>健やかに伸びよ</string>
-            <string>번영하리라!</string>
+            <string>건강하고 번영하리라</string>
             <string>愿您健康繁盛</string>
             <string>Процветания и крепкого здоровья</string>
             <string>Mögest du gedeihen und gesund sein</string>
@@ -25388,7 +25388,7 @@
         <key name="THE_HERMIT_DESCRIPTION">
             <string>May you see what life has to offer</string>
             <string>人生には価値がある</string>
-            <string>삶이 제공하는 것을 보게 되리라</string>
+            <string>삶이 주는 것을 보게 되리라</string>
             <string>愿您看破红尘</string>
             <string>Узнай, что жизнь тебе предлагает</string>
             <string>Mögest du sehen, was das Leben bietet</string>
@@ -25468,7 +25468,7 @@
         <key name="DEATH_DESCRIPTION">
             <string>Lay waste to all that oppose you</string>
             <string>刃向う者には闇を</string>
-            <string>대적하는 자들은 죽음을 맞으리니</string>
+            <string>대적하는 자들은 완전히 파괴되리라</string>
             <string>毁灭忤逆尔者</string>
             <string>Уничтожить все, что противостоит тебе</string>
             <string>Vernichte, was sich dir widersetzt</string>
@@ -25488,7 +25488,7 @@
         <key name="TEMPERANCE_DESCRIPTION">
             <string>May you be pure in heart</string>
             <string>常に純粋であれ</string>
-            <string>진실로 순수하게 되리라</string>
+            <string>순수한 마음을 갖게 되리라</string>
             <string>愿您内心纯洁</string>
             <string>Будь чист сердцем</string>
             <string>Mögest du rein im Herzen sein</string>
@@ -25508,7 +25508,7 @@
         <key name="THE_DEVIL_DESCRIPTION">
             <string>Revel in the power of darkness</string>
             <string>闇の力を知れ</string>
-            <string>어둠의 힘이 드러나리라</string>
+            <string>어둠의 힘을 만끽하라</string>
             <string>沉迷黑暗之力</string>
             <string>Наслаждайтесь силой тьмы</string>
             <string>Schwelge in der Macht der Dunkelheit</string>
@@ -25548,7 +25548,7 @@
         <key name="THE_STARS_DESCRIPTION">
             <string>May you find what you desire</string>
             <string>宿命を見出せ</string>
-            <string>열망하던 대로 얻게 되리라</string>
+            <string>열망하던 것을 찾게 되리라</string>
             <string>愿你心想事成</string>
             <string>Да найдешь ты то, что желаешь</string>
             <string>Mögest du finden, was du begehrst</string>
@@ -25568,7 +25568,7 @@
         <key name="THE_MOON_DESCRIPTION">
             <string>May you find all you have lost</string>
             <string>失物の戻らん事を</string>
-            <string>잃은 것을 되찾게 되리라</string>
+            <string>잃어버린 모든 걸 되찾게 되리라</string>
             <string>愿你失而复得</string>
             <string>Да найдешь ты то, что потерял</string>
             <string>Mögest du finden, was du verloren hast</string>
@@ -25608,7 +25608,7 @@
         <key name="JUDGEMENT_DESCRIPTION">
             <string>Judge lest ye be judged</string>
             <string>今こそ鉄槌を下す時</string>
-            <string>네 직접 그들을 심판하여라</string>
+            <string>심판받지 않기 위해 심판하라</string>
             <string>为避审而审判</string>
             <string>Суди, да не судим будешь</string>
             <string>Richte oder werde gerichtet</string>
@@ -25628,7 +25628,7 @@
         <key name="THE_WORLD_DESCRIPTION">
             <string>Open your eyes and see</string>
             <string>眼を開きそして見よ</string>
-            <string>두 눈이 뜨이리라</string>
+            <string>눈을 뜨고 세상을 보아라</string>
             <string>睁眼洞察世界</string>
             <string>Открой глаза и смотри</string>
             <string>Öffne deine Augen und sieh</string>
@@ -25858,7 +25858,7 @@
         <key name="EHWAZ_NAME">
             <string>Ehwaz</string>
             <string>エワズ</string>
-            <string>에화즈</string>
+            <string>에와즈</string>
             <string>马骑符文</string>
             <string>Эваз</string>
             <string>Ehwaz</string>
@@ -25978,7 +25978,7 @@
         <key name="BLANK_RUNE_NAME">
             <string>Blank Rune</string>
             <string>ブランクルーン</string>
-            <string>공백 룬</string>
+            <string>비어있는 룬</string>
             <string>空白符文</string>
             <string>Пустая руна</string>
             <string>Blanke Rune</string>
@@ -26118,7 +26118,7 @@
         <key name="GET_OUT_OF_JAIL_FREE_CARD_NAME">
             <string>Get Out Of Jail Free Card</string>
             <string>刑務所釈放カード</string>
-            <string>감옥 탈출권</string>
+            <string>감옥 탈출 카드</string>
             <string>免费保释卡</string>
             <string>Карта выхода из тюрьмы</string>
             <string>Aus dem Gefängnis frei</string>
@@ -26148,7 +26148,7 @@
         <key name="Q_CARD_DESCRIPTION">
             <string>Double active</string>
             <string>ダブルアクティブ</string>
-            <string>이중 효과</string>
+            <string>이중 액티브</string>
             <string>双倍主动</string>
             <string>Двойная активация</string>
             <string>Doppelt aktiv</string>
@@ -26178,7 +26178,7 @@
         <key name="EMERGENCY_CONTACT_NAME">
             <string>Emergency Contact</string>
             <string>緊急連絡先</string>
-            <string>비상 연락</string>
+            <string>비상 연락처</string>
             <string>紧急联系电话</string>
             <string>Экстренный контакт</string>
             <string>Notfallkontakt</string>
@@ -26208,7 +26208,7 @@
         <key name="HOLY_CARD_DESCRIPTION">
             <string>You feel protected</string>
             <string>守れてる感じ</string>
-            <string>보호 받는 느낌</string>
+            <string>보호받는 느낌</string>
             <string>你感到受保护</string>
             <string>Ты чувствуешь себя защищенным</string>
             <string>Du fühlst dich beschützt</string>
@@ -26248,7 +26248,7 @@
         <key name="ANCIENT_RECALL_DESCRIPTION">
             <string>Draw 3 cards</string>
             <string>３枚カードを引く</string>
-            <string>카드를 3장 뽑는다</string>
+            <string>카드 3장 뽑기</string>
             <string>抽3张卡牌</string>
             <string>Вытащи 3 карты</string>
             <string>Ziehe 3 Karten</string>
@@ -26268,7 +26268,7 @@
         <key name="ERA_WALK_DESCRIPTION">
             <string>Savor the moment</string>
             <string>その一瞬をかみしめる</string>
-            <string>이 순간을 보존하세요</string>
+            <string>이 순간을 만끽하세요</string>
             <string>品味这一刻</string>
             <string>Насладись моментом</string>
             <string>Genieße den Moment</string>
@@ -26288,7 +26288,7 @@
         <key name="RUNE_SHARD_DESCRIPTION">
             <string>It still glows faintly</string>
             <string>かすかに輝いている</string>
-            <string>아직도 희미한 빛이 난다</string>
+            <string>아직 희미하게 빛나고 있다</string>
             <string>它仍在微微发光</string>
             <string>Он все еще слабо светится</string>
             <string>Er leuchtet immer noch schwach</string>
@@ -26308,7 +26308,7 @@
         <key name="THE_FOOL_R_DESCRIPTION">
             <string>Let go and move on</string>
             <string>手放して、また進む</string>
-            <string>이제 그만 잊고 넘어가</string>
+            <string>그만 잊고 넘어가라</string>
             <string>一切从零开始</string>
             <string>Отпусти и забудь</string>
             <string>Lass los und mach weiter</string>
@@ -26328,7 +26328,7 @@
         <key name="THE_MAGICIAN_R_DESCRIPTION">
             <string>May no harm come to you</string>
             <string>汝を傷つける者はなし</string>
-            <string>아무런 해도 다가오지 않기를</string>
+            <string>아무런 해도 다가오지 않으리라</string>
             <string>愿您免受侵害</string>
             <string>Да не причинят тебе вреда</string>
             <string>Möge dir nichts zustoßen</string>
@@ -26348,7 +26348,7 @@
         <key name="THE_HIGH_PRIESTESS_R_DESCRIPTION">
             <string>Run</string>
             <string>逃げよ</string>
-            <string>도망쳐</string>
+            <string>도망쳐라</string>
             <string>快跑</string>
             <string>Беги</string>
             <string>Run</string>
@@ -26368,7 +26368,7 @@
         <key name="THE_EMPRESS_R_DESCRIPTION">
             <string>May your love bring protection</string>
             <string>愛こそが守りとなる</string>
-            <string>네 사랑이 보호가 되어 주기를</string>
+            <string>너의 사랑이 곧 방패가 되리라</string>
             <string>愿您爱中受护</string>
             <string>Да защитит тебя твоя любовь</string>
             <string>Möge deine Liebe Schutz bringen</string>
@@ -26388,7 +26388,7 @@
         <key name="THE_EMPEROR_R_DESCRIPTION">
             <string>May you find a worthy opponent</string>
             <string>ふさわしい相手が見つかるように</string>
-            <string>가치 있는 적을 찾기를</string>
+            <string>네게 걸맞은 적수를 만나리라</string>
             <string>愿您险境得胜</string>
             <string>Да найдешь ты достойного соперника</string>
             <string>Mögest du würdige Gegner finden</string>
@@ -26408,7 +26408,7 @@
         <key name="THE_HIEROPHANT_R_DESCRIPTION">
             <string>Two prayers for the forgotten</string>
             <string>忘れられ者ための祈りを</string>
-            <string>잊혀진 자를 위해 기도 두 번을</string>
+            <string>잊혀진 자를 위한 두 기도</string>
             <string>为被遗忘者祷告两次</string>
             <string>Две молитвы за забытого</string>
             <string>Zwei Gebete für die Vergessenen</string>
@@ -26428,7 +26428,7 @@
         <key name="THE_LOVERS_R_DESCRIPTION">
             <string>May your heart shatter into pieces</string>
             <string>汝の心が砕け散らん事を</string>
-            <string>마음이 산산조각 나기를</string>
+            <string>너의 마음이 산산조각 나리라</string>
             <string>愿您心碎如麻</string>
             <string>Да разобьется твое сердце</string>
             <string>Möge dein Herz in Stücke zerbrechen</string>
@@ -26448,7 +26448,7 @@
         <key name="THE_CHARIOT_R_DESCRIPTION">
             <string>May nothing walk past you</string>
             <string>先を越されることなかれ</string>
-            <string>그 누구도 널 막지 못해</string>
+            <string>그 무엇도 널 지나치지 않으리라</string>
             <string>愿您固若金汤</string>
             <string>Пусть ничто не пройдет мимо тебя</string>
             <string>Möge nichts an dir vorbeigehen</string>
@@ -26468,7 +26468,7 @@
         <key name="JUSTICE_R_DESCRIPTION">
             <string>May your sins come back to torment you</string>
             <string>汝の罪が汝を苛む</string>
-            <string>네 죄로 고통받으리라</string>
+            <string>너의 죄악은 끝내 너를 괴롭히리라</string>
             <string>愿您罪有应得</string>
             <string>Вернутся грехи твои, чтобы мучить тебя</string>
             <string>Mögen die einstigen Sünden dich quälen</string>
@@ -26488,7 +26488,7 @@
         <key name="THE_HERMIT_R_DESCRIPTION">
             <string>May you see the value of all things in life</string>
             <string>全ての価値を知るべし</string>
-            <string>삶의 만물로부터 가치를 볼 수 있기를</string>
+            <string>삶의 만물로부터 가치를 깨닫게 되리라</string>
             <string>愿您坦然释怀</string>
             <string>Да увидишь ты ценность всего в жизни</string>
             <string>Mögest du den Wert der Dinge erkennen</string>
@@ -26528,7 +26528,7 @@
         <key name="STRENGTH_R_DESCRIPTION">
             <string>May you break their resolve</string>
             <string>彼らの決意を断ち切れるように</string>
-            <string>저들의 의지를 박살내 버려라</string>
+            <string>저들의 의지를 꺾어버려라</string>
             <string>愿您粉碎敌志</string>
             <string>Сломай их решимость</string>
             <string>Mögest du Entschlossenheit brechen</string>
@@ -26548,7 +26548,7 @@
         <key name="THE_HANGED_MAN_R_DESCRIPTION">
             <string>May your greed know no bounds</string>
             <string>欲は無限であれ</string>
-            <string>끝 없는 탐욕을 품기를</string>
+            <string>너의 탐욕은 끝없이 번져가리라</string>
             <string>愿您贪得无厌</string>
             <string>Да не знает твоя жадность границ</string>
             <string>Möge deine Gier keine Grenzen kennen</string>
@@ -26568,7 +26568,7 @@
         <key name="DEATH_R_DESCRIPTION">
             <string>May life spring forth from the fallen</string>
             <string>堕ちし者から得るべきもの</string>
-            <string>스러진 자들로부터 생명이 피어나니</string>
+            <string>스러진 자들로부터 생명이 솟아나리라</string>
             <string>愿死者得复生</string>
             <string>Пусть жизнь прорастет из падших</string>
             <string>Möge das Leben aus Gefallenen sprießen</string>
@@ -26588,7 +26588,7 @@
         <key name="TEMPERANCE_R_DESCRIPTION">
             <string>May your hunger be satiated</string>
             <string>飢えが満たされたまえ</string>
-            <string>그 허기가 채워지기를</string>
+            <string>네 허기가 채워지리라</string>
             <string>愿您欲求得满</string>
             <string>Да утолишь ты свой голод</string>
             <string>Möge dein Hunger gestillt werden</string>
@@ -26608,7 +26608,7 @@
         <key name="THE_DEVIL_R_DESCRIPTION">
             <string>Bask in the light of your mercy</string>
             <string>慈悲の光を浴びろ</string>
-            <string>자비의 빛을 비추어라</string>
+            <string>자비라는 빛 속에 잠기리라</string>
             <string>沉浸仁慈之光</string>
             <string>Грейся в свете своей милости</string>
             <string>Sonne dich im Licht der Barmherzigkeit</string>
@@ -26628,7 +26628,7 @@
         <key name="THE_TOWER_R_DESCRIPTION">
             <string>Creation brings destruction</string>
             <string>創造は破壊の祖</string>
-            <string>창조는 파괴를 불러 오니</string>
+            <string>창조가 파괴를 가져오리라</string>
             <string>创造带来毁灭</string>
             <string>Творение приносит разрушение</string>
             <string>Schöpfung birgt Zerstörung</string>
@@ -26648,7 +26648,7 @@
         <key name="THE_STARS_R_DESCRIPTION">
             <string>May your loss bring fortune</string>
             <string>損して得を取れ</string>
-            <string>상실은 복이 될지니</string>
+            <string>상실이 행운을 불러오리라</string>
             <string>愿您有失有得</string>
             <string>Да принесет твоя утрата богатство</string>
             <string>Möge dein Verlust Glück bringen</string>
@@ -26668,7 +26668,7 @@
         <key name="THE_MOON_R_DESCRIPTION">
             <string>May you remember lost memories</string>
             <string>失われた記憶を求めて</string>
-            <string>잃어버린 기억을 되찾기를</string>
+            <string>잃어버린 기억을 떠올리게 되리라</string>
             <string>愿您回眸过往</string>
             <string>Вспомни потерянные воспоминания</string>
             <string>Mögest du einst Verlorenes erinnern</string>
@@ -26688,7 +26688,7 @@
         <key name="THE_SUN_R_DESCRIPTION">
             <string>May the darkness swallow all around you</string>
             <string>汝が闇に包まれんことを</string>
-            <string>어둠이 네 주위를 모두 집어 삼키길</string>
+            <string>어둠이 네 주위를 모두 집어 삼키리라</string>
             <string>愿黑暗吞噬你</string>
             <string>Да поглотит тьма все вокруг тебя</string>
             <string>Möge die Dunkelheit alles verschlingen</string>
@@ -26708,7 +26708,7 @@
         <key name="JUDGEMENT_R_DESCRIPTION">
             <string>May you redeem those found wanting</string>
             <string>憐れみをかけるべし</string>
-            <string>네가 찾던 것을 찾을 수 있기를</string>
+            <string>네가 부족한 자들을 구제하리라</string>
             <string>愿您救赎弱者</string>
             <string>Искупи тех, кто ждет этого</string>
             <string>Mögest du die erlösen, die sich sehnen</string>
@@ -26868,7 +26868,7 @@
         <key name="SOUL_OF_JUDAS_DESCRIPTION">
             <string>Right behind you</string>
             <string>影の中へ</string>
-            <string>어둠 속으로</string>
+            <string>네 뒤에 있다</string>
             <string>影遁背刺</string>
             <string>В тени</string>
             <string>In die Schatten</string>
@@ -26928,7 +26928,7 @@
         <key name="SOUL_OF_SAMSON_DESCRIPTION">
             <string>Slay a thousand</string>
             <string>千人斬り</string>
-            <string>천 명을 베다</string>
+            <string>천 명을 쓰러뜨리다</string>
             <string>千人斩</string>
             <string>Убей тысячу</string>
             <string>Töte tausend</string>
@@ -26948,7 +26948,7 @@
         <key name="SOUL_OF_AZAZEL_DESCRIPTION">
             <string>Demon rage!</string>
             <string>ブチギレ悪魔！</string>
-            <string>악마가 분노하다!</string>
+            <string>악마의 분노!</string>
             <string>恶魔狂怒！</string>
             <string>Демоническая ярость!</string>
             <string>Dämonische Wut!</string>
@@ -26988,7 +26988,7 @@
         <key name="SOUL_OF_EDEN_DESCRIPTION">
             <string>Embrace chaos</string>
             <string>カオスでしかない</string>
-            <string>혼돈</string>
+            <string>혼돈을 받아들여라</string>
             <string>拥抱混沌</string>
             <string>Хаос</string>
             <string>Chaos</string>
@@ -26998,7 +26998,7 @@
         <key name="SOUL_OF_THE_LOST_NAME">
             <string>Soul of the Lost</string>
             <string>ザ ロストのソウル</string>
-            <string>로스트의 영혼</string>
+            <string>더 로스트의 영혼</string>
             <string>游魂的魂石</string>
             <string>Душа Заблудшего</string>
             <string>Seele des Verlorenen</string>
@@ -27068,7 +27068,7 @@
         <key name="SOUL_OF_APOLLYON_DESCRIPTION">
             <string>Bringer of calamity</string>
             <string>災いの元凶</string>
-            <string>재앙의 전조</string>
+            <string>재앙의 징조</string>
             <string>灾难使者</string>
             <string>Несущий бедствия</string>
             <string>Bringer des Unheils</string>
@@ -27078,7 +27078,7 @@
         <key name="SOUL_OF_THE_FORGOTTEN_NAME">
             <string>Soul of the Forgotten</string>
             <string>ザ フォーガットンのソウル</string>
-            <string>포가튼의 영혼</string>
+            <string>더 포가튼의 영혼</string>
             <string>遗骸的魂石</string>
             <string>Душа Забытого</string>
             <string>Seele des Vergessenen</string>
@@ -27128,7 +27128,7 @@
         <key name="SOUL_OF_JACOB_AND_ESAU_DESCRIPTION">
             <string>Bound by blood</string>
             <string>血のつながり</string>
-            <string>피의 결속</string>
+            <string>피로 묶이다</string>
             <string>血缘羁绊</string>
             <string>Связанные кровью</string>
             <string>Durch Blut verbunden</string>
@@ -27158,7 +27158,7 @@
         <key name="BALLS_OF_STEEL_NAME">
             <string>Balls of Steel</string>
             <string>鉄球</string>
-            <string>강철같은 용기</string>
+            <string>강철같은 알약</string>
             <string>钢铁双蛋</string>
             <string>Стальные яйца</string>
             <string>Eier aus Stahl</string>
@@ -27168,7 +27168,7 @@
         <key name="BOMBS_ARE_KEY_NAME">
             <string>Bombs are Key</string>
             <string>爆弾は鍵なり</string>
-            <string>폭탄은 열쇠</string>
+            <string>폭탄은 곧 열쇠</string>
             <string>炸弹变钥匙</string>
             <string>Бомбы = Ключи</string>
             <string>Bomben sind der Schlüssel</string>
@@ -27508,7 +27508,7 @@
         <key name="POWER_PILL_NAME">
             <string>Power Pill!</string>
             <string>パワー ピル！</string>
-            <string>최강알약!</string>
+            <string>최강 알약!</string>
             <string>大力丸！</string>
             <string>Мощная пилюля!</string>
             <string>Kraftpille!</string>
@@ -27548,7 +27548,7 @@
         <key name="SOMETHINGS_WRONG_NAME">
             <string>Something's wrong...</string>
             <string>何かがおかしい・・・</string>
-            <string>뭔가 잘못 됐는데...</string>
+            <string>뭔가 잘못됐는데...</string>
             <string>哪里不对…</string>
             <string>Что-то не так...</string>
             <string>Etwas stimmt nicht ...</string>
@@ -27598,7 +27598,7 @@
         <key name="FEELS_LIKE_IM_WALKING_ON_SUNSHINE_NAME">
             <string>Feels like I'm walking on sunshine!</string>
             <string>天国を歩いてる気分！</string>
-            <string>햇빛 아래서 걷는 기분이야!</string>
+            <string>햇살 위를 걷는 기분이야!</string>
             <string>感觉像漫步在阳光下！</string>
             <string>Как будто я гуляю под солнцем!</string>
             <string>Die Sonne scheint mir aus dem Popo!</string>
