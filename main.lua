@@ -24,9 +24,9 @@ mod:AddCallback("EID_EVALUATE_AUTO_LANG", mod.ChangeEIDLanguage)
 
 local function AddPickupWarning(descObj)
     local targetPickup = descObj.ObjType == 5 and (
-            (descObj.ObjVariant == 100 and descObj.ObjSubType == 667) or                                   -- 밀짚인형
-            (descObj.ObjVariant == 300 and (descObj.ObjSubType == 95 or descObj.ObjSubType == 97)) or      -- 포가튼/야곱과 에사우의 영혼
-            (descObj.ObjVariant == 350 and descObj.ObjSubType == 180)                                      -- 되찾은 영혼
+            (descObj.ObjVariant == 100 and descObj.ObjSubType == 667) or                                 -- 밀짚인형
+            (descObj.ObjVariant == 300 and (descObj.ObjSubType == 95 or descObj.ObjSubType == 97)) or    -- 포가튼/야곱과 에사우의 영혼
+            (descObj.ObjVariant == 350 and descObj.ObjSubType == 180)                                    -- 되찾은 영혼
         )
     if targetPickup and not REPENTOGON then
         EID:appendToDescription(descObj,
@@ -107,6 +107,7 @@ mod.saveDataDummy = tonumber(mod:LoadData()) or 0
 mod.notKillingMom = false                              -- 엄마를 처치했는가?
 mod.notRunningEID = false                              -- EID가 실행 중인가?
 mod.notEIDKorean = false                               -- EID가 한국어로 설정돼있는가?
+mod.survey = true                                      -- 설문조사용
 
 mod.detectStageAPI = false                             -- StageAPI가 켜져있는가?
 mod.stageAPITimer = 0
@@ -119,6 +120,7 @@ local messages = {
     notKillingMom = "지금 모드를 적용하면 도전 과제가 해금되지 않을 수 있습니다!",
     notRunningEID = "아이템 설명모드를 감지하지 못했습니다! 일부 번역 기능이 동작하지 않습니다!",
     notEIDKorean = "아이템 설명모드가 한국어로 설정돼있지 않습니다. Mod Config Menu Pure를 구독한 후 수동으로 설정하세요.",
+    survey = "8/23까지 몬스터 이름에 대한 설문 진행! 상세 내용은 한글패치의 창작마당 페이지를 확인해주세요!",
     hasTM = "TMTRAINER를 소지 중입니다! 일부 번역 기능이 동작하지 않습니다!",
 
     stageAPI = REPENTOGON and "('지하 묘지' 스테이지의 이름만 번역되지 않습니다.)"
@@ -129,6 +131,7 @@ local warningDurations = {
     [messages.notKillingMom] = 180,
     [messages.notRunningEID] = 180,
     [messages.notEIDKorean] = 180,
+    [messages.survey] = 360,
     [messages.hasTM] = 180
 }
 
@@ -169,6 +172,12 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
         mod.warningTimers[messages.notKillingMom] = duration
         mod.warningMaxTimes[messages.notKillingMom] = duration
     end
+
+    if mod.survey then
+        local duration = warningDurations[messages.survey]
+        mod.warningTimers[messages.survey] = duration
+        mod.warningMaxTimes[messages.survey] = duration
+    end
 end)
 
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function()
@@ -199,20 +208,20 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
 end)
 
 local function GetCurrentModPath()
-	if debug then
-		return string.sub(debug.getinfo(GetCurrentModPath).source,2) .. "/../"
-	end
-	--use some very hacky trickery to get the path to this mod
-	local _, err = pcall(require, "")
-	local _, basePathStart = string.find(err, "no file '", 1)
-	local _, modPathStart = string.find(err, "no file '", basePathStart)
-	local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
-	local modPath = string.sub(err, modPathStart+1, modPathEnd-1)
-	modPath = string.gsub(modPath, "\\", "/")
-	modPath = string.gsub(modPath, "//", "/")
-	modPath = string.gsub(modPath, ":/", ":\\")
+    if debug then
+        return string.sub(debug.getinfo(GetCurrentModPath).source,2) .. "/../"
+    end
+    --use some very hacky trickery to get the path to this mod
+    local _, err = pcall(require, "")
+    local _, basePathStart = string.find(err, "no file '", 1)
+    local _, modPathStart = string.find(err, "no file '", basePathStart)
+    local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
+    local modPath = string.sub(err, modPathStart+1, modPathEnd-1)
+    modPath = string.gsub(modPath, "\\", "/")
+    modPath = string.gsub(modPath, "//", "/")
+    modPath = string.gsub(modPath, ":/", ":\\")
 
-	return modPath
+    return modPath
 end
 mod.modPath = GetCurrentModPath()
 
@@ -231,10 +240,10 @@ local function DrawWarningString(font, text, offset, color)
     end
 
     if Isaac.GetPlayer().ControlsEnabled then
-	    Isaac.GetPlayer().ControlsEnabled = false
+        Isaac.GetPlayer().ControlsEnabled = false
     end
 
-	local x = Isaac.GetScreenWidth() / 2 - font:GetStringWidthUTF8(text) / 2
+    local x = Isaac.GetScreenWidth() / 2 - font:GetStringWidthUTF8(text) / 2
     local y = Isaac.GetScreenHeight() / 2 - offset
     font:DrawStringUTF8(text, x, y, color or KColor(1, 1, 1, 1), 0, true)
 end
@@ -710,99 +719,255 @@ mod:AddCallback(ModCallbacks.MC_USE_PILL, mod.FakePillText)
 local cardNames = include('data.card_names')
 local cardDescriptions = include('data.card_descs')
 
-local pickedUpCards = {}    -- 플레이어가 수집한 카드의 인덱스
-local pickupCollected = {}    -- 해당 픽업의 인덱스를 키로 하여, 픽업이 "Collect" 애니메이션 상태일 때 이미 처리되었는지 여부를 기록
-local pickupJustTouched = {}    -- 특정 엔티티가 픽업에 닿았는지
-
-local byBagofCrafting = false    -- 제작 가방을 통해 카드를 수집했음을 나타내는 플래그로, 이 값이 참이면 카드 텍스트 표시를 방지
-local bagFlagTimer = 0    -- 제작 가방으로 카드를 수집한 후 카드 텍스트가 표시되지 않도록 하는 타이머입니다.
+local pickedUpCards = {}        -- InitSeed 기준으로 플레이어가 닿은 후보 표시
+local pickupJustTouched = {}    -- 인덱스 기반으로 닿은 픽업 기록
+local pickupCollected = {}      -- 인덱스 기반으로 Collect 처리 기록
+local consumedByBoC = {}        -- 제작 가방으로 처리됐는지
+local showQueue = {}            -- 텍스트 표시를 다음 프레임으로 미루기 위한 큐
 
 mod.craftingBag = {}
 mod.pickupIDLookup = {}
 mod.runeIDs = {}
 
-function mod:getBagOfCraftingID(Variant, SubType)
-	local entry = mod.pickupIDLookup[Variant.."."..SubType]
-	if entry ~= nil then
-		return entry
-	elseif Variant == 300 then
-		if SubType == 0 then
-			return nil
-		elseif mod.runeIDs[SubType] then
-			return {23}
-		else
-			return {21}
-		end
-	end
-	return nil
+local function pid(pickup)
+    return pickup.InitSeed
 end
 
-mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup,collider,_)
-	if collider.Type == EntityType.ENTITY_PLAYER or collider.Type == EntityType.ENTITY_FAMILIAR or
-		collider.Type == EntityType.ENTITY_BUMBINO or collider.Type == EntityType.ENTITY_ULTRA_GREED then
-        pickupJustTouched[pickup.Index] = true
-	end
-end)
+function mod:getBagOfCraftingID(Variant, SubType)   -- 제작 가방 판별
+    local entry = mod.pickupIDLookup[Variant.."."..SubType]
 
----@diagnostic disable-next-line: duplicate-set-field
-mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
-    for _, pickup in ipairs(Isaac.FindByType(5, 300, -1, false, false)) do
-        if pickup:GetSprite():GetAnimation() == "Collect" and not pickupCollected[pickup.Index] then
-            pickupCollected[pickup.Index] = true
-            if not pickupJustTouched[pickup.Index] then
-                local REPKORcraftingIDs = mod:getBagOfCraftingID(pickup.Variant, pickup.SubType)
-                if REPKORcraftingIDs ~= nil then
-                    for _,v in ipairs(REPKORcraftingIDs) do
-						if #mod.craftingBag >= 8 then table.remove(mod.craftingBag, 1) end
-						table.insert(mod.craftingBag, v)
-                        byBagofCrafting = true
-                        bagFlagTimer = 18        -- 제작 가방으로 카드를 수집할 때 텍스트가 뜨는 걸 방지하기 위한 코드
-					end                          -- Original by EID Developers
-                end
-            end
+    if entry ~= nil then
+        return entry
+    elseif Variant == 300 then
+        if SubType == 0 then
+            return nil
+        elseif mod.runeIDs[SubType] then
+            return {23}
+        else
+            return {21}
         end
-        pickupJustTouched[pickup.Index] = nil
     end
-end)
+    return nil
+end
 
-mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup,collider,_)
-	if collider.Type == EntityType.ENTITY_PLAYER then
-        pickedUpCards[pickup.Index] = true
-	end
+
+mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup, collider, _)
+    local id = pid(pickup)
+
+    if collider.Type == EntityType.ENTITY_PLAYER
+    or collider.Type == EntityType.ENTITY_FAMILIAR
+    or collider.Type == EntityType.ENTITY_BUMBINO
+    or collider.Type == EntityType.ENTITY_ULTRA_GREED then
+        pickupJustTouched[pickup.Index] = true    -- 인덱스 기반으로 pickupJustTouched에 닿은 기록을 남김
+    end
+
+    if collider.Type == EntityType.ENTITY_PLAYER then
+        pickedUpCards[id] = true    -- 플레이어가 닿으면 InitSeed 기준으로 pickedUpCards에 후보 표시
+    end
 end, 300)
 
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
-    if byBagofCrafting then return end
     for _, pickup in ipairs(Isaac.FindByType(5, 300, -1, false, false)) do
-        if pickup:IsDead() and pickedUpCards[pickup.Index] then
-            local cardID = pickup.SubType
-            if cardNames[cardID] and not textDisplayed and not REPENTOGON then
-                Game():GetHUD():ShowItemText(cardNames[cardID], cardDescriptions[cardID])
-                pickedUpCards[pickup.Index] = nil
+        if not pickup then return end
+
+        local idx = pickup.Index
+        local id = pid(pickup)
+
+        if pickup:GetSprite():GetAnimation() == "Collect" and not pickupCollected[idx] then    -- Collect에 진입했고 아직 처리하지 않았으면 처리
+            pickupCollected[idx] = true
+
+            if not pickupJustTouched[idx] then  -- 인덱스 기준으로 '닿지 않은 상태'라면 제작 가방 판정
+                local REPKORcraftingIDs = mod:getBagOfCraftingID(pickup.Variant, pickup.SubType)
+
+                if REPKORcraftingIDs ~= nil then
+                    for _, v in ipairs(REPKORcraftingIDs) do
+                        if #mod.craftingBag >= 8 then table.remove(mod.craftingBag, 1) end
+                        table.insert(mod.craftingBag, v)
+                    end
+                    
+                    consumedByBoC[id] = true    -- InitSeed 기준으로 제작 가방 판정 기록
+                end
             end
         end
+
+        pickupJustTouched[idx] = nil    -- 다음 프레임을 위해 인덱스 기반으로 닿은 기록 초기화
     end
 end)
 
-function mod:ResetBagFlag()
-    if bagFlagTimer > 0 then
-        bagFlagTimer = bagFlagTimer - 1
-        if bagFlagTimer == 0 then
-            byBagofCrafting = false
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+    for _, pickup in ipairs(Isaac.FindByType(5, 300, -1, false, false)) do    -- 현재 프레임에 뒤져버린 픽업들 중 플레이어가 닿아서 후보로 표시된 것들을 showQueue에 넣음
+        if not pickup then return end
+        local id = pid(pickup)
+
+        if pickup:IsDead() and pickedUpCards[id] then
+            table.insert(showQueue, {id = id, pickupRef = pickup})
+            pickedUpCards[id] = nil    -- 큐로 보냈으니 후뵤 표시는 제거
         end
+    end
+
+    if #showQueue > 0 then
+        for _, entry in ipairs(showQueue) do
+            local id = entry.id
+            local pickupRef = entry.pickupRef
+
+            if consumedByBoC[id] then    -- 만약 Collect 처리에서 가방으로 흡수되었다면 --
+                consumedByBoC[id] = nil                                                 --
+            else                                                                        --
+                if pickupRef and not pickupRef:Exists() then                            --
+                    -- 스킵띠 <-----------------------------------------------------------
+                else
+                    local cardID = pickupRef and pickupRef.SubType
+                    if cardID and cardNames[cardID] and not REPENTOGON then
+                        Game():GetHUD():ShowItemText(cardNames[cardID], cardDescriptions[cardID])
+                    end
+                end
+            end
+        end
+
+        showQueue = {}    -- 큐 비우기
+    end
+end)
+
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()    -- 새 방 진입 시 전체 초기화
+    pickedUpCards = {}
+    pickupJustTouched = {}
+    pickupCollected = {}
+    consumedByBoC = {}
+    showQueue = {}
+end)
+
+
+------ 포켓 슬롯 번역 ------
+local PocketItemStrings = {}
+mod.checkedPills = {}
+
+local function BuildPocketItemStrings()
+    PocketItemStrings = {}
+    local ic = Isaac.GetItemConfig()
+    local numPlayers = Game():GetNumPlayers()
+
+    for i = 0, numPlayers - 1 do
+        local player = Isaac.GetPlayer(i)
+        if not player or not player:Exists() or not player:ToPlayer() then
+            goto skip
+        end
+
+        local TrslName = nil
+        local card = player:GetCard(0)
+        local pill = player:GetPill(0)
+
+        if card ~= 0 and cardNames[card] then
+            if cardNames[card] ~= ic:GetCard(card).Name then    -- 카드의 원본 이름이 교체되었을 때만 작동
+                TrslName = cardNames[card]
+
+                if Input.IsActionPressed(ButtonAction.ACTION_MAP, player.ControllerIndex) and cardDescriptions[card] then    -- 탭 키 누르면 이름 대신 설명 표시
+                    TrslName = cardDescriptions[card]
+                end
+            end
+
+        elseif pill ~= 0 and pill ~= 14 then
+            local pID = Game():GetItemPool():GetPillEffect(pill)
+            local check = mod.checkedPills[pID] or player:HasCollectible(75, false) or player:HasCollectible(654, false)
+
+            if check and pillNames[pID] then
+                if pillNames[pID] ~= ic:GetPillEffect(pID).Name then    -- 알약의 원본 이름이 교체되었을 때만 작동
+                    TrslName = pillNames[pID]
+
+                    if Input.IsActionPressed(ButtonAction.ACTION_MAP, player.ControllerIndex) and pillDescriptions[pID] then
+                        if pillDescriptions[pID] ~= "" then
+                            TrslName = pillDescriptions[pID]
+                        end
+                    end
+                end
+            end
+        else
+            local pocketItem = player:GetActiveItem(ActiveSlot.SLOT_POCKET)
+            if pocketItem and pocketItem ~= 0 then
+                local item = changes.items[tostring(pocketItem)]
+                if item and item.name and
+                   item.name ~= ic:GetCollectible(pocketItem).Name then    -- 액티브의 원본 이름이 교체되었을 때만 작동
+                    TrslName = item.name
+                    if Input.IsActionPressed(ButtonAction.ACTION_MAP, player.ControllerIndex) and item.description then
+                        TrslName = item.description
+                    end
+                    IsActiveItem = true
+                end
+            end
+        end
+
+        local id = #PocketItemStrings + 1
+        PocketItemStrings[id] = {
+            Name = TrslName or "",
+            IsActiveItem = IsActiveItem,
+            PType = player:GetPlayerType(),
+            CtrlIdx = player.ControllerIndex
+        }
+
+        ::skip::
     end
 end
 
-function mod:BoCOnNewRoom(_)
-    pickedUpCards = {}
-    pickupJustTouched = {}
-	pickupsCollected = {}
-    byBagofCrafting = false
-    bagFlagTimer = 0
+mod:AddCallback(ModCallbacks.MC_USE_PILL, function(_, pillEffect, player, flag)
+    if player:GetPill(0) ~= 14 then
+        mod.checkedPills[pillEffect] = true
+    end
+end)
+
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, cont)
+    if not cont then
+        PocketItemStrings = {}
+        mod.checkedPills = {}
+    end 
+end)
+
+local poeketFont = Font()
+poeketFont:Load(mod.modPath .. "resources/font/luaminioutlined.fnt")
+
+local function RenderPocketItemName()
+    if not Game():GetHUD():IsVisible() then return end
+    if Game():GetNumPlayers() > 1 then return end    -- 멀티 유기
+
+    local shakeOffset = Game().ScreenShakeOffset
+    local fontSize, sizeOffset = 1, -2
+
+    for i, k in pairs(PocketItemStrings) do
+        if not k or not k.Name or k.Name == "" then
+            goto skip
+        end
+
+        local id = i - 1
+        local str = k.Name
+        local alpha = 0.5
+        local pType = k.PType
+        local activeOffset = 0
+        if k.IsActiveItem then
+            activeOffset = -3
+        end
+
+        if (pType == PlayerType.PLAYER_JACOB or pType == PlayerType.PLAYER_ESAU) then
+            goto skip    -- 병머 유기
+        end
+
+        if id == 0 then
+            local Corner = Vector(Isaac.GetScreenWidth(), Isaac.GetScreenHeight())
+            local Offset = -Vector(Options.HUDOffset * 16 + 30, Options.HUDOffset * 6 + 22)
+            local Pos = Corner + Offset + shakeOffset
+            poeketFont:DrawStringScaledUTF8(str, Pos.X + 1 + activeOffset, Pos.Y + 13 + sizeOffset, fontSize, fontSize, KColor(1, 1, 1, alpha), 1, false)
+        end
+
+        ::skip::
+    end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.ResetBagFlag)
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.BoCOnNewRoom)
+local renderCollback = ModCallbacks.MC_POST_RENDER
+if Renderer then    -- RGON
+    renderCollback = ModCallbacks.MC_HUD_RENDER
+end
+
+mod:AddCallback(renderCollback, function()
+    BuildPocketItemStrings()
+    RenderPocketItemName()
+end)
 
 
 ------ 행운의 동전 ------
@@ -834,7 +999,7 @@ local friendlyNames = {
     [14] = { [0] = "푸터" },
     [18] = { [0] = "공격 파리" },
     [39] = { [0] = "비스" },
-    [234] = { [0] = "원 투스" },
+    [234] = { [0] = "이빨 빠진 박쥐" },
     [258] = { [0] = "뚱뚱한 박쥐" }
 }
 local friendlyEntityCounts = {}    -- 이전에 표시된 엔티티의 등장 횟수를 저장
@@ -1010,15 +1175,15 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.checkFortuneMachine)
 
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, function()
-	local pickupFound
-	for _, pickup in pairs(Isaac.FindByType(5, -1, -1)) do
-		if pickup and pickup.Type == 5 and pickup.FrameCount <= 0 then
-			pickupFound = true
-		end
-	end
-	if not pickupFound then
-		mod:ShowFortune()
-	end
+    local pickupFound
+    for _, pickup in pairs(Isaac.FindByType(5, -1, -1)) do
+        if pickup and pickup.Type == 5 and pickup.FrameCount <= 0 then
+            pickupFound = true
+        end
+    end
+    if not pickupFound then
+        mod:ShowFortune()
+    end
 end, CollectibleType.COLLECTIBLE_FORTUNE_COOKIE)
 
 mod:AddCallback(ModCallbacks.MC_USE_CARD, function(_, card)
@@ -1032,8 +1197,8 @@ mod:AddCallback(ModCallbacks.MC_USE_CARD, function(_, card)
 end)
 
 APIOverride.OverrideClassFunction(Game, "ShowFortune", function()
-	mod:ShowFortune()
-	return
+    mod:ShowFortune()
+    return
 end)
 
 APIOverride.OverrideClassFunction(Game, "ShowRule", function()
@@ -1217,5 +1382,5 @@ end
 
 
 ------ 버전 출력 ------
-mod.version = 1.94
+mod.version = 1.95
 print("Repentance+ Korean " .. string.format("%.2f", mod.version) .. " loaded.")

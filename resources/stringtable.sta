@@ -19692,7 +19692,7 @@
         <key name="MULLIBOOM">
             <string>Mulliboom</string>
             <string>ムリボム</string>
-            <string>멀리봄</string>
+            <string>멀리붐</string>
             <string>炸弹棉花怪</string>
             <string>Бомбанытик</string>
             <string>Mullibumm</string>
@@ -19862,7 +19862,7 @@
         <key name="GAZING_GLOBIN">
             <string>Gazing Globin</string>
             <string>ゲイジング グロビン</string>
-            <string>게이징 글로빈</string>
+            <string>응시하는 글로빈</string>
             <string>窥眼血红尸</string>
             <string>Глазеющий Глобин</string>
             <string>Starrendes Globin</string>
@@ -19892,7 +19892,7 @@
         <key name="BOOM_FLY">
             <string>Boom Fly</string>
             <string>ボム フライ</string>
-            <string>봄 파리</string>
+            <string>붐 파리</string>
             <string>炸弹苍蝇</string>
             <string>Бомбомуха</string>
             <string>Bumm-Fliege</string>
@@ -19902,7 +19902,7 @@
         <key name="RED_BOOM_FLY">
             <string>Red Boom Fly</string>
             <string>レッド ボム フライ</string>
-            <string>레드 봄 파리</string>
+            <string>붉은 붐 파리</string>
             <string>红色炸弹苍蝇</string>
             <string>Красная Бомбомуха</string>
             <string>Rote Bumm-Fliege</string>
@@ -19912,7 +19912,7 @@
         <key name="DROWNED_BOOM_FLY">
             <string>Drowned Boom Fly</string>
             <string>ドラウン ボム フライ</string>
-            <string>익사한 봄 파리</string>
+            <string>익사한 붐 파리</string>
             <string>溺水炸弹苍蝇</string>
             <string>Утонувшая Бомбомуха</string>
             <string>Ertrunkene Bumm-Fliege</string>
@@ -19952,7 +19952,7 @@
         <key name="SICK_BOOM_FLY">
             <string>Sick Boom Fly</string>
             <string>シック ボム フライ</string>
-            <string>아픈 봄 파리</string>
+            <string>아픈 붐 파리</string>
             <string>病态炸弹苍蝇</string>
             <string>Больная Бомбомуха</string>
             <string>Kranke Bumm-Fliege</string>
@@ -19962,7 +19962,7 @@
         <key name="TAINTED_BOOM_FLY">
             <string>Tainted Boom Fly</string>
             <string>テインティド ボム フライ</string>
-            <string>더럽혀진 봄 파리</string>
+            <string>더럽혀진 붐 파리</string>
             <string>堕化炸弹苍蝇</string>
             <string>Порченая Бомбомуха</string>
             <string>Befleckte Bumm-Fliege</string>
@@ -20012,7 +20012,7 @@
         <key name="RED_HOST">
             <string>Red Host</string>
             <string>レッド ホスト</string>
-            <string>레드 호스트</string>
+            <string>붉은 호스트</string>
             <string>血肉寄居骷髅</string>
             <string>Красный Наблюдатель</string>
             <string>Roter Wirt</string>
@@ -20192,7 +20192,7 @@
         <key name="MR_MAW">
             <string>Mr. Maw</string>
             <string>Mr.モー</string>
-            <string>미스터 구렁텅이</string>
+            <string>구렁텅이 씨</string>
             <string>大嘴头尸</string>
             <string>Мистер Пасть</string>
             <string>Mr. Schlund</string>
@@ -20202,7 +20202,7 @@
         <key name="MR_MAW_HEAD">
             <string>Mr. Maw Head</string>
             <string>Mr.モー ヘッド</string>
-            <string>미스터 구렁텅이의 머리</string>
+            <string>구렁텅이 씨의 머리</string>
             <string>大嘴头尸的头</string>
             <string>Голова Мистера Пасть</string>
             <string>Mr. Schlund - Kopf</string>
@@ -20212,7 +20212,7 @@
         <key name="MR_RED_MAW">
             <string>Mr. Red Maw</string>
             <string>Mr.レッド モー</string>
-            <string>미스터 붉은 구렁텅이</string>
+            <string>붉은 구렁텅이 씨</string>
             <string>红色大嘴头尸</string>
             <string>Мистер Красная Пасть</string>
             <string>Mr. Rotschlund</string>
@@ -20222,7 +20222,7 @@
         <key name="MR_RED_MAW_HEAD">
             <string>Mr. Red Maw Head</string>
             <string>Mr.レッド モー ヘッド</string>
-            <string>미스터 붉은 구렁텅이의 머리</string>
+            <string>붉은 구렁텅이 씨의 머리</string>
             <string>红色大嘴头尸的头</string>
             <string>Голова Мистера Красная Пасть</string>
             <string>Mr. Rotschlund - Kopf</string>
@@ -20822,7 +20822,7 @@
         <key name="INK">
             <string>Ink</string>
             <string>インク</string>
-            <string>따라오는 먹물 파리</string>
+            <string>먹물 파리</string>
             <string>吸墨蚊</string>
             <string>Чернило</string>
             <string>Tintensauger</string>
@@ -21502,7 +21502,7 @@
         <key name="MOBILE_HOST">
             <string>Mobile Host</string>
             <string>モバイル ホスト</string>
-            <string>모바일 호스트</string>
+            <string>이동식 호스트</string>
             <string>行走寄居骷髅</string>
             <string>Мобильный Наблюдатель</string>
             <string>Mobiler Wirt</string>
@@ -21962,7 +21962,7 @@
         <key name="ONE_TOOTH">
             <string>One Tooth</string>
             <string>ワン テュース</string>
-            <string>원 투스</string>
+            <string>이빨 빠진 박쥐</string>
             <string>独牙蝙蝠</string>
             <string>Однозуб</string>
             <string>Einzahn</string>
@@ -22192,7 +22192,7 @@
         <key name="FLESH_MOBILE_HOST">
             <string>Flesh Mobile Host</string>
             <string>フレッシュ モバイル ホスト</string>
-            <string>핏고기 모바일 호스트</string>
+            <string>이동식 핏고기 호스트</string>
             <string>血肉行走寄居骷髅</string>
             <string>Мясной Мобильный Наблюдатель</string>
             <string>Mobiler Fleischwirt</string>
@@ -22202,7 +22202,7 @@
         <key name="PSYCHIC_HORF">
             <string>Psychic Horf</string>
             <string>サイキック ホルフ</string>
-            <string>사이킥 홀프</string>
+            <string>심령술사 홀프</string>
             <string>灵能呕血头</string>
             <string>Телепатический Хорф</string>
             <string>Psycho-Horf</string>
@@ -22222,7 +22222,7 @@
         <key name="TICKING_SPIDER">
             <string>Ticking Spider</string>
             <string>ティッキング スパイダー</string>
-            <string>똑딱 파리</string>
+            <string>똑딱 거미</string>
             <string>炸弹蜘蛛</string>
             <string>Тикающий Паук</string>
             <string>Tickende Spinne</string>
@@ -22262,7 +22262,7 @@
         <key name="FLOATING_KNIGHT">
             <string>Floating Knight</string>
             <string>フローティング ナイト</string>
-            <string>부유하는 나이트</string>
+            <string>떠다니는 나이트</string>
             <string>飘浮骑士</string>
             <string>Парящий рыцарь</string>
             <string>Schwebender Ritter</string>
@@ -22612,7 +22612,7 @@
         <key name="BONE_KNIGHT">
             <string>Bone Knight</string>
             <string>ボーン ナイト</string>
-            <string>본 나이트</string>
+            <string>해골 나이트</string>
             <string>骸骨骑士</string>
             <string>Костяной рыцарь</string>
             <string>Knochenritter</string>
@@ -22632,7 +22632,7 @@
         <key name="RED_GHOST">
             <string>Red Ghost</string>
             <string>レッド ゴースト</string>
-            <string>레드 고스트</string>
+            <string>붉은 유령</string>
             <string>红色巫鬼</string>
             <string>Красный Призрак</string>
             <string>Roter Geist</string>
@@ -22662,7 +22662,7 @@
         <key name="DUKIE">
             <string>Dukie</string>
             <string>デューキー</string>
-            <string>듀키</string>
+            <string>꼬마 공작</string>
             <string>小苍蝇公爵</string>
             <string>Дюки</string>
             <string>Herzoglein</string>
@@ -22732,7 +22732,7 @@
         <key name="GREED_GAPER">
             <string>Greed Gaper</string>
             <string>グリード ゲイパー</string>
-            <string>탐욕찬 게이퍼</string>
+            <string>탐욕 게이퍼</string>
             <string>贪婪裂口尸</string>
             <string>Алчный Зевака</string>
             <string>Gieriger Gaffer</string>
@@ -22922,7 +22922,7 @@
         <key name="MR_MINE">
             <string>Mr. Mine</string>
             <string>Mr.マイン</string>
-            <string>미스터 마인</string>
+            <string>마인 씨</string>
             <string>水雷头</string>
             <string>Мистер Мина</string>
             <string>Mr. Mine</string>
@@ -23062,7 +23062,7 @@
         <key name="BLOOD_PUPPY">
             <string>Blood Puppy</string>
             <string>ブラッド パピー</string>
-            <string>핏빛 강아지</string>
+            <string>핏덩이 강아지</string>
             <string>嗜血小宠</string>
             <string>Кровавый Щеночек</string>
             <string>Blutwelpe</string>
@@ -23112,7 +23112,7 @@
         <key name="WILLO">
             <string>Willo</string>
             <string>ウィロー</string>
-            <string>윌오</string>
+            <string>윌로</string>
             <string>萤火苍蝇</string>
             <string>Светлячок</string>
             <string>Irrlicht</string>
@@ -23132,7 +23132,7 @@
         <key name="SMALL_LEECH">
             <string>Small Leech</string>
             <string>スモール ヒル</string>
-            <string>작은 거머리</string>
+            <string>작은 구더기</string>
             <string>小水蛭</string>
             <string>Маленькая Пиявка</string>
             <string>Kleiner Blutegel</string>
@@ -23142,7 +23142,7 @@
         <key name="DEEP_GAPER">
             <string>Deep Gaper</string>
             <string>ディープ ゲイパー</string>
-            <string>깊은 게이퍼</string>
+            <string>심해 게이퍼</string>
             <string>潜水裂口尸</string>
             <string>Глубинный Зевака</string>
             <string>Untiefengaffer</string>
@@ -23552,7 +23552,7 @@
         <key name="LEVEL_2_WILLO">
             <string>Level 2 Willo</string>
             <string>ウィロー Lv2</string>
-            <string>lvl2 윌오</string>
+            <string>lvl2 윌로</string>
             <string>二级萤火苍蝇</string>
             <string>Светлячок 2 уровня</string>
             <string>Level 2 - Irrlicht</string>
@@ -23712,7 +23712,7 @@
         <key name="GASBAG">
             <string>Gasbag</string>
             <string>ガスバッグ</string>
-            <string>가스백</string>
+            <string>가스주머니</string>
             <string>毒气囊</string>
             <string>Газовый Мешок</string>
             <string>Gasbeutel</string>
@@ -23752,7 +23752,7 @@
         <key name="UNBORN">
             <string>Unborn</string>
             <string>アンボーン</string>
-            <string>언본</string>
+            <string>미출생아</string>
             <string>死胎</string>
             <string>Нерожденный</string>
             <string>Ungeborener</string>

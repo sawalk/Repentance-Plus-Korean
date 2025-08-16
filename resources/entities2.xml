@@ -1001,7 +1001,7 @@
         <preload-snd id="143" />
     	<devolve id="16.0.0" weight="1" />
 	</entity>
-    <entity anm2path="016.002_Mulliboom.anm2" baseHP="13" boss="0" champion="1" collisionDamage="0" collisionMass="6" collisionRadius="13" friction="1" id="16" name="멀리봄 (Mulliboom)" numGridCollisionPoints="12" portrait="13" reroll="true" shadowSize="13" stageHP="0" tags="explosive_soul" variant="2">
+    <entity anm2path="016.002_Mulliboom.anm2" baseHP="13" boss="0" champion="1" collisionDamage="0" collisionMass="6" collisionRadius="13" friction="1" id="16" name="멀리붐 (Mulliboom)" numGridCollisionPoints="12" portrait="13" reroll="true" shadowSize="13" stageHP="0" tags="explosive_soul" variant="2">
         <bestiary anim="WalkVert" overlay="Walk" transform="0,0,1" />
         <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     	<devolve id="16.1.0" weight="1" />
@@ -1086,7 +1086,7 @@
         <preload-snd id="29" />
     	<devolve id="15.0.0" weight="1" />
 	</entity>
-    <entity anm2path="024.001_Gazing Globin.anm2" baseHP="33" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" id="24" name="게이징 글로빈 (Gazing Globin)" numGridCollisionPoints="12" portrait="18" reroll="true" shadowSize="14" stageHP="0" variant="1">
+    <entity anm2path="024.001_Gazing Globin.anm2" baseHP="33" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" id="24" name="응시하는 글로빈 (Gazing Globin)" numGridCollisionPoints="12" portrait="18" reroll="true" shadowSize="14" stageHP="0" variant="1">
         <bestiary anim="WalkVert" overlay="HeadWalk" transform="0,0,1" />
         <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" worm="1" />
     	<devolve id="15.0.0" weight="1" />
@@ -1096,17 +1096,17 @@
         <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" worm="1" />
     	<devolve id="24.1.0" weight="1" />
 	</entity>
-    <entity anm2path="025.000_Boom Fly.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" gridCollision="walls" id="25" name="봄 파리 (Boom Fly)" numGridCollisionPoints="12" portrait="19" reroll="true" shadowSize="20" stageHP="3" tags="fly explosive_soul" variant="0">
+    <entity anm2path="025.000_Boom Fly.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" gridCollision="walls" id="25" name="붐 파리 (Boom Fly)" numGridCollisionPoints="12" portrait="19" reroll="true" shadowSize="20" stageHP="3" tags="fly explosive_soul" variant="0">
         <bestiary anim="Fly" transform="0,0,1" />
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="214.0.0" weight="1" />
 	</entity>
-    <entity anm2path="025.001_Red Boom Fly.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" gridCollision="walls" id="25" name="레드 봄 파리 (Red Boom Fly)" numGridCollisionPoints="12" portrait="20" reroll="true" shadowSize="20" stageHP="3" tags="fly" variant="1">
+    <entity anm2path="025.001_Red Boom Fly.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" gridCollision="walls" id="25" name="붉은 붐 파리 (Red Boom Fly)" numGridCollisionPoints="12" portrait="20" reroll="true" shadowSize="20" stageHP="3" tags="fly" variant="1">
         <bestiary anim="Fly" transform="0,0,1" />
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="249.0.0" weight="1" />
 	</entity>
-    <entity anm2path="025.002_Drowned Boom Fly.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" gridCollision="walls" id="25" name="익사한 봄 파리 (Drowned Boom Fly)" numGridCollisionPoints="12" portrait="138" reroll="true" shadowSize="20" stageHP="3" tags="fly explosive_soul" variant="2">
+    <entity anm2path="025.002_Drowned Boom Fly.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" gridCollision="walls" id="25" name="익사한 붐 파리 (Drowned Boom Fly)" numGridCollisionPoints="12" portrait="138" reroll="true" shadowSize="20" stageHP="3" tags="fly explosive_soul" variant="2">
         <bestiary anim="Fly" transform="0,0,1" />
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="25.0.0" weight="1" />
@@ -1133,7 +1133,7 @@
         <preload-snd id="166" />
     	<devolve id="226.0.0" weight="1" />
 	</entity>
-    <entity anm2path="027.001_Red Host.anm2" baseHP="15" boss="0" champion="1" collisionDamage="0" collisionMass="15" collisionRadius="13" friction="1" id="27" name="레드 호스트 (Red Host)" numGridCollisionPoints="12" portrait="175" reroll="true" shadowSize="25" stageHP="0" variant="1">
+    <entity anm2path="027.001_Red Host.anm2" baseHP="15" boss="0" champion="1" collisionDamage="0" collisionMass="15" collisionRadius="13" friction="1" id="27" name="붉은 호스트 (Red Host)" numGridCollisionPoints="12" portrait="175" reroll="true" shadowSize="25" stageHP="0" variant="1">
         <bestiary anim="Shoot" transform="0,0,1" />
         <gibs amount="6" blood="1" bone="1" eye="0" gut="0" large="0" worm="1" />
     	<devolve id="30.0.0" weight="1" />
@@ -1232,24 +1232,24 @@
         <gibs amount="4" blood="1" bone="1" eye="0" gut="1" large="0" />
     	<devolve id="29.0.0" weight="1" />
 	</entity>
-    <entity anm2path="035.000_Mr. Maw Body.anm2" baseHP="25" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="35" name="미스터 구렁텅이 (Mr. Maw)" numGridCollisionPoints="12" portrait="31" reroll="true" shadowSize="12" stageHP="0" variant="0">
+    <entity anm2path="035.000_Mr. Maw Body.anm2" baseHP="25" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="35" name="구렁텅이 씨 (Mr. Maw)" numGridCollisionPoints="12" portrait="31" reroll="true" shadowSize="12" stageHP="0" variant="0">
         <bestiary anim="Idle" anm2path="035.000_Mr. Maw (bestiary).anm2" transform="0,0,1" />
         <gibs amount="4" blood="1" bone="0" eye="0" gut="0" large="0" />
         <preload-snd id="165" />
     	<devolve id="11.1.0" weight="1" />
 	</entity>
-    <entity anm2path="035.001_Mr. Maw Head.anm2" baseHP="25" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="35" name="미스터 구렁텅이의 머리 (Mr. Maw Head)" numGridCollisionPoints="12" portrait="31" reroll="true" shadowSize="12" stageHP="0" variant="1" gridCollision="walls">
+    <entity anm2path="035.001_Mr. Maw Head.anm2" baseHP="25" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="35" name="구렁텅이 씨의 머리 (Mr. Maw Head)" numGridCollisionPoints="12" portrait="31" reroll="true" shadowSize="12" stageHP="0" variant="1" gridCollision="walls">
         <bestiary parent="35.0" />
         <gibs amount="4" blood="1" bone="0" eye="0" gut="1" large="0" />
         <preload-snd id="226" />
     	<devolve id="26.0.0" weight="1" />
 	</entity>
-    <entity anm2path="035.002_Mr. Red Maw Body.anm2" baseHP="25" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="35" name="미스터 붉은 구렁텅이 (Mr. Red Maw)" numGridCollisionPoints="12" portrait="171" reroll="true" shadowSize="12" stageHP="0" variant="2">
+    <entity anm2path="035.002_Mr. Red Maw Body.anm2" baseHP="25" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="35" name="붉은 구렁텅이 씨 (Mr. Red Maw)" numGridCollisionPoints="12" portrait="171" reroll="true" shadowSize="12" stageHP="0" variant="2">
         <bestiary anim="Idle" anm2path="035.002_Mr. Red Maw (bestiary).anm2" transform="0,0,1" />
         <gibs amount="4" blood="1" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="11.1.0" weight="1" />
 	</entity>
-    <entity anm2path="035.003_Mr. Red Maw Head.anm2" baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="35" name="미스터 붉은 구렁텅이의 머리 (Mr. Red Maw Head)" numGridCollisionPoints="12" portrait="171" reroll="true" shadowSize="12" stageHP="0" variant="3" gridCollision="walls">
+    <entity anm2path="035.003_Mr. Red Maw Head.anm2" baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="35" name="붉은 구렁텅이 씨의 머리 (Mr. Red Maw Head)" numGridCollisionPoints="12" portrait="171" reroll="true" shadowSize="12" stageHP="0" variant="3" gridCollision="walls">
         <bestiary parent="35.2" />
         <gibs amount="4" blood="1" bone="0" eye="0" gut="1" large="0" />
         <preload-snd id="146" />
@@ -2052,7 +2052,7 @@
         <preload-snd id="5" />
     	<devolve id="202.0.0" weight="1" />
 	</entity>
-    <entity anm2path="204.000_Mobile Host.anm2" baseHP="14" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="204" name="모바일 호스트 (Mobile Host)" numGridCollisionPoints="12" portrait="72" reroll="true" shadowSize="14" stageHP="0" variant="0">
+    <entity anm2path="204.000_Mobile Host.anm2" baseHP="14" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="204" name="이동식 호스트 (Mobile Host)" numGridCollisionPoints="12" portrait="72" reroll="true" shadowSize="14" stageHP="0" variant="0">
         <bestiary anim="WalkVert" overlay="Shoot" transform="0,0,1" />
         <gibs amount="6" blood="0" bone="1" eye="0" gut="1" large="0" />
     	<devolve id="226.1.0" weight="1" />
@@ -2297,7 +2297,7 @@
         <gibs amount="4" blood="1" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="231.0.0" weight="1" />
 	</entity>
-    <entity anm2path="234.000_OneTooth.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" gridCollision="none" id="234" name="원 투스 (One Tooth)" numGridCollisionPoints="12" portrait="109" reroll="true" shadowSize="18" stageHP="0" variant="0">
+    <entity anm2path="234.000_OneTooth.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" gridCollision="none" id="234" name="이빨 빠진 박쥐 (One Tooth)" numGridCollisionPoints="12" portrait="109" reroll="true" shadowSize="18" stageHP="0" variant="0">
         <bestiary anim="Idle" transform="0,-10,1" />
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
         <preload-snd id="146" />
@@ -2387,13 +2387,13 @@
         <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     	<devolve id="246.0.0" weight="1" />
 	</entity>
-    <entity anm2path="247.000_Flesh Mobile Host.anm2" baseHP="27" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="247" name="핏고기 모바일 호스트 (Flesh Mobile Host)" numGridCollisionPoints="12" portrait="179" reroll="true" shadowSize="14" stageHP="0" variant="0">
+    <entity anm2path="247.000_Flesh Mobile Host.anm2" baseHP="27" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="247" name="이동식 핏고기 호스트 (Flesh Mobile Host)" numGridCollisionPoints="12" portrait="179" reroll="true" shadowSize="14" stageHP="0" variant="0">
         <bestiary anim="WalkVert" overlay="Shoot" transform="0,0,1" />
         <gibs amount="6" blood="0" bone="1" eye="0" gut="1" large="0" />
         <preload-snd id="166" />
     	<devolve id="27.1.0" weight="1" />
 	</entity>
-    <entity anm2path="248.000_Psychic Horf.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="3" collisionRadius="13" friction="1" id="248" name="사이킥 홀프 (Psychic Horf)" numGridCollisionPoints="12" portrait="180" reroll="true" shadowSize="13" stageHP="0" tags="homing_soul" variant="0">
+    <entity anm2path="248.000_Psychic Horf.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="3" collisionRadius="13" friction="1" id="248" name="심령술사 홀프 (Psychic Horf)" numGridCollisionPoints="12" portrait="180" reroll="true" shadowSize="13" stageHP="0" tags="homing_soul" variant="0">
         <bestiary anim="Shake" overlay="Head" transform="0,0,1" />
         <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0" />
         <preload-snd id="146" />
@@ -2404,7 +2404,7 @@
         <gibs amount="0" blood="1" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="214.0.0" weight="1" />
 	</entity>
-    <entity anm2path="250.000_Ticking Spider.anm2" baseHP="13" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="250" name="똑딱 파리 (Ticking Spider)" numGridCollisionPoints="12" portrait="191" reroll="true" shadowSize="16" stageHP="0" tags="spider explosive_soul" variant="0">
+    <entity anm2path="250.000_Ticking Spider.anm2" baseHP="13" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="250" name="똑딱 거미 (Ticking Spider)" numGridCollisionPoints="12" portrait="191" reroll="true" shadowSize="16" stageHP="0" tags="spider explosive_soul" variant="0">
         <bestiary anim="Walk" transform="0,0,1" />
         <gibs amount="0" blood="1" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="215.0.0" weight="1" />
@@ -2427,7 +2427,7 @@
         <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="229.0.0" weight="1" />
 	</entity>
-    <entity anm2path="254.000_Floating Knight.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="254" name="부유하는 나이트 (Floating Knight)" numGridCollisionPoints="12" portrait="188" reroll="true" shadowSize="14" stageHP="0" variant="0">
+    <entity anm2path="254.000_Floating Knight.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="254" name="떠다니는 나이트 (Floating Knight)" numGridCollisionPoints="12" portrait="188" reroll="true" shadowSize="14" stageHP="0" variant="0">
         <bestiary anim="Down" transform="0,0,1" />
         <gibs amount="6" blood="0" bone="1" eye="0" gut="1" large="0" />
     	<devolve id="26.1.0" weight="1" />
@@ -2694,7 +2694,7 @@
         <gibs amount="6" blood="1" bone="1" eye="1" gut="0" large="0" worm="1" />
     	<devolve id="15.0.0" weight="1" />
 	</entity>
-    <entity anm2path="283.000_BoneKnight.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="283" name="본 나이트 (Bone Knight)" numGridCollisionPoints="12" portrait="129" reroll="true" shadowSize="14" stageHP="0" variant="0">
+    <entity anm2path="283.000_BoneKnight.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="283" name="해골 나이트 (Bone Knight)" numGridCollisionPoints="12" portrait="129" reroll="true" shadowSize="14" stageHP="0" variant="0">
         <bestiary anim="Down" transform="0,0,1" />
         <gibs amount="6" blood="0" bone="1" eye="0" gut="1" large="0" worm="1" />
     	<devolve id="41.1.0" weight="1" />
@@ -2704,7 +2704,7 @@
         <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     	<devolve id="10.0.0" weight="1" />
 	</entity>
-    <entity anm2path="285.000_Red Ghost.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="285" name="레드 고스트 (Red Ghost)" numGridCollisionPoints="12" portrait="131" reroll="true" shadowSize="21" stageHP="3" tags="ghost" variant="0">
+    <entity anm2path="285.000_Red Ghost.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="285" name="붉은 유령 (Red Ghost)" numGridCollisionPoints="12" portrait="131" reroll="true" shadowSize="21" stageHP="3" tags="ghost" variant="0">
         <bestiary anim="Bestiary" transform="0,0,1" />
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="219.0.0" weight="1" />
@@ -2787,7 +2787,7 @@
         <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="30.0.0" weight="1" />
 	</entity>
-    <entity anm2path="299.000_GreedGaper.anm2" baseHP="9" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="299" name="탐욕찬 게이퍼 (Greed Gaper)" numGridCollisionPoints="12" portrait="197" shadowSize="14" stageHP="0" variant="0">
+    <entity anm2path="299.000_GreedGaper.anm2" baseHP="9" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="299" name="탐욕 게이퍼 (Greed Gaper)" numGridCollisionPoints="12" portrait="197" shadowSize="14" stageHP="0" variant="0">
         <bestiary anim="WalkVert" overlay="Head2" transform="0,0,1" />
         <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     	<devolve id="10.1.0" weight="1" />
@@ -2875,7 +2875,7 @@
         <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="61.0.0" weight="1" />
 	</entity>
-    <entity anm2path="311.000_Mr. Mine.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="311" name="미스터 마인 (Mr. Mine)" numGridCollisionPoints="12" portrait="172" reroll="true" shadowSize="12" stageHP="0" variant="0">
+    <entity anm2path="311.000_Mr. Mine.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="311" name="마인 씨 (Mr. Mine)" numGridCollisionPoints="12" portrait="172" reroll="true" shadowSize="12" stageHP="0" variant="0">
         <bestiary anim="Idle" transform="0,0,1" />
         <gibs amount="4" blood="1" bone="0" eye="0" gut="1" large="0" />
         <preload-snd id="226" />
@@ -3838,12 +3838,12 @@
         <gibs amount="4" blood="0" bone="1" eye="0" gut="0" large="0" sound_bone="1" />
     	<devolve id="25.1.0" weight="1" />
 	</entity>
-    <entity anm2path="025.005_sick boom fly.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" gridCollision="walls" id="25" name="아픈 봄 파리 (Sick Boom Fly)" numGridCollisionPoints="12" portrait="278" shadowSize="20" stageHP="3" tags="fly explosive_soul" variant="5">
+    <entity anm2path="025.005_sick boom fly.anm2" baseHP="8" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" gridCollision="walls" id="25" name="아픈 붐 파리 (Sick Boom Fly)" numGridCollisionPoints="12" portrait="278" shadowSize="20" stageHP="3" tags="fly explosive_soul" variant="5">
         <bestiary anim="Fly" transform="0,0,1" />
         <gibs amount="0" blood="0" bone="0" colorblood="1" eye="0" gut="0" large="0" />
     	<devolve id="25.1.0" weight="1" />
 	</entity>
-    <entity anm2path="025.006_ultra boom fly.anm2" baseHP="20" boss="0" champion="0" collisionDamage="2" collisionMass="20" collisionRadius="24" friction="1" gridCollision="walls" id="25" name="더럽혀진 봄 파리 (Tainted Boom Fly)" numGridCollisionPoints="12" portrait="352" shadowSize="28" shieldStrength="10" stageHP="0" tags="fly explosive_soul" variant="6">
+    <entity anm2path="025.006_ultra boom fly.anm2" baseHP="20" boss="0" champion="0" collisionDamage="2" collisionMass="20" collisionRadius="24" friction="1" gridCollision="walls" id="25" name="더럽혀진 붐 파리 (Tainted Boom Fly)" numGridCollisionPoints="12" portrait="352" shadowSize="28" shieldStrength="10" stageHP="0" tags="fly explosive_soul" variant="6">
         <bestiary anim="Fly" transform="0,0,1" />
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="25.0.0" weight="1" />
@@ -3981,7 +3981,7 @@
         <preload-snd id="262" />
     	<devolve id="42.0.0" weight="1" />
 	</entity>
-    <entity anm2path="061.003_ink.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="17" friction="1" gridCollision="walls" id="61" name="따라오는 먹물 파리 (Ink)" numGridCollisionPoints="4" portrait="251" shadowSize="14" stageHP="0" tags="fly" variant="3">
+    <entity anm2path="061.003_ink.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="17" friction="1" gridCollision="walls" id="61" name="먹물 파리 (Ink)" numGridCollisionPoints="4" portrait="251" shadowSize="14" stageHP="0" tags="fly" variant="3">
         <bestiary anim="Fly" transform="0,0,1" />
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="18.0.0" weight="1" />
@@ -4082,11 +4082,11 @@
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="222.0.0" weight="1" />
 	</entity>
-    <entity anm2path="802.000_blood puppy lv2.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="12" collisionRadius="13" friction="1" id="802" name="핏빛 강아지 (Blood Puppy)" numGridCollisionPoints="12" portrait="357" shadowSize="18" shieldStrength="90" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
+    <entity anm2path="802.000_blood puppy lv2.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="12" collisionRadius="13" friction="1" id="802" name="핏덩이 강아지 (Blood Puppy)" numGridCollisionPoints="12" portrait="357" shadowSize="18" shieldStrength="90" shutdoors="false" stageHP="0" tags="noreroll" variant="0">
         <bestiary anim="Idle Hori" transform="0,0,1" />
         <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" />
     </entity>
-    <entity anm2path="802.001_blood puppy lv3.anm2" baseHP="50" boss="0" champion="0" collisionDamage="2" collisionMass="24" collisionRadius="16" friction="1" id="802" name="핏빛 강아지 (Blood Puppy)" numGridCollisionPoints="12" portrait="357" shadowSize="22" shieldStrength="90" shutdoors="false" stageHP="0" tags="noreroll" variant="1">
+    <entity anm2path="802.001_blood puppy lv3.anm2" baseHP="50" boss="0" champion="0" collisionDamage="2" collisionMass="24" collisionRadius="16" friction="1" id="802" name="핏덩이 강아지 (Blood Puppy)" numGridCollisionPoints="12" portrait="357" shadowSize="22" shieldStrength="90" shutdoors="false" stageHP="0" tags="noreroll" variant="1">
         <gibs amount="10" blood="1" bone="0" eye="0" gut="0" large="1" />
     </entity>
     <entity anm2path="803.000_blindbat.anm2" baseHP="18" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" gridCollision="walls" id="803" name="Blind Bat" numGridCollisionPoints="12" portrait="206" shadowSize="18" stageHP="0" variant="0">
@@ -4120,7 +4120,7 @@
         <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     	<devolve id="11.1.0" weight="1" />
 	</entity>
-    <entity anm2path="808.000_willo.anm2" baseHP="6" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="17" friction="1" gridCollision="none" id="808" name="윌오 (Willo)" numGridCollisionPoints="0" portrait="210" shadowSize="10" stageHP="0" tags="fly" variant="0">
+    <entity anm2path="808.000_willo.anm2" baseHP="6" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="17" friction="1" gridCollision="none" id="808" name="윌로 (Willo)" numGridCollisionPoints="0" portrait="210" shadowSize="10" stageHP="0" tags="fly" variant="0">
         <bestiary anim="Fly" transform="0,0,1" />
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="18.0.0" weight="1" />
@@ -4134,7 +4134,7 @@
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="853.0.0" weight="1" />
 	</entity>
-    <entity anm2path="811.000_deep gaper.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" hasFloorAlts="true" id="811" name="깊은 게이퍼 (Deep Gaper)" numGridCollisionPoints="12" portrait="213" shadowSize="14" stageHP="0" variant="0">
+    <entity anm2path="811.000_deep gaper.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" hasFloorAlts="true" id="811" name="심해 게이퍼 (Deep Gaper)" numGridCollisionPoints="12" portrait="213" shadowSize="14" stageHP="0" variant="0">
         <bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
         <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
     	<devolve id="11.1.0" weight="1" />
@@ -4406,7 +4406,7 @@
         <gibs amount="6" blood="0" bone="0" eye="0" gut="0" large="0" poop="1" />
     	<devolve id="837.0.0" weight="1" />
 	</entity>
-    <entity anm2path="838.000_level 2 willo.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="8" collisionRadius="13" friction="1" id="838" name="lvl2 윌오 (Level 2 Willo)" numGridCollisionPoints="8" portrait="362" shadowSize="14" stageHP="0" tags="fly" variant="0">
+    <entity anm2path="838.000_level 2 willo.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="8" collisionRadius="13" friction="1" id="838" name="lvl2 윌로 (Level 2 Willo)" numGridCollisionPoints="8" portrait="362" shadowSize="14" stageHP="0" tags="fly" variant="0">
         <bestiary anim="Fly" transform="0,0,1" />
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="808.0.0" weight="1" />
@@ -4471,7 +4471,7 @@
         <bestiary anim="Idle" transform="0,0,1" />
         <gibs amount="4" blood="1" bone="0" dust="1" eye="0" gut="0" large="0" rock="1" />
     </entity>
-    <entity anm2path="853.000_small maggot.anm2" baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="17" friction="1" gridCollision="ground" id="853" name="작은 거머리 (Small Maggot)" numGridCollisionPoints="8" portrait="271" shadowSize="10" stageHP="0" variant="0">
+    <entity anm2path="853.000_small maggot.anm2" baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="17" friction="1" gridCollision="ground" id="853" name="작은 구더기 (Small Maggot)" numGridCollisionPoints="8" portrait="271" shadowSize="10" stageHP="0" variant="0">
         <bestiary anim="MoveHori" transform="0,0,1" />
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     	<devolve id="999.63.1" weight="1" />
@@ -4493,7 +4493,7 @@
         <preload-snd id="224" />
     	<devolve id="810.0.0" weight="1" />
 	</entity>
-    <entity anm2path="856.000_gasbag.anm2" baseHP="80" boss="0" champion="1" collisionDamage="1" collisionMass="50" collisionRadius="40" friction="1" id="856" name="가스백 (Gasbag)" numGridCollisionPoints="12" portrait="273" shadowSize="0" stageHP="0" variant="0">
+    <entity anm2path="856.000_gasbag.anm2" baseHP="80" boss="0" champion="1" collisionDamage="1" collisionMass="50" collisionRadius="40" friction="1" id="856" name="가스주머니 (Gasbag)" numGridCollisionPoints="12" portrait="273" shadowSize="0" stageHP="0" variant="0">
         <bestiary anim="Attack" transform="0,0,1" />
         <gibs amount="18" blood="1" bone="0" colorblood="1" eye="0" gut="1" large="1" />
     	<devolve id="25.5.0" weight="1" />
@@ -4511,7 +4511,7 @@
         <gibs amount="6" blood="1" bone="1" eye="0" gut="0" large="0" worm="1" />
     	<devolve id="815.0.0" weight="1" />
 	</entity>
-    <entity anm2path="860.000_unborn.anm2" baseHP="32" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="860" name="언본 (Unborn)" numGridCollisionPoints="8" portrait="280" shadowSize="15" stageHP="0" variant="0">
+    <entity anm2path="860.000_unborn.anm2" baseHP="32" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="860" name="미출생아 (Unborn)" numGridCollisionPoints="8" portrait="280" shadowSize="15" stageHP="0" variant="0">
         <bestiary anim="Idle" transform="0,0,1" />
         <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" small="1" />
     	<devolve id="77.0.0" weight="1" />
@@ -4765,7 +4765,7 @@
         <bestiary anim="WalkLeft" overlay="Idle1" transform="0,-20,1" />
         <gibs amount="19" blood="1" bone="1" eye="1" gut="1" large="1" />
     </entity>
-    <entity anm2path="901.000_beelzeblub.anm2" baseHP="200" boss="1" bossID="75" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="35" friction="1" hasFloorAlts="true" id="901" name="작은 납작 (Lil Blub)" numGridCollisionPoints="12" portrait="101" shadowSize="34" stageHP="0" tags="nodelirium" variant="0">
+    <entity anm2path="901.000_beelzeblub.anm2" baseHP="200" boss="1" bossID="75" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="35" friction="1" hasFloorAlts="true" id="901" name="꼬마 퐁당 (Lil Blub)" numGridCollisionPoints="12" portrait="101" shadowSize="34" stageHP="0" tags="nodelirium" variant="0">
         <bestiary anim="Idle" transform="0,14,1" />
         <gibs amount="16" blood="1" bone="1" eye="0" gut="1" large="1" />
     </entity>

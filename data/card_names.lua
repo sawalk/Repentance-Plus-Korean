@@ -89,11 +89,11 @@ return {
 	[Card.CARD_SOUL_AZAZEL] = "아자젤의 영혼",
 	[Card.CARD_SOUL_LAZARUS] = "나사로의 영혼",
 	[Card.CARD_SOUL_EDEN] = "에덴의 영혼",
-	[Card.CARD_SOUL_LOST] = "로스트의 영혼",
+	[Card.CARD_SOUL_LOST] = "더 로스트의 영혼",
 	[Card.CARD_SOUL_LILITH] = "릴리트의 영혼",
 	[Card.CARD_SOUL_KEEPER] = "키퍼의 영혼",
 	[Card.CARD_SOUL_APOLLYON] = "아폴리온의 영혼",
-	[Card.CARD_SOUL_FORGOTTEN] = "포가튼의 영혼",
+	[Card.CARD_SOUL_FORGOTTEN] = "더 포가튼의 영혼",
 	[Card.CARD_SOUL_BETHANY] = "베다니의 영혼",
 	[Card.CARD_SOUL_JACOB] = "야곱과 에사우의 영혼",
 }
