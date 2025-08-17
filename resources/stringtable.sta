@@ -4318,7 +4318,7 @@
         <key name="THE_PEEPER_NAME">
             <string>The Peeper</string>
             <string>ノゾキ魔</string>
-            <string>엿보기</string>
+            <string>엿보기 눈깔</string>
             <string>窥眼</string>
             <string>Моргало</string>
             <string>Der Linser</string>
@@ -6308,7 +6308,7 @@
         <key name="SCREW_DESCRIPTION">
             <string>Tears + shot speed up</string>
             <string>涙とショットスピードアップ</string>
-            <string>공격 속도, 투사체 속도 증가</string>
+            <string>공격 속도 + 투사체 속도 증가</string>
             <string>射速+弹速上升</string>
             <string>Скорострельность + Скорость снаряда ↑</string>
             <string>Tränen + Schusstempo hoch</string>
@@ -8028,7 +8028,7 @@
         <key name="TORN_PHOTO_DESCRIPTION">
             <string>Tears + shot speed up</string>
             <string>涙とショットスピードアップ</string>
-            <string>공격 속도, 투사체 속도 증가</string>
+            <string>공격 속도 + 투사체 속도 증가</string>
             <string>射速+弹速上升</string>
             <string>Скорострельность + Скорость снаряда ↑</string>
             <string>Tränen + Schusstempo hoch</string>
@@ -10118,7 +10118,7 @@
         <key name="DEAD_TOOTH_NAME">
             <string>Dead Tooth</string>
             <string>デッドトゥース</string>
-            <string>죽은 이빨</string>
+            <string>썩은 이빨</string>
             <string>烂牙</string>
             <string>Мёртвый зуб</string>
             <string>Toter Zahn</string>
@@ -11148,7 +11148,7 @@
         <key name="CAMO_UNDIES_DESCRIPTION">
             <string>Camo kid</string>
             <string>カモフラキッド</string>
-            <string>위장 아이</string>
+            <string>위장한 아이</string>
             <string>迷彩小子</string>
             <string>Замаскированный ребёнок</string>
             <string>Tarn-Kid</string>
@@ -12648,7 +12648,7 @@
         <key name="EYE_OF_THE_OCCULT_DESCRIPTION">
             <string>DMG up + range up + controlled tears</string>
             <string>ダメージと射程距離アップ、コントロール涙</string>
-            <string>공격력 + 사거리 증가, 조종되는 눈물</string>
+            <string>공격력 + 사거리 증가 + 조종되는 눈물</string>
             <string>伤害上升+射程上升+可控泪弹</string>
             <string>Урон ↑ + Дальность ↑ + управляемые слезы</string>
             <string>Schaden + Reichweite hoch + kontrollierte Tränen</string>
@@ -15648,7 +15648,7 @@
         <key name="STYE_DESCRIPTION">
             <string>DMG + range up</string>
             <string>ダメージと射程距離アップ</string>
-            <string>공격력, 사거리 증가</string>
+            <string>공격력 + 사거리 증가</string>
             <string>伤害+射程上升</string>
             <string>Урон + Дальность ↑</string>
             <string>Schaden + Reichweite hoch</string>
@@ -18018,7 +18018,7 @@
         <key name="STEM_CELL_NAME">
             <string>Stem Cell</string>
             <string>幹細胞</string>
-            <string>줄기세포</string>
+            <string>줄기 세포</string>
             <string>干细胞</string>
             <string>Стволовая клетка</string>
             <string>Stammzelle</string>
@@ -18268,7 +18268,7 @@
         <key name="BLESSED_PENNY_DESCRIPTION">
             <string>Wealth of purity</string>
             <string>豊富な清浄</string>
-            <string>순수 부자</string>
+            <string>순수함 부자</string>
             <string>财富即纯洁</string>
             <string>Богатство чистоты</string>
             <string>Reichtum an Reinheit</string>
@@ -24976,7 +24976,7 @@
         <key name="BETHANY_BIRTHRIGHT">
             <string>Conserve your faith</string>
             <string>自分を信じて</string>
-            <string>신앙의 보호</string>
+            <string>네 믿음을 보존하라</string>
             <string>保持你的信仰</string>
             <string>Сохрани свою веру</string>
             <string>Bewahre deinen Glauben</string>
@@ -25026,7 +25026,7 @@
         <key name="ISAAC_B_BIRTHRIGHT">
             <string>Inventory up</string>
             <string>インベントリアップ</string>
-            <string>인벤토리 증가</string>
+            <string>수집 공간 증가</string>
             <string>物品栏增加</string>
             <string>↑ Инвентарь</string>
             <string>Inventar hoch</string>
@@ -25186,7 +25186,7 @@
         <key name="JACOB_B_BIRTHRIGHT">
             <string>It's not yours</string>
             <string>逃げ場はない</string>
-            <string>네 거 아니야</string>
+            <string>이건 네 게 아니야</string>
             <string>这可不是你的</string>
             <string>Выхода нет</string>
             <string>Es gibt kein Entkommen</string>

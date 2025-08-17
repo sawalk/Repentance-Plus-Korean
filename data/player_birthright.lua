@@ -17,10 +17,10 @@ return {
 	[PlayerType.PLAYER_APOLLYON] = "역류",
 	[PlayerType.PLAYER_THEFORGOTTEN] = "풀려난 자",
 	[PlayerType.PLAYER_THESOUL] = "풀려난 자",
-	[PlayerType.PLAYER_BETHANY] = "신앙의 보호",
+	[PlayerType.PLAYER_BETHANY] = "네 믿음을 보존하라",
 	[PlayerType.PLAYER_JACOB] = "네건 내거",
 	[PlayerType.PLAYER_ESAU] = "네건 내거",
-	[PlayerType.PLAYER_ISAAC_B] = "인벤토리 증가",
+	[PlayerType.PLAYER_ISAAC_B] = "수집 공간 증가",
 	[PlayerType.PLAYER_MAGDALENE_B] = "체력 증가!",
 	[PlayerType.PLAYER_CAIN_B] = "싹쓸이",
 	[PlayerType.PLAYER_JUDAS_B] = "확장된 어둠",
@@ -36,8 +36,8 @@ return {
 	[PlayerType.PLAYER_APOLLYON_B] = "고통",
 	[PlayerType.PLAYER_THEFORGOTTEN_B] = "되돌아오라",
 	[PlayerType.PLAYER_BETHANY_B] = "아티팩트",
-	[PlayerType.PLAYER_JACOB_B] = "네 거 아니야",
+	[PlayerType.PLAYER_JACOB_B] = "이건 네 게 아니야",
 	[PlayerType.PLAYER_LAZARUS2_B] = "중첩",
-	[PlayerType.PLAYER_JACOB2_B] = "네 거 아니야",
+	[PlayerType.PLAYER_JACOB2_B] = "이건 네 게 아니야",
 	[PlayerType.PLAYER_THESOUL_B] = "되돌아오라"
 }

@@ -107,7 +107,6 @@ mod.saveDataDummy = tonumber(mod:LoadData()) or 0
 mod.notKillingMom = false                              -- 엄마를 처치했는가?
 mod.notRunningEID = false                              -- EID가 실행 중인가?
 mod.notEIDKorean = false                               -- EID가 한국어로 설정돼있는가?
-mod.survey = true                                      -- 설문조사용
 
 mod.detectStageAPI = false                             -- StageAPI가 켜져있는가?
 mod.stageAPITimer = 0
@@ -120,18 +119,17 @@ local messages = {
     notKillingMom = "지금 모드를 적용하면 도전 과제가 해금되지 않을 수 있습니다!",
     notRunningEID = "아이템 설명모드를 감지하지 못했습니다! 일부 번역 기능이 동작하지 않습니다!",
     notEIDKorean = "아이템 설명모드가 한국어로 설정돼있지 않습니다. Mod Config Menu Pure를 구독한 후 수동으로 설정하세요.",
-    survey = "8/23까지 몬스터 이름에 대한 설문 진행! 상세 내용은 한글패치의 창작마당 페이지를 확인해주세요!",
     hasTM = "TMTRAINER를 소지 중입니다! 일부 번역 기능이 동작하지 않습니다!",
 
-    stageAPI = REPENTOGON and "('지하 묘지' 스테이지의 이름만 번역되지 않습니다.)"
-                           or "(스테이지 이름이 번역되지 않습니다. REPENTOGON+ 적용 시 해결됩니다.)"
+    stageAPI = REPENTOGON and "(일부 스테이지의 이름이 번역되지 않습니다.)"
+                           or "(스테이지 이름이 번역되지 않습니다. REPENTOGON+ 적용 시 일부 해결됩니다.)"
 }
 
 local warningDurations = {
     [messages.notKillingMom] = 180,
     [messages.notRunningEID] = 180,
     [messages.notEIDKorean] = 180,
-    [messages.survey] = 360,
+ -- [messages.survey] = 360,
     [messages.hasTM] = 180
 }
 
@@ -171,12 +169,6 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
         local duration = warningDurations[messages.notKillingMom]
         mod.warningTimers[messages.notKillingMom] = duration
         mod.warningMaxTimes[messages.notKillingMom] = duration
-    end
-
-    if mod.survey then
-        local duration = warningDurations[messages.survey]
-        mod.warningTimers[messages.survey] = duration
-        mod.warningMaxTimes[messages.survey] = duration
     end
 end)
 
@@ -259,7 +251,7 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
         warningFontBlack:DrawStringScaledUTF8("쀏", 400, -1500, 400, 400, KColor(0, 0, 0, 1), 0, true)
         DrawWarningString(warningFont16, "리펜턴스+ 한글패치가", 79, KColor(1, 0.5, 0.5, 1))
         DrawWarningString(warningFont16, "리펜턴스에서 실행되었습니다!", 55, KColor(1, 0.5, 0.5, 1))
-        DrawWarningString(warningFont12, "현재 상태로는 게임 진행이 불가합니다.", 22, KColor(1, 1, 1, 0.5))
+        DrawWarningString(warningFont12, "어 네 버그 아니고 리펜으로 켜진 거 맞아요 (시스템은 거짓말 안 함)", 22, KColor(1, 1, 1, 0.5))
         DrawWarningString(warningFont12, "일시정지 키로 게임을 나가고 아래 매뉴얼을 따르세요.", 4, KColor(1, 1, 1, 0.5))
         DrawWarningString(warningFont12, "리펜턴스로 하시려면 z_REPENTANCE+ KOREAN 모드를 꺼주세요.", -24)
         DrawWarningString(warningFont12, "리펜턴스+로 하시려면 DLC를 제대로 적용했는지 다시 확인하세요.", -44)
@@ -449,7 +441,7 @@ if next(changes.items) ~= nil then
     local i_queueNow = {}
 
     local gFuelDesc = include('data.gfuel')
-    local birthrightDesc = include('data.birthright')
+    local birthrightDesc = include('data.player_birthright')
 
     mod:AddCallback(
         ModCallbacks.MC_POST_PLAYER_UPDATE,
@@ -698,7 +690,11 @@ function mod:CompareStats(player)
     Game():GetHUD():ShowItemText("실험약", e_description)
 end
 
-function mod:FakePillText(pillEffect, player)
+function mod:FakePillText(pillEffect, player, flag)
+    if flag >= 2048 then    -- 이꼬챔버
+        return
+    end
+
     if pillEffect == 49 then
         pendingStatComparison[player.InitSeed] = true
     elseif pillNames[pillEffect] then
@@ -776,7 +772,7 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
         if pickup:GetSprite():GetAnimation() == "Collect" and not pickupCollected[idx] then    -- Collect에 진입했고 아직 처리하지 않았으면 처리
             pickupCollected[idx] = true
 
-            if not pickupJustTouched[idx] then  -- 인덱스 기준으로 '닿지 않은 상태'라면 제작 가방 판정
+            if not pickupJustTouched[idx] then    -- 인덱스 기준으로 '닿지 않은 상태'라면 제작 가방 판정
                 local REPKORcraftingIDs = mod:getBagOfCraftingID(pickup.Variant, pickup.SubType)
 
                 if REPKORcraftingIDs ~= nil then
@@ -837,12 +833,12 @@ mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()    -- 새 방 진입 �
 end)
 
 
------- 포켓 슬롯 번역 ------
-local PocketItemStrings = {}
+------ 포켓 슬롯 번역 by Goganidze ------
+mod.pocketItemStr = {}
 mod.checkedPills = {}
 
-local function BuildPocketItemStrings()
-    PocketItemStrings = {}
+local function BuildPocketItemString()
+    mod.pocketItemStr = {}
     local ic = Isaac.GetItemConfig()
     local numPlayers = Game():GetNumPlayers()
 
@@ -895,8 +891,8 @@ local function BuildPocketItemStrings()
             end
         end
 
-        local id = #PocketItemStrings + 1
-        PocketItemStrings[id] = {
+        local id = #mod.pocketItemStr + 1
+        mod.pocketItemStr[id] = {
             Name = TrslName or "",
             IsActiveItem = IsActiveItem,
             PType = player:GetPlayerType(),
@@ -915,7 +911,7 @@ end)
 
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, cont)
     if not cont then
-        PocketItemStrings = {}
+        mod.pocketItemStr = {}
         mod.checkedPills = {}
     end 
 end)
@@ -930,7 +926,7 @@ local function RenderPocketItemName()
     local shakeOffset = Game().ScreenShakeOffset
     local fontSize, sizeOffset = 1, -2
 
-    for i, k in pairs(PocketItemStrings) do
+    for i, k in pairs(mod.pocketItemStr) do
         if not k or not k.Name or k.Name == "" then
             goto skip
         end
@@ -965,7 +961,7 @@ if Renderer then    -- RGON
 end
 
 mod:AddCallback(renderCollback, function()
-    BuildPocketItemStrings()
+    BuildPocketItemString()
     RenderPocketItemName()
 end)
 
@@ -1024,7 +1020,7 @@ function mod:ShowPokeGOText()
                     currentCounts[friendlyEntityKey] = (currentCounts[friendlyEntityKey] or 0) + 1
 
                     if not friendlyEntityCounts[friendlyEntityKey] or currentCounts[friendlyEntityKey] > friendlyEntityCounts[friendlyEntityKey] then
-                        Game():GetHUD():ShowFortuneText(entityName .. "(이)가 튀어나왔다!")
+                        Game():GetHUD():ShowFortuneText(entityName .. "가 튀어나왔다!")
                     end
                 end
             end
@@ -1213,8 +1209,9 @@ end)
 
 ------ 축복 받은 느낌! ------
 ------ To modders who want to reference this code. THIS CODE IS UNSTABLE!!! DROP THAT IDEA RIGHT NOW!!!
-local lastSacrificeAngelChance = nil    -- 이전 프레임의 천사방 확률 저장
+mod.YOU_FEEL_BLESSED = "축복받은 느낌!"
 
+local lastSacrificeAngelChance = nil    -- 이전 프레임의 천사방 확률 저장
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
     if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE then
         local currentAngelChance = Game():GetLevel():GetAngelRoomChance()
@@ -1224,7 +1221,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
         end
 
         if currentAngelChance > lastSacrificeAngelChance then
-            Game():GetHUD():ShowFortuneText("축복받은 느낌!")
+            Game():GetHUD():ShowFortuneText(mod.YOU_FEEL_BLESSED)
         end
         lastSacrificeAngelChance = currentAngelChance
     else
@@ -1249,9 +1246,9 @@ function mod:checkConfessional()
                 end
 
                 if currentAngelChance > lastConfessionalAngelChance then
-                    Game():GetHUD():ShowFortuneText("축복받은 느낌!")
+                    Game():GetHUD():ShowFortuneText(mod.YOU_FEEL_BLESSED)
                 elseif previousCurses ~= nil and previousCurses ~= 0 and currentCurses == 0 then
-                    Game():GetHUD():ShowFortuneText("축복받은 느낌!")
+                    Game():GetHUD():ShowFortuneText(mod.YOU_FEEL_BLESSED)
                 end
 
                 lastConfessionalAngelChance = currentAngelChance
@@ -1382,5 +1379,8 @@ end
 
 
 ------ 버전 출력 ------
-mod.version = 1.95
+mod.version = 1.97
+Isaac.DebugString("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+Isaac.DebugString("Repentance+ Korean v" .. mod.version .." loaded.")
+Isaac.DebugString("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 print("Repentance+ Korean " .. string.format("%.2f", mod.version) .. " loaded.")
