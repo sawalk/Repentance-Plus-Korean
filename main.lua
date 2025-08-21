@@ -16,6 +16,9 @@
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
+mod.version = 1.98
+Isaac.DebugString("Starting Repentance+ Korean v" .. mod.version)    -- 디버깅
+
 ------ EID ------
 function mod:ChangeEIDLanguage()
     return "ko_kr"    -- EID(v4.99 이상)에서 언어를 Auto로 설정했을 때 한국어가 선택되도록 변경
@@ -42,6 +45,14 @@ local function AddPickupWarning(descObj)
             "#{{Blank}} {{ColorError}}아군 등장 텍스트가 잘못 표시될 수 있습니다."
         )
     end
+    --[[ 더 좋은 방법이 있을 때까지 유기
+    local targetWarning = descObj.ObjType == -999 and descObj.ObjVariant == -1 and descObj.ObjSubType ==  1
+    if not REPENTOGON and EID:PlayersHaveCollectible(710) and EID:DetectModdedItems() and targetWarning then
+        EID:appendToDescription(descObj,
+            "#{{Warning}} {{ColorError}}한글패치 관련:" ..
+            "#{{Blank}} {{ColorError}}아이템 번역 또한 조합된 아이템과 일치하지 않을 수 있습니다."
+        )
+    end]]
 
     return descObj
 end
@@ -63,15 +74,6 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
         "실험용 알약",
         "ko_kr"
     )
-
-    if EdenBlessingFix then    -- 왜인진 모르겠는데 패치안됨
-        EID:addCollectible(
-            CollectibleType.COLLECTIBLE_EDENS_BLESSING,
-            "↑ {{TearsSmall}}연사 +0.7#다음 게임에서 랜덤 아이템을 하나 들고 시작합니다.#{{Blank}} {{ColorGray}}(최대 10개)",
-            "에덴의 축복",
-            "ko_kr"
-        )
-    end
 end)
 
 
@@ -93,6 +95,8 @@ end)]]
 
 
 ------ 경고 메시지 ------
+local HUD = Game():GetHUD()
+
 mod.warningTimers = {}
 mod.warningsToShow = {}
 mod.warningMaxTimes = {}
@@ -227,8 +231,8 @@ local warningFont16 = Font()
 warningFont16:Load(mod.modPath .. "resources/font/teammeatex/teammeatex16.fnt")
 
 local function DrawWarningString(font, text, offset, color)
-    if Game():GetHUD():IsVisible() then
-        Game():GetHUD():SetVisible(false)
+    if HUD:IsVisible() then
+        HUD:SetVisible(false)
     end
 
     if Isaac.GetPlayer().ControlsEnabled then
@@ -251,19 +255,19 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
         warningFontBlack:DrawStringScaledUTF8("쀏", 400, -1500, 400, 400, KColor(0, 0, 0, 1), 0, true)
         DrawWarningString(warningFont16, "리펜턴스+ 한글패치가", 79, KColor(1, 0.5, 0.5, 1))
         DrawWarningString(warningFont16, "리펜턴스에서 실행되었습니다!", 55, KColor(1, 0.5, 0.5, 1))
-        DrawWarningString(warningFont12, "어 네 버그 아니고 리펜으로 켜진 거 맞아요 (시스템은 거짓말 안 함)", 22, KColor(1, 1, 1, 0.5))
-        DrawWarningString(warningFont12, "일시정지 키로 게임을 나가고 아래 매뉴얼을 따르세요.", 4, KColor(1, 1, 1, 0.5))
-        DrawWarningString(warningFont12, "리펜턴스로 하시려면 z_REPENTANCE+ KOREAN 모드를 꺼주세요.", -24)
-        DrawWarningString(warningFont12, "리펜턴스+로 하시려면 DLC를 제대로 적용했는지 다시 확인하세요.", -44)
+        DrawWarningString(warningFont12, "(이 상태로는 게임 진행이 불가능합니다)", 22, KColor(1, 1, 1, 0.5))
+        DrawWarningString(warningFont12, "리펜턴스+ DLC를 적용 해제한 건 아닌지,", -4, KColor(1, 1, 1, 1))
+        DrawWarningString(warningFont12, "리펜턴스+ DLC를 적용했는데 Steam 다운로드 대기열에", -24)
+        DrawWarningString(warningFont12, "밀려있는 건 아닌지, 다시 한 번 확인해 주세요!", -44)
         return
     end
 
     if mod.notRestart then
         warningFontBlack:DrawStringScaledUTF8("쀏", 400, -1500, 400, 400, KColor(0, 0, 0, 1), 0, true)
-        DrawWarningString(warningFont16, "게임을 재실행해야 합니다!", 55, KColor(1, 0.5, 0.5, 1))
-        DrawWarningString(warningFont12, "한글패치는 최소 한 번 게임에 진입한 저장파일에서만", 18)
-        DrawWarningString(warningFont12, "정상적으로 작동합니다. 양해바랍니다.", 0)
-        DrawWarningString(warningFont12, "(현재 상태로는 게임 진행이 불가합니다)", -24, KColor(1, 1, 1, 0.5))
+        DrawWarningString(warningFont16, "한글패치 적용이 90% 완료됐어요!", 55, KColor(0.5, 1, 0.5, 1))
+        DrawWarningString(warningFont12, "마지막으로 한 번만 게임을 완전히 껐다 켜면", 18)
+        DrawWarningString(warningFont12, "100% 적용됩니다! 양해 부탁드려요!", 0)
+        DrawWarningString(warningFont12, "(한글패치는 저장파일별로 셋업이 필요합니다)", -24, KColor(1, 1, 1, 0.5))
         return
     end
     
@@ -428,7 +432,7 @@ if next(changes.trinkets) ~= nil then
             if (t_queueNow[playerKey] ~= nil) then
                 local trinket = changes.trinkets[tostring(t_queueNow[playerKey].ID)]
                 if trinket and t_queueNow[playerKey]:IsTrinket() and t_queueLastFrame[playerKey] == nil and not REPENTOGON then
-                    Game():GetHUD():ShowItemText(trinket.name, trinket.description)
+                    HUD:ShowItemText(trinket.name, trinket.description)
                 end
             end
             t_queueLastFrame[playerKey] = t_queueNow[playerKey]
@@ -457,18 +461,18 @@ if next(changes.items) ~= nil then
                     local g_random = math.random(1, 50)
                     local g_description = gFuelDesc[g_random]
                     if g_description then
-                        Game():GetHUD():ShowItemText("G FUEL!", g_description or "일종의 오류발생 메시지. 한글패치 제작자에게 연락바람")
+                        HUD:ShowItemText("G FUEL!", g_description or "일종의 오류발생 메시지. 한글패치 제작자에게 연락바람")
                     end
                 elseif itemID == 619 then    -- 생득권이라면
                     local b_playerType = player:GetPlayerType()
                     local b_description = birthrightDesc[b_playerType]
                     if b_description then
-                        Game():GetHUD():ShowItemText("생득권", b_description or "???")
+                        HUD:ShowItemText("생득권", b_description or "???")
                     end
                 else
                     local item = changes.items[tostring(itemID)]    -- 일반 아이템이라면
                     if item and not REPENTOGON then
-                        Game():GetHUD():ShowItemText(item.name, item.description)
+                        HUD:ShowItemText(item.name, item.description)
                     end
                 end
             end
@@ -503,11 +507,11 @@ local function FakeDeadSeaScrolls()
     if lastPredictedID and lastPredictedID ~= 0 then
         local d_data = jsonData.items[tostring(lastPredictedID)]
         if d_data and not REPENTOGON and not mod.hasTM then
-            Game():GetHUD():ShowItemText(d_data.name)
+            HUD:ShowItemText(d_data.name)
         elseif mod.hasTM then
             return
         elseif not REPENTOGON then
-            Game():GetHUD():ShowItemText("일종의 오류발생 메시지", "한글패치 제작자에게 연락바람")
+            HUD:ShowItemText("일종의 오류발생 메시지", "한글패치 제작자에게 연락바람")
         end
     end
 end
@@ -535,7 +539,7 @@ if EID then
         local BoCItems = jsonData.items[tostring(recipeID)]
         
         if not REPENTOGON then
-            Game():GetHUD():ShowItemText(BoCItems.name, BoCItems.description)
+            HUD:ShowItemText(BoCItems.name, BoCItems.description)
         end
     end
 
@@ -573,7 +577,7 @@ local function WispText(familiar)
     if WispID > 0 and w_queueLastFrame[familiarKey] == nil then
         local wisp = changes.items[tostring(WispID)]
         if wisp and not REPENTOGON then
-            Game():GetHUD():ShowItemText(wisp.name or "일종의 오류발생 메시지", wisp.description or "한글패치 제작자에게 연락바람")
+            HUD:ShowItemText(wisp.name or "일종의 오류발생 메시지", wisp.description or "한글패치 제작자에게 연락바람")
         else
             if not REPENTOGON then
                 print("[ Repentance+ Korean ]\n" .. tostring(WispID) .. "번 아이템이 모드 아이템이거나 플레이어가 2인 이상인 상태입니다.")
@@ -687,7 +691,7 @@ function mod:CompareStats(player)
         e_description = e_description .. table.concat(e_changes.decreased, ", ")
     end
 
-    Game():GetHUD():ShowItemText("실험약", e_description)
+    HUD:ShowItemText("실험약", e_description)
 end
 
 function mod:FakePillText(pillEffect, player, flag)
@@ -698,7 +702,7 @@ function mod:FakePillText(pillEffect, player, flag)
     if pillEffect == 49 then
         pendingStatComparison[player.InitSeed] = true
     elseif pillNames[pillEffect] then
-        Game():GetHUD():ShowItemText(pillNames[pillEffect], pillDescriptions[pillEffect])
+        HUD:ShowItemText(pillNames[pillEffect], pillDescriptions[pillEffect])
     end
 end
 
@@ -814,7 +818,7 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
                 else
                     local cardID = pickupRef and pickupRef.SubType
                     if cardID and cardNames[cardID] and not REPENTOGON then
-                        Game():GetHUD():ShowItemText(cardNames[cardID], cardDescriptions[cardID])
+                        HUD:ShowItemText(cardNames[cardID], cardDescriptions[cardID])
                     end
                 end
             end
@@ -920,7 +924,7 @@ local poeketFont = Font()
 poeketFont:Load(mod.modPath .. "resources/font/luaminioutlined.fnt")
 
 local function RenderPocketItemName()
-    if not Game():GetHUD():IsVisible() then return end
+    if not HUD:IsVisible() then return end
     if Game():GetNumPlayers() > 1 then return end    -- 멀티 유기
 
     local shakeOffset = Game().ScreenShakeOffset
@@ -979,7 +983,7 @@ end
 
 function mod:DelayedLuckyPennyText()
     if delayLuckyPenny then
-        Game():GetHUD():ShowItemText("행운의 동전", "행운 증가")
+        HUD:ShowItemText("행운의 동전", "행운 증가")
         delayLuckyPenny = nil
     end
 end
@@ -1020,7 +1024,7 @@ function mod:ShowPokeGOText()
                     currentCounts[friendlyEntityKey] = (currentCounts[friendlyEntityKey] or 0) + 1
 
                     if not friendlyEntityCounts[friendlyEntityKey] or currentCounts[friendlyEntityKey] > friendlyEntityCounts[friendlyEntityKey] then
-                        Game():GetHUD():ShowFortuneText(entityName .. "가 튀어나왔다!")
+                        HUD:ShowFortuneText(entityName .. "가 튀어나왔다!")
                     end
                 end
             end
@@ -1059,7 +1063,7 @@ mod.SpecialSeeds = {
 
 local function ShowSpecialSeed()
     local seed = mod.SpecialSeeds[math.random(#mod.SpecialSeeds)]
-    Game():GetHUD():ShowFortuneText(seed)
+    HUD:ShowFortuneText(seed)
 end
 
 local function split(pString, pPattern)
@@ -1082,7 +1086,7 @@ local function split(pString, pPattern)
 end
 
 local function fortuneArray(array)
-    Game():GetHUD():ShowFortuneText(
+    HUD:ShowFortuneText(
         array[1], 
         array[2] or nil, 
         array[3] or nil, 
@@ -1221,7 +1225,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
         end
 
         if currentAngelChance > lastSacrificeAngelChance then
-            Game():GetHUD():ShowFortuneText(mod.YOU_FEEL_BLESSED)
+            HUD:ShowFortuneText(mod.YOU_FEEL_BLESSED)
         end
         lastSacrificeAngelChance = currentAngelChance
     else
@@ -1246,9 +1250,9 @@ function mod:checkConfessional()
                 end
 
                 if currentAngelChance > lastConfessionalAngelChance then
-                    Game():GetHUD():ShowFortuneText(mod.YOU_FEEL_BLESSED)
+                    HUD:ShowFortuneText(mod.YOU_FEEL_BLESSED)
                 elseif previousCurses ~= nil and previousCurses ~= 0 and currentCurses == 0 then
-                    Game():GetHUD():ShowFortuneText(mod.YOU_FEEL_BLESSED)
+                    HUD:ShowFortuneText(mod.YOU_FEEL_BLESSED)
                 end
 
                 lastConfessionalAngelChance = currentAngelChance
@@ -1264,40 +1268,7 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.checkConfessional)
 
 ------ 미니 보스 ------
 local playerNames = include("data.player_names")
-local minibossNames = {
-    [EntityType.ENTITY_SLOTH] = {
-        [0] = "나태",
-        [1] = "초 나태",
-        [2] = "왕 교만"    -- 뭐여ㅅㅂ
-    },
-    [EntityType.ENTITY_LUST] = {
-        [0] = "성욕",
-        [1] = "초 성욕"
-    },
-    [EntityType.ENTITY_WRATH] = {
-        [0] = "분노",
-        [1] = "초 분노"
-    },
-    [EntityType.ENTITY_GLUTTONY] = {
-        [0] = "대식",
-        [1] = "초 대식"
-    },
-    [EntityType.ENTITY_GREED] = {
-        [0] = "탐욕",
-        [1] = "초 탐욕"
-    },
-    [EntityType.ENTITY_ENVY] = {
-        [0] = "질투",
-        [1] = "초 질투"
-    },
-    [EntityType.ENTITY_PRIDE] = {
-        [0] = "교만",
-        [1] = "초 교만"
-    },
-    [EntityType.ENTITY_FALLEN] = {
-        [1] = "크람푸스"
-    }
-}
+local minibossNames = include("data.miniboss_names")
 
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
     local player = Isaac.GetPlayer(0)
@@ -1316,7 +1287,7 @@ mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
             local vb = ent.Variant or 0
             local minibossName = nameTable[vb] or nameTable[0]
 
-            Game():GetHUD():ShowItemText(playerName .. " VS " .. minibossName)
+            HUD:ShowItemText(playerName .. " VS " .. minibossName)
             break
         end
     end
@@ -1379,8 +1350,4 @@ end
 
 
 ------ 버전 출력 ------
-mod.version = 1.97
-Isaac.DebugString("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-Isaac.DebugString("Repentance+ Korean v" .. mod.version .." loaded.")
-Isaac.DebugString("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 print("Repentance+ Korean " .. string.format("%.2f", mod.version) .. " loaded.")

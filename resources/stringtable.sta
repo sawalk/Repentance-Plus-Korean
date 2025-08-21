@@ -576,7 +576,7 @@
         <key name="POKE_GO_APPEAR_NOTIFY">
             <string>A %s appears!</string>
             <string>%sがとびだしてきた！</string>
-            <string>%s 이(가) 튀어나왔다!</string>
+            <string>%s가 튀어나왔다!</string>
             <string>野生的%s出现了！</string>
             <string>Появился %s!</string>
             <string>%s erscheint!</string>
