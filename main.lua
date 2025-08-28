@@ -16,7 +16,7 @@
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
-mod.version = 1.98
+mod.version = 1.99
 Isaac.DebugString("Starting Repentance+ Korean v" .. mod.version)    -- 디버깅
 
 ------ EID ------
@@ -77,23 +77,6 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
 end)
 
 
---[[-- 온라인 -----
-mod.offline = true
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
-    local player = Isaac.GetPlayer()
-    local WhoAmI = player:GetPlayerType()
-    if (WhoAmI ~= PlayerType.PLAYER_JACOB and WhoAmI ~= PlayerType.PLAYER_ESAU) and
-    (WhoAmI ~= PlayerType.PLAYER_THEFORGOTTEN and WhoAmI ~= PlayerType.PLAYER_THESOUL) and
-    (WhoAmI ~= PlayerType.PLAYER_THEFORGOTTEN_B and WhoAmI ~= PlayerType.PLAYER_THESOUL_B) and
-    Game():GetNumPlayers() > 1 or player:HasCollectible(CollectibleType.COLLECTIBLE_STRAW_MAN) then
-     -- mod.offline = false
-        mod.offline = true    -- 임시방편
-    else
-        mod.offline = true
-    end
-end)]]
-
-
 ------ 경고 메시지 ------
 local HUD = Game():GetHUD()
 
@@ -141,8 +124,6 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
     if not mod:HasData() then
         mod.notRestart = true
     end
-    mod.saveDataDummy = mod.saveDataDummy + 1
-    mod:SaveData(mod.saveDataDummy)
 
     if EID then
         if EID.ModVersion > 4.2 and EID.ModVersion < 4.99 then
@@ -296,36 +277,159 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 end)
 
 
------- 아빠의 쪽지 자막 by blackcreamtea ------
-local subtitleSprite = Sprite()
-subtitleSprite:Load("gfx/cutscenes/backwards.anm2", true)
+------ 아빠의 쪽지 자막 ------
+local json = require('json')
 
-local function RenderSub(Anm2)
-    subtitleSprite:Play(Anm2)
-    subtitleSprite:Update()
-    subtitleSprite.Scale = Vector(1, 1)
-    subtitleSprite.Color = Color(1, 1, 1, 0.6, 0, 0, 0)
-    subtitleSprite:Render(Vector(Isaac.GetScreenWidth() / 2, Isaac.GetScreenHeight() * 0.9))
+mod.config = {
+    subtitles = true,
+    subOffset = 45,
+    subOpacity = 2/3,
+}
+
+if ModConfigMenu then
+    ModConfigMenu.AddSetting("Rep+ Korean", "자막", {
+        Type = ModConfigMenu.OptionType.BOOLEAN,
+        Attribute = "Toggle subtitles",
+        CurrentSetting = function()
+            return mod.config.subtitles
+        end,
+        Display = function()
+            if mod.config.subtitles then
+                return "Ascent 자막: 켜기"
+            else
+                return "Ascent 자막: 끄기"
+            end
+        end,
+        OnChange = function(newOption)
+            mod.config.subtitles = newOption;
+        end,
+        Info = "'아빠의 쪽지' 아이템을 획득 후 나오는 Ascent 시퀀스의 자막을 표시할지 설정합니다."
+    });
+    ModConfigMenu.AddSetting("Rep+ Korean", "자막", {
+        Type = ModConfigMenu.OptionType.NUMBER,
+        Attribute = "Subtitles Y offset",
+        Minimum = -10,
+        Maximum = 1000,
+        ModifyBy = 5,
+        CurrentSetting = function()
+            return mod.config.subOffset
+        end,
+        Display = function() return
+            "자막 오프셋: " .. mod.config.subOffset
+        end,
+        OnChange = function(newOption)
+            mod.config.subOffset = newOption;
+        end,
+        Info = "자막이 화면 하단으로부터 얼마나 떨어져 있는지 조정합니다. (기본값: 45)"
+    });
+    ModConfigMenu.AddSetting("Rep+ Korean", "자막", {
+        Type = ModConfigMenu.OptionType.NUMBER,
+        Attribute = "Subtitles opacity",
+        Minimum = 0,
+        Maximum = 1,
+        ModifyBy = 0.01,
+        CurrentSetting = function()
+            return mod.config.subOpacity
+        end,
+        Display = function() return
+            "자막 불투명도: " .. string.format("%.0f", mod.config.subOpacity * 100) .. "%"
+        end,
+        OnChange = function(newOption)
+            mod.config.subOpacity = newOption;
+        end,
+        Info = "자막의 불투명도를 설정합니다. (기본값: 67%)"
+    });
 end
 
-local VoiceSFX = SFXManager()
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
-    for i = 598, 601 do
-        if KoreanVoiceDubbing then
-            if VoiceSFX:IsPlaying(Isaac.GetSoundIdByName("DADS_NOTE_KOREAN_" .. (i - 597))) then
-                RenderSub("backwards" .. (i - 597))
-            end
+mod:AddPriorityCallback(
+    ModCallbacks.MC_POST_GAME_STARTED, CallbackPriority.IMPORTANT,
+    ---@param isContinued boolean
+    function(_, isContinued)
+        if not mod:HasData() then return end
+
+        local jsonString = mod:LoadData()
+        local loadedConfig = json.decode(jsonString)
+        if type(loadedConfig) ~= "table" then return end
+
+        mod.config.subOffset = loadedConfig.subOffset or 45
+        mod.config.subOpacity = loadedConfig.subOpacity or 2/3
+        if loadedConfig.subtitles == nil then
+            mod.config.subtitles = true
         else
-            if VoiceSFX:IsPlaying(i) then
-                RenderSub("backwards" .. (i - 597))
-            end
+            mod.config.subtitles = loadedConfig.subtitles
+        end
+    end
+)
+
+mod:AddPriorityCallback(
+    ModCallbacks.MC_PRE_GAME_EXIT, CallbackPriority.LATE,
+    function(shouldSave)
+        local jsonString = json.encode(mod.config)
+        mod:SaveData(jsonString)
+    end
+)
+
+local subtitleFont = Font()
+subtitleFont:Load(mod.modPath .. "resources/font/pftempestasevencondensed.fnt", true)
+
+mod.Subtitles = include('data.dadsnote_sub')
+mod.subStart = {}         -- 실제 시작 시각(초)
+mod.playingSounds = {}    -- 이전 프레임에서의 상태
+
+local function RenderSub(scene)
+    local startTime = mod.subStart[scene]
+    if not startTime then return end
+
+    local now = Isaac.GetTime() / 1000
+    local elapsed = now - startTime
+    if elapsed < 0 then return end
+
+    local subs = mod.Subtitles[scene]
+    if not subs then return end
+
+    for _, entry in ipairs(subs) do
+        if elapsed >= entry.start and elapsed < (entry.start + entry.dur) then
+            local text = entry.text
+
+            local x = Isaac.GetScreenWidth() / 2 - subtitleFont:GetStringWidthUTF8(text) / 2
+            local y = Isaac.GetScreenHeight() - mod.config.subOffset
+
+            subtitleFont:DrawStringUTF8(text, x, y, KColor(1, 1, 1, mod.config.subOpacity), 0, true)
+            break
+        end
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+    if not mod.config.subtitles then return end
+
+    local VoiceSFX = SFXManager()
+    for i = 598, 601 do
+        local scene = i - 597
+        local soundId = i
+        if KoreanVoiceDubbing then
+            soundId = Isaac.GetSoundIdByName("DADS_NOTE_KOREAN_" .. scene)
+        end
+
+        local nowPlaying = VoiceSFX:IsPlaying(soundId)
+
+        if nowPlaying and not mod.playingSounds[scene] then
+            mod.playingSounds[scene] = true
+            mod.subStart[scene] = Isaac.GetTime() / 1000
+        end
+
+        if not nowPlaying and mod.playingSounds[scene] then
+            mod.playingSounds[scene] = nil
+        end
+
+        if nowPlaying then
+            RenderSub(scene)
         end
     end
 end)
 
 
 ------ EzItems by ddeeddii ------
-local json = require('json')
 local data = include('data.items_and_trinkets')
 local jsonData = json.decode(data)
 

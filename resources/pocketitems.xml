@@ -10,7 +10,7 @@
 	<card type="tarot" pickup="1" description="너에게 대적할 이 없으리" id="8" name="VII - 전차" announcer="371" mimiccharge="3" />
 	<card type="tarot" pickup="1" description="너의 앞날이 평안하리라" id="9" name="VIII - 정의" announcer="349" mimiccharge="6" />
 	<card type="tarot" pickup="1" description="삶이 주는 것을 보게 되리라" id="10" name="IX - 은둔자" greedmode="false" announcer="377" announcerdelay="60" mimiccharge="2" />
-	<card type="tarot" pickup="1" description="운명의 수레바퀴를 돌리리라" id="11" name="X - 운명의 수레바퀴" announcer="391" announcerdelay="60" mimiccharge="4" />
+	<card type="tarot" pickup="1" description="운명의 수레바퀴를 돌려라" id="11" name="X - 운명의 수레바퀴" announcer="391" announcerdelay="60" mimiccharge="4" />
 	<card type="tarot" pickup="1" description="힘이 분노가 되리라" id="12" name="XI - 힘" announcer="365" mimiccharge="3" />
 	<card type="tarot" pickup="1" description="깨우침을 얻게 되리라" id="13" name="XII - 매달린 남자" announcer="376" mimiccharge="3" />
 	<card type="tarot" pickup="1" description="대적하는 자들은 완전히 파괴되리라" id="14" name="XIII - 죽음" announcer="337" mimiccharge="3" />

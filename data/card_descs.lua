@@ -9,7 +9,7 @@ return {
 	[Card.CARD_CHARIOT] = "너에게 대적할 이 없으리",
 	[Card.CARD_JUSTICE] = "너의 앞날이 평안하리라",
 	[Card.CARD_HERMIT] = "삶이 주는 것을 보게 되리라",
-	[Card.CARD_WHEEL_OF_FORTUNE] = "운명의 수레바퀴를 돌리리라",
+	[Card.CARD_WHEEL_OF_FORTUNE] = "운명의 수레바퀴를 돌려라",
 	[Card.CARD_STRENGTH] = "힘이 분노가 되리라",
 	[Card.CARD_HANGED_MAN] = "깨우침을 얻게 되리라",
 	[Card.CARD_DEATH] = "대적하는 자들은 완전히 파괴되리라",
