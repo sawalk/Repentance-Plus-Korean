@@ -14,4 +14,5 @@
 	<form id="12" name="거미!" costume="39" tags="spider" cache="familiars" />
 	<form id="13" name="쿵쿵이!" />
 	<!-- <form id="14" name="#UNUSED_Transform_Flight" /> -->
+	<form id="15" name="강령술사!" />
 </playerforms>

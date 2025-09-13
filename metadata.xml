@@ -3,7 +3,9 @@
     <name>z_REPENTANCE+ KOREAN</name>
     <directory>repentance+ korean</directory>
     <id>3371064337</id>
-    <description>[h1] [b]　FAQ [/b] [/h1]
+    <description>[code][h2][b] 대응 게임 버전: v1.9.7.14 [/b][/h2][/code]
+
+[h1] [b]　FAQ [/b] [/h1]
 [h3]　 [b]패치에 대해 / 게임에 대해[/b][/h3]
 [code][b]Q. 버그가 있어요! 오역이 있어요!
 A. 버그나 호환성 이슈, 번역 오류 및 건의 사항은 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues]Github[/url]Issues에 작성 바랍니다.
@@ -37,7 +39,7 @@ A. 게임 내 플레이어가 2인 이상인 경우 그렇습니다. [url=https:
 [/b][/code]
 
 　[url=https://github.com/sawalk/Repentance-Plus-Korean] [img]https://i.imgur.com/P6a8043.png[/img] 소스 코드[/url]</description>
-    <version>2.00</version>
+    <version>2.04</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>

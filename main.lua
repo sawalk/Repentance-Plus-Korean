@@ -11,12 +11,10 @@
 -- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 -- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 -- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
-mod.version = 1.99
+mod.version = 2.03
 Isaac.DebugString("Starting Repentance+ Korean v" .. mod.version)    -- 디버깅
 
 ------ EID ------
@@ -26,6 +24,7 @@ end
 mod:AddCallback("EID_EVALUATE_AUTO_LANG", mod.ChangeEIDLanguage)
 
 local function AddPickupWarning(descObj)
+    --[[ 리펜+ 1.9.7.13 이후로 해결됨
     local targetPickup = descObj.ObjType == 5 and (
             (descObj.ObjVariant == 100 and descObj.ObjSubType == 667) or                                 -- 밀짚인형
             (descObj.ObjVariant == 300 and (descObj.ObjSubType == 95 or descObj.ObjSubType == 97)) or    -- 포가튼/야곱과 에사우의 영혼
@@ -36,7 +35,7 @@ local function AddPickupWarning(descObj)
             "#{{Warning}} {{ColorError}}한글패치 관련:" ..
             "#{{Blank}} {{ColorError}}획득(사용) 이후 플레이어가 픽업을 얻을 때 텍스트가 이중으로 표시됩니다."
         )
-    end
+    end]]
 
     local targetPickup2 = descObj.ObjType == 5 and descObj.ObjVariant == 100 and descObj.ObjSubType == 505    -- 포켓 GO
     if targetPickup2 then
@@ -45,6 +44,7 @@ local function AddPickupWarning(descObj)
             "#{{Blank}} {{ColorError}}아군 등장 텍스트가 잘못 표시될 수 있습니다."
         )
     end
+
     --[[ 더 좋은 방법이 있을 때까지 유기
     local targetWarning = descObj.ObjType == -999 and descObj.ObjVariant == -1 and descObj.ObjSubType ==  1
     if not REPENTOGON and EID:PlayersHaveCollectible(710) and EID:DetectModdedItems() and targetWarning then
@@ -158,15 +158,17 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
 end)
 
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function()
-    if Isaac.GetPlayer():HasCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) and not mod.tmWarningShown then
-        mod.hasTM = true
-        mod.tmWarningShown = true
-        ----
-        local duration = warningDurations[messages.hasTM]
-        mod.warningTimers[messages.hasTM] = duration
-        mod.warningMaxTimes[messages.hasTM] = duration
-    else
-        mod.hasTM = false
+    for i = 0, Game():GetNumPlayers() - 1 do
+        if Isaac.GetPlayer(i):HasCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) and not mod.tmWarningShown then
+            mod.hasTM = true
+            mod.tmWarningShown = true
+            ----
+            local duration = warningDurations[messages.hasTM]
+            mod.warningTimers[messages.hasTM] = duration
+            mod.warningMaxTimes[messages.hasTM] = duration
+        else
+            mod.hasTM = false
+        end
     end
 end)
 
@@ -216,9 +218,11 @@ local function DrawWarningString(font, text, offset, color)
         HUD:SetVisible(false)
     end
 
-    if Isaac.GetPlayer().ControlsEnabled then
-        Isaac.GetPlayer().ControlsEnabled = false
-    end
+    for i = 0, Game():GetNumPlayers() - 1 do
+        if (Isaac.GetPlayer(i).ControlsEnabled) then
+			Isaac.GetPlayer(i).ControlsEnabled = false
+		end
+	end
 
     local x = Isaac.GetScreenWidth() / 2 - font:GetStringWidthUTF8(text) / 2
     local y = Isaac.GetScreenHeight() / 2 - offset
@@ -248,7 +252,7 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
         DrawWarningString(warningFont16, "한글패치 적용이 90% 완료됐어요!", 55, KColor(0.5, 1, 0.5, 1))
         DrawWarningString(warningFont12, "마지막으로 한 번만 게임을 완전히 껐다 켜면", 18)
         DrawWarningString(warningFont12, "100% 적용됩니다! 양해 부탁드려요!", 0)
-        DrawWarningString(warningFont12, "(한글패치는 저장파일별로 셋업이 필요합니다)", -24, KColor(1, 1, 1, 0.5))
+        DrawWarningString(warningFont12, "(한글패치는 설치/업데이트 시 저장파일별로 셋업이 필요합니다)", -24, KColor(1, 1, 1, 0.5))
         return
     end
     
@@ -697,9 +701,13 @@ function mod:ResetWispData()
 end
 
 function mod:DetectWisp(familiar)
-    if ANDROMEDA and Isaac.GetPlayer(0):GetName() == "AndromedaB" and familiar.SubType == CollectibleType.COLLECTIBLE_ANALOG_STICK then
-        Isaac.DebugString("[ Repentance+ Korean ]\nThis message is output for compatibility with Andromeda mod.")    -- 안드로메다의 위습 시스템을 읽지 않게 함.
-        return
+    if ANDROMEDA then
+        for i = 0, Game():GetNumPlayers() - 1 do
+            if Isaac.GetPlayer(i):GetName() == "AndromedaB" and familiar.SubType == CollectibleType.COLLECTIBLE_ANALOG_STICK then
+                Isaac.DebugString("[ Repentance+ Korean ]\nThis message is output for compatibility with Andromeda mod.")    -- 안드로메다의 위습 시스템을 읽지 않게 함.
+                return
+            end
+        end
     end
     
     if familiar.Type == 3 and familiar.Variant == 237 and gameStarted then
@@ -1375,13 +1383,17 @@ local playerNames = include("data.player_names")
 local minibossNames = include("data.miniboss_names")
 
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
-    local player = Isaac.GetPlayer(0)
+    local player = Isaac.GetPlayer(0)    -- 0번 컨트롤러의 화면에서 표시되어야 하므로
     local pType = player:GetPlayerType()
     if pType > 40 then return end    -- 모드 캐릭터는 일단 제외
 
     local room = Game():GetRoom()
     local rType = room:GetType()
-    if rType ~= RoomType.ROOM_MINIBOSS and rType ~= RoomType.ROOM_DEVIL then return end
+    if rType ~= RoomType.ROOM_SHOP and
+       rType ~= RoomType.ROOM_DEVIL and
+       rType ~= RoomType.ROOM_MINIBOSS and
+       rType ~= RoomType.ROOM_SECRET
+    then return end
 
     for _, ent in ipairs(Isaac.GetRoomEntities()) do
         if ent:IsActiveEnemy() and minibossNames[ent.Type] then

@@ -213,6 +213,16 @@
             <string>Emote:</string>
             <string>Emote:</string>
         </key>
+        <key name="INPUT_DESCRIPTIONS">
+            <string>Toggle Descriptions:</string>
+            <string></string>
+            <string>아이템 설명:</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+        </key>
         <key name="INPUT_FULLSCREEN">
             <string>Fullscreen:</string>
             <string>フルスクリーン：</string>
@@ -286,7 +296,7 @@
         <key name="INPUT_MENU_TOUCHSCREEN">
             <string>Touchscreen</string>
             <string>タッチスクリーン</string>
-            <string>터치 스크린</string>
+            <string>터치스크린</string>
             <string>触摸屏</string>
             <string>Тачскрин</string>
             <string>Touchscreen</string>
@@ -512,6 +522,16 @@
             <string>Erwachsen!</string>
             <string>¡Adulto!</string>
             <string>Adulte !</string>
+        </key>
+        <key name="TRANSFORMATION_NECROMANCER">
+            <string>Necromancer!</string>
+            <string> </string>
+            <string>강령술사!</string>
+            <string> </string>
+            <string> </string>
+            <string> </string>
+            <string> </string>
+            <string> </string>
         </key>
         <key name="MINIMAP_TIME_LABEL">
             <string>Time:</string>
@@ -1292,6 +1312,66 @@
             <string />
             <string />
             <string />
+        </key>
+        <key name="ITEM_INFO_UNIDENTIFIED">
+            <string>Collect this item once to identify it</string>
+            <string></string>
+            <string>아이템을 한 번 얻어야 확인할 수 있습니다</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+        </key>
+        <key name="ITEM_INFO_UNIDENTIFIED_PILL">
+            <string>Unidentified Pill</string>
+            <string></string>
+            <string>확인하지 않은 알약</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+        </key>
+        <key name="ITEM_INFO_UNIDENTIFIED_TAROT_CARD">
+            <string>Tarot Card</string>
+            <string></string>
+            <string>타로 카드</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+        </key>
+        <key name="ITEM_INFO_UNIDENTIFIED_PLAYING_CARD">
+            <string>Playing Card</string>
+            <string></string>
+            <string>플레잉 카드</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+        </key>
+        <key name="ITEM_INFO_UNIDENTIFIED_RUNE">
+            <string>Rune</string>
+            <string></string>
+            <string>룬</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+        </key>
+        <key name="ITEM_INFO_UNIDENTIFIED_Card">
+            <string>Card</string>
+            <string></string>
+            <string>카드</string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
+            <string></string>
         </key>
     </category>
     <category name="Items">
