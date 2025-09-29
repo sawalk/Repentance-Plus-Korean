@@ -3,36 +3,35 @@
     <name>z_REPENTANCE+ KOREAN</name>
     <directory>repentance+ korean</directory>
     <id>3371064337</id>
-    <description>[code][h2][b] 대응 게임 버전: v1.9.7.14 [/b][/h2][/code]
+    <description>[code][h2][b] 대응 게임 버전: v1.9.7.15 [/b][/h2][/code]
 
-[h1] [b]　FAQ [/b] [/h1]
-[h3]　 [b]패치에 대해 / 게임에 대해[/b][/h3]
-[code][b]Q. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]를 필수로 구독해야 되나요?
-A. 네. 없으면 일부 부분에서 번역이 작동하지 않습니다.
+[h2] [b]　설치 방법(준비중) [/b] [/h2]
+[code][b]본 패치는 일반적인 모드 설치 방법을 따르지 않으며, 창작마당은 패치의 리소스 파일을 업데이트하는 데만 사용됩니다. 패치를 처음 사용하는 경우, 게임이 업데이트되는 경우 수동 설치가 필요합니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-Q. 온라인 매치에서 사용할 수 있나요?
-A. 아니요. 온라인 매치를 플레이하려면 모드를 비활성화해야 합니다.
-[img]https://imgur.com/oGiLZIY.png[/img]
-Q. Can I modify and publish this Korean patch? (For those who wish to make patches for other languages)  
-A. Yes, but since this patch is frequently updated in both major and minor ways, it is only recommended if you can quickly update your modified patch accordingly. Also, we cannot guarantee that this patch will function stably. When publishing a modified version, you must include the credits for the Korean patch without exception.
+1. 이 모드와 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3570233241]LangHackRep+[/url]을 구독
+2. 게임을 실행해 LangHackRep+가 완전히 다운로드되었는지 확인
+3. 게임을 종료하고 게임 설치 경로로 이동 (라이브러리에서 아이작: 리버스 우클릭 &gt; 관리 &gt; 로컬 파일 탐색)
+4. \mods\lang_hack_rep+_3570233241 폴더로 이동 (폴더가 없다면 1번부터 다시)
+5. patcher.zip에서 patcher.exe를 실행한 후 isaac-ng.exe 선택
+6. 게임을 실행하고 안내에 따라 진행
 [/b][/code]
-[code][b]Q. 더빙을 끌 순 없나요?
-A. [url=https://steamcommunity.com/workshop/filedetails/?id=3360615255]한국어 팬 더빙 모드[/url]를 구독 해제하여 영어 음성으로 들으실 수 있습니다.
+
+[h2] [b]　Q&amp;A [/b] [/h2]
+[code][b]Q. 패치는 어떻게 제거하나요?
+A. 라이브러리 &gt; 아이작: 리버스 우클릭 &gt;  속성 &gt; 설치된 파일 &gt; 게임 파일 무결성 검사를 클릭하세요.
+[img]https://imgur.com/oGiLZIY.png[/img]
+Q. 더빙을 끌 순 없나요?
+A. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]Mod Config Menu Pure[/url]를 구독하여 인게임에서 설정하세요. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3360615255]한국어 팬 더빙 모드[/url]를 활성화했다면 비활성화하세요.
 [img]https://imgur.com/oGiLZIY.png[/img]
 Q. 모드를 적용하고 게임을 하는데 도전 과제가 해금되지 않아요!
 A. '엄마' 보스를 처치하지 않은 저장파일에서 모드를 활성화하면 도전 과제가 해금되지 않습니다. (모든 모드 공통)
+     패치가 설치된 이후부턴 모드를 꺼도 게임 언어가 한국어로 유지되니 모드를 비활성화하세요.
 [img]https://imgur.com/oGiLZIY.png[/img]
 Q. 아이템 설명모드를 한국어로 바꾸고 싶어요!
 A. 한글패치가 활성화 돼있다면 설명모드의 언어는 자동으로 한국어로 설정됩니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-Q. 몇몇 인터페이스가 영어로 나와요!
-A. 이스터 에그 메뉴나 통계 메뉴의 일부, 기타 등등은 모드에서 접근할 수 없는 관계로 번역되지 않았습니다. 캐릭터 추가 모드나 UI를 수정하는 모드에서 그래픽을 덮어씌우기도 합니다.
-[img]https://imgur.com/oGiLZIY.png[/img]
-Q. 디버그 콘솔에서 몇몇 아이템이 검색되지 않아요!
-A. 더럽혀진 캐릭터들의 액티브 아이템이 해당합니다. 기술적 한계로 인해 해결은 어렵습니다.
-[img]https://imgur.com/oGiLZIY.png[/img]
-Q. 아이템을 먹으면 텍스트가 이중으로 떠요!
-A. 게임 내 플레이어가 2인 이상인 경우 그렇습니다. [url=https://www.notion.so/REPENTOGON-23bb86b00d93805cb3b5e68ea959f1e6]REPENTOGON+ 적용 시 해결됩니다.[/url]
+Q. [url=https://repentogon.com/index.html]REPENTOGON+[/url]와 호환되나요?
+A. 테스트되지 않았습니다. 충돌할 가능성이 높습니다.
 [/b][/code]
 
 [h2] [b]　이슈 제보 [/b] [/h2]
