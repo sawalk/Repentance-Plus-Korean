@@ -1,21 +1,33 @@
--- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
--- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
--- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
--- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
--- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
--- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
--- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
--- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
--- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
--- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
--- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
--- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
--- 누가 이 븅냐링 스파게티 코드 좀 고쳐주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
-mod.version = 2.03
+mod.isRepentancePlus = REPENTANCE_PLUS or FontRenderSettings ~= nil
+mod.isTruePatch = Options.Language == "kr"
+mod.version = 2.04
 Isaac.DebugString("Starting Repentance+ Korean v" .. mod.version)    -- 디버깅
+
+if mod.isRepentancePlus and mod.isTruePatch then
+    Isaac.DebugString("Yay! The game language is already set to Korean!")
+end
+
+local function GetCurrentModPath()
+    if debug then
+        return string.sub(debug.getinfo(GetCurrentModPath).source,2) .. "/../"
+    end
+    --use some very hacky trickery to get the path to this mod
+    local _, err = pcall(require, "")
+    local _, basePathStart = string.find(err, "no file '", 1)
+    local _, modPathStart = string.find(err, "no file '", basePathStart)
+    local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
+    local modPath = string.sub(err, modPathStart+1, modPathEnd-1)
+    modPath = string.gsub(modPath, "\\", "/")
+    modPath = string.gsub(modPath, "//", "/")
+    modPath = string.gsub(modPath, ":/", ":\\")
+
+    return modPath
+end
+mod.modPath = GetCurrentModPath()
+
 
 ------ EID ------
 function mod:ChangeEIDLanguage()
@@ -24,19 +36,6 @@ end
 mod:AddCallback("EID_EVALUATE_AUTO_LANG", mod.ChangeEIDLanguage)
 
 local function AddPickupWarning(descObj)
-    --[[ 리펜+ 1.9.7.13 이후로 해결됨
-    local targetPickup = descObj.ObjType == 5 and (
-            (descObj.ObjVariant == 100 and descObj.ObjSubType == 667) or                                 -- 밀짚인형
-            (descObj.ObjVariant == 300 and (descObj.ObjSubType == 95 or descObj.ObjSubType == 97)) or    -- 포가튼/야곱과 에사우의 영혼
-            (descObj.ObjVariant == 350 and descObj.ObjSubType == 180)                                    -- 되찾은 영혼
-        )
-    if targetPickup and not REPENTOGON then
-        EID:appendToDescription(descObj,
-            "#{{Warning}} {{ColorError}}한글패치 관련:" ..
-            "#{{Blank}} {{ColorError}}획득(사용) 이후 플레이어가 픽업을 얻을 때 텍스트가 이중으로 표시됩니다."
-        )
-    end]]
-
     local targetPickup2 = descObj.ObjType == 5 and descObj.ObjVariant == 100 and descObj.ObjSubType == 505    -- 포켓 GO
     if targetPickup2 then
         EID:appendToDescription(descObj,
@@ -186,24 +185,6 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
     end
 end)
 
-local function GetCurrentModPath()
-    if debug then
-        return string.sub(debug.getinfo(GetCurrentModPath).source,2) .. "/../"
-    end
-    --use some very hacky trickery to get the path to this mod
-    local _, err = pcall(require, "")
-    local _, basePathStart = string.find(err, "no file '", 1)
-    local _, modPathStart = string.find(err, "no file '", basePathStart)
-    local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
-    local modPath = string.sub(err, modPathStart+1, modPathEnd-1)
-    modPath = string.gsub(modPath, "\\", "/")
-    modPath = string.gsub(modPath, "//", "/")
-    modPath = string.gsub(modPath, ":/", ":\\")
-
-    return modPath
-end
-mod.modPath = GetCurrentModPath()
-
 local warningFontBlack = Font()
 warningFontBlack:Load("font/cjk/lanapixel.fnt")
 
@@ -281,36 +262,90 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 end)
 
 
------- 아빠의 쪽지 자막 ------
+------ 스크롤 공지 ------
+-- 업데이트 공지용. 10/12까지 유지.
+local MOVE_DURATION = 1400    -- 메시지 이동 시간
+
+local warningFontScroll = Font()
+warningFontScroll:Load(mod.modPath .. "resources/font/old_kr/kr_font12.fnt")
+
+mod.messageFrame = nil
+mod.startX = nil
+mod.already = false
+
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+    if mod.runningRep or mod.notRestart then return end
+    if mod.isTruePatch then return end
+
+    if Game():GetRoom():IsClear() and mod.messageFrame ~= nil and mod.messageFrame <= MOVE_DURATION then
+        local t = mod.messageFrame
+        local x = mod.startX - (Isaac.GetScreenWidth() + 1100) * (t / MOVE_DURATION)
+        local y = Isaac.GetScreenHeight() * 0.1
+        local color = KColor(1, 1, 1, 1)
+        local link = "https://steamcommunity.com/sharedfiles/filedetails/?id=3371064337"
+
+        warningFontBlack:DrawStringScaledUTF8("쀏", 400, Isaac.GetScreenHeight() * 0.1 - 5, 400, 1.4, KColor(0, 0, 0, 0.5), 0, true)
+        warningFontScroll:DrawStringUTF8(
+            "한글패치의 작동 방식이 업데이트되었습니다. 현재 상태에선 최소한의 기능만 작동합니다. 자세한 내용은 " .. link .. "을 참고하세요.",
+            x + 50,
+            y,
+            color,
+            0
+        )
+
+        if not Game():IsPaused() then  mod.messageFrame = mod.messageFrame + 1 end
+        mod.already = true
+    else
+        if not mod.already then
+            mod.messageFrame = 0
+            mod.startX = Isaac.GetScreenWidth()
+        end
+    end
+end)
+
+
+------ MCM + 아빠의 쪽지 자막 ------
 local json = require('json')
+local MCMLoaded, MCM = pcall(require, "scripts.modconfig")
 
 mod.config = {
+    dubbing = true,
     subtitles = true,
     subOffset = 45,
     subOpacity = 2/3,
 }
 
-if ModConfigMenu then
-    ModConfigMenu.AddSetting("Rep+ Korean", "자막", {
-        Type = ModConfigMenu.OptionType.BOOLEAN,
+if MCMLoaded and MCM then
+    local data_str = Isaac.LoadModData(mod)
+    if data_str and data_str ~= "" then
+        mod.config = json.decode(data_str)
+    end
+
+    local function save()
+        mod.config.hint = "koca" .. (mod.config.dubbing    and "1" or "0") .. 
+                          "kocb" .. (mod.config.subtitles  and "1" or "0") ..
+                          "kocc" .. (mod.config.subOffset  and "1" or "0") ..
+                          "kocd" .. (mod.config.subOpacity and "1" or "0")
+        Isaac.SaveModData(mod, json.encode(mod.config))
+    end
+
+    MCM.AddText("Rep+ Korean", "CC", " ");
+    MCM.AddSetting("Rep+ Korean", "CC", {
+        Type = MCM.OptionType.BOOLEAN,
         Attribute = "Toggle subtitles",
         CurrentSetting = function()
             return mod.config.subtitles
         end,
         Display = function()
-            if mod.config.subtitles then
-                return "Ascent 자막: 켜기"
-            else
-                return "Ascent 자막: 끄기"
-            end
+            return "승천 시퀀스 자막: " .. (mod.config.subtitles and "켜기" or "끄기")
         end,
         OnChange = function(newOption)
             mod.config.subtitles = newOption;
         end,
-        Info = "'아빠의 쪽지' 아이템을 획득 후 나오는 Ascent 시퀀스의 자막을 표시할지 설정합니다."
+        Info = "'아빠의 쪽지' 아이템을 획득 후 나오는 승천 시퀀스의 자막을 표시할지 설정합니다."
     });
-    ModConfigMenu.AddSetting("Rep+ Korean", "자막", {
-        Type = ModConfigMenu.OptionType.NUMBER,
+    MCM.AddSetting("Rep+ Korean", "CC", {
+        Type = MCM.OptionType.NUMBER,
         Attribute = "Subtitles Y offset",
         Minimum = -10,
         Maximum = 1000,
@@ -322,12 +357,13 @@ if ModConfigMenu then
             "자막 오프셋: " .. mod.config.subOffset
         end,
         OnChange = function(newOption)
-            mod.config.subOffset = newOption;
+            mod.config.subOffset = newOption
+            save()
         end,
         Info = "자막이 화면 하단으로부터 얼마나 떨어져 있는지 조정합니다. (기본값: 45)"
     });
-    ModConfigMenu.AddSetting("Rep+ Korean", "자막", {
-        Type = ModConfigMenu.OptionType.NUMBER,
+    MCM.AddSetting("Rep+ Korean", "CC", {
+        Type = MCM.OptionType.NUMBER,
         Attribute = "Subtitles opacity",
         Minimum = 0,
         Maximum = 1,
@@ -339,42 +375,34 @@ if ModConfigMenu then
             "자막 불투명도: " .. string.format("%.0f", mod.config.subOpacity * 100) .. "%"
         end,
         OnChange = function(newOption)
-            mod.config.subOpacity = newOption;
+            mod.config.subOpacity = newOption
+            save()
         end,
         Info = "자막의 불투명도를 설정합니다. (기본값: 67%)"
     });
+    MCM.AddText("Rep+ Korean", "TRUE Patch", " ");
+    MCM.AddText("Rep+ Korean", "TRUE Patch", "'완전' 한글패치 전용 설정입니다.");
+    MCM.AddText("Rep+ Korean", "TRUE Patch", "게임을 재시작해야 설정이 적용됩니다.");
+    MCM.AddText("Rep+ Korean", "TRUE Patch", " ");
+    MCM.AddSetting("Rep+ Korean", "TRUE Patch", {
+        Type = MCM.OptionType.BOOLEAN,
+        Attribute = "Toggle dubbing",
+        CurrentSetting = function()
+            return mod.config.dubbing
+        end,
+        Display = function()
+            return "한국어 더빙: " .. (mod.config.dubbing and "켜기" or "끄기")
+        end,
+        OnChange = function(newOption)
+            mod.config.dubbing = newOption
+            save()
+        end,
+        Info = "한국어 더빙을 켜고 끕니다."
+    });
 end
 
-mod:AddPriorityCallback(
-    ModCallbacks.MC_POST_GAME_STARTED, CallbackPriority.IMPORTANT,
-    ---@param isContinued boolean
-    function(_, isContinued)
-        if not mod:HasData() then return end
-
-        local jsonString = mod:LoadData()
-        local loadedConfig = json.decode(jsonString)
-        if type(loadedConfig) ~= "table" then return end
-
-        mod.config.subOffset = loadedConfig.subOffset or 45
-        mod.config.subOpacity = loadedConfig.subOpacity or 2/3
-        if loadedConfig.subtitles == nil then
-            mod.config.subtitles = true
-        else
-            mod.config.subtitles = loadedConfig.subtitles
-        end
-    end
-)
-
-mod:AddPriorityCallback(
-    ModCallbacks.MC_PRE_GAME_EXIT, CallbackPriority.LATE,
-    function(shouldSave)
-        local jsonString = json.encode(mod.config)
-        mod:SaveData(jsonString)
-    end
-)
-
 local subtitleFont = Font()
-subtitleFont:Load(mod.modPath .. "resources/font/pftempestasevencondensed.fnt", true)
+subtitleFont:Load( mod.modPath .. "resources/font/pftempestasevencondensed.fnt", true)
 
 mod.Subtitles = include('data.dadsnote_sub')
 mod.subStart = {}         -- 실제 시작 시각(초)
@@ -526,6 +554,8 @@ parseJsonData()
 checkConflicts()
 
 if next(changes.trinkets) ~= nil then
+    if mod.isTruePatch then goto skip end
+
     local t_queueLastFrame = {}
     local t_queueNow = {}
     
@@ -546,9 +576,13 @@ if next(changes.trinkets) ~= nil then
             t_queueLastFrame[playerKey] = t_queueNow[playerKey]
         end
     )
+
+    ::skip::
 end
 
 if next(changes.items) ~= nil then
+    if mod.isTruePatch then goto skip end
+
     local i_queueLastFrame = {}
     local i_queueNow = {}
 
@@ -587,6 +621,8 @@ if next(changes.items) ~= nil then
             i_queueLastFrame[playerKey] = i_queueNow[playerKey]
         end
     )
+
+    ::skip::
 end
 
 
@@ -612,6 +648,8 @@ local function PredictDeadSeaScrolls(player)
 end
 
 local function FakeDeadSeaScrolls()
+    if mod.isTruePatch then goto skip end
+
     if lastPredictedID and lastPredictedID ~= 0 then
         local d_data = jsonData.items[tostring(lastPredictedID)]
         if d_data and not REPENTOGON and not mod.hasTM then
@@ -622,6 +660,8 @@ local function FakeDeadSeaScrolls()
             HUD:ShowItemText("일종의 오류발생 메시지", "한글패치 제작자에게 연락바람")
         end
     end
+
+    ::skip::
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
@@ -639,6 +679,8 @@ end, 124)
 
 ------ 제작 가방 ------
 if EID then
+    if mod.isTruePatch then goto skip end
+
     local previousBagItems = {}    -- 이전 제작 가방 아이템 목록
     local lastPlayerType = -1
 
@@ -665,8 +707,10 @@ if EID then
         end
         previousBagItems = EID.BoC.BagItems
     end)
+
+    ::skip::
 else
-    Isaac.DebugString("EID가 설치되지 않았습니다. 더럽혀진 카인이 아이템을 획득해도 그 아이템의 이름과 설명은 번역되지 않습니다.")
+    Isaac.DebugString(not mod.isTruePatch and"EID가 설치되지 않았습니다. 더럽혀진 카인이 아이템을 획득해도 그 아이템의 이름과 설명은 번역되지 않습니다.")
 end
 
 
@@ -718,10 +762,14 @@ function mod:DetectWisp(familiar)
 end
 
 function mod:ShowWispText()
+    if mod.isTruePatch then goto skip end
+
     if #delayedWisps > 0 then
         WispText(delayedWisps[1])    -- 1프레임 지연 실행
         table.remove(delayedWisps, 1)
     end
+
+    ::skip::
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetWispData)
@@ -752,6 +800,7 @@ function mod:SavePlayerStats(player)
 end
 
 function mod:CompareStats(player)
+    if mod.isTruePatch then goto skip end
     if not pendingStatComparison[player.InitSeed] then return end
     pendingStatComparison[player.InitSeed] = false
 
@@ -804,6 +853,7 @@ function mod:CompareStats(player)
     end
 
     HUD:ShowItemText("실험약", e_description)
+    ::skip::
 end
 
 function mod:FakePillText(pillEffect, player, flag)
@@ -819,8 +869,12 @@ function mod:FakePillText(pillEffect, player, flag)
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
+    if mod.isTruePatch then goto skip end
+
     mod:CompareStats(player)
     mod:SavePlayerStats(player)
+
+    ::skip::
 end)
 
 mod:AddCallback(ModCallbacks.MC_USE_PILL, mod.FakePillText)
@@ -907,6 +961,8 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
 end)
 
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+    if mod.isTruePatch then goto skip end
+
     for _, pickup in ipairs(Isaac.FindByType(5, 300, -1, false, false)) do    -- 현재 프레임에 뒤져버린 픽업들 중 플레이어가 닿아서 후보로 표시된 것들을 showQueue에 넣음
         if not pickup then return end
         local id = pid(pickup)
@@ -938,6 +994,8 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
 
         showQueue = {}    -- 큐 비우기
     end
+
+    ::skip::
 end)
 
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()    -- 새 방 진입 시 전체 초기화
@@ -1077,6 +1135,7 @@ if Renderer then    -- RGON
 end
 
 mod:AddCallback(renderCollback, function()
+    if mod.isTruePatch then return end
     BuildPocketItemString()
     RenderPocketItemName()
 end)
@@ -1094,6 +1153,7 @@ function mod:LuckyPennyPickup(pickup, collider)
 end
 
 function mod:DelayedLuckyPennyText()
+    if mod.isTruePatch then return end
     if delayLuckyPenny then
         HUD:ShowItemText("행운의 동전", "행운 증가")
         delayLuckyPenny = nil
@@ -1123,6 +1183,8 @@ function mod:MarkPokeGOMonster(entity)
 end
 
 function mod:ShowPokeGOText()
+    if mod.isTruePatch then return end
+
     if Game():GetRoom():GetFrameCount() == 0 then
         local currentCounts = {}
         for _, entity in ipairs(Isaac.GetRoomEntities()) do
@@ -1147,12 +1209,14 @@ function mod:ShowPokeGOText()
 end
 
 mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, function(_, npc)
+    if mod.isTruePatch then return end
     if npc.SpawnerType == EntityType.ENTITY_PLAYER and npc.SpawnerVariant == 0 then
         mod:MarkPokeGOMonster(npc)
     end
 end)
 
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
+    if mod.isTruePatch then return end
     mod:ShowPokeGOText()
 end)
 
@@ -1174,6 +1238,8 @@ mod.SpecialSeeds = {
 }
 
 local function ShowSpecialSeed()
+    if mod.isTruePatch then return end
+
     local seed = mod.SpecialSeeds[math.random(#mod.SpecialSeeds)]
     HUD:ShowFortuneText(seed)
 end
@@ -1198,6 +1264,8 @@ local function split(pString, pPattern)
 end
 
 local function fortuneArray(array)
+    if mod.isTruePatch then return end
+
     HUD:ShowFortuneText(
         array[1], 
         array[2] or nil, 
@@ -1329,6 +1397,8 @@ mod.YOU_FEEL_BLESSED = "축복받은 느낌!"
 
 local lastSacrificeAngelChance = nil    -- 이전 프레임의 천사방 확률 저장
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
+    if mod.isTruePatch then return end
+
     if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE then
         local currentAngelChance = Game():GetLevel():GetAngelRoomChance()
 
@@ -1349,6 +1419,8 @@ local lastConfessionalAngelChance = nil    -- 이전 프레임의 천사방 확�
 local previousCurses = nil    -- 이전 프레임의 저주 상태 저장
 
 function mod:checkConfessional()
+    if mod.isTruePatch then return end
+
     local confessionals = Isaac.FindByType(EntityType.ENTITY_SLOT, 17)
     if #confessionals > 0 then
         for _, confessional in ipairs(confessionals) do
@@ -1383,6 +1455,8 @@ local playerNames = include("data.player_names")
 local minibossNames = include("data.miniboss_names")
 
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
+    if mod.isTruePatch then return end
+
     local player = Isaac.GetPlayer(0)    -- 0번 컨트롤러의 화면에서 표시되어야 하므로
     local pType = player:GetPlayerType()
     if pType > 40 then return end    -- 모드 캐릭터는 일단 제외
@@ -1412,6 +1486,8 @@ end)
 
 ------ REPENTOGON ------
 if REPENTOGON then
+    if mod.isTruePatch then goto skip end
+
     mod:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, function()
         local conf = Isaac.GetItemConfig()
 
@@ -1462,6 +1538,8 @@ if REPENTOGON then
             RoomConfig.GetStage(stageType):SetDisplayName(name)
         end
     end)
+
+    ::skip::
 end
 
 

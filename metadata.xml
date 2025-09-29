@@ -7,10 +7,7 @@
 
 [h1] [b]　FAQ [/b] [/h1]
 [h3]　 [b]패치에 대해 / 게임에 대해[/b][/h3]
-[code][b]Q. 버그가 있어요! 오역이 있어요!
-A. 버그나 호환성 이슈, 번역 오류 및 건의 사항은 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues]Github[/url]Issues에 작성 바랍니다.
-[img]https://imgur.com/oGiLZIY.png[/img]
-Q. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]를 필수로 구독해야 되나요?
+[code][b]Q. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]를 필수로 구독해야 되나요?
 A. 네. 없으면 일부 부분에서 번역이 작동하지 않습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
 Q. 온라인 매치에서 사용할 수 있나요?
@@ -20,7 +17,7 @@ Q. Can I modify and publish this Korean patch? (For those who wish to make patch
 A. Yes, but since this patch is frequently updated in both major and minor ways, it is only recommended if you can quickly update your modified patch accordingly. Also, we cannot guarantee that this patch will function stably. When publishing a modified version, you must include the credits for the Korean patch without exception.
 [/b][/code]
 [code][b]Q. 더빙을 끌 순 없나요?
-A. [url=https://steamcommunity.com/workshop/filedetails/?id=3360615255]한국어 더빙 모드[/url]를 구독 해제하여 영어 음성으로 들으실 수 있습니다.
+A. [url=https://steamcommunity.com/workshop/filedetails/?id=3360615255]한국어 팬 더빙 모드[/url]를 구독 해제하여 영어 음성으로 들으실 수 있습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
 Q. 모드를 적용하고 게임을 하는데 도전 과제가 해금되지 않아요!
 A. '엄마' 보스를 처치하지 않은 저장파일에서 모드를 활성화하면 도전 과제가 해금되지 않습니다. (모든 모드 공통)
@@ -38,7 +35,9 @@ Q. 아이템을 먹으면 텍스트가 이중으로 떠요!
 A. 게임 내 플레이어가 2인 이상인 경우 그렇습니다. [url=https://www.notion.so/REPENTOGON-23bb86b00d93805cb3b5e68ea959f1e6]REPENTOGON+ 적용 시 해결됩니다.[/url]
 [/b][/code]
 
-　[url=https://github.com/sawalk/Repentance-Plus-Korean] [img]https://i.imgur.com/P6a8043.png[/img] 소스 코드[/url]</description>
+[h2] [b]　이슈 제보 [/b] [/h2]
+[code][b]버그나 호환성 이슈, 번역 오류 및 건의 사항은 모두 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues/new/choose]Github Issues[/url]에서만 받습니다.
+[/b][/code]</description>
     <version>2.04</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
