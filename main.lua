@@ -3,7 +3,7 @@ local mod = REPKOR
 
 mod.isRepentancePlus = REPENTANCE_PLUS or FontRenderSettings ~= nil
 mod.isTruePatch = Options.Language == "kr"
-mod.version = 2.04
+mod.version = 2.06
 Isaac.DebugString("Starting Repentance+ Korean v" .. mod.version)    -- 디버깅
 
 if mod.isRepentancePlus and mod.isTruePatch then
@@ -58,6 +58,7 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
     if not EID then return end
+    if mod.isTruePatch then return end
 
     EID:addDescriptionModifier("한글패치 EID 경고용", AddPickupWarning)
 
@@ -120,9 +121,10 @@ local warningDurations = {
 }
 
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
+    --[[
     if not mod:HasData() then
         mod.notRestart = true
-    end
+    end]]
 
     if EID then
         if EID.ModVersion > 4.2 and EID.ModVersion < 4.99 then
@@ -211,6 +213,8 @@ local function DrawWarningString(font, text, offset, color)
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+    if mod.isTruePatch then return end
+
     --[[ if Isaac.GetScreenPointScale() == 3 then
         mod.warningScale = 0.66
     else
@@ -264,7 +268,7 @@ end)
 
 ------ 스크롤 공지 ------
 -- 업데이트 공지용. 10/12까지 유지.
-local MOVE_DURATION = 1400    -- 메시지 이동 시간
+local MOVE_DURATION = 2100    -- 메시지 이동 시간
 
 local warningFontScroll = Font()
 warningFontScroll:Load(mod.modPath .. "resources/font/old_kr/kr_font12.fnt")
@@ -279,14 +283,17 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 
     if Game():GetRoom():IsClear() and mod.messageFrame ~= nil and mod.messageFrame <= MOVE_DURATION then
         local t = mod.messageFrame
-        local x = mod.startX - (Isaac.GetScreenWidth() + 1100) * (t / MOVE_DURATION)
+        local x = mod.startX - (Isaac.GetScreenWidth() + 1600) * (t / MOVE_DURATION)
         local y = Isaac.GetScreenHeight() * 0.1
         local color = KColor(1, 1, 1, 1)
-        local link = "https://steamcommunity.com/sharedfiles/filedetails/?id=3371064337"
+        local link = "https://ohy.kr/krpatchtutorial"
 
-        warningFontBlack:DrawStringScaledUTF8("쀏", 400, Isaac.GetScreenHeight() * 0.1 - 5, 400, 1.4, KColor(0, 0, 0, 0.5), 0, true)
+        warningFontBlack:DrawStringScaledUTF8("쀏", 400, Isaac.GetScreenHeight() * 0.1 - 5, 400, 1.4, KColor(0, 0, 0, 2/3), 0, true)
         warningFontScroll:DrawStringUTF8(
-            "한글패치의 작동 방식이 업데이트되었습니다. 현재 상태에선 최소한의 기능만 작동합니다. 자세한 내용은 " .. link .. "을 참고하세요.",
+            REPENTOGON and "'완전' 한글패치는 아직 REPENTOGON+와 호환되지 않습니다. 최소한의 기능만 작동합니다." or
+            "온라인 매치 및 한글 채팅을 지원 + 내부 아아템 설명이 100% 한글화된 '완전' 한글패치가 배포되었습니다. " ..
+            "현재 상태로도 플레이는 가능하지만 게임이 충돌할 수 있습니다. " ..
+            "자세한 내용은 한글패치 창작마당 페이지(" .. link .. ")를 참고하십시오.",
             x + 50,
             y,
             color,
