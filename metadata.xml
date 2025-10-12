@@ -17,18 +17,27 @@
 [/b][/code]
 
 [h2] [b]　Q&amp;A [/b] [/h2]
-[code][b]Q. 패치는 어떻게 제거하나요?
-A. 라이브러리 &gt; 아이작: 리버스 우클릭 &gt;  속성 &gt; 설치된 파일 &gt; 게임 파일 무결성 검사를 클릭하세요.
+[code][b]Q. Windows 외 플랫폼에서도 지원하나요?
+A. 지원하지 않습니다. 대신 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3578295270]미공개 모드[/url]를 구독하여 싱글플레이 한정으로 한국어로 플레이하실 수 있습니다.
+[img]https://imgur.com/oGiLZIY.png[/img]
+Q. 패치는 어떻게 제거하나요?
+A. 라이브러리에서 아이작: 리버스 우클릭 &gt; 속성 &gt; 설치된 파일 &gt; 게임 파일 무결성 검사를 클릭하세요.
 [img]https://imgur.com/oGiLZIY.png[/img]
 Q. 더빙을 끌 순 없나요?
 A. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]Mod Config Menu Pure[/url]를 구독하여 인게임에서 설정하세요. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3360615255]한국어 팬 더빙 모드[/url]를 활성화했다면 비활성화하세요.
 [img]https://imgur.com/oGiLZIY.png[/img]
+Q. 글꼴을 리펜턴스 당시 한국어 글꼴로 바꾸고 싶어요!
+A. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3584898760]미공개 모드[/url]를 구독하여 글꼴을 변경할 수 있습니다. 단, 모드를 사용할 수 있는 환경에서만 가능합니다.
+[img]https://imgur.com/oGiLZIY.png[/img]
+Q. 한글 채팅을 끌 수 없나요? (버그 등의 이유로)
+A. 라이브러리에서 아이작: 리버스 우클릭 &gt; 관리 &gt; 로컬 파일 탐색 &gt; mods 폴더 &gt; repentance+ korean_3371064337 폴더 &gt; res 폴더 &gt; config.ini을 메모장으로 연 후 fixinput 값을 0으로 설정
+[img]https://imgur.com/oGiLZIY.png[/img]
 Q. 모드를 적용하고 게임을 하는데 도전 과제가 해금되지 않아요!
-A. '엄마' 보스를 처치하지 않은 저장파일에서 모드를 활성화하면 도전 과제가 해금되지 않습니다. (모든 모드 공통)
+A. '엄마' 보스를 처치하지 않은 세이브에서 모드를 활성화하면 도전 과제가 해금되지 않습니다. (모든 모드 공통)
      패치가 설치된 이후부턴 모드를 꺼도 게임 언어가 한국어로 유지되니 모드를 비활성화하세요.
 [img]https://imgur.com/oGiLZIY.png[/img]
-Q. 아이템 설명모드를 한국어로 바꾸고 싶어요!
-A. 한글패치가 활성화 돼있다면 설명모드의 언어는 자동으로 한국어로 설정됩니다.
+Q. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]를 한국어로 바꾸고 싶어요!
+A. 한글패치가 활성화돼있다면 설명모드의 언어는 자동으로 한국어로 설정됩니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
 Q. [url=https://repentogon.com/index.html]REPENTOGON+[/url]와 호환되나요?
 A. 테스트되지 않았습니다. 충돌할 가능성이 높습니다.
@@ -37,7 +46,7 @@ A. 테스트되지 않았습니다. 충돌할 가능성이 높습니다.
 [h2] [b]　이슈 제보 [/b] [/h2]
 [code][b]버그나 호환성 이슈, 번역 오류 및 건의 사항은 모두 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues/new/choose]Github Issues[/url]에서만 받습니다.
 [/b][/code]</description>
-    <version>2.7</version>
+    <version>2.08</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>
