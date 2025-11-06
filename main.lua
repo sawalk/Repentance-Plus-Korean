@@ -1,12 +1,13 @@
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
-mod.version = 2.09
+mod.version = 2.12
 Isaac.DebugString("Starting Repentance+ Korean v" .. mod.version)    -- 디버깅
 
 mod.isRepentancePlus = REPENTANCE_PLUS or FontRenderSettings ~= nil
 mod.runningRep = REPENTANCE and not REPENTANCE_PLUS
 mod.isTruePatch = Options.Language == "kr"
+mod.rgon = REPENTOGON
 
 if mod.isRepentancePlus and mod.isTruePatch then
     Isaac.DebugString("Yay! The game language is already set to Korean!")
@@ -41,10 +42,15 @@ local warningFontBlack = Font()
 warningFontBlack:Load("font/cjk/lanapixel.fnt")
 
 local warningFont12 = Font()
-warningFont12:Load(mod.modPath .. "resources/font/warning/teammeatex12.fnt")
+warningFont12:Load(mod.modPath .. "resources/font/teammeatex/teammeatex12.fnt")
 
 local warningFont16 = Font()
-warningFont16:Load(mod.modPath .. "resources/font/warning/teammeatex16.fnt")
+warningFont16:Load(mod.modPath .. "resources/font/teammeatex/teammeatex16.fnt")
+
+local installDocs = "'일반 설치 방법'"
+if mod.rgon then
+    installDocs = "'RGON에 설치'"
+end
 
 local function DrawWarningString(font, text, offset, color)
     if HUD:IsVisible() then
@@ -63,19 +69,18 @@ local function DrawWarningString(font, text, offset, color)
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+    if mod.rgon and Isaac.GetString("Items", "DATAMINER_NAME") == "데이터마이너" then return end
     if mod.isRepentancePlus and mod.isTruePatch then return end
 
     warningFontBlack:DrawStringScaledUTF8("쀏", 400, -1500, 400, 400, KColor(0, 0, 0, 1), 0, true)
     DrawWarningString(warningFont16, "리펜턴스+ 한글패치가 설치되지 않았습니다.", 55, KColor(1, 0.5, 0.5, 1))
-    DrawWarningString(warningFont12, "한글패치의 창작마당 페이지에서 '설치 방법' 부분의", 18)
+    DrawWarningString(warningFont12, "https://ohy.kr/korean에서 " .. installDocs .. " 부분의", 18)
     DrawWarningString(warningFont12, "안내를 따라 한글패치를 적용해 주십시오.", 0)
-    DrawWarningString(warningFont12, "(Windows 환경이 아닌 경우 Q&A 부분을 참조하십시오.)", -24, KColor(1, 1, 1, 0.5))
-    return
+    DrawWarningString(warningFont12, "(Windows 환경이 아닌 경우 Q&A 부분을 참조하십시오)", -24, KColor(1, 1, 1, 0.5))
 end)
 
-
 ------ 스크롤 공지 ------
--- REPENTOGON용
+--[[
 local MOVE_DURATION = 1600    -- 메시지 이동 시간
 
 local warningFontScroll = Font()
@@ -86,7 +91,8 @@ mod.startX = nil
 mod.already = false
 
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
-    if not REPENTOGON then return end
+    if not mod.rgon then return end
+    if Isaac.GetString("Items", "DATAMINER_NAME") == "데이터마이너" then return end
 
     if Game():GetRoom():IsClear() and mod.messageFrame ~= nil and mod.messageFrame <= MOVE_DURATION then
         local t = mod.messageFrame
@@ -96,8 +102,8 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 
         warningFontBlack:DrawStringScaledUTF8("쀏", 400, Isaac.GetScreenHeight() * 0.1 - 5, 400, 1.4, KColor(0, 0, 0, 2/3), 0, true)
         warningFontScroll:DrawStringUTF8(
-            "리펜턴스+ 한글패치는 REPENTOGON+와 호환되지 않습니다. " ..
-            "강제로 REPENTOGON+에 한글패치를 적용할 경우 게임이 손상됩니다. " ..
+            "리펜턴스+ 한글패치는 REPENTOGON+와 호환되지 않습니다." ..
+            "강제로 REPENTOGON+에 한글패치를 적용할 경우 게임이 손상될 수 있습니다. " ..
             "자세한 내용은 한글패치 창작마당 페이지(https://ohy.kr/korean)를 참고하십시오.",
             x + 50,
             y,
@@ -115,7 +121,7 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
             mod.startX = Isaac.GetScreenWidth()
         end
     end
-end)
+end)]]
 
 
 ------ MCM + 아빠의 쪽지 자막 ------
