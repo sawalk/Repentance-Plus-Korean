@@ -5,8 +5,8 @@
     <id>3371064337</id>
     <description>[code][h2][b] 대응 게임 버전: v1.9.7.15 [/b][/h2][/code]
 
-[h1] [b]　설치 방법 [url=https://www.youtube.com/watch?v=7K8VEMQtyPs](튜토리얼 영상)[/url][/b] [/h1] 
-[code][b]본 패치는 일반적인 모드 설치 방법을 따르지 않으며, 창작마당은 패치의 리소스 파일을 업데이트하는 데만 사용됩니다. 패치를 처음 사용하는 경우, 게임이 업데이트되는 경우 수동 설치가 필요합니다.
+[h1] [b]　일반 설치 방법 [url=https://www.youtube.com/watch?v=7K8VEMQtyPs](튜토리얼 영상)[/url][/b] [/h1] 
+[code][b]본 패치는 일반적인 모드 설치 방법을 따르지 않으며, 창작마당은 패치의 리소스 파일을 업데이트하는 데만 사용됩니다.  패치는 약관에 위반되지 않는 선에서만 게임 파일을 변조하므로 걱정하지 마세요. 패치를 처음 이용하는 경우, 게임이 업데이트되는 경우 수동 설치가 필요합니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
 1. 이 모드와 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3570233241]LangHackRep+[/url]을 구독
 2. 게임을 실행해 LangHackRep+가 완전히 다운로드되었는지 확인
@@ -14,6 +14,18 @@
 4. \mods\lang_hack_rep+_3570233241 폴더로 이동 (폴더가 없다면 1번부터 다시)
 5. patcher.zip에서 patcher.exe를 실행한 후 isaac-ng.exe 선택
 6. 게임을 실행하고 안내에 따라 진행
+[/b][/code]
+
+[h1] [b]　RGON+에 설치 [/b] [/h1] 
+[code][b]관 련　지 식 이　없 는　분 은　읽 지　마 세 요 .
+아래 방법은 [url=https://gall.dcinside.com/m/tboi/149421]REPENTOGON+[/url]사용자를 위한 안내입니다. 이 경우 더빙은 비활성화할 수 없으며 극소수의 분량이 번역되지 않습니다. RGON+ 버전이 업데이트되는 경우 다시 설치해야 할 수 있습니다.
+[img]https://imgur.com/oGiLZIY.png[/img]
+1. [url=https://help.steampowered.com/ko/faqs/view/0C48-FCBD-DA71-93EB]게임 파일 무결성 검사[/url]로 한글패치 제거 후  REPENTOGONLauncher 실행
+2. 런처를 종료하고 게임 설치 경로로 이동 (라이브러리에서 아이작: 리버스 우클릭 &gt; 관리 &gt; 로컬 파일 탐색)
+3. \mods\repentance+ korean_3371064337\res 폴더로 이동
+4. repentogon_kr.a을 복사하고 다시 게임 설치 경로로 이동
+5. \Repentogon\resources\packed 폴더에 repentogon_kr.a 붙여넣기
+6. 기존 repentance_kr.a을 삭제하고 repentogon_kr.a의 이름을 repentance_kr.a로 변경
 [/b][/code]
 
 [h2] [b]　Q&amp;A [/b] [/h2]
@@ -38,15 +50,12 @@ A. '엄마' 보스를 처치하지 않은 세이브에서 모드를 활성화하
 [img]https://imgur.com/oGiLZIY.png[/img]
 Q. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]를 한국어로 바꾸고 싶어요!
 A. 한글패치가 활성화돼있다면 설명모드의 언어는 자동으로 한국어로 설정됩니다.
-[img]https://imgur.com/oGiLZIY.png[/img]
-Q. [url=https://repentogon.com/index.html]REPENTOGON+[/url]와 호환되나요?
-A. 테스트되지 않았습니다. 충돌할 가능성이 높습니다.
 [/b][/code]
 
 [h2] [b]　이슈 제보 [/b] [/h2]
 [code][b]버그나 호환성 이슈, 번역 오류 및 건의 사항은 모두 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues/new/choose]Github Issues[/url]에서만 받습니다.
 [/b][/code]</description>
-    <version>2.12</version>
+    <version>2.14</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>
