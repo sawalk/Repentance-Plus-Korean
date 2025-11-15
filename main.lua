@@ -1,7 +1,7 @@
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
-mod.version = 2.13
+mod.version = 2.14
 Isaac.DebugString("Starting Repentance+ Korean v" .. mod.version)    -- 디버깅
 
 mod.isRepentancePlus = REPENTANCE_PLUS or FontRenderSettings ~= nil
@@ -75,7 +75,7 @@ if mod.rgon then
             end
         end
 
-        for id = 1, (PillEffect.NUM_PILL_EFFECTS - 1) do
+        for id = 0, (PillEffect.NUM_PILL_EFFECTS - 1) do
             local ok, cfg = pcall(function() return conf:GetPillEffect(id) end)
             if ok and cfg and cfg.Name then
                 cfg.Name = Localized("PocketItems", cfg.Name)

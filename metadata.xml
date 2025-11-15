@@ -18,14 +18,13 @@
 
 [h1] [b]　RGON+에 설치 [/b] [/h1] 
 [code][b]관 련　지 식 이　없 는　분 은　읽 지　마 세 요 .
-아래 방법은 [url=https://gall.dcinside.com/m/tboi/149421]REPENTOGON+[/url]사용자를 위한 안내입니다. 이 경우 더빙은 비활성화할 수 없으며 극소수의 분량이 번역되지 않습니다. RGON+ 버전이 업데이트되는 경우 다시 설치해야 할 수 있습니다.
+아래 방법은 [url=https://gall.dcinside.com/m/tboi/149421]REPENTOGON+[/url]사용자를 위한 안내입니다. 이 경우 더빙은 비활성화할 수 없으며 통계 내 '도감'이 번역되지 않습니다. RGON+ 버전이 업데이트되는 경우 다시 설치해야 할 수 있습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
-1. [url=https://help.steampowered.com/ko/faqs/view/0C48-FCBD-DA71-93EB]게임 파일 무결성 검사[/url]로 한글패치 제거 후  REPENTOGONLauncher 실행
-2. 런처를 종료하고 게임 설치 경로로 이동 (라이브러리에서 아이작: 리버스 우클릭 &gt; 관리 &gt; 로컬 파일 탐색)
-3. \mods\repentance+ korean_3371064337\res 폴더로 이동
-4. repentogon_kr.a을 복사하고 다시 게임 설치 경로로 이동
-5. \Repentogon\resources\packed 폴더에 repentogon_kr.a 붙여넣기
-6. 기존 repentance_kr.a을 삭제하고 repentogon_kr.a의 이름을 repentance_kr.a로 변경
+1. 게임 설치 경로로 이동 (라이브러리에서 아이작: 리버스 우클릭 &gt; 관리 &gt; 로컬 파일 탐색)
+2. \mods\repentance+ korean_3371064337\res 폴더로 이동
+3. repentogon_kr.a을 복사하고 다시 게임 설치 경로로 이동
+4. \Repentogon\resources\packed 폴더에 repentogon_kr.a 붙여넣기
+5. 기존 repentance_kr.a을 삭제하고 repentogon_kr.a의 이름을 repentance_kr.a로 변경
 [/b][/code]
 
 [h2] [b]　Q&amp;A [/b] [/h2]
@@ -33,7 +32,7 @@
 A. 지원하지 않습니다. 대신 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3578295270]미공개 모드[/url]를 구독하여 싱글플레이 한정으로 한국어로 플레이하실 수 있습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
 Q. 패치는 어떻게 제거하나요?
-A. 라이브러리에서 아이작: 리버스 우클릭 &gt; 속성 &gt; 설치된 파일 &gt; 게임 파일 무결성 검사를 클릭하세요.
+A. [url=https://help.steampowered.com/ko/faqs/view/0C48-FCBD-DA71-93EB]게임 파일 무결성 검사[/url]로 제거할 수 있습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
 Q. 더빙을 끌 순 없나요?
 A. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]Mod Config Menu Pure[/url]를 구독하여 인게임에서 설정하세요. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3360615255]한국어 팬 더빙 모드[/url]를 활성화했다면 비활성화하세요.
@@ -55,10 +54,11 @@ A. 한글패치가 활성화돼있다면 설명모드의 언어는 자동으로 
 [h2] [b]　이슈 제보 [/b] [/h2]
 [code][b]버그나 호환성 이슈, 번역 오류 및 건의 사항은 모두 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues/new/choose]Github Issues[/url]에서만 받습니다.
 [/b][/code]</description>
-    <version>2.14</version>
+    <version>2.15</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>
     <tag id="Graphics"/>
     <tag id="Sound Effects"/>
+    <tag id="Music"/>
 </metadata>
