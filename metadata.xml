@@ -54,7 +54,7 @@ A. 한글패치가 활성화돼있다면 설명모드의 언어는 자동으로 
 [h2] [b]　이슈 제보 [/b] [/h2]
 [code][b]버그나 호환성 이슈, 번역 오류 및 건의 사항은 모두 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues/new/choose]Github Issues[/url]에서만 받습니다.
 [/b][/code]</description>
-    <version>2.15</version>
+    <version>2.17</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>

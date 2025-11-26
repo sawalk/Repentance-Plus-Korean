@@ -1,7 +1,7 @@
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
-mod.version = 2.14
+mod.version = 2.16
 Isaac.DebugString("Starting Repentance+ Korean v" .. mod.version)    -- 디버깅
 
 mod.isRepentancePlus = REPENTANCE_PLUS or FontRenderSettings ~= nil
@@ -251,7 +251,6 @@ if MCMLoaded and MCM then
         Info = "자막의 불투명도를 설정합니다. (기본값: 67%)"
     });
     MCM.AddText("Rep+ Korean", "Dub", " ");
-    MCM.AddText("Rep+ Korean", "Dub", "'완전' 한글패치 전용 설정입니다.");
     MCM.AddText("Rep+ Korean", "Dub", "게임을 재시작해야 설정이 적용됩니다.");
     MCM.AddText("Rep+ Korean", "Dub", " ");
     MCM.AddSetting("Rep+ Korean", "Dub", {
