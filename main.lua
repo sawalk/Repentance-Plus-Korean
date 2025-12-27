@@ -1,7 +1,7 @@
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
-mod.version = 2.19
+mod.version = "2.20"
 Isaac.DebugString("Starting Repentance+ Korean v" .. mod.version)    -- 디버깅
 
 mod.isRepentancePlus = REPENTANCE_PLUS or FontRenderSettings ~= nil
@@ -188,7 +188,13 @@ mod.config = {
 if MCMLoaded and MCM then
     local data_str = Isaac.LoadModData(mod)
     if data_str and data_str ~= "" then
-        mod.config = json.decode(data_str)
+        local success, decoded = pcall(json.decode, data_str)
+        if success and type(decoded) == "table" then
+            mod.config = decoded
+        else
+            Isaac.DebugString("[REPKOR] Json decode failed: " .. (decoded or "unknown error") .. " | Configs are set by default.")
+            Isaac.SaveModData(mod, json.encode(mod.config))
+        end
     end
 
     local function save()
@@ -211,6 +217,7 @@ if MCMLoaded and MCM then
         end,
         OnChange = function(newOption)
             mod.config.subtitles = newOption;
+            save()
         end,
         Info = "'아빠의 쪽지' 아이템을 획득 후 나오는 승천 시퀀스의 자막을 표시할지 설정합니다."
     });
@@ -302,8 +309,8 @@ function mod:RenderSub(scene)
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+    if not mod.config then return end
     if not mod.config.subtitles then return end
-    if not mod.isTruePatch then return end
 
     local VoiceSFX = SFXManager()
     for i = 598, 601 do

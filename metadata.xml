@@ -5,8 +5,8 @@
     <id>3371064337</id>
     <description>[code][h2][b] 대응 게임 버전: v1.9.7.15 [/b][/h2][/code]
 
-[h1] [b]　일반 설치 방법 [url=https://www.youtube.com/watch?v=7K8VEMQtyPs](튜토리얼 영상)[/url][/b] [/h1] 
-[code][b]본 패치는 일반적인 모드 설치 방법을 따르지 않으며, 창작마당은 패치의 리소스 파일을 업데이트하는 데만 사용됩니다.  패치는 약관에 위반되지 않는 선에서만 게임 파일을 변조하므로 걱정하지 마세요. 패치를 처음 이용하는 경우, 게임이 업데이트되는 경우 수동 설치가 필요합니다.
+[h1] [b]　바닐라에 설치 [url=https://www.youtube.com/watch?v=7K8VEMQtyPs](튜토리얼 영상)[/url][/b] [/h1] 
+[code][b]아래 방법은 일반 사용자를 위한 안내입니다. 본 패치는 일반적인 모드 설치 방법을 따르지 않으며, 창작마당은 패치의 리소스 파일을 업데이트하는 데만 사용됩니다.  패치는 약관에 위반되지 않는 선에서만 게임 파일을 변조하므로 걱정하지 마세요. 패치를 처음 이용하는 경우 수동 설치가 필요하며, 아이작의 버전이 업데이트되는 경우 한글패치가 업데이트될 때까지 대기한 후 수동으로 설치해야 합니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
 1. 이 모드와 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3570233241]LangHackRep+[/url]을 구독
 2. 게임을 실행해 LangHackRep+가 완전히 다운로드되었는지 확인
@@ -17,8 +17,7 @@
 [/b][/code]
 
 [h1] [b]　RGON+에 설치 [/b] [/h1] 
-[code][b]관 련　지 식 이　없 는　분 은　읽 지　마 세 요 .
-아래 방법은 [url=https://gall.dcinside.com/m/tboi/149421]REPENTOGON+[/url]사용자를 위한 안내입니다. 이 경우 더빙은 비활성화할 수 없으며 통계 내 '도감'이 번역되지 않습니다. RGON+ 버전이 업데이트되는 경우 다시 설치해야 할 수 있습니다.
+[code][b]아래 방법은 [url=https://gall.dcinside.com/m/tboi/149421]REPENTOGON+[/url]사용자를 위한 안내입니다. 이 경우 더빙은 비활성화할 수 없으며 '통계' 내 '도감'이 번역되지 않습니다. 바닐라에 한글패치가 설치돼있다면 [url=https://help.steampowered.com/ko/faqs/view/0C48-FCBD-DA71-93EB]게임 파일 무결성 검사[/url]를 통해 한글패치를 제거하고 RGON+을 설치/업데이트해야 합니다. (한글패치가 설치돼있다면 RGON+ 런처는 업데이트를 받지 않습니다.)
 [img]https://imgur.com/oGiLZIY.png[/img]
 1. 게임 설치 경로로 이동 (라이브러리에서 아이작: 리버스 우클릭 &gt; 관리 &gt; 로컬 파일 탐색)
 2. \mods\repentance+ korean_3371064337\res 폴더로 이동
@@ -54,7 +53,7 @@ A. 한글패치가 활성화돼있다면 설명모드의 언어는 자동으로 
 [h2] [b]　이슈 제보 [/b] [/h2]
 [code][b]버그나 호환성 이슈, 번역 오류 및 건의 사항은 모두 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues/new/choose]Github Issues[/url]에서만 받습니다.
 [/b][/code]</description>
-    <version>2.20</version>
+    <version>2.21</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>
