@@ -1,7 +1,7 @@
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
-mod.version = "2.20"
+mod.version = "2.24"
 Isaac.DebugString("Starting Repentance+ Korean v" .. mod.version)    -- 디버깅
 
 mod.isRepentancePlus = REPENTANCE_PLUS or FontRenderSettings ~= nil
@@ -36,53 +36,12 @@ mod.modPath = GetCurrentModPath()
 
 
 ------ EID ------
-function mod:ChangeEIDLanguage()
-    return "ko_kr"
-end
-mod:AddCallback("EID_EVALUATE_AUTO_LANG", mod.ChangeEIDLanguage)
-
-
------- REPENTOGON+ ------
-local function Localized(category, KEY)
-    return Isaac.GetLocalizedString(category, KEY, 11)
-end
-
-if mod.rgon then
-    mod:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, function()
-        local conf = Isaac.GetItemConfig()
-
-        for id = 1, (CollectibleType.NUM_COLLECTIBLES - 1) do
-            local ok, cfg = pcall(function() return conf:GetCollectible(id) end)
-            if ok and cfg and cfg.Name and cfg.Description then
-                cfg.Name = Localized("Items", cfg.Name)
-                cfg.Description = Localized("Items", cfg.Description)
-            end
-        end
-
-        for id = 1, (TrinketType.NUM_TRINKETS - 1) do
-            local ok, cfg = pcall(function() return conf:GetTrinket(id) end)
-            if ok and cfg and cfg.Name and cfg.Description then
-                cfg.Name = Localized("Items", cfg.Name)
-                cfg.Description = Localized("Items", cfg.Description)
-            end
-        end
-        
-        for id = 1, (Card.NUM_CARDS - 1) do
-            local ok, cfg = pcall(function() return conf:GetCard(id) end)
-            if ok and cfg and cfg.Name and cfg.Description then
-                cfg.Name = Localized("PocketItems", cfg.Name)
-                cfg.Description = Localized("PocketItems", cfg.Description)
-            end
-        end
-
-        for id = 0, (PillEffect.NUM_PILL_EFFECTS - 1) do
-            local ok, cfg = pcall(function() return conf:GetPillEffect(id) end)
-            if ok and cfg and cfg.Name then
-                cfg.Name = Localized("PocketItems", cfg.Name)
-            end
-        end
-    end)
-end
+mod:AddCallback(
+    "EID_EVALUATE_AUTO_LANG",
+    function()
+        return "ko_kr"
+    end
+)
 
 
 ------ 경고 메시지 ------
@@ -97,7 +56,7 @@ warningFont12:Load(mod.modPath .. "resources/font/teammeatex/teammeatex12.fnt")
 local warningFont16 = Font()
 warningFont16:Load(mod.modPath .. "resources/font/teammeatex/teammeatex16.fnt")
 
-local installDocs = "'일반 설치 방법'"
+local installDocs = "'바닐라에 설치'"
 if mod.rgon then
     installDocs = "'RGON에 설치'"
 end
@@ -119,7 +78,6 @@ local function DrawWarningString(font, text, offset, color)
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
-    if mod.rgon and Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_DATAMINER).Name == "데이터마이너" then return end
     if mod.isRepentancePlus and mod.isTruePatch then return end
 
     warningFontBlack:DrawStringScaledUTF8("쀏", 400, -1500, 400, 400, KColor(0, 0, 0, 1), 0, true)
