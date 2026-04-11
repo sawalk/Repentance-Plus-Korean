@@ -3,7 +3,7 @@
     <name>z_REPENTANCE+ KOREAN</name>
     <directory>repentance+ korean</directory>
     <id>3371064337</id>
-    <description>[code][h2][b] 바닐라 대응 게임 버전: v1.9.7.15 
+    <description>[code][h2][b] 바닐라 대응 게임 버전: v1.9.7.16
  RGON+ 대응 게임 버전: v1.9.7.12
 [url=https://www.youtube.com/watch?v=ErN4fx9th6c] (패치 적용 튜토리얼 영상)[/url][/b][/h2][/code]
 
@@ -56,7 +56,7 @@ A. 한글패치가 활성화돼있다면 설명모드의 언어는 자동으로 
 [h2] [b]　이슈 제보 [/b] [/h2]
 [code][b]버그나 호환성 이슈, 번역 오류 및 건의 사항은 모두 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues/new/choose]Github Issues[/url]에서만 받습니다.
 [/b][/code]</description>
-    <version>2.26</version>
+    <version>2.27</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>
