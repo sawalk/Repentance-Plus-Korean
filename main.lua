@@ -1,7 +1,7 @@
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
-mod.version = "2.30"
+mod.version = "2.31"
 Isaac.DebugString("Starting Repentance+ Korean v" .. mod.version)    -- 디버깅
 
 mod.isRepentancePlus = REPENTANCE_PLUS or FontRenderSettings ~= nil

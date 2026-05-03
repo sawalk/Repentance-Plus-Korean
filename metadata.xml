@@ -37,7 +37,7 @@ Q. 패치는 어떻게 제거하나요?
 A. [url=https://help.steampowered.com/ko/faqs/view/0C48-FCBD-DA71-93EB]게임 파일 무결성 검사[/url]로 제거할 수 있습니다.
 [img]https://imgur.com/oGiLZIY.png[/img]
 Q. 더빙을 끌 순 없나요?
-A. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]Mod Config Menu Pure[/url]를 구독하여 인게임에서 설정하세요. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3360615255]한국어 팬 더빙 모드[/url]를 활성화했다면 비활성화하세요.
+A. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]Mod Config Menu Pure[/url] 구독 후 인게임에서 설정하세요. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3360615255]한국어 팬 더빙 모드[/url]를 활성화했다면 비활성화하세요.
 [img]https://imgur.com/oGiLZIY.png[/img]
 Q. 글꼴을 리펜턴스 당시 한국어 글꼴로 바꾸고 싶어요!
 A. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3584898760]미공개 모드[/url]를 구독하여 글꼴을 변경할 수 있습니다. 단, 모드를 사용할 수 있는 환경에서만 가능합니다.
@@ -56,7 +56,7 @@ A. 한글패치가 활성화돼있다면 설명모드의 언어는 자동으로 
 [h2] [b]　이슈 제보 [/b] [/h2]
 [code][b]버그나 호환성 이슈, 번역 오류 및 건의 사항은 모두 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues/new/choose]Github Issues[/url]에서만 받습니다.
 [/b][/code]</description>
-    <version>2.31</version>
+    <version>2.32</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>
