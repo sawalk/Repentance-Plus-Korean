@@ -1,12 +1,12 @@
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
-mod.version = "2.31"
+mod.version = "2.33"
 Isaac.DebugString("Starting Repentance+ Korean v" .. mod.version)    -- 디버깅
 
 mod.isRepentancePlus = REPENTANCE_PLUS or FontRenderSettings ~= nil
 mod.runningRep = REPENTANCE and not REPENTANCE_PLUS
-mod.isTruePatch = Options.Language == "kr"
+mod.isTruePatch = mod.isRepentancePlus and Options.Language == "kr"
 mod.rgon = REPENTOGON
 
 if mod.isRepentancePlus and mod.isTruePatch then
@@ -242,7 +242,7 @@ mod.Subtitles = include('res.dadsnote_sub')
 mod.subStart = {}         -- 실제 시작 시각(초)
 mod.playingSounds = {}    -- 이전 프레임에서의 상태
 
-function mod:RenderSub(scene)
+local function renderSub(scene)
     local startTime = mod.subStart[scene]
     if not startTime then return end
 
@@ -266,9 +266,17 @@ function mod:RenderSub(scene)
     end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+function mod:onRender(shaderName)
     if not mod.config then return end
     if not mod.config.subtitles then return end
+
+    if mod.rgon then
+	    local isShader = shaderName == "UI_DrawKrPatchSubtitle_DummyShader"
+        
+        if not (Game():IsPaused() and Isaac.GetPlayer(0).ControlsEnabled) and not isShader then return end -- no render when unpaused
+        if (Game():IsPaused() and Isaac.GetPlayer(0).ControlsEnabled) and isShader then return end -- no shader when paused
+        if shaderName ~= nil and not isShader then return end -- final failsafe
+    end
 
     local VoiceSFX = SFXManager()
     for i = 598, 601 do
@@ -290,10 +298,13 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
         end
 
         if nowPlaying then
-            mod:RenderSub(scene)
+            renderSub(scene)
         end
     end
-end)
+end
+
+if mod.rgon then mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.onRender) end
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.onRender)
 
 
 ------ G FUEL! ------
