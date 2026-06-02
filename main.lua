@@ -1,13 +1,14 @@
 REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
-mod.version = "2.34"
+mod.rgon = REPENTOGON
+mod.version = "2.35"
+mod.supportVanilla = mod.rgon and "v1.9.7.12" or "v1.9.7.17"
 Isaac.DebugString("Starting Repentance+ Korean v" .. mod.version)    -- 디버깅
 
 mod.isRepentancePlus = REPENTANCE_PLUS or FontRenderSettings ~= nil
 mod.runningRep = REPENTANCE and not REPENTANCE_PLUS
 mod.isTruePatch = mod.isRepentancePlus and Options.Language == "kr"
-mod.rgon = REPENTOGON
 
 if mod.isRepentancePlus and mod.isTruePatch then
     Isaac.DebugString("Yay! The game language is already set to Korean!")
@@ -50,15 +51,59 @@ local HUD = Game():GetHUD()
 local warningFontBlack = Font()
 warningFontBlack:Load("font/cjk/lanapixel.fnt")
 
+local warningBoldFont = Font()
+warningBoldFont:Load(mod.modPath .. "resources/font/pftempestasevencondensed.fnt")
+
+local warningFont10 = Font()
+warningFont10:Load(mod.modPath .. "resources/font/warning/kr_font10.fnt")
+
 local warningFont12 = Font()
-warningFont12:Load(mod.modPath .. "resources/font/teammeatex/teammeatex12.fnt")
+warningFont12:Load(mod.modPath .. "resources/font/warning/kr_font12.fnt")
 
-local warningFont16 = Font()
-warningFont16:Load(mod.modPath .. "resources/font/teammeatex/teammeatex16.fnt")
+local warningQRFont = Font()
+warningQRFont:Load(mod.modPath .. "resources/font/warning/forqrcode.fnt")
 
-local installDocs = "'바닐라에 설치'"
-if mod.rgon then
-    installDocs = "'RGON에 설치'"
+local qrCodeAB = {
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "abbbbbbbaaaabaaabaabababbbbbbba",
+    "abaaaaababbabbbaaaaabaabaaaaaba",
+    "ababbbabababaabaababaaababbbaba",
+    "ababbbabaaabbaaaabbabaababbbaba",
+    "ababbbababaaabbbabbbbaababbbaba",
+    "abaaaaabaabbaababaabababaaaaaba",
+    "abbbbbbbababababababababbbbbbba",
+    "aaaaaaaaabbabababbbbbaaaaaaaaaa",
+    "abbbbbabbabbabaaaaabbbbbababbaa",
+    "abaaabaaaaaaabbababbbabbaababaa",
+    "abaababbaabbbbabbaabbababbabaaa",
+    "aabbbbbaaaaababaaaabbababaabbba",
+    "aabbabbbabbaababbababaaababbaaa",
+    "ababaaaaaaaaabaaabaaaabaababbba",
+    "aabbbbbbabaabbababaaabaabbaaaaa",
+    "aabbabbaabbabbbbaababaaaabbbaba",
+    "aaaabaabbbabaaabbaaaabbabbbbbba",
+    "abbaabbabbabbbbabbabbbaababbbba",
+    "abaaababbaaaaaabbaabbabaabababa",
+    "abbbbbbabbaaabaaabaababbaaababa",
+    "aaabbaabaababbbabbbbbbbbbbbabba",
+    "aaaaaaaaaaaababbbbababaaabbaaba",
+    "abbbbbbbabbabbbbabbabbababaaaba",
+    "abaaaaabaaaabbbbbaabbbaaababbaa",
+    "ababbbabababbaaaaaaaabbbbbbbaba",
+    "ababbbababbaaaaaabbbabaaabaaaaa",
+    "ababbbabababaaabaaabaaabaaabaaa",
+    "abaaaaabababbaabbabbbbabaaaabba",
+    "abbbbbbbabbbaabbbbbbbabbbaababa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+}
+
+local function DrawQRCodeString(offset, scale)
+    local x = Isaac.GetScreenWidth() / 2 - warningQRFont:GetStringWidthUTF8("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa") * (scale / 2)
+    local y = Isaac.GetScreenHeight() / 2 - offset
+
+    for yOffset, line in pairs(qrCodeAB) do
+        warningQRFont:DrawStringScaled(line, x, y + yOffset * scale, scale, scale, KColor(1, 1, 1, 1))
+    end
 end
 
 local function DrawWarningString(font, text, offset, color)
@@ -72,20 +117,33 @@ local function DrawWarningString(font, text, offset, color)
 		end
 	end
 
+    MusicManager():Pause()
+
     local x = Isaac.GetScreenWidth() / 2 - font:GetStringWidthUTF8(text) / 2
     local y = Isaac.GetScreenHeight() / 2 - offset
     font:DrawStringUTF8(text, x, y, color or KColor(1, 1, 1, 1), 0, true)
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+function mod:onWarningRender(shaderName)
     if mod.isRepentancePlus and mod.isTruePatch then return end
 
+    if mod.rgon then
+	    local isShader = shaderName == "UI_DrawKrPatchSubtitle_DummyShader"
+        if shaderName ~= nil and not isShader then return end
+    end
+
     warningFontBlack:DrawStringScaledUTF8("쀏", 400, -1500, 400, 400, KColor(0, 0, 0, 1), 0, true)
-    DrawWarningString(warningFont16, "리펜턴스+ 한글패치가 설치되지 않았습니다.", 55, KColor(1, 0.5, 0.5, 1))
-    DrawWarningString(warningFont12, "https://ohy.kr/korean에서 " .. installDocs .. " 부분의", 18)
-    DrawWarningString(warningFont12, "안내를 따라 한글패치를 적용해 주십시오.", 0)
-    DrawWarningString(warningFont12, "(Windows 환경이 아닌 경우 Q&A 부분을 참조하십시오)", -24, KColor(1, 1, 1, 0.5))
-end)
+    DrawQRCodeString(97, 3)
+    DrawWarningString(warningBoldFont, "https://ohy.kr/krpatchtutorial", -2, KColor(0.25, 0.75, 1, 1))
+    DrawWarningString(warningFont12, "한글패치가 처음이신 분, 업데이트 후 패치가 풀리신 분들은", -29)
+    DrawWarningString(warningFont12, "위의 영상 가이드를 확인해 주세요!", -45)
+    DrawWarningString(warningFont10, "(설치된 패치가 지원하는 게임 버전: " .. mod.supportVanilla .. ")", -65, KColor(1, 1, 1, 0.5))
+    DrawWarningString(warningFont10, "(Linux 사용자라면 한글패치 창작마당을 확인해 주세요)", -79, KColor(1, 1, 1, 0.5))
+end
+
+if mod.rgon then mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.onWarningRender) end
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.onWarningRender)
+
 
 ------ 스크롤 공지 ------
 --[[
@@ -144,6 +202,8 @@ mod.config = {
 }
 
 if MCMLoaded and MCM then
+    ModConfigMenu.RemoveCategory("Rep+ Korean")
+
     local data_str = Isaac.LoadModData(mod)
     if data_str and data_str ~= "" then
         local success, decoded = pcall(json.decode, data_str)
@@ -266,7 +326,7 @@ local function renderSub(scene)
     end
 end
 
-function mod:onRender(shaderName)
+function mod:onSubtitleRender(shaderName)
     if not mod.config then return end
     if not mod.config.subtitles then return end
 
@@ -303,8 +363,8 @@ function mod:onRender(shaderName)
     end
 end
 
-if mod.rgon then mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.onRender) end
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.onRender)
+if mod.rgon then mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.onSubtitleRender) end
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.onSubtitleRender)
 
 
 ------ G FUEL! ------
