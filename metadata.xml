@@ -64,7 +64,7 @@ A. '엄마' 보스를 처치하지 않은 세이브에서 모드를 활성화하
 Q. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]를 한국어로 바꾸고 싶어요!
 A. 한글패치가 활성화돼있다면 설명모드의 언어는 자동으로 한국어로 설정됩니다.
 [/b][/code]</description>
-    <version>2.39</version>
+    <version>2.40</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>
