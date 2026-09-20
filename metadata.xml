@@ -3,11 +3,20 @@
     <name>z_REPENTANCE+ KOREAN</name>
     <directory>repentance+ korean</directory>
     <id>3371064337</id>
-    <description>[code][h2][b] 바닐라 대응 게임 버전: v1.9.7.17
- RGON+ 대응 게임 버전: v1.9.7.12
+    <description>[code][h2][b] 현재 패치가 지원하는 바닐라 버전: v1.9.7.17
+ 현재 패치가 지원하는 RGON+ 버전: v1.9.7.12
 
- [url=https://www.youtube.com/watch?v=ErN4fx9th6c] (패치 적용 튜토리얼 영상)[/url][/b][/h2][/code]
+[url=https://www.youtube.com/watch?v=ErN4fx9th6c] ▶▶ 패치 적용 튜토리얼 영상 ◀◀[/url][/b][/h2][/code]
 
+[h1] [b]　이슈 제보 [/b] [/h1]
+[code][b]버그나 호환성 이슈, 번역 오류 및 건의 사항은 모두 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues/new/choose]Github Issues[/url]에서만 받습니다. 같은 이유로 친구 요청 시 차단합니다.
+[img]https://imgur.com/oGiLZIY.png[/img]
+RGON+에서 직접 언어를 변경할 수 있게 되면서 패치 로더(LangHackRep+)가 더 이상 RGON+를 지원하지 않게 되었습니다. 이로 인해 현재 RGON+ 환경에선 한글패치가 패치 로더에 의존하던 기능(컷신 더빙, 컷신 자막 등)을 지원하지 않습니다.
+[img]https://imgur.com/oGiLZIY.png[/img]
+최근 패치 로더(LangHackRep+)가 안티치트에 걸려 무고밴을 당하는 사례가 있습니다. 로더 자체는 아이작 외에 다른 프로그램을 수정하지 않습니다. (오픈소스이기에 직접 확인할 수 있습니다.) 제작자는 이로 인하여 발생하는 어떠한 불이익에 대해서도 책임을 지지 않습니다.
+[/b][/code]
+
+[hr][/hr]
 
 [h1] [b]　바닐라에 설치 [/b] (일반 사용자용) [/h1] 
 [code][b]1. 이 모드와 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3570233241]LangHackRep+[/url]을 구독
@@ -25,12 +34,10 @@
 [code][b]아래 방법은 [url=https://gall.dcinside.com/m/tboi/149421]REPENTOGON+[/url]사용자를 위한 안내입니다. RGON+를 사용하지 않는다면 이 지침을 따르지 마세요. 바닐라에 한글패치가 설치돼있다면 [url=https://help.steampowered.com/ko/faqs/view/0C48-FCBD-DA71-93EB]게임 파일 무결성 검사[/url]를 통해 한글패치를 제거하고 RGON+을 설치/업데이트해야 합니다. (한글패치가 설치돼있다면 RGON+ 런처는 업데이트를 받지 않습니다.)
 [h3]RGON+가 뭔지 모른다면 무조건 '바닐라에 설치' 가이드를 따르십시오.[/h3]
 [img]https://imgur.com/oGiLZIY.png[/img]
-1. 이 모드와 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3570233241]LangHackRep+[/url]을 구독
-2. 게임을 실행해 LangHackRep+가 완전히 다운로드되었는지 확인
-3. 게임을 종료하고 게임 설치 경로로 이동 (라이브러리에서 아이작: 리버스 우클릭 &gt; 관리 &gt; 로컬 파일 탐색)
-4. \mods\lang_hack_rep+_3570233241 폴더로 이동 (폴더가 없다면 1번부터 다시)
-5. patcher_rgon.zip의 압축을 풀고 patcher_rgon.exe를 실행한 후 바닐라의 isaac-ng.exe 선택
-6. 게임을 실행하고 안내에 따라 진행
+1. 이 모드를 구독
+2. 게임을 실행해 모드가 완전히 다운로드되었는지 확인
+3. REPENTOGON Launcher에서 Change Game Options 버튼 클릭
+4. Language를 Korean으로 변경
 [/b][/code]
 
 
@@ -56,13 +63,8 @@ A. '엄마' 보스를 처치하지 않은 세이브에서 모드를 활성화하
 [img]https://imgur.com/oGiLZIY.png[/img]
 Q. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]아이템 설명모드[/url]를 한국어로 바꾸고 싶어요!
 A. 한글패치가 활성화돼있다면 설명모드의 언어는 자동으로 한국어로 설정됩니다.
-[/b][/code]
-
-
-[h2] [b]　이슈 제보 [/b] [/h2]
-[code][b]버그나 호환성 이슈, 번역 오류 및 건의 사항은 모두 [url=https://github.com/sawalk/Repentance-Plus-Korean/issues/new/choose]Github Issues[/url]에서만 받습니다.
 [/b][/code]</description>
-    <version>2.37</version>
+    <version>2.39</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Tweaks"/>
