@@ -2,8 +2,8 @@ REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
 mod.rgon = REPENTOGON
-mod.version = "2.39"
-mod.supportVanilla = "v1.9.7.17"
+mod.version = "2.40"
+mod.supportVanilla = "v1.9.7.19"
 Isaac.DebugString(string.format("[REPKOR] Starting v%s...", mod.version))
 
 mod.isRepentancePlus = REPENTANCE_PLUS or FontRenderSettings ~= nil
@@ -47,6 +47,7 @@ require("res.lua.warning")
 require("res.lua.mcm")
 require("res.lua.subtitles")
 require("res.lua.gfuel")
+require("res.lua.crime")
 
 print("Repentance+ Korean " .. string.format("%.2f", mod.version) .. " loaded.")
 
