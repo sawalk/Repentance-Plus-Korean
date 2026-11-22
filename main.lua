@@ -2,7 +2,7 @@ REPKOR = RegisterMod("Repentance+ Korean", 1)
 local mod = REPKOR
 
 mod.rgon = REPENTOGON
-mod.version = "2.40"
+mod.version = "2.41"
 mod.supportVanilla = "v1.9.7.19"
 Isaac.DebugString(string.format("[REPKOR] Starting v%s...", mod.version))
 
